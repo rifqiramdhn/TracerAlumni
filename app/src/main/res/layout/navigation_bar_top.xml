@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/img_icon1"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/icon_width"
+            android:layout_height="@dimen/icon_height"
             android:layout_gravity="center"
             android:src="@drawable/ic_arrow_back" />
     </FrameLayout>
@@ -32,31 +32,31 @@
         android:textSize="16sp" />
 
     <FrameLayout
-        android:layout_toLeftOf="@id/fl_icon3"
         android:id="@+id/fl_icon2"
         android:layout_width="36dp"
         android:layout_height="match_parent"
+        android:layout_toLeftOf="@id/fl_icon3"
         android:background="?android:attr/selectableItemBackground">
 
         <ImageView
             android:id="@+id/img_icon2"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/icon_width"
+            android:layout_height="@dimen/icon_height"
             android:layout_gravity="center"
             android:src="@drawable/ic_info" />
     </FrameLayout>
 
     <FrameLayout
-        android:layout_toLeftOf="@id/fl_icon4"
         android:id="@+id/fl_icon3"
         android:layout_width="36dp"
         android:layout_height="match_parent"
+        android:layout_toLeftOf="@id/fl_icon4"
         android:background="?android:attr/selectableItemBackground">
 
         <ImageView
             android:id="@+id/img_icon3"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/icon_width"
+            android:layout_height="@dimen/icon_height"
             android:layout_gravity="center"
             android:src="@drawable/ic_search" />
     </FrameLayout>
@@ -70,8 +70,8 @@
 
         <ImageView
             android:id="@+id/img_icon4"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/icon_width"
+            android:layout_height="@dimen/icon_height"
             android:layout_gravity="center"
             android:src="@drawable/ic_settings" />
     </FrameLayout>
