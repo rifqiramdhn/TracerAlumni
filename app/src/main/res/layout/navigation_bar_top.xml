@@ -1,16 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@android:color/white"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="44dp"
-    android:orientation="horizontal"
+    android:background="@android:color/white"
     android:paddingLeft="@dimen/margin_horizontal"
     android:paddingRight="@dimen/margin_horizontal">
-    
+
     <FrameLayout
+        android:id="@+id/fl_icon1"
         android:layout_width="36dp"
         android:layout_height="match_parent"
         android:background="?android:attr/selectableItemBackground">
 
+        <ImageView
+            android:id="@+id/img_icon1"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_arrow_back" />
     </FrameLayout>
-</LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:text="DAFTAR ALUMNI"
+        android:textAlignment="center"
+        android:textColor="@color/colorIconBiru"
+        android:textSize="16sp" />
+
+    <FrameLayout
+        android:layout_toLeftOf="@id/fl_icon3"
+        android:id="@+id/fl_icon2"
+        android:layout_width="36dp"
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/img_icon2"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_info" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_toLeftOf="@id/fl_icon4"
+        android:id="@+id/fl_icon3"
+        android:layout_width="36dp"
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/img_icon3"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_search" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_icon4"
+        android:layout_width="36dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:background="?android:attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/img_icon4"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_settings" />
+    </FrameLayout>
+</RelativeLayout>
