@@ -17,7 +17,8 @@
             android:layout_width="@dimen/icon_width"
             android:layout_height="@dimen/icon_height"
             android:layout_gravity="center"
-            android:src="@drawable/ic_arrow_back" />
+            android:src="@drawable/ic_arrow_back"
+            android:tint="@color/colorIconBiru" />
     </FrameLayout>
 
     <TextView
@@ -43,7 +44,8 @@
             android:layout_width="@dimen/icon_width"
             android:layout_height="@dimen/icon_height"
             android:layout_gravity="center"
-            android:src="@drawable/ic_info" />
+            android:src="@drawable/ic_info"
+            android:tint="@color/colorIconBiru" />
     </FrameLayout>
 
     <FrameLayout
@@ -58,7 +60,8 @@
             android:layout_width="@dimen/icon_width"
             android:layout_height="@dimen/icon_height"
             android:layout_gravity="center"
-            android:src="@drawable/ic_search" />
+            android:src="@drawable/ic_search"
+            android:tint="@color/colorIconBiru" />
     </FrameLayout>
 
     <FrameLayout
@@ -73,6 +76,7 @@
             android:layout_width="@dimen/icon_width"
             android:layout_height="@dimen/icon_height"
             android:layout_gravity="center"
-            android:src="@drawable/ic_settings" />
+            android:src="@drawable/ic_settings"
+            android:tint="@color/colorIconBiru" />
     </FrameLayout>
 </RelativeLayout>
