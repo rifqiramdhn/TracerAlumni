@@ -4,5 +4,7 @@
     <color name="colorPrimaryDark">#006CC7</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorIconBiru">#2699FB</color>
-    <color name="windowBackground">#ffffff</color>
+
+    <color name="colorTabSelected">#ffffff</color>
+    <color name="colorTabUnselected">#72C9FF</color>
 </resources>

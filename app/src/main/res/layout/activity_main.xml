@@ -8,15 +8,29 @@
     tools:context=".MainActivity">
 
     <include
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/nav_bar_height"
+        android:id="@+id/include"
         layout="@layout/navigation_bar_top"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nav_bar_height" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tl_main_alumni"
+        android:layout_width="0dp"
+        android:layout_height="76dp"
+        android:background="#2699FB"
+        app:tabIconTint="#72C9FF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tabIndicatorColor="@android:color/transparent"/>
 
     <android.support.v4.view.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/view_pager_height"
-        android:background="@color/colorIconBiru"
-        app:layout_constraintBottom_toBottomOf="parent"></android.support.v4.view.ViewPager>
+        android:id="@+id/vp_main_alumni"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/tl_main_alumni"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
 
 </android.support.constraint.ConstraintLayout>
