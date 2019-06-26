@@ -1,82 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="44dp"
-    android:background="@android:color/white"
-    android:paddingLeft="@dimen/margin_horizontal"
-    android:paddingRight="@dimen/margin_horizontal">
+    android:layout_height="@dimen/nav_bar_height"
+    android:background="#ffffff"
+    tools:context=".MainActivity">
 
-    <FrameLayout
-        android:id="@+id/fl_icon1"
-        android:layout_width="36dp"
-        android:layout_height="match_parent"
-        android:background="?android:attr/selectableItemBackground">
+    <TextView
+        android:id="@+id/tv_navbar_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/robotomedium"
+        android:text="DAFTAR ALUMNI"
+        android:textAlignment="center"
+        android:textColor="#2699FB"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_icon1"
+        android:layout_width="@dimen/icon_btn_width"
+        android:layout_height="@dimen/icon_btn_height"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="?android:attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/img_icon1"
             android:layout_width="@dimen/icon_width"
             android:layout_height="@dimen/icon_height"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_arrow_back"
-            android:tint="@color/colorIconBiru" />
-    </FrameLayout>
+            android:tint="@color/colorIconBiru"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow_back" />
+    </android.support.constraint.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/tv_nav_bar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:gravity="center_vertical"
-        android:text="DAFTAR ALUMNI"
-        android:textAlignment="center"
-        android:textColor="@color/colorIconBiru"
-        android:textSize="16sp" />
-
-    <FrameLayout
-        android:id="@+id/fl_icon2"
-        android:layout_width="36dp"
-        android:layout_height="match_parent"
-        android:layout_toLeftOf="@id/fl_icon3"
-        android:background="?android:attr/selectableItemBackground">
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_icon2"
+        android:layout_width="@dimen/icon_btn_width"
+        android:layout_height="@dimen/icon_btn_height"
+        android:background="?android:attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cl_icon3"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/img_icon2"
             android:layout_width="@dimen/icon_width"
             android:layout_height="@dimen/icon_height"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_info"
-            android:tint="@color/colorIconBiru" />
-    </FrameLayout>
+            android:tint="@color/colorIconBiru"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_web" />
+    </android.support.constraint.ConstraintLayout>
 
-    <FrameLayout
-        android:id="@+id/fl_icon3"
-        android:layout_width="36dp"
-        android:layout_height="match_parent"
-        android:layout_toLeftOf="@id/fl_icon4"
-        android:background="?android:attr/selectableItemBackground">
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_icon3"
+        android:layout_width="@dimen/icon_btn_width"
+        android:layout_height="@dimen/icon_btn_height"
+        android:background="?android:attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cl_icon4"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/img_icon3"
             android:layout_width="@dimen/icon_width"
             android:layout_height="@dimen/icon_height"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_search"
-            android:tint="@color/colorIconBiru" />
-    </FrameLayout>
+            android:tint="@color/colorIconBiru"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_search" />
+    </android.support.constraint.ConstraintLayout>
 
-    <FrameLayout
-        android:id="@+id/fl_icon4"
-        android:layout_width="36dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:background="?android:attr/selectableItemBackground">
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_icon4"
+        android:layout_width="@dimen/icon_btn_width"
+        android:layout_height="@dimen/icon_btn_height"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="?android:attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/img_icon4"
             android:layout_width="@dimen/icon_width"
             android:layout_height="@dimen/icon_height"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_settings"
-            android:tint="@color/colorIconBiru" />
-    </FrameLayout>
-</RelativeLayout>
+            android:tint="@color/colorIconBiru"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_settings" />
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
