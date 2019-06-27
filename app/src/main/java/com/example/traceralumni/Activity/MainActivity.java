@@ -1,5 +1,6 @@
 package com.example.traceralumni.Activity;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
@@ -67,24 +68,29 @@ public class MainActivity extends AppCompatActivity {
         cl_icon3.setVisibility(View.GONE);
         cl_icon4.setVisibility(View.GONE);
 
-        if (JENIS_USER.equals(JENIS_USER_ALUMNI)){
-            switch (tab.getPosition()){
+        if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
+            switch (tab.getPosition()) {
                 case 0:
                     imgIcon3.setImageResource(R.drawable.ic_search);
-                    imgIcon4.setImageResource(R.drawable.ic_verticaldot);break;
+                    imgIcon4.setImageResource(R.drawable.ic_verticaldot);
+                    break;
                 case 1:
                     imgIcon2.setImageResource(R.drawable.ic_chat);
                     imgIcon3.setImageResource(R.drawable.ic_search);
-                    imgIcon4.setImageResource(R.drawable.ic_verticaldot);break;
+                    imgIcon4.setImageResource(R.drawable.ic_verticaldot);
+                    break;
                 case 2:
-                    imgIcon4.setImageResource(R.drawable.ic_verticaldot);break;
+                    imgIcon4.setImageResource(R.drawable.ic_verticaldot);
+                    break;
                 case 3:
                     imgIcon2.setImageResource(R.drawable.ic_tambah_lowongan);
                     imgIcon3.setImageResource(R.drawable.ic_search);
-                    imgIcon4.setImageResource(R.drawable.ic_verticaldot);break;
+                    imgIcon4.setImageResource(R.drawable.ic_verticaldot);
+                    break;
                 case 4:
                     imgIcon3.setImageResource(R.drawable.ic_search);
-                    imgIcon4.setImageResource(R.drawable.ic_verticaldot);break;
+                    imgIcon4.setImageResource(R.drawable.ic_verticaldot);
+                    break;
             }
         }
 
@@ -128,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //ngecheck kalau jenis usernya apa kemudian menginisialisasi tab layoutnya
-        if (JENIS_USER.equals(JENIS_USER_ALUMNI)){
+        if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
             int arrayDrawable[] = {R.drawable.ic_person,
                     R.drawable.ic_chat,
                     R.drawable.ic_home,
@@ -141,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                     "DONASI"};
             int arrayIcon[] = {R.drawable.ic_search, R.drawable.ic_verticaldot};
             setTabLayout(tabLayout, arrayDrawable, titleNavBar);
-        } else if (JENIS_USER.equals(JENIS_USER_OPERATOR)){
+        } else if (JENIS_USER.equals(JENIS_USER_OPERATOR)) {
             int arrayDrawable[] = {R.drawable.ic_info,
                     R.drawable.ic_lowongan,
                     R.drawable.ic_attach_money};
@@ -149,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                     "INFO",
                     "DONASI"};
             setTabLayout(tabLayout, arrayDrawable, titleNavBar);
-        } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)){
+        } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)) {
             int arrayDrawable[] = {R.drawable.ic_person,
                     R.drawable.ic_info,
                     R.drawable.ic_lowongan,
@@ -175,78 +181,91 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setIcon4Clicked() {
-        Toast.makeText(MainActivity.this, "icon4 clicked", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, PengaturanActivity.class);
+        startActivity(intent);
     }
 
-    public void setIconVisibility(TabLayout.Tab tab){
-        if (JENIS_USER.equals(JENIS_USER_ALUMNI)){
-            switch (tab.getPosition()){
+    public void setIconVisibility(TabLayout.Tab tab) {
+        if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
+            switch (tab.getPosition()) {
                 case 0:
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.GONE);
                     cl_icon3.setVisibility(View.VISIBLE);
-                    cl_icon4.setVisibility(View.VISIBLE);break;
+                    cl_icon4.setVisibility(View.VISIBLE);
+                    break;
                 case 1:
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.VISIBLE);
                     cl_icon3.setVisibility(View.VISIBLE);
-                    cl_icon4.setVisibility(View.VISIBLE); break;
+                    cl_icon4.setVisibility(View.VISIBLE);
+                    break;
                 case 2:
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.GONE);
                     cl_icon3.setVisibility(View.GONE);
-                    cl_icon4.setVisibility(View.VISIBLE);break;
+                    cl_icon4.setVisibility(View.VISIBLE);
+                    break;
                 case 3:
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.VISIBLE);
                     cl_icon3.setVisibility(View.VISIBLE);
-                    cl_icon4.setVisibility(View.VISIBLE); break;
+                    cl_icon4.setVisibility(View.VISIBLE);
+                    break;
                 case 4:
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.GONE);
                     cl_icon3.setVisibility(View.VISIBLE);
-                    cl_icon4.setVisibility(View.VISIBLE); break;
+                    cl_icon4.setVisibility(View.VISIBLE);
+                    break;
             }
-        }else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)){
-            switch (tab.getPosition()){
+        } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)) {
+            switch (tab.getPosition()) {
                 case 0:
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.GONE);
                     cl_icon3.setVisibility(View.GONE);
-                    cl_icon4.setVisibility(View.VISIBLE);break;
+                    cl_icon4.setVisibility(View.VISIBLE);
+                    break;
                 case 1:
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.GONE);
                     cl_icon3.setVisibility(View.GONE);
-                    cl_icon4.setVisibility(View.VISIBLE); break;
+                    cl_icon4.setVisibility(View.VISIBLE);
+                    break;
                 case 2:
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.GONE);
                     cl_icon3.setVisibility(View.GONE);
-                    cl_icon4.setVisibility(View.VISIBLE);break;
+                    cl_icon4.setVisibility(View.VISIBLE);
+                    break;
                 case 3:
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.GONE);
                     cl_icon3.setVisibility(View.GONE);
-                    cl_icon4.setVisibility(View.VISIBLE);break;
+                    cl_icon4.setVisibility(View.VISIBLE);
+                    break;
             }
-        }else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)){
-            switch (tab.getPosition()){
+        } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)) {
+            switch (tab.getPosition()) {
                 case 0:
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.GONE);
                     cl_icon3.setVisibility(View.VISIBLE);
-                    cl_icon4.setVisibility(View.VISIBLE);break;
+                    cl_icon4.setVisibility(View.VISIBLE);
+                    break;
                 case 1:
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.GONE);
                     cl_icon3.setVisibility(View.VISIBLE);
-                    cl_icon4.setVisibility(View.VISIBLE); break;
+                    cl_icon4.setVisibility(View.VISIBLE);
+                    break;
                 case 2:
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.GONE);
                     cl_icon3.setVisibility(View.VISIBLE);
-                    cl_icon4.setVisibility(View.VISIBLE);break;
+                    cl_icon4.setVisibility(View.VISIBLE);
+                    break;
             }
         }
     }
@@ -291,13 +310,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         //langsung pilih ke beranda saat pertama buka aplikasi
-        if (JENIS_USER.equals(JENIS_USER_ALUMNI)){
+        if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
             TabLayout.Tab tab = tabLayout.getTabAt(2);
             tab.select();
-        } else if (JENIS_USER.equals(JENIS_USER_OPERATOR)){
+        } else if (JENIS_USER.equals(JENIS_USER_OPERATOR)) {
             TabLayout.Tab tab = tabLayout.getTabAt(1);
             tab.select();
-        } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)){
+        } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)) {
             TabLayout.Tab tab = tabLayout.getTabAt(0);
             tab.select();
         } else {
