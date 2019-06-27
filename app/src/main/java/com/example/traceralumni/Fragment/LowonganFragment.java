@@ -1,4 +1,4 @@
-package com.example.traceralumni;
+package com.example.traceralumni.Fragment;
 
 
 import android.os.Bundle;
@@ -7,14 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.traceralumni.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DaftarFragment extends Fragment {
+public class LowonganFragment extends Fragment {
 
 
-    public DaftarFragment() {
+    public LowonganFragment() {
         // Required empty public constructor
     }
 
@@ -23,7 +25,7 @@ public class DaftarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_daftar, container, false);
+        return inflater.inflate(R.layout.fragment_lowongan, container, false);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.traceralumni;
+package com.example.traceralumni.Activity;
 
 import android.graphics.PorterDuff;
 import android.support.constraint.ConstraintLayout;
@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.traceralumni.R;
+import com.example.traceralumni.Adapter.SimpleFragmentPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
     ConstraintLayout cl_icon1, cl_icon2, cl_icon3, cl_icon4;

@@ -1,9 +1,15 @@
-package com.example.traceralumni;
+package com.example.traceralumni.Adapter;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.example.traceralumni.Fragment.BerandaFragment;
+import com.example.traceralumni.Fragment.ChatFragment;
+import com.example.traceralumni.Fragment.DaftarFragment;
+import com.example.traceralumni.Fragment.DonasiFragment;
+import com.example.traceralumni.Fragment.LowonganFragment;
 
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 
