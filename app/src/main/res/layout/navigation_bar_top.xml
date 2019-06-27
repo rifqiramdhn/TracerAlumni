@@ -16,14 +16,14 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/robotomedium"
-        android:text="DAFTAR ALUMNI"
         android:textAlignment="center"
         android:textColor="#2699FB"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="DAFTAR ALUMNI" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/cl_icon1"
@@ -31,7 +31,6 @@
         android:layout_height="@dimen/icon_btn_height"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:background="?android:attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -45,14 +44,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_arrow_back" />
+            tools:srcCompat="@drawable/ic_arrow_back"/>
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/cl_icon2"
         android:layout_width="@dimen/icon_btn_width"
         android:layout_height="@dimen/icon_btn_height"
-        android:background="?android:attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cl_icon3"
         app:layout_constraintTop_toTopOf="parent">
@@ -66,14 +64,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_web" />
+            tools:srcCompat="@drawable/ic_web" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/cl_icon3"
         android:layout_width="@dimen/icon_btn_width"
         android:layout_height="@dimen/icon_btn_height"
-        android:background="?android:attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cl_icon4"
         app:layout_constraintTop_toTopOf="parent">
@@ -87,7 +84,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_search" />
+            tools:srcCompat="@drawable/ic_search" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
@@ -96,7 +93,6 @@
         android:layout_height="@dimen/icon_btn_height"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:background="?android:attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -110,7 +106,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_verticaldot" />
+            tools:srcCompat="@drawable/ic_verticaldot" />
     </android.support.constraint.ConstraintLayout>
 
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/colorIconBiru"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>
