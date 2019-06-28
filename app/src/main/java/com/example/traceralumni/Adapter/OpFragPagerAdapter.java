@@ -10,10 +10,13 @@ import com.example.traceralumni.Fragment.ChatFragment;
 import com.example.traceralumni.Fragment.DaftarFragment;
 import com.example.traceralumni.Fragment.LainnyaFragment;
 import com.example.traceralumni.Fragment.LowonganFragment;
+import com.example.traceralumni.Fragment.OpDonasiFragment;
+import com.example.traceralumni.Fragment.OpInfoFragment;
+import com.example.traceralumni.Fragment.OpLowonganFragment;
 
-public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
+public class OpFragPagerAdapter extends FragmentPagerAdapter {
 
-    public SimpleFragmentPagerAdapter(FragmentManager fm) {
+    public OpFragPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
@@ -21,15 +24,11 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int i) {
         switch (i) {
             case 0:
-                return new DaftarFragment();
+                return new OpLowonganFragment();
             case 1:
-                return new ChatFragment();
+                return new OpInfoFragment();
             case 2:
-                return new BerandaFragment();
-            case 3:
-                return new LowonganFragment();
-            case 4:
-                return new LainnyaFragment();
+                return new OpDonasiFragment();
             default:
                 return null;
         }
@@ -37,7 +36,7 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return 3;
     }
 
     @Nullable

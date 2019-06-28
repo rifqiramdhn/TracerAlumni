@@ -1,6 +1,5 @@
 package com.example.traceralumni.Activity;
 
-import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
@@ -8,13 +7,17 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.traceralumni.Adapter.OpFragPagerAdapter;
+import com.example.traceralumni.Adapter.PimFragPagerAdapter;
 import com.example.traceralumni.R;
-import com.example.traceralumni.Adapter.SimpleFragmentPagerAdapter;
+import com.example.traceralumni.Adapter.AlumniFragPagerAdapter;
+
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     ConstraintLayout cl_icon1, cl_icon2, cl_icon3, cl_icon4;
@@ -54,13 +57,13 @@ public class MainActivity extends AppCompatActivity {
 
         tv_titleNavBar = findViewById(R.id.tv_navbar_top);
 
-        SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(adapter);
 
-        tabLayout.setupWithViewPager(viewPager);
+
+//        viewPager.setAdapter(adapterAlumni);
+//        tabLayout.setupWithViewPager(viewPager);
 
         //coba masuk sebagai alumni
-        JENIS_USER = JENIS_USER_ALUMNI;
+        JENIS_USER = JENIS_USER_OPERATOR;
         STATE_USER_LOGGED = 1;
         getDataUser();
     }
@@ -73,7 +76,13 @@ public class MainActivity extends AppCompatActivity {
             moveActivityToLogin();
         }
 
+
+        AlumniFragPagerAdapter adapterAlumni = new AlumniFragPagerAdapter(getSupportFragmentManager());
+        OpFragPagerAdapter adapterOperator = new OpFragPagerAdapter(getSupportFragmentManager());
+        PimFragPagerAdapter adapterPimpinan = new PimFragPagerAdapter(getSupportFragmentManager());
+
         //ngecheck kalau jenis usernya apa kemudian menginisialisasi tab layoutnya
+        Log.e("aldy", JENIS_USER);
         if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
             int arrayDrawable[] = {R.drawable.ic_person,
                     R.drawable.ic_chat,
@@ -85,14 +94,18 @@ public class MainActivity extends AppCompatActivity {
                     "BERANDA",
                     "LOWONGAN",
                     "LAINNYA"};
+            viewPager.setAdapter(adapterAlumni);
+            tabLayout.setupWithViewPager(viewPager);
             setTabLayout(tabLayout, arrayDrawable, titleNavBar);
         } else if (JENIS_USER.equals(JENIS_USER_OPERATOR)) {
-            int arrayDrawable[] = {R.drawable.ic_info,
-                    R.drawable.ic_lowongan,
+            int arrayDrawable[] = {R.drawable.ic_lowongan,
+                    R.drawable.ic_info,
                     R.drawable.ic_attach_money};
             String titleNavBar[] = {"LOWONGAN",
                     "INFO",
-                    "LAINNYA"};
+                    "DONASI"};
+            viewPager.setAdapter(adapterOperator);
+            tabLayout.setupWithViewPager(viewPager);
             setTabLayout(tabLayout, arrayDrawable, titleNavBar);
         } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)) {
             int arrayDrawable[] = {R.drawable.ic_person,
@@ -103,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
                     "INFO",
                     "LOWONGAN",
                     "LAINNYA"};
+            viewPager.setAdapter(adapterPimpinan);
+            tabLayout.setupWithViewPager(viewPager);
             setTabLayout(tabLayout, arrayDrawable, titleNavBar);
         }
     }
@@ -250,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setTabLayout(TabLayout tabLayout, int arrayDrawable[], final String titleNavBar[]) {
-
+        Log.e("aldy", Arrays.toString(titleNavBar));
         View arrayCustomView[] = new View[arrayDrawable.length];
         for (int i = 0; i < arrayDrawable.length; i++) {
             arrayCustomView[i] = getLayoutInflater().inflate(R.layout.custom_view_tab, null);
