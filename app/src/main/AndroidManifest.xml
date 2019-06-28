@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.DetailLowonganActivity"></activity>
+        <activity android:name=".Activity.DonasiActivity"></activity>
         <activity android:name=".Activity.DetailProfilActivity"></activity>
         <activity android:name=".Activity.TambahLowonganActivity"></activity>
         <activity android:name=".Activity.LanjutanTambahLowonganActivity"></activity>

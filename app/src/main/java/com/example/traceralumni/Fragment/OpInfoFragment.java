@@ -24,7 +24,7 @@ public class OpInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_operator_info, container, false);
+        return inflater.inflate(R.layout.fragment_op_info, container, false);
     }
 
 }

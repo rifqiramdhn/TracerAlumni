@@ -1,6 +1,7 @@
 package com.example.traceralumni.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traceralumni.Activity.DonasiActivity;
 import com.example.traceralumni.Model.LainnyaModel;
 import com.example.traceralumni.R;
 
@@ -48,7 +50,14 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, lainnyaModel.getItem(), Toast.LENGTH_SHORT).show();
+                switch (position) {
+                    case 1:
+                        Intent intent = new Intent(holder.container.getContext(), DonasiActivity.class);
+                        holder.container.getContext().startActivity(intent);
+                        break;
+                    default:
+                        Toast.makeText(context, lainnyaModel.getItem(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
