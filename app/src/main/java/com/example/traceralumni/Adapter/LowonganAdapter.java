@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.traceralumni.Activity.DetailLowonganActivity;
-import com.example.traceralumni.R;
 import com.example.traceralumni.Model.LowonganModel;
+import com.example.traceralumni.R;
 
 import java.util.ArrayList;
 

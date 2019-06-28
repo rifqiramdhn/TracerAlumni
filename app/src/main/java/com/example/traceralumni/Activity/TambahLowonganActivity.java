@@ -6,10 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.traceralumni.R;
 
-public class DetailLowonganActivity extends AppCompatActivity {
+public class TambahLowonganActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_lowongan);
+        setContentView(R.layout.activity_tambah_lowongan);
     }
 }
