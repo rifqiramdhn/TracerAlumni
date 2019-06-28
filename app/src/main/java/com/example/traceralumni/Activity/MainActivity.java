@@ -1,5 +1,6 @@
 package com.example.traceralumni.Activity;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
@@ -395,7 +396,8 @@ public class MainActivity extends AppCompatActivity {
                 //tab lowongan
                 switch (iconNumber) {
                     case 3:
-                        //icon tambah lowongan
+                        Intent intent = new Intent(MainActivity.this, TambahLowonganActivity.class);
+                        startActivity(intent);
                         break;
                     case 4:
                         //icon search
