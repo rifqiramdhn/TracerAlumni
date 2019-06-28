@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.example.traceralumni.Fragment.BerandaFragment;
 import com.example.traceralumni.Fragment.ChatFragment;
 import com.example.traceralumni.Fragment.DaftarFragment;
-import com.example.traceralumni.Fragment.DonasiFragment;
+import com.example.traceralumni.Fragment.LainnyaFragment;
 import com.example.traceralumni.Fragment.LowonganFragment;
 
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
@@ -29,7 +29,7 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
             case 3:
                 return new LowonganFragment();
             case 4:
-                return new DonasiFragment();
+                return new LainnyaFragment();
             default:
                 return null;
         }

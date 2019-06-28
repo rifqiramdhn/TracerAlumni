@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                     "PESAN",
                     "BERANDA",
                     "LOWONGAN",
-                    "DONASI"};
+                    "LAINNYA"};
             int arrayIcon[] = {R.drawable.ic_search, R.drawable.ic_verticaldot};
             setTabLayout(tabLayout, arrayDrawable, titleNavBar);
         } else if (JENIS_USER.equals(JENIS_USER_OPERATOR)) {
