@@ -18,21 +18,23 @@
         app:layout_constraintEnd_toEndOf="@+id/barrier2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         tools:srcCompat="@tools:sample/avatars[2]" />
 
     <TextView
         android:id="@+id/card_daftar_nama_text_view"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:text="Daryanto"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/card_daftar_prodi_text_view"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/barrier2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -79,5 +81,13 @@
         app:barrierDirection="right"
         app:constraint_referenced_ids="card_daftar_image_view"
         tools:layout_editor_absoluteX="411dp" />
+
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="card_daftar_nama_text_view"
+        tools:layout_editor_absoluteY="77dp" />
 
 </android.support.constraint.ConstraintLayout>

@@ -2,56 +2,75 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_donasi"
+    android:id="@+id/card_donasi_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/tv_judul_donasi"
+        android:id="@+id/card_donasi_judul_donasi_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:text="judul_donasi"
-        app:layout_constraintBottom_toTopOf="@+id/tv_jumlah_donasi"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/barrier8"
         app:layout_constraintEnd_toEndOf="@id/barrier7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_jumlah_donasi"
-        android:layout_width="wrap_content"
+        android:id="@+id/card_donasi_jumlah_donasi_text_view"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_judul_donasi"
-        app:layout_constraintTop_toBottomOf="@+id/tv_judul_donasi"
-        tools:text="80.000.000" />
-
-    <TextView
-        android:id="@+id/tv_tanggal_donasi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/card_donasi_tanggal_donasi_text_view"
+        app:layout_constraintStart_toStartOf="@+id/card_donasi_judul_donasi_text_view"
+        app:layout_constraintTop_toBottomOf="@id/barrier8"
+        tools:text="80.000.000" />
+
+    <TextView
+        android:id="@+id/card_donasi_tanggal_donasi_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="DONASI"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="12/12/2012" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
     <android.support.constraint.Barrier
         android:id="@+id/barrier7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="left"
-        app:constraint_referenced_ids="tv_tanggal_donasi"
+        app:constraint_referenced_ids="card_donasi_tanggal_donasi_text_view"
         tools:layout_editor_absoluteX="411dp" />
 
     <android.support.constraint.Barrier
@@ -59,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="tv_judul_donasi"
+        app:constraint_referenced_ids="card_donasi_judul_donasi_text_view"
         tools:layout_editor_absoluteY="72dp" />
 
 </android.support.constraint.ConstraintLayout>

@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/card_chat_nama_text_view"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
@@ -31,19 +31,23 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/card_chat_chat_text_view"
+        app:layout_constraintEnd_toStartOf="@+id/card_chat_waktu_text_view"
         app:layout_constraintStart_toEndOf="@+id/barrier3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/card_chat_chat_text_view"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:text="TextView"
         android:textColor="@android:color/darker_gray"
         android:textSize="16sp"
         app:fontFamily="@font/robotoregular"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/card_chat_nama_text_view"
         app:layout_constraintTop_toBottomOf="@+id/card_chat_nama_text_view" />
 
@@ -56,8 +60,8 @@
         android:text="12/03/2019"
         android:textColor="@android:color/darker_gray"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/card_chat_nama_text_view"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/card_chat_nama_text_view" />
 
     <android.support.constraint.Barrier
         android:id="@+id/barrier3"
@@ -74,4 +78,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/card_chat_chat_text_view" />
+
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="card_chat_nama_text_view"
+        tools:layout_editor_absoluteY="154dp" />
+
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="left"
+        app:constraint_referenced_ids="card_chat_waktu_text_view"
+        tools:layout_editor_absoluteX="411dp" />
+
 </android.support.constraint.ConstraintLayout>
