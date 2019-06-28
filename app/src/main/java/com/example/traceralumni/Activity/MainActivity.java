@@ -57,13 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
         tv_titleNavBar = findViewById(R.id.tv_navbar_top);
 
-
-
-//        viewPager.setAdapter(adapterAlumni);
-//        tabLayout.setupWithViewPager(viewPager);
-
         //coba masuk sebagai alumni
-        JENIS_USER = JENIS_USER_OPERATOR;
+        JENIS_USER = JENIS_USER_PIMPINAN;
         STATE_USER_LOGGED = 1;
         getDataUser();
     }
@@ -75,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         if (user_log == 0) {
             moveActivityToLogin();
         }
-
 
         AlumniFragPagerAdapter adapterAlumni = new AlumniFragPagerAdapter(getSupportFragmentManager());
         OpFragPagerAdapter adapterOperator = new OpFragPagerAdapter(getSupportFragmentManager());
@@ -112,10 +106,10 @@ public class MainActivity extends AppCompatActivity {
                     R.drawable.ic_info,
                     R.drawable.ic_lowongan,
                     R.drawable.ic_attach_money};
-            String titleNavBar[] = {"DAFTAR ALUMNI",
+            String titleNavBar[] = {"DATA ALUMNI",
                     "INFO",
                     "LOWONGAN",
-                    "LAINNYA"};
+                    "DONASI"};
             viewPager.setAdapter(adapterPimpinan);
             tabLayout.setupWithViewPager(viewPager);
             setTabLayout(tabLayout, arrayDrawable, titleNavBar);
@@ -145,6 +139,42 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case 4:
                     imgIcon4.setImageResource(R.drawable.ic_search);
+                    break;
+            }
+        } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)){
+            switch (tab.getPosition()){
+                case 0:
+                    imgIcon4.setImageResource(R.drawable.ic_power_settings_new);
+                    break;
+                case 1:
+                    imgIcon3.setImageResource(R.drawable.ic_search);
+                    imgIcon4.setImageResource(R.drawable.ic_power_settings_new);
+                    break;
+                case 2:
+                    imgIcon3.setImageResource(R.drawable.ic_search);
+                    imgIcon4.setImageResource(R.drawable.ic_power_settings_new);
+                    break;
+                case 3:
+                    imgIcon3.setImageResource(R.drawable.ic_search);
+                    imgIcon4.setImageResource(R.drawable.ic_power_settings_new);
+                    break;
+            }
+        } else if (JENIS_USER.equals(JENIS_USER_OPERATOR)){
+            switch (tab.getPosition()){
+                case 0:
+                    imgIcon2.setImageResource(R.drawable.ic_add);
+                    imgIcon3.setImageResource(R.drawable.ic_search);
+                    imgIcon4.setImageResource(R.drawable.ic_power_settings_new);
+                    break;
+                case 1:
+                    imgIcon2.setImageResource(R.drawable.ic_add);
+                    imgIcon3.setImageResource(R.drawable.ic_search);
+                    imgIcon4.setImageResource(R.drawable.ic_power_settings_new);
+                    break;
+                case 2:
+                    imgIcon2.setImageResource(R.drawable.ic_add);
+                    imgIcon3.setImageResource(R.drawable.ic_search);
+                    imgIcon4.setImageResource(R.drawable.ic_power_settings_new);
                     break;
             }
         }
@@ -224,39 +254,39 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.GONE);
-                    cl_icon3.setVisibility(View.GONE);
+                    cl_icon3.setVisibility(View.VISIBLE);
                     cl_icon4.setVisibility(View.VISIBLE);
                     break;
                 case 2:
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.GONE);
-                    cl_icon3.setVisibility(View.GONE);
+                    cl_icon3.setVisibility(View.VISIBLE);
                     cl_icon4.setVisibility(View.VISIBLE);
                     break;
                 case 3:
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.GONE);
-                    cl_icon3.setVisibility(View.GONE);
+                    cl_icon3.setVisibility(View.VISIBLE);
                     cl_icon4.setVisibility(View.VISIBLE);
                     break;
             }
-        } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)) {
+        } else if (JENIS_USER.equals(JENIS_USER_OPERATOR)) {
             switch (tab.getPosition()) {
                 case 0:
                     cl_icon1.setVisibility(View.GONE);
-                    cl_icon2.setVisibility(View.GONE);
+                    cl_icon2.setVisibility(View.VISIBLE);
                     cl_icon3.setVisibility(View.VISIBLE);
                     cl_icon4.setVisibility(View.VISIBLE);
                     break;
                 case 1:
                     cl_icon1.setVisibility(View.GONE);
-                    cl_icon2.setVisibility(View.GONE);
+                    cl_icon2.setVisibility(View.VISIBLE);
                     cl_icon3.setVisibility(View.VISIBLE);
                     cl_icon4.setVisibility(View.VISIBLE);
                     break;
                 case 2:
                     cl_icon1.setVisibility(View.GONE);
-                    cl_icon2.setVisibility(View.GONE);
+                    cl_icon2.setVisibility(View.VISIBLE);
                     cl_icon3.setVisibility(View.VISIBLE);
                     cl_icon4.setVisibility(View.VISIBLE);
                     break;
@@ -305,6 +335,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //langsung pilih ke beranda saat pertama buka aplikasi
+        Log.e("aldy", JENIS_USER);
         if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
             TabLayout.Tab tab = tabLayout.getTabAt(2);
             tab.select();
@@ -314,9 +345,9 @@ public class MainActivity extends AppCompatActivity {
             tab.select();
             INDEX_OPENED_TAB = 1;
         } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)) {
-            TabLayout.Tab tab = tabLayout.getTabAt(0);
+            TabLayout.Tab tab = tabLayout.getTabAt(1);
             tab.select();
-            INDEX_OPENED_TAB = 0;
+            INDEX_OPENED_TAB = 1;
         } else {
 
         }
