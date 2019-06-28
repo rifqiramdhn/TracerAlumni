@@ -61,7 +61,50 @@ public class MainActivity extends AppCompatActivity {
 
         //coba masuk sebagai alumni
         JENIS_USER = JENIS_USER_ALUMNI;
+        STATE_USER_LOGGED = 1;
         getDataUser();
+    }
+
+    public void getDataUser() {
+        //method untuk mendapatkan data" user login atau belum
+        //jika sudah login maka ambil data yang sudah tersimpan di sharepreference
+        int user_log = STATE_USER_LOGGED;
+        if (user_log == 0) {
+            moveActivityToLogin();
+        }
+
+        //ngecheck kalau jenis usernya apa kemudian menginisialisasi tab layoutnya
+        if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
+            int arrayDrawable[] = {R.drawable.ic_person,
+                    R.drawable.ic_chat,
+                    R.drawable.ic_home,
+                    R.drawable.ic_lowongan,
+                    R.drawable.ic_dots_horizontal};
+            String titleNavBar[] = {"DAFTAR ALUMNI",
+                    "PESAN",
+                    "BERANDA",
+                    "LOWONGAN",
+                    "LAINNYA"};
+            setTabLayout(tabLayout, arrayDrawable, titleNavBar);
+        } else if (JENIS_USER.equals(JENIS_USER_OPERATOR)) {
+            int arrayDrawable[] = {R.drawable.ic_info,
+                    R.drawable.ic_lowongan,
+                    R.drawable.ic_attach_money};
+            String titleNavBar[] = {"LOWONGAN",
+                    "INFO",
+                    "LAINNYA"};
+            setTabLayout(tabLayout, arrayDrawable, titleNavBar);
+        } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)) {
+            int arrayDrawable[] = {R.drawable.ic_person,
+                    R.drawable.ic_info,
+                    R.drawable.ic_lowongan,
+                    R.drawable.ic_attach_money};
+            String titleNavBar[] = {"DAFTAR ALUMNI",
+                    "INFO",
+                    "LOWONGAN",
+                    "LAINNYA"};
+            setTabLayout(tabLayout, arrayDrawable, titleNavBar);
+        }
     }
 
     public void setIconNavBar(TabLayout.Tab tab) {
@@ -119,48 +162,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void moveActivityToLogin() {
         //kode untuk pindah apabila jenis usernya kosong
-    }
-
-    public void getDataUser() {
-        //method untuk mendapatkan data" user login atau belum
-        //jika sudah login maka ambil data yang sudah tersimpan di sharepreference
-        int user_log = 0;
-        if (user_log == 0) {
-            moveActivityToLogin();
-        }
-
-        //ngecheck kalau jenis usernya apa kemudian menginisialisasi tab layoutnya
-        if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
-            int arrayDrawable[] = {R.drawable.ic_person,
-                    R.drawable.ic_chat,
-                    R.drawable.ic_home,
-                    R.drawable.ic_lowongan,
-                    R.drawable.ic_dots_horizontal};
-            String titleNavBar[] = {"DAFTAR ALUMNI",
-                    "PESAN",
-                    "BERANDA",
-                    "LOWONGAN",
-                    "LAINNYA"};
-            setTabLayout(tabLayout, arrayDrawable, titleNavBar);
-        } else if (JENIS_USER.equals(JENIS_USER_OPERATOR)) {
-            int arrayDrawable[] = {R.drawable.ic_info,
-                    R.drawable.ic_lowongan,
-                    R.drawable.ic_attach_money};
-            String titleNavBar[] = {"LOWONGAN",
-                    "INFO",
-                    "LAINNYA"};
-            setTabLayout(tabLayout, arrayDrawable, titleNavBar);
-        } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)) {
-            int arrayDrawable[] = {R.drawable.ic_person,
-                    R.drawable.ic_info,
-                    R.drawable.ic_lowongan,
-                    R.drawable.ic_attach_money};
-            String titleNavBar[] = {"DAFTAR ALUMNI",
-                    "INFO",
-                    "LOWONGAN",
-                    "LAINNYA"};
-            setTabLayout(tabLayout, arrayDrawable, titleNavBar);
-        }
     }
 
     public void setIconVisibility(TabLayout.Tab tab) {
