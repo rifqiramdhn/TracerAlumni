@@ -1,8 +1,6 @@
 package com.example.traceralumni.Adapter;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.media.Image;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.traceralumni.Model.DaftarModel;
-import com.example.traceralumni.Model.PengaturanModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
