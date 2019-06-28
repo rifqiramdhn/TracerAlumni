@@ -1,4 +1,4 @@
-package com.example.traceralumni.model;
+package com.example.traceralumni.Model;
 
 public class LowonganModel {
     private String username, url_logo, nama_perusahaan, nama_lowongan, lokasi_perusahaan, kisaran_gaji, syarat, jabatan, website, email, notelp, kontak;

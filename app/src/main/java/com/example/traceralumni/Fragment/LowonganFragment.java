@@ -9,9 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.traceralumni.Model.LowonganModel;
 import com.example.traceralumni.R;
 import com.example.traceralumni.Adapter.LowonganAdapter;
-import com.example.traceralumni.Model.LowonganModel;
 
 import java.util.ArrayList;
 
