@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         tv_titleNavBar = findViewById(R.id.tv_navbar_top);
 
         //coba masuk sebagai alumni
-        JENIS_USER = JENIS_USER_PIMPINAN;
+        JENIS_USER = JENIS_USER_ALUMNI;
         STATE_USER_LOGGED = 1;
         getDataUser();
     }

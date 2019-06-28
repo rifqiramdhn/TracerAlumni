@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.traceralumni.Activity.PengaturanActivity;
 import com.example.traceralumni.Adapter.DaftarAdapter;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;
@@ -30,12 +29,13 @@ public class DaftarFragment extends Fragment {
     RecyclerView daftarRecycler;
     DaftarAdapter daftarAdapter;
     ArrayList<DaftarModel> daftarModels;
+    View rootView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_daftar, container, false);
+        rootView = inflater.inflate(R.layout.fragment_daftar, container, false);
 
         daftarModels = new ArrayList<>();
         daftarModels.add(new DaftarModel("Rifqi Ramdhani", "2019", 1));
