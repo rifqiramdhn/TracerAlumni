@@ -118,11 +118,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setIconNavBar(TabLayout.Tab tab) {
-        cl_icon1.setVisibility(View.GONE);
-        cl_icon2.setVisibility(View.GONE);
-        cl_icon3.setVisibility(View.GONE);
-        cl_icon4.setVisibility(View.GONE);
-
         if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
             switch (tab.getPosition()) {
                 case 0:

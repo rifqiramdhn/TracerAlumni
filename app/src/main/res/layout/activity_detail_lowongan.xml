@@ -47,7 +47,7 @@
             </FrameLayout>
 
             <TextView
-                android:id="@+id/txt_nama_lowongan"
+                android:id="@+id/tv_nama_lowongan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -61,7 +61,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/fr_logo" />
 
             <TextView
-                android:id="@+id/txt_nama_perusahaan"
+                android:id="@+id/tv_nama_perusahaan"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
                 android:layout_marginStart="16dp"
@@ -72,7 +72,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_nama_lowongan" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_nama_lowongan" />
 
             <ImageView
                 android:id="@+id/img_lokasi"
@@ -81,13 +81,13 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="5dp"
-                app:srcCompat="@drawable/ic_location_on"
                 android:tint="@color/colorIconBiru"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_nama_perusahaan" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_nama_perusahaan"
+                app:srcCompat="@drawable/ic_location_on" />
 
             <TextView
-                android:id="@+id/txt_lokasi_perusahaan"
+                android:id="@+id/tv_lokasi_perusahaan"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -98,7 +98,7 @@
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:layout_constraintStart_toEndOf="@+id/img_lokasi"
-                app:layout_constraintTop_toBottomOf="@+id/txt_nama_perusahaan" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_nama_perusahaan" />
 
             <ImageView
                 android:id="@+id/img_gaji"
@@ -106,14 +106,14 @@
                 android:layout_height="22dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                app:srcCompat="@drawable/ic_salary"
                 android:tint="@color/colorIconBiru"
-                app:layout_constraintBottom_toBottomOf="@+id/txt_kisaran_gaji"
-                app:layout_constraintEnd_toStartOf="@+id/txt_kisaran_gaji"
-                app:layout_constraintTop_toTopOf="@+id/txt_kisaran_gaji" />
+                app:layout_constraintBottom_toBottomOf="@+id/tv_kisaran_gaji"
+                app:layout_constraintEnd_toStartOf="@+id/tv_kisaran_gaji"
+                app:layout_constraintTop_toTopOf="@+id/tv_kisaran_gaji"
+                app:srcCompat="@drawable/ic_salary" />
 
             <TextView
-                android:id="@+id/txt_kisaran_gaji"
+                android:id="@+id/tv_kisaran_gaji"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -122,9 +122,9 @@
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
-                app:layout_constraintBottom_toBottomOf="@+id/txt_lokasi_perusahaan"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_lokasi_perusahaan"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/txt_lokasi_perusahaan" />
+                app:layout_constraintTop_toTopOf="@+id/tv_lokasi_perusahaan" />
 
             <ImageView
                 android:id="@+id/img_profil"
@@ -133,12 +133,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                app:srcCompat="@drawable/ic_person"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_lokasi_perusahaan" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_lokasi_perusahaan"
+                app:srcCompat="@drawable/ic_person" />
 
             <TextView
-                android:id="@+id/txt_profil"
+                android:id="@+id/tv_profil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -159,8 +159,8 @@
                 android:backgroundTint="@color/colorIconBiru"
                 android:text="Lihat Profil"
                 android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/txt_profil"
-                app:layout_constraintTop_toBottomOf="@+id/txt_profil" />
+                app:layout_constraintStart_toStartOf="@+id/tv_profil"
+                app:layout_constraintTop_toBottomOf="@+id/tv_profil" />
 
             <ImageView
                 android:id="@+id/img_syarat"
@@ -169,12 +169,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                app:srcCompat="@drawable/ic_syarat"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_lihat_profil" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_lihat_profil"
+                app:srcCompat="@drawable/ic_syarat" />
 
             <TextView
-                android:id="@+id/txt_judul_syarat"
+                android:id="@+id/tv_judul_syarat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -188,7 +188,7 @@
                 app:layout_constraintTop_toTopOf="@+id/img_syarat" />
 
             <TextView
-                android:id="@+id/txt_syarat"
+                android:id="@+id/tv_syarat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -199,8 +199,8 @@
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/txt_judul_syarat"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_syarat" />
+                app:layout_constraintStart_toStartOf="@+id/tv_judul_syarat"
+                app:layout_constraintTop_toBottomOf="@+id/tv_judul_syarat" />
 
             <ImageView
                 android:id="@+id/img_kuota"
@@ -209,12 +209,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                app:srcCompat="@drawable/ic_kuota"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_syarat" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_syarat"
+                app:srcCompat="@drawable/ic_kuota" />
 
             <TextView
-                android:id="@+id/txt_judul_kuota"
+                android:id="@+id/tv_judul_kuota"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -228,7 +228,7 @@
                 app:layout_constraintTop_toTopOf="@+id/img_kuota" />
 
             <TextView
-                android:id="@+id/txt_kuota"
+                android:id="@+id/tv_kuota"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -236,8 +236,8 @@
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="@+id/txt_judul_kuota"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_kuota" />
+                app:layout_constraintStart_toStartOf="@+id/tv_judul_kuota"
+                app:layout_constraintTop_toBottomOf="@+id/tv_judul_kuota" />
 
             <ImageView
                 android:id="@+id/img_jabatan"
@@ -246,12 +246,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                app:srcCompat="@drawable/ic_jabatan"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_kuota" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_kuota"
+                app:srcCompat="@drawable/ic_jabatan" />
 
             <TextView
-                android:id="@+id/txt_judul_jabatan"
+                android:id="@+id/tv_judul_jabatan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -265,7 +265,7 @@
                 app:layout_constraintTop_toTopOf="@+id/img_jabatan" />
 
             <TextView
-                android:id="@+id/txt_jabatan"
+                android:id="@+id/tv_jabatan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -273,8 +273,8 @@
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="@+id/txt_judul_jabatan"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_jabatan" />
+                app:layout_constraintStart_toStartOf="@+id/tv_judul_jabatan"
+                app:layout_constraintTop_toBottomOf="@+id/tv_judul_jabatan" />
 
             <ImageView
                 android:id="@+id/img_web"
@@ -283,12 +283,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                app:srcCompat="@drawable/ic_web"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_jabatan" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_jabatan"
+                app:srcCompat="@drawable/ic_web" />
 
             <TextView
-                android:id="@+id/txt_judul_web"
+                android:id="@+id/tv_judul_web"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -302,7 +302,7 @@
                 app:layout_constraintTop_toTopOf="@+id/img_web" />
 
             <TextView
-                android:id="@+id/txt_web"
+                android:id="@+id/tv_web"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
@@ -310,8 +310,8 @@
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="@+id/txt_judul_web"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_web" />
+                app:layout_constraintStart_toStartOf="@+id/tv_judul_web"
+                app:layout_constraintTop_toBottomOf="@+id/tv_judul_web" />
 
             <ImageView
                 android:id="@+id/img_email"
@@ -320,12 +320,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                app:srcCompat="@drawable/ic_mail"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_web" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_web"
+                app:srcCompat="@drawable/ic_mail" />
 
             <TextView
-                android:id="@+id/txt_judul_email"
+                android:id="@+id/tv_judul_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -339,7 +339,7 @@
                 app:layout_constraintTop_toTopOf="@+id/img_email" />
 
             <TextView
-                android:id="@+id/txt_email"
+                android:id="@+id/tv_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -347,8 +347,8 @@
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="@+id/txt_judul_email"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_email" />
+                app:layout_constraintStart_toStartOf="@+id/tv_judul_email"
+                app:layout_constraintTop_toBottomOf="@+id/tv_judul_email" />
 
             <ImageView
                 android:id="@+id/img_telp"
@@ -357,12 +357,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                app:srcCompat="@drawable/ic_local_phone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_email" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_email"
+                app:srcCompat="@drawable/ic_local_phone" />
 
             <TextView
-                android:id="@+id/txt_judul_telpon"
+                android:id="@+id/tv_judul_telpon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -376,7 +376,7 @@
                 app:layout_constraintTop_toTopOf="@+id/img_telp" />
 
             <TextView
-                android:id="@+id/txt_telpon"
+                android:id="@+id/tv_telpon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -384,8 +384,8 @@
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="@+id/txt_judul_telpon"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_telpon" />
+                app:layout_constraintStart_toStartOf="@+id/tv_judul_telpon"
+                app:layout_constraintTop_toBottomOf="@+id/tv_judul_telpon" />
 
             <ImageView
                 android:id="@+id/img_hubungi"
@@ -394,9 +394,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                app:srcCompat="@drawable/ic_smartphone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_telpon" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_telpon"
+                app:srcCompat="@drawable/ic_smartphone" />
 
             <TextView
                 android:id="@+id/txt_judul_hubungi"
@@ -421,7 +421,7 @@
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="@+id/txt_telpon"
+                app:layout_constraintStart_toStartOf="@+id/tv_telpon"
                 app:layout_constraintTop_toBottomOf="@+id/txt_judul_hubungi" />
         </android.support.constraint.ConstraintLayout>
 

@@ -12,7 +12,6 @@
         <activity android:name=".Activity.LoginActivity">
 
         </activity>
-        <activity android:name=".Activity.PengaturanActivity"></activity>
         <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
