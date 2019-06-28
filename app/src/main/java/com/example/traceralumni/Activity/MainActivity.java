@@ -23,10 +23,12 @@ public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     TextView tv_titleNavBar;
 
-    private static String JENIS_USER = "";
-    private static final String JENIS_USER_ALUMNI = "jenis_user_alumni";
-    private static final String JENIS_USER_PIMPINAN = "jenis_user_pimpinan";
-    private static final String JENIS_USER_OPERATOR = "jenis_user_operator";
+    public static String JENIS_USER = "";
+    public static final String JENIS_USER_ALUMNI = "jenis_user_alumni";
+    public static final String JENIS_USER_PIMPINAN = "jenis_user_pimpinan";
+    public static final String JENIS_USER_OPERATOR = "jenis_user_operator";
+
+    public static int INDEX_OPENED_TAB;
 
     private static int STATE_USER_LOGGED = 0; //0 berarti belum login, 1 berarti sudah login
 
@@ -71,25 +73,20 @@ public class MainActivity extends AppCompatActivity {
         if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
             switch (tab.getPosition()) {
                 case 0:
-                    imgIcon3.setImageResource(R.drawable.ic_search);
-                    imgIcon4.setImageResource(R.drawable.ic_verticaldot);
+                    imgIcon4.setImageResource(R.drawable.ic_search);
                     break;
                 case 1:
-                    imgIcon2.setImageResource(R.drawable.ic_chat);
-                    imgIcon3.setImageResource(R.drawable.ic_search);
-                    imgIcon4.setImageResource(R.drawable.ic_verticaldot);
+                    imgIcon3.setImageResource(R.drawable.ic_chat);
+                    imgIcon4.setImageResource(R.drawable.ic_search);
                     break;
                 case 2:
-                    imgIcon4.setImageResource(R.drawable.ic_verticaldot);
                     break;
                 case 3:
-                    imgIcon2.setImageResource(R.drawable.ic_tambah_lowongan);
-                    imgIcon3.setImageResource(R.drawable.ic_search);
-                    imgIcon4.setImageResource(R.drawable.ic_verticaldot);
+                    imgIcon3.setImageResource(R.drawable.ic_tambah_lowongan);
+                    imgIcon4.setImageResource(R.drawable.ic_search);
                     break;
                 case 4:
-                    imgIcon3.setImageResource(R.drawable.ic_search);
-                    imgIcon4.setImageResource(R.drawable.ic_verticaldot);
+                    imgIcon4.setImageResource(R.drawable.ic_search);
                     break;
             }
         }
@@ -97,25 +94,25 @@ public class MainActivity extends AppCompatActivity {
         cl_icon1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setIcon1Clicked();
+                setIconClicked(JENIS_USER, INDEX_OPENED_TAB, 1);
             }
         });
         cl_icon2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setIcon2Clicked();
+                setIconClicked(JENIS_USER, INDEX_OPENED_TAB, 2);
             }
         });
         cl_icon3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setIcon3Clicked();
+                setIconClicked(JENIS_USER, INDEX_OPENED_TAB, 3);
             }
         });
         cl_icon4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setIcon4Clicked();
+                setIconClicked(JENIS_USER, INDEX_OPENED_TAB, 4);
             }
         });
     }
@@ -123,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
     public void moveActivityToLogin() {
         //kode untuk pindah apabila jenis usernya kosong
     }
-
 
     public void getDataUser() {
         //method untuk mendapatkan data" user login atau belum
@@ -139,13 +135,12 @@ public class MainActivity extends AppCompatActivity {
                     R.drawable.ic_chat,
                     R.drawable.ic_home,
                     R.drawable.ic_lowongan,
-                    R.drawable.ic_attach_money};
+                    R.drawable.ic_dots_horizontal};
             String titleNavBar[] = {"DAFTAR ALUMNI",
                     "PESAN",
                     "BERANDA",
                     "LOWONGAN",
                     "LAINNYA"};
-            int arrayIcon[] = {R.drawable.ic_search, R.drawable.ic_verticaldot};
             setTabLayout(tabLayout, arrayDrawable, titleNavBar);
         } else if (JENIS_USER.equals(JENIS_USER_OPERATOR)) {
             int arrayDrawable[] = {R.drawable.ic_info,
@@ -153,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                     R.drawable.ic_attach_money};
             String titleNavBar[] = {"LOWONGAN",
                     "INFO",
-                    "DONASI"};
+                    "LAINNYA"};
             setTabLayout(tabLayout, arrayDrawable, titleNavBar);
         } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)) {
             int arrayDrawable[] = {R.drawable.ic_person,
@@ -163,26 +158,9 @@ public class MainActivity extends AppCompatActivity {
             String titleNavBar[] = {"DAFTAR ALUMNI",
                     "INFO",
                     "LOWONGAN",
-                    "DONASI"};
+                    "LAINNYA"};
             setTabLayout(tabLayout, arrayDrawable, titleNavBar);
         }
-    }
-
-    public void setIcon1Clicked() {
-        Toast.makeText(MainActivity.this, "icon1 clicked", Toast.LENGTH_SHORT).show();
-    }
-
-    public void setIcon2Clicked() {
-        Toast.makeText(MainActivity.this, "icon2 clicked", Toast.LENGTH_SHORT).show();
-    }
-
-    public void setIcon3Clicked() {
-        Toast.makeText(MainActivity.this, "icon3 clicked", Toast.LENGTH_SHORT).show();
-    }
-
-    public void setIcon4Clicked() {
-        Intent intent = new Intent(MainActivity.this, PengaturanActivity.class);
-        startActivity(intent);
     }
 
     public void setIconVisibility(TabLayout.Tab tab) {
@@ -191,12 +169,12 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.GONE);
-                    cl_icon3.setVisibility(View.VISIBLE);
+                    cl_icon3.setVisibility(View.GONE);
                     cl_icon4.setVisibility(View.VISIBLE);
                     break;
                 case 1:
                     cl_icon1.setVisibility(View.GONE);
-                    cl_icon2.setVisibility(View.VISIBLE);
+                    cl_icon2.setVisibility(View.GONE);
                     cl_icon3.setVisibility(View.VISIBLE);
                     cl_icon4.setVisibility(View.VISIBLE);
                     break;
@@ -204,18 +182,18 @@ public class MainActivity extends AppCompatActivity {
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.GONE);
                     cl_icon3.setVisibility(View.GONE);
-                    cl_icon4.setVisibility(View.VISIBLE);
+                    cl_icon4.setVisibility(View.GONE);
                     break;
                 case 3:
                     cl_icon1.setVisibility(View.GONE);
-                    cl_icon2.setVisibility(View.VISIBLE);
+                    cl_icon2.setVisibility(View.GONE);
                     cl_icon3.setVisibility(View.VISIBLE);
                     cl_icon4.setVisibility(View.VISIBLE);
                     break;
                 case 4:
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.GONE);
-                    cl_icon3.setVisibility(View.VISIBLE);
+                    cl_icon3.setVisibility(View.GONE);
                     cl_icon4.setVisibility(View.VISIBLE);
                     break;
             }
@@ -293,6 +271,7 @@ public class MainActivity extends AppCompatActivity {
                 ImageView img = tab.getCustomView().findViewById(R.id.img_gambar);
                 img.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.colorTabSelected), PorterDuff.Mode.SRC_IN);
                 tv_titleNavBar.setText(titleNavBar[tab.getPosition()]);
+                INDEX_OPENED_TAB = tab.getPosition();
                 setIconNavBar(tab);
                 setIconVisibility(tab);
             }
@@ -313,14 +292,187 @@ public class MainActivity extends AppCompatActivity {
         if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
             TabLayout.Tab tab = tabLayout.getTabAt(2);
             tab.select();
+            INDEX_OPENED_TAB = 2;
         } else if (JENIS_USER.equals(JENIS_USER_OPERATOR)) {
             TabLayout.Tab tab = tabLayout.getTabAt(1);
             tab.select();
+            INDEX_OPENED_TAB = 1;
         } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)) {
             TabLayout.Tab tab = tabLayout.getTabAt(0);
             tab.select();
+            INDEX_OPENED_TAB = 0;
         } else {
 
+        }
+    }
+
+    public void setIconClicked(String jenisUser, int indexOpenedTab, int iconNumber) {
+        if (jenisUser.equals(JENIS_USER_ALUMNI)) {
+            setIconClickedForAlumni(indexOpenedTab, iconNumber);
+        } else if (jenisUser.equals(JENIS_USER_PIMPINAN)) {
+            setIconClickedForPimpinan(indexOpenedTab, iconNumber);
+        } else if (jenisUser.equals(JENIS_USER_OPERATOR)) {
+            setIconClickedForOperator(indexOpenedTab, iconNumber);
+        }
+    }
+
+    public void setIconClickedForAlumni(int indexOpenedTab, int iconNumber) {
+        switch (indexOpenedTab) {
+            case 0:
+                //tab daftar alumni
+                switch (iconNumber) {
+                    case 4:
+                        //icon search
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 1:
+                //tab pesan
+                switch (iconNumber) {
+                    case 3:
+                        //icon tambah pesan
+                        break;
+                    case 4:
+                        //icon search
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 2:
+                //tab beranda
+                break;
+            case 3:
+                //tab lowongan
+                switch (iconNumber) {
+                    case 3:
+                        //icon tambah lowongan
+                        break;
+                    case 4:
+                        //icon search
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 4:
+                //tab lainnya
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void setIconClickedForPimpinan(int indexOpenedTab, int iconNumber) {
+        switch (indexOpenedTab) {
+            case 0:
+                //tab data alumni
+                switch (iconNumber) {
+                    case 4:
+                        //icon logout
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 1:
+                //tab info
+                switch (iconNumber) {
+                    case 3:
+                        //icon search
+                        break;
+                    case 4:
+                        //icon logout
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 2:
+                //tab lowongan
+                switch (iconNumber) {
+                    case 3:
+                        //icon search
+                        break;
+                    case 4:
+                        //icon logout
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 3:
+                //tab donasi
+                switch (iconNumber) {
+                    case 3:
+                        //icon search
+                        break;
+                    case 4:
+                        //icon logout
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void setIconClickedForOperator(int indexOpenedTab, int iconNumber) {
+        switch (indexOpenedTab) {
+            case 0:
+                //tab lowongan
+                switch (iconNumber) {
+                    case 2:
+                        //icon tambah lowongan
+                        break;
+                    case 3:
+                        //icon search
+                        break;
+                    case 4:
+                        //icon logout
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 1:
+                //tab info
+                switch (iconNumber) {
+                    case 2:
+                        //icon tambah info
+                        break;
+                    case 3:
+                        //icon search
+                        break;
+                    case 4:
+                        //icon logout
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 2:
+                //tab donasi
+                switch (iconNumber) {
+                    case 2:
+                        //icon tambah donasi
+                        break;
+                    case 3:
+                        //icon search
+                        break;
+                    case 4:
+                        //icon logout
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
         }
     }
 }
