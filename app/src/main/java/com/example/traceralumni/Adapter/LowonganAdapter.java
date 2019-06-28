@@ -60,10 +60,10 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
         public ListLowonganHolder(View itemView){
             super(itemView);
 
-            txtTitle = itemView.findViewById(R.id.txt_nama_lowongan);
-            txtPerusahaan = itemView.findViewById(R.id.txt_nama_perusahaan);
-            txtLokasi = itemView.findViewById(R.id.txt_lokasi_perusahaan);
-            txtKisaranGaji = itemView.findViewById(R.id.txt_kisaran_gaji);
+            txtTitle = itemView.findViewById(R.id.tv_nama_lowongan);
+            txtPerusahaan = itemView.findViewById(R.id.tv_nama_perusahaan);
+            txtLokasi = itemView.findViewById(R.id.tv_lokasi_perusahaan);
+            txtKisaranGaji = itemView.findViewById(R.id.tv_kisaran_gaji);
             container = itemView.findViewById(R.id.card_daftar_lowongan);
         }
 
