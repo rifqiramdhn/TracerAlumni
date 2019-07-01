@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#ffffff</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#2699FB</color>
     <color name="colorIconBiru">#2699FB</color>
     <color name="colorBackgroundGrey">#DADDE1</color>
     <color name="colorTabSelected">#ffffff</color>

@@ -12,4 +12,7 @@
     <dimen name="icon_btn_height">40dp</dimen>
 
     <dimen name="view_pager_height">76dp</dimen>
+
+    <dimen name="custom_tab_icon_width">28dp</dimen>
+    <dimen name="custom_tab_icon_heigth">28dp</dimen>
 </resources>
