@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         //coba masuk sebagai alumni
         JENIS_USER = JENIS_USER_ALUMNI;
-        STATE_USER_LOGGED = 1;
+        STATE_USER_LOGGED = 0;
         getDataUser();
     }
 
@@ -203,6 +203,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void moveActivityToLogin() {
         //kode untuk pindah apabila jenis usernya kosong
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     public void setIconVisibility(TabLayout.Tab tab) {
