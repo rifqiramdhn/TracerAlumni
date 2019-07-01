@@ -299,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
 
         final ImageView arrayImageView[] = new ImageView[arrayDrawable.length];
         for (int i = 0; i < arrayDrawable.length; i++) {
-            arrayImageView[i] = arrayCustomView[i].findViewById(R.id.img_gambar);
+            arrayImageView[i] = arrayCustomView[i].findViewById(R.id.img_custom_view_tab);
         }
 
         for (int i = 0; i < arrayDrawable.length; i++) {
@@ -310,7 +310,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                ImageView img = tab.getCustomView().findViewById(R.id.img_gambar);
+                ImageView img = tab.getCustomView().findViewById(R.id.img_custom_view_tab);
                 img.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.colorTabSelected), PorterDuff.Mode.SRC_IN);
                 tv_titleNavBar.setText(titleNavBar[tab.getPosition()]);
                 INDEX_OPENED_TAB = tab.getPosition();
@@ -320,7 +320,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                ImageView img = tab.getCustomView().findViewById(R.id.img_gambar);
+                ImageView img = tab.getCustomView().findViewById(R.id.img_custom_view_tab);
                 img.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.colorTabUnselected), PorterDuff.Mode.SRC_IN);
             }
 

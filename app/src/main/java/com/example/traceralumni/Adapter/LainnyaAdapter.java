@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traceralumni.Activity.AboutActivity;
+import com.example.traceralumni.Activity.ChangePasswordActivity;
 import com.example.traceralumni.Activity.DonasiActivity;
 import com.example.traceralumni.Model.LainnyaModel;
 import com.example.traceralumni.R;
@@ -54,6 +56,14 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                     case 1:
                         Intent intent = new Intent(holder.container.getContext(), DonasiActivity.class);
                         holder.container.getContext().startActivity(intent);
+                        break;
+                    case 8:
+                        Intent intent1 = new Intent(holder.container.getContext(), AboutActivity.class);
+                        holder.container.getContext().startActivity(intent1);
+                        break;
+                    case 6:
+                        Intent intent2 = new Intent(holder.container.getContext(), ChangePasswordActivity.class);
+                        holder.container.getContext().startActivity(intent2);
                         break;
                     default:
                         Toast.makeText(context, lainnyaModel.getItem(), Toast.LENGTH_SHORT).show();

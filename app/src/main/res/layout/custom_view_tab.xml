@@ -7,9 +7,9 @@ android:layout_height="match_parent">
 
 <ImageView
     android:tint="@color/colorTabUnselected"
-    android:id="@+id/img_gambar"
-    android:layout_width="32dp"
-    android:layout_height="32dp"
+    android:id="@+id/img_custom_view_tab"
+    android:layout_width="@dimen/custom_tab_icon_width"
+    android:layout_height="@dimen/custom_tab_icon_heigth"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
