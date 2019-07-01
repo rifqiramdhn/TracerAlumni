@@ -1,6 +1,7 @@
 package com.example.traceralumni.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traceralumni.Activity.DetailDonasiActivity;
 import com.example.traceralumni.Model.ChatModel;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.R;
@@ -42,12 +44,17 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
 
         //Mengisi item dari holder menjadi item dari objek lainnyaModel
         holder.namaKegiatan.setText(donasiModel.getNamaKegiatan());
-        holder.totalBiaya.setText(donasiModel.getTotalBiaya());
+        holder.totalBiaya.setText("Rp" + donasiModel.getTotalBiaya());
 
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, donasiModel.getNamaKegiatan(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(v.getContext(), DetailDonasiActivity.class);
+                intent.putExtra("namaKegiatan", donasiModel.getNamaKegiatan());
+                intent.putExtra("totalBiaya", donasiModel.getTotalBiaya());
+                intent.putExtra("keterangan", donasiModel.getKeterangan());
+                intent.putExtra("fotoResId", String.valueOf(donasiModel.getFotoResId()));
+                v.getContext().startActivity(intent);
             }
         });
 
