@@ -51,6 +51,7 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(LanjutanTambahLowonganActivity.this, MainActivity.class);
                 i.putExtra("Tambah", INDEX_OPENED_TAB);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
         });
