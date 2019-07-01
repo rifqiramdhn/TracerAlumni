@@ -21,6 +21,7 @@
         </activity>
         <activity android:name=".Activity.DetailLowonganActivity" />
         <activity android:name=".Activity.DonasiActivity" />
+        <activity android:name=".Activity.DetailDonasiActivity"/>
         <activity android:name=".Activity.DetailProfilActivity" />
         <activity android:name=".Activity.TambahLowonganActivity" />
         <activity android:name=".Activity.LanjutanTambahLowonganActivity" />

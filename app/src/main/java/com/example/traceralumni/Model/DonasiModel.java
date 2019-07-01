@@ -12,8 +12,9 @@ public class DonasiModel {
         this.totalBiaya = totalBiaya;
     }
 
-    public DonasiModel(String namaKegiatan, String totalBiaya) {
+    public DonasiModel(String namaKegiatan, String keterangan, String totalBiaya) {
         this.namaKegiatan = namaKegiatan;
+        this.keterangan = keterangan;
         this.totalBiaya = totalBiaya;
     }
 
