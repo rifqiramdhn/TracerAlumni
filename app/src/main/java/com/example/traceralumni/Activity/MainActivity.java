@@ -336,9 +336,16 @@ public class MainActivity extends AppCompatActivity {
         //langsung pilih ke beranda saat pertama buka aplikasi
         Log.e("aldy", JENIS_USER);
         if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
-            TabLayout.Tab tab = tabLayout.getTabAt(2);
-            tab.select();
-            INDEX_OPENED_TAB = 2;
+            if(getIntent() == null){
+                TabLayout.Tab tab = tabLayout.getTabAt(2);
+                tab.select();
+                INDEX_OPENED_TAB = 2;
+            } else {
+                Intent i = getIntent();
+                TabLayout.Tab tab = tabLayout.getTabAt(i.getIntExtra("Tambah", 2));
+                tab.select();
+                INDEX_OPENED_TAB = i.getIntExtra("Tambah", 2);
+            }
         } else if (JENIS_USER.equals(JENIS_USER_OPERATOR)) {
             TabLayout.Tab tab = tabLayout.getTabAt(1);
             tab.select();

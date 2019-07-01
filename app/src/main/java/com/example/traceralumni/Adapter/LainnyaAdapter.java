@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.traceralumni.Activity.AboutActivity;
 import com.example.traceralumni.Activity.ChangePasswordActivity;
 import com.example.traceralumni.Activity.DonasiActivity;
+import com.example.traceralumni.Activity.RiwayatPekerjaanActivity;
 import com.example.traceralumni.Model.LainnyaModel;
 import com.example.traceralumni.R;
 
@@ -54,16 +55,20 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
             public void onClick(View v) {
                 switch (position) {
                     case 1:
-                        Intent intent = new Intent(holder.container.getContext(), DonasiActivity.class);
-                        holder.container.getContext().startActivity(intent);
+                        Intent donasi = new Intent(holder.container.getContext(), DonasiActivity.class);
+                        holder.container.getContext().startActivity(donasi);
                         break;
-                    case 8:
-                        Intent intent1 = new Intent(holder.container.getContext(), AboutActivity.class);
-                        holder.container.getContext().startActivity(intent1);
+                    case 5:
+                        Intent riwayat = new Intent(holder.container.getContext(), RiwayatPekerjaanActivity.class);
+                        holder.container.getContext().startActivity(riwayat);
                         break;
                     case 6:
-                        Intent intent2 = new Intent(holder.container.getContext(), ChangePasswordActivity.class);
-                        holder.container.getContext().startActivity(intent2);
+                        Intent gantiPass = new Intent(holder.container.getContext(), ChangePasswordActivity.class);
+                        holder.container.getContext().startActivity(gantiPass);
+                        break;
+                    case 8:
+                        Intent tentang = new Intent(holder.container.getContext(), AboutActivity.class);
+                        holder.container.getContext().startActivity(tentang);
                         break;
                     default:
                         Toast.makeText(context, lainnyaModel.getItem(), Toast.LENGTH_SHORT).show();

@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.ChangePasswordActivity"></activity>
+        <activity android:name=".Activity.ChangePasswordActivity" />
         <activity android:name=".Activity.AboutActivity" />
-        <activity android:name=".Activity.LoginActivity"/>
+        <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,10 +21,12 @@
         </activity>
         <activity android:name=".Activity.DetailLowonganActivity" />
         <activity android:name=".Activity.DonasiActivity" />
-        <activity android:name=".Activity.DetailDonasiActivity"/>
+        <activity android:name=".Activity.DetailDonasiActivity" />
         <activity android:name=".Activity.DetailProfilActivity" />
         <activity android:name=".Activity.TambahLowonganActivity" />
         <activity android:name=".Activity.LanjutanTambahLowonganActivity" />
+        <activity android:name=".Activity.RiwayatPekerjaanActivity" />
+        <activity android:name=".Activity.TambahRiwayatPekerjaanActivity" />
     </application>
 
 </manifest>

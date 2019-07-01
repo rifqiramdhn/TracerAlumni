@@ -15,6 +15,16 @@ public class RiwayatPekerjaanModel {
         this.pendapatan = pendapatan;
     }
 
+    public RiwayatPekerjaanModel(String jabatan, String bidangKerja, String namaPerusahaan, String lokasiKerja, int pendapatan, String thnMulai, String thnSelesai) {
+        this.jabatan = jabatan;
+        this.bidangKerja = bidangKerja;
+        this.namaPerusahaan = namaPerusahaan;
+        this.lokasiKerja = lokasiKerja;
+        this.thnMulai = thnMulai;
+        this.thnSelesai = thnSelesai;
+        this.pendapatan = pendapatan;
+    }
+
     public String getJabatan() {
         return jabatan;
     }

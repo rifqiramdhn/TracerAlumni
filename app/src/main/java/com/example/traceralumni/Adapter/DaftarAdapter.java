@@ -1,6 +1,7 @@
 package com.example.traceralumni.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traceralumni.Activity.DetailProfilActivity;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;
 
@@ -54,7 +56,8 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, String.valueOf(daftarModel.getIdProdi()), Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(holder.container.getContext(), DetailProfilActivity.class);
+                holder.container.getContext().startActivity(i);
             }
         });
 

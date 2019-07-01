@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include
+        android:id="@+id/include_lanjutan_tambah_lowongan"
+        layout="@layout/navigation_bar_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nav_bar_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:id="@+id/sv_tambah_lowongan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499">
+        app:layout_constraintTop_toBottomOf="@+id/include_lanjutan_tambah_lowongan">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/cl_body_tambah_lowongan"
@@ -22,155 +28,130 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="20dp">
 
-            <TextView
-                android:id="@+id/tv_syarat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="24dp"
-                android:text="Syarat Pekerjaan"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/et_syarat"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/edt_syarat_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
+                android:textColorHint="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_syarat" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/tv_web"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="24dp"
-                android:text="Website Perusahaan"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_syarat" />
+                <EditText
+                    android:id="@+id/edt_syarat"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Syarat Pekerjaan"
+                    android:inputType="text"
+                    android:textColor="#2699FB"
+                    android:textSize="16sp" />
 
-            <EditText
-                android:id="@+id/et_web"
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/edt_web_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
+                android:textColorHint="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_web" />
+                app:layout_constraintTop_toBottomOf="@+id/edt_syarat_container">
 
-            <TextView
-                android:id="@+id/tv_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="24dp"
-                android:text="Email Perusahaan"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_web" />
+                <EditText
+                    android:id="@+id/edt_web"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Website Perusahaan"
+                    android:inputType="text"
+                    android:textColor="#2699FB"
+                    android:textSize="16sp" />
 
-            <EditText
-                android:id="@+id/et_email"
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/edt_email_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
+                android:textColorHint="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_email" />
+                app:layout_constraintTop_toBottomOf="@+id/edt_web_container">
 
-            <TextView
-                android:id="@+id/txt_notelp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="24dp"
-                android:text="Nomor Telepon Perusahaan"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_email" />
+                <EditText
+                    android:id="@+id/edt_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Email Perusahaan"
+                    android:inputType="text"
+                    android:textColor="#2699FB"
+                    android:textSize="16sp" />
 
-            <EditText
-                android:id="@+id/et_notelp"
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/edt_notelp_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
+                android:textColorHint="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_notelp" />
+                app:layout_constraintTop_toBottomOf="@+id/edt_email_container">
 
-            <TextView
-                android:id="@+id/txt_hubungi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="24dp"
-                android:text="Kontak yang Dapat Dihubungi"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_notelp" />
+                <EditText
+                    android:id="@+id/edt_notelp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Nomor Telepon Perusahaan"
+                    android:inputType="text"
+                    android:textColor="#2699FB"
+                    android:textSize="16sp" />
 
-            <EditText
-                android:id="@+id/et_hubungi"
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/edt_kontak_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
+                android:textColorHint="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_hubungi" />
+                app:layout_constraintTop_toBottomOf="@+id/edt_notelp_container">
+
+                <EditText
+                    android:id="@+id/edt_kontak"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Kontak yang Dapat Dihubungi"
+                    android:inputType="text"
+                    android:textColor="#2699FB"
+                    android:textSize="16sp" />
+
+            </android.support.design.widget.TextInputLayout>
 
         </android.support.constraint.ConstraintLayout>
 
