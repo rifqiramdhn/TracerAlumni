@@ -3,4 +3,22 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <array name="daftar_alumni_search_spinner">
+        <item>S1 Akuntansi (Internasional)</item>
+        <item>S1 Ek., Keu. dan Perbankan (Internasional)</item>
+        <item>S1 Ekonomi Pembangunan</item>
+        <item>S1 Ekonomi Pembangunan (Internasional)</item>
+        <item>S1 Ekonomi, Keuangan dan Perbankan</item>
+        <item>S1 Kewirausahaan</item>
+        <item>S1 Manajemen</item>
+        <item>S1 Manajemen (Internasional)</item>
+        <item>S2 Akuntansi</item>
+        <item>S2 Manajemen</item>
+        <item>S2 Ilmu Ekonomi</item>
+        <item>S3 Ilmu Akuntansi</item>
+        <item>S3 Ilmu Ekonomi</item>
+        <item>S3 Ilmu Manajemen</item>
+        <item>PPAk</item>
+        <item>S1 Akuntansi (Internasional)</item>
+    </array>
 </resources>

@@ -10,9 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.traceralumni.Adapter.ChatAdapter;
-import com.example.traceralumni.Adapter.DaftarAdapter;
 import com.example.traceralumni.Model.ChatModel;
-import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
@@ -54,7 +52,7 @@ public class ChatFragment extends Fragment {
         chatModels.add(new ChatModel("Rizaldy Firman T.", "Apasi"));
         chatModels.add(new ChatModel("Rifqi Imam", "WTF"));
 
-        chatRecycler = rootView.findViewById(R.id.fragment_chat_recycler);
+        chatRecycler = rootView.findViewById(R.id.rv_fragment_chat);
 
         //Mengatur LayoutManager dari Recycler daftar
         chatRecycler.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.VERTICAL, false));

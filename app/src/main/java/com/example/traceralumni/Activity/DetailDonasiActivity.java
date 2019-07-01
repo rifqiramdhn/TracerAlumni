@@ -8,14 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.traceralumni.R;
 
 public class DetailDonasiActivity extends AppCompatActivity {
 
-    ConstraintLayout cl_icon1, cl_icon2, cl_icon3, cl_icon4;
-    ImageView imgIcon1, imgIcon2, imgIcon3, imgIcon4, foto;
+    ConstraintLayout cl_back;
+    ImageView imgBack, foto;
     TextView tv_titleNavBar, tv_namaKegiatan, tv_totalBiaya, tv_keterangan, tv_totalDonasi, tv_jumlahDonasi;
     Button btn_donasi;
 
@@ -49,28 +48,17 @@ public class DetailDonasiActivity extends AppCompatActivity {
     }
 
     private void setIcon() {
-        cl_icon1 = findViewById(R.id.cl_icon1);
-        cl_icon2 = findViewById(R.id.cl_icon2);
-        cl_icon3 = findViewById(R.id.cl_icon3);
-        cl_icon4 = findViewById(R.id.cl_icon4);
+        cl_back = findViewById(R.id.cl_icon1);
 
-        imgIcon1 = findViewById(R.id.img_icon1);
-        imgIcon2 = findViewById(R.id.img_icon2);
-        imgIcon3 = findViewById(R.id.img_icon3);
-        imgIcon4 = findViewById(R.id.img_icon4);
+        imgBack = findViewById(R.id.img_icon1);
 
         tv_titleNavBar = findViewById(R.id.tv_navbar_top);
 
         tv_titleNavBar.setText("DETAIL DONASI");
 
-        imgIcon1.setImageResource(R.drawable.ic_arrow_back);
+        imgBack.setImageResource(R.drawable.ic_arrow_back);
 
-        cl_icon1.setVisibility(View.VISIBLE);
-        cl_icon2.setVisibility(View.GONE);
-        cl_icon3.setVisibility(View.GONE);
-        cl_icon4.setVisibility(View.GONE);
-
-
+        cl_back.setVisibility(View.VISIBLE);
     }
 
     private void getData() {
@@ -110,28 +98,31 @@ public class DetailDonasiActivity extends AppCompatActivity {
     private void setBackButton(String jenisUser) {
 
         if (jenisUser.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
-            cl_icon1.setOnClickListener(new View.OnClickListener() {
+            cl_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(DetailDonasiActivity.this, DonasiActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
             });
         } else if (jenisUser.equalsIgnoreCase(JENIS_USER_PIMPINAN)) {
-            cl_icon1.setOnClickListener(new View.OnClickListener() {
+            cl_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //Diganti intentnya ke mana
                     Intent intent = new Intent(DetailDonasiActivity.this, DonasiActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
             });
         } else if (jenisUser.equalsIgnoreCase(JENIS_USER_OPERATOR)) {
-            cl_icon1.setOnClickListener(new View.OnClickListener() {
+            cl_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //Diganti intentnya ke mana
                     Intent intent = new Intent(DetailDonasiActivity.this, DonasiActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
             });

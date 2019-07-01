@@ -137,8 +137,8 @@ public class MainActivity extends AppCompatActivity {
                     imgIcon4.setImageResource(R.drawable.ic_search);
                     break;
             }
-        } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)){
-            switch (tab.getPosition()){
+        } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)) {
+            switch (tab.getPosition()) {
                 case 0:
                     imgIcon4.setImageResource(R.drawable.ic_power_settings_new);
                     break;
@@ -155,8 +155,8 @@ public class MainActivity extends AppCompatActivity {
                     imgIcon4.setImageResource(R.drawable.ic_power_settings_new);
                     break;
             }
-        } else if (JENIS_USER.equals(JENIS_USER_OPERATOR)){
-            switch (tab.getPosition()){
+        } else if (JENIS_USER.equals(JENIS_USER_OPERATOR)) {
+            switch (tab.getPosition()) {
                 case 0:
                     imgIcon2.setImageResource(R.drawable.ic_add);
                     imgIcon3.setImageResource(R.drawable.ic_search);
@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.GONE);
                     cl_icon3.setVisibility(View.GONE);
-                    cl_icon4.setVisibility(View.VISIBLE);
+                    cl_icon4.setVisibility(View.GONE);
                     break;
             }
         } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)) {
@@ -375,7 +375,12 @@ public class MainActivity extends AppCompatActivity {
                 //tab daftar alumni
                 switch (iconNumber) {
                     case 4:
-                        //icon search
+                        ConstraintLayout cl_fragment_daftar_search = findViewById(R.id.cl_fragment_daftar_search);
+                        if (cl_fragment_daftar_search.getVisibility() == View.GONE) {
+                            cl_fragment_daftar_search.setVisibility(View.VISIBLE);
+                        } else {
+                            cl_fragment_daftar_search.setVisibility(View.GONE);
+                        }
                         break;
                     default:
                         break;
@@ -388,7 +393,12 @@ public class MainActivity extends AppCompatActivity {
                         //icon tambah pesan
                         break;
                     case 4:
-                        //icon search
+                        ConstraintLayout cl_fragment_chat_search = findViewById(R.id.cl_fragment_chat_search);
+                        if (cl_fragment_chat_search.getVisibility() == View.GONE) {
+                            cl_fragment_chat_search.setVisibility(View.VISIBLE);
+                        } else {
+                            cl_fragment_chat_search.setVisibility(View.GONE);
+                        }
                         break;
                     default:
                         break;
