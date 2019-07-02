@@ -7,7 +7,7 @@
     tools:context=".Activity.DonasiActivity">
 
     <include
-        android:id="@+id/include_donasi"
+        android:id="@+id/include_activity_donasi"
         layout="@layout/navigation_bar_top"
         android:layout_width="0dp"
         android:layout_height="@dimen/nav_bar_height"
@@ -15,15 +15,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_activity_donasi_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/rv_activity_donasi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/include_activity_donasi">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@android:color/black"
+            android:ems="10"
+            android:hint="Nama Lowongan.."
+            android:inputType="textPersonName"
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_donasi"
+        android:id="@+id/rv_activity_donasi"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_donasi"
+        app:layout_constraintTop_toBottomOf="@+id/cl_activity_donasi_search"
         tools:listitem="@layout/card_donasi">
 
     </android.support.v7.widget.RecyclerView>

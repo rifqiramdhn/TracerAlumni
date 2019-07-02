@@ -415,7 +415,12 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case 4:
-                        //icon search
+                        ConstraintLayout cl_fragment_lowongan_search = findViewById(R.id.cl_fragment_lowongan_search);
+                        if (cl_fragment_lowongan_search.getVisibility() == View.GONE) {
+                            cl_fragment_lowongan_search.setVisibility(View.VISIBLE);
+                        } else {
+                            cl_fragment_lowongan_search.setVisibility(View.GONE);
+                        }
                         break;
                     default:
                         break;
