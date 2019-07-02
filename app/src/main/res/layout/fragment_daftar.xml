@@ -41,7 +41,8 @@
             android:id="@+id/edt_fragment_daftar_tahun"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginBottom="8dp"
             android:backgroundTint="@android:color/black"
             android:ems="10"
@@ -50,8 +51,8 @@
             android:maxLength="4"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/edt_fragment_daftar_nama"
-            app:layout_constraintTop_toBottomOf="@+id/edt_fragment_daftar_nama" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edt_fragment_daftar_nama" />
 
         <Spinner
             android:id="@+id/spn_fragment_daftar_prodi"
@@ -64,8 +65,9 @@
             android:entries="@array/daftar_alumni_search_spinner"
             app:layout_constraintBottom_toBottomOf="@+id/edt_fragment_daftar_tahun"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/edt_fragment_daftar_tahun"
-            app:layout_constraintTop_toTopOf="@+id/edt_fragment_daftar_tahun" />
+            app:layout_constraintTop_toBottomOf="@id/edt_fragment_daftar_nama" />
 
     </android.support.constraint.ConstraintLayout>
 

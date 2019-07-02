@@ -8,6 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.example.traceralumni.Activity.DetailLowonganActivity;
@@ -16,12 +19,14 @@ import com.example.traceralumni.R;
 
 import java.util.ArrayList;
 
-public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLowonganHolder>{
+public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLowonganHolder> implements Filterable {
     Context context;
     private ArrayList<LowonganModel> listLowongan;
+    private ArrayList<LowonganModel> listLowonganFull;
 
     public LowonganAdapter(ArrayList<LowonganModel> listLowongan){
         this.listLowongan = listLowongan;
+        listLowonganFull = new ArrayList<>(listLowongan);
     }
 
     @NonNull
@@ -68,4 +73,41 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
         }
 
     }
+
+    @Override
+    public Filter getFilter() {
+        return listLowonganFilter;
+    }
+
+    private Filter listLowonganFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<LowonganModel> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(listLowonganFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (LowonganModel item : listLowonganFull) {
+                    if (item.getNama_lowongan().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            listLowongan.clear();
+            if (filterResults.values != null) {
+                listLowongan.addAll((ArrayList<LowonganModel>) filterResults.values);
+            }
+            notifyDataSetChanged();
+        }
+    };
 }

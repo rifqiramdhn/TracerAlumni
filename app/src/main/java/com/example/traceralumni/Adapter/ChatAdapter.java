@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,14 +19,16 @@ import com.example.traceralumni.R;
 
 import java.util.ArrayList;
 
-public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
+public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> implements Filterable {
 
     private Context context;
     private ArrayList<ChatModel> chatModels;
+    private ArrayList<ChatModel> chatModelsFull;
 
     public ChatAdapter(Context context, ArrayList<ChatModel> data) {
         this.context = context;
         this.chatModels = data;
+        chatModelsFull = new ArrayList<>(data);
     }
 
     @Override
@@ -47,7 +51,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 //        holder.waktu.setText(chatModel.getWaktu().toString());
 //        holder.foto.setImageResource(chatModel.getFotoResId());
         holder.foto.setImageResource(R.mipmap.ic_launcher_round);
-
 
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,4 +87,40 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             container = itemView.findViewById(R.id.card_chat_container);
         }
     }
+
+    @Override
+    public Filter getFilter() {
+        return chatModelsFilter;
+    }
+
+    private Filter chatModelsFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<ChatModel> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0){
+                filteredList.addAll(chatModelsFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (ChatModel item : chatModelsFull){
+                    if (item.getNama().toLowerCase().contains(filterPattern)){
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            chatModels.clear();
+            chatModels.addAll((ArrayList<ChatModel>) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 }

@@ -4,9 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,14 +21,16 @@ import com.example.traceralumni.R;
 
 import java.util.ArrayList;
 
-public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder> {
+public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder> implements Filterable {
 
     private Context context;
     private ArrayList<DonasiModel> donasiModels;
+    private ArrayList<DonasiModel> donasiModelsFull;
 
     public DonasiAdapter(Context context, ArrayList<DonasiModel> data) {
         this.context = context;
         this.donasiModels = data;
+        donasiModelsFull = new ArrayList<>(data);
     }
 
     @Override
@@ -82,4 +87,41 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
             container = itemView.findViewById(R.id.card_donasi_container);
         }
     }
+
+    @Override
+    public Filter getFilter() {
+        return donasiModelsFilter;
+    }
+
+    private Filter donasiModelsFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<DonasiModel> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(donasiModelsFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (DonasiModel item : donasiModelsFull) {
+                    if (item.getNamaKegiatan().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            donasiModels.clear();
+            if (filterResults.values != null) {
+                donasiModels.addAll((ArrayList<DonasiModel>) filterResults.values);
+            }
+            notifyDataSetChanged();
+        }
+    };
 }

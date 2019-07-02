@@ -6,7 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,13 +24,18 @@ public class DonasiActivity extends AppCompatActivity {
     ConstraintLayout cl_iconBack;
     ImageView img_iconBack;
     TextView tv_titleBar;
+
     private ConstraintLayout cl_icon_back, cl_icon_search;
     private ImageView img_icon_back, img_icon_search;
     private TextView tv_navbar;
+
     ConstraintLayout cl_donasi_search;
+
     RecyclerView donasiRecycler;
     DonasiAdapter donasiAdapter;
     ArrayList<DonasiModel> donasiModels;
+
+    EditText edt_donasi_cari;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +43,8 @@ public class DonasiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_donasi);
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+        edt_donasi_cari = findViewById(R.id.edt_donasi_cari);
 
         cl_iconBack = findViewById(R.id.cl_icon1);
         cl_iconBack.setVisibility(View.VISIBLE);
@@ -69,7 +80,7 @@ public class DonasiActivity extends AppCompatActivity {
         cl_icon_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cl_donasi_search.getVisibility() == View.GONE){
+                if (cl_donasi_search.getVisibility() == View.GONE) {
                     cl_donasi_search.setVisibility(View.VISIBLE);
                 } else {
                     cl_donasi_search.setVisibility(View.GONE);
@@ -111,7 +122,21 @@ public class DonasiActivity extends AppCompatActivity {
         donasiAdapter = new DonasiAdapter(DonasiActivity.this, donasiModels);
         donasiRecycler.setAdapter(donasiAdapter);
 
+        edt_donasi_cari.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                donasiAdapter.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
-
-
 }

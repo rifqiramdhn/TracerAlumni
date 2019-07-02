@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.example.traceralumni.Adapter.ChatAdapter;
 import com.example.traceralumni.Model.ChatModel;
@@ -27,6 +30,8 @@ public class ChatFragment extends Fragment {
 
     View rootView;
 
+    EditText edt_cari;
+
     public ChatFragment() {
         // Required empty public constructor
     }
@@ -37,6 +42,8 @@ public class ChatFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_chat, container, false);
+
+        edt_cari = rootView.findViewById(R.id.edt_fragment_chat_nama);
 
         chatModels = new ArrayList<>();
         chatModels.add(new ChatModel("Budi Fauzan", "Halo"));
@@ -63,4 +70,25 @@ public class ChatFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        edt_cari.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                chatAdapter.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
 }
