@@ -2,6 +2,7 @@ package com.example.traceralumni.Activity;
 
 import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.traceralumni.Adapter.OpFragPagerAdapter;
 import com.example.traceralumni.Adapter.PimFragPagerAdapter;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     TextView tv_titleNavBar;
+    boolean doubleBackToExitPressedOnce = false;
 
     public static String JENIS_USER = "";
     public static final String JENIS_USER_ALUMNI = "jenis_user_alumni";
@@ -62,6 +65,28 @@ public class MainActivity extends AppCompatActivity {
         JENIS_USER = JENIS_USER_ALUMNI;
         STATE_USER_LOGGED = 1;
         getDataUser();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Tekan sekali lagi untuk keluar", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 
     public void getDataUser() {

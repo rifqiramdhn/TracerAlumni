@@ -28,4 +28,6 @@ public class BerandaFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_beranda, container, false);
     }
 
+
+
 }

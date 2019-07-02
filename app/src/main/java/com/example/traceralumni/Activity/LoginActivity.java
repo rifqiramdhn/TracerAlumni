@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Tekan 1 kali lagi untuk keluar", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Tekan sekali lagi untuk keluar", Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
             @Override
