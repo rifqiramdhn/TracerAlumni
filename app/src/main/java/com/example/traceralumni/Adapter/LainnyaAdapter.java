@@ -1,10 +1,12 @@
 package com.example.traceralumni.Adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,8 @@ import android.widget.Toast;
 import com.example.traceralumni.Activity.AboutActivity;
 import com.example.traceralumni.Activity.ChangePasswordActivity;
 import com.example.traceralumni.Activity.DonasiActivity;
+import com.example.traceralumni.Activity.LoginActivity;
+import com.example.traceralumni.Activity.MainActivity;
 import com.example.traceralumni.Activity.RiwayatPekerjaanActivity;
 import com.example.traceralumni.Activity.SuntingProfilActivity;
 import com.example.traceralumni.Model.LainnyaModel;
@@ -27,6 +31,7 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
 
     private Context context;
     private ArrayList<LainnyaModel> lainnyaModels;
+    AlertDialog.Builder builder;
 
     public LainnyaAdapter(Context context, ArrayList<LainnyaModel> data) {
         this.context = context;
@@ -38,6 +43,7 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
 
         //Inflate layout card_lainnya
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_lainnya, parent, false);
+        builder = new AlertDialog.Builder(context);
         return new ViewHolder(itemView);
     }
 
@@ -58,33 +64,36 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                 switch (position) {
                     case 1:
                         Intent donasi = new Intent(holder.container.getContext(), DonasiActivity.class);
-                        holder.container.getContext().startActivity(donasi);
-
+                        context.startActivity(donasi);
                         break;
                     case 3:
                         String url = "http://www.google.com";
                         Intent tracerStudi = new Intent(Intent.ACTION_VIEW);
                         tracerStudi.setData(Uri.parse(url));
-                        holder.container.getContext().startActivity(tracerStudi);
+                        context.startActivity(tracerStudi);
                         break;
                     case 4:
-                        Intent suntingProfil = new Intent(holder.container.getContext(), SuntingProfilActivity.class);
-                        holder.container.getContext().startActivity(suntingProfil);
+                        Intent suntingProfil = new Intent(context, SuntingProfilActivity.class);
+                        context.startActivity(suntingProfil);
                         break;
                     case 5:
-                        Intent riwayat = new Intent(holder.container.getContext(), RiwayatPekerjaanActivity.class);
-                        holder.container.getContext().startActivity(riwayat);
+                        Intent riwayat = new Intent(context, RiwayatPekerjaanActivity.class);
+                        context.startActivity(riwayat);
                         break;
                     case 6:
-                        Intent gantiPass = new Intent(holder.container.getContext(), ChangePasswordActivity.class);
-                        holder.container.getContext().startActivity(gantiPass);
+                        Intent gantiPass = new Intent(context, ChangePasswordActivity.class);
+                        context.startActivity(gantiPass);
+                        break;
+                    case 7:
+                        showHapusSemuaChatDialog();
                         break;
                     case 8:
-                        Intent tentang = new Intent(holder.container.getContext(), AboutActivity.class);
-                        holder.container.getContext().startActivity(tentang);
+                        Intent tentang = new Intent(context, AboutActivity.class);
+                        context.startActivity(tentang);
                         break;
-                    default:
-                        Toast.makeText(context, lainnyaModel.getItem(), Toast.LENGTH_SHORT).show();
+                    case 9:
+                        showKeluarDialog();
+                        break;
                 }
             }
         });
@@ -117,5 +126,70 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
             icon = itemView.findViewById(R.id.card_pengaturan_icon_image_view);
             container = itemView.findViewById(R.id.card_pengaturan_container);
         }
+    }
+
+    private void showKeluarDialog() {
+
+        builder.setMessage("Apakah anda yakin ingin keluar?\n" +
+                "Anda harus login kembali apabila ingin menggunakan aplikasi");
+
+        builder.setTitle("Keluar");
+
+        builder.setCancelable(false);
+
+        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                Intent intent = new Intent(context, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                context.startActivity(intent);
+            }
+        });
+
+        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+
+        alertDialog.show();
+    }
+
+    private void showHapusSemuaChatDialog() {
+        builder.setMessage("Apakah anda yakin ingin menghapus semua chat?\n" +
+                "Chat yang sudah terhapus tidak akan bisa dikembalikan");
+
+        builder.setTitle("Hapus Semua Chat");
+
+        builder.setCancelable(false);
+
+        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                Toast.makeText(context, "Semua chat telah dihapus", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+
+        alertDialog.show();
     }
 }
