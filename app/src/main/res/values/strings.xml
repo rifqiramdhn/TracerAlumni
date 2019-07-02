@@ -21,4 +21,9 @@
         <item>PPAk</item>
         <item>S1 Akuntansi (Internasional)</item>
     </array>
+    <array name="spn_sunting_profil_kewarganegaraan">
+        <item>Kewarganegaraan*</item>
+        <item>WNI</item>
+        <item>WNA</item>
+    </array>
 </resources>
