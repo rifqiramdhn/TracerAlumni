@@ -2,9 +2,10 @@ package com.example.traceralumni.Model;
 
 public class LowonganModel {
     private String username, url_logo, nama_perusahaan, nama_lowongan, lokasi_perusahaan, kisaran_gaji, syarat, jabatan, website, email, notelp, kontak;
-    private int kuota;
+    private int kuota, id;
 
-    public LowonganModel(String username, String url_logo, String nama_perusahaan, String nama_lowongan, String lokasi_perusahaan, String kisaran_gaji, String syarat, String jabatan, String website, String email, String notelp, String kontak, int kuota) {
+    public LowonganModel(int id, String username, String url_logo, String nama_perusahaan, String nama_lowongan, String lokasi_perusahaan, String kisaran_gaji, String syarat, String jabatan, String website, String email, String notelp, String kontak, int kuota) {
+        this.id = id;
         this.username = username;
         this.url_logo = url_logo;
         this.nama_perusahaan = nama_perusahaan;
@@ -20,12 +21,14 @@ public class LowonganModel {
         this.kuota = kuota;
     }
 
-    public LowonganModel(String nama_lowongan, String nama_perusahaan, String lokasi_perusahaan, String kisaran_gaji){
+    public LowonganModel(int id, String nama_lowongan, String nama_perusahaan, String lokasi_perusahaan, String kisaran_gaji){
+        this.id = id;
         this.nama_lowongan = nama_lowongan;
         this.nama_perusahaan = nama_perusahaan;
         this.lokasi_perusahaan = lokasi_perusahaan;
         this.kisaran_gaji = kisaran_gaji;
     }
+
     public String getUrl_logo() {
         return url_logo;
     }
