@@ -1,5 +1,6 @@
 package com.example.traceralumni.Activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Handler;
@@ -7,6 +8,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         tv_titleNavBar = findViewById(R.id.tv_navbar_top);
 
         //coba masuk sebagai alumni
-        JENIS_USER = JENIS_USER_ALUMNI;
+        JENIS_USER = JENIS_USER_OPERATOR;
         STATE_USER_LOGGED = 1;
         getDataUser();
     }
@@ -361,7 +363,7 @@ public class MainActivity extends AppCompatActivity {
         //langsung pilih ke beranda saat pertama buka aplikasi
         Log.e("aldy", JENIS_USER);
         if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
-            if(getIntent() == null){
+            if (getIntent() == null) {
                 TabLayout.Tab tab = tabLayout.getTabAt(2);
                 tab.select();
                 INDEX_OPENED_TAB = 2;
@@ -466,6 +468,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (iconNumber) {
                     case 4:
                         //icon logout
+                        showKeluarDialog();
                         break;
                     default:
                         break;
@@ -479,6 +482,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 4:
                         //icon logout
+                        showKeluarDialog();
                         break;
                     default:
                         break;
@@ -492,6 +496,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 4:
                         //icon logout
+                        showKeluarDialog();
                         break;
                     default:
                         break;
@@ -505,6 +510,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 4:
                         //icon logout
+                        showKeluarDialog();
                         break;
                     default:
                         break;
@@ -528,6 +534,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 4:
                         //icon logout
+                        showKeluarDialog();
                         break;
                     default:
                         break;
@@ -541,9 +548,16 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 3:
                         //icon search
+                        ConstraintLayout cl_search_info = findViewById(R.id.cl_fragment_op_info_search);
+                        if (cl_search_info.getVisibility() == View.GONE) {
+                            cl_search_info.setVisibility(View.VISIBLE);
+                        } else {
+                            cl_search_info.setVisibility(View.GONE);
+                        }
                         break;
                     case 4:
                         //icon logout
+                        showKeluarDialog();
                         break;
                     default:
                         break;
@@ -560,6 +574,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 4:
                         //icon logout
+                        showKeluarDialog();
                         break;
                     default:
                         break;
@@ -568,5 +583,40 @@ public class MainActivity extends AppCompatActivity {
             default:
                 break;
         }
+    }
+
+    private void showKeluarDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+        builder.setMessage("Apakah anda yakin ingin keluar?\n" +
+                "Anda harus login kembali apabila ingin menggunakan aplikasi");
+
+        builder.setTitle("Keluar");
+
+        builder.setCancelable(false);
+
+        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                MainActivity.this.startActivity(intent);
+            }
+        });
+
+        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+
+        alertDialog.show();
     }
 }

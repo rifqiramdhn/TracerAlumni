@@ -15,11 +15,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.traceralumni.Activity.DetailDonasiActivity;
+import com.example.traceralumni.Activity.MainActivity;
 import com.example.traceralumni.Model.ChatModel;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
+
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
 
 public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder> implements Filterable {
 
@@ -75,7 +80,7 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         //Deklarasi TextView namaKegiatan, totalBiaya
-        private TextView namaKegiatan, totalBiaya;
+        private TextView namaKegiatan, totalBiaya, tanggalDonasi, tulisanDonasi;
 
         //Deklarasi ConstraintLayout container
         private ConstraintLayout container;
@@ -84,7 +89,17 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
             super(itemView);
             namaKegiatan = itemView.findViewById(R.id.card_donasi_judul_donasi_text_view);
             totalBiaya = itemView.findViewById(R.id.card_donasi_jumlah_donasi_text_view);
+            tanggalDonasi = itemView.findViewById(R.id.tv_card_donasi_tanggal);
+            tulisanDonasi = itemView.findViewById(R.id.tv_card_donasi_tulisan_donasi);
             container = itemView.findViewById(R.id.card_donasi_container);
+
+            if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
+                tulisanDonasi.setVisibility(View.VISIBLE);
+                tanggalDonasi.setVisibility(View.INVISIBLE);
+            } else {
+                tulisanDonasi.setVisibility(View.INVISIBLE);
+                tanggalDonasi.setVisibility(View.VISIBLE);
+            }
         }
     }
 
