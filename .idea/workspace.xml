@@ -15,7 +15,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a603bf0-d94e-4d94-abd4-be24db7bf024" name="Default Changelist" comment="">
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> master
 <<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_16_0_1_aar.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_16_0_1_aar.xml" afterDir="false" />
@@ -35,6 +38,7 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/SuntingProfilActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/SuntingProfilActivity.java" afterDir="false" />
 =======
+<<<<<<< HEAD
 =======
       <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_core_runtime_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_core_runtime_1_1_1_aar.xml" afterDir="false" />
@@ -83,6 +87,12 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DetailDonasiActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DetailDonasiActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java" afterDir="false" />
 <<<<<<< Updated upstream
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DonasiActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DonasiActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java" afterDir="false" />
+>>>>>>> master
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/DonasiAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/DonasiAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/ChatFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/ChatFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/OpDonasiFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/OpDonasiFragment.java" afterDir="false" />
@@ -92,9 +102,12 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_op_donasi.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_op_donasi.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_op_info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_op_info.xml" afterDir="false" />
 >>>>>>> master
+<<<<<<< HEAD
 =======
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_detail_donasi.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_detail_donasi.xml" afterDir="false" />
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -144,6 +157,7 @@
 =======
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DonasiActivity.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="216">
               <caret line="121" column="41" selection-start-line="121" selection-start-column="41" selection-end-line="121" selection-end-column="41" />
             </state>
@@ -152,12 +166,23 @@
       </file>
       <file pinned="false" current-in-tab="false">
 <<<<<<< Updated upstream
+=======
+            <state relative-caret-position="400">
+              <caret line="140" column="5" selection-start-line="90" selection-start-column="8" selection-end-line="140" selection-end-column="5" />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+>>>>>>> master
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_op_info.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
               <caret line="33" column="35" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
 >>>>>>> master
+<<<<<<< HEAD
 =======
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_info.xml">
           <provider selected="true" editor-type-id="android-designer2" />
@@ -165,6 +190,8 @@
             <state relative-caret-position="68">
               <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
             </state>
           </provider>
           <provider editor-type-id="android-designer2" />
@@ -195,6 +222,7 @@
 =======
             <state relative-caret-position="193">
               <caret line="72" column="25" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
+<<<<<<< HEAD
 =======
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_detail_donasi.xml">
           <provider selected="true" editor-type-id="android-designer2" />
@@ -207,6 +235,13 @@
                 <element signature="e#4833#4857#0" expanded="true" />
                 <element signature="e#5400#5419#0" expanded="true" />
                 <element signature="e#5462#5482#0" expanded="true" />
+=======
+              <folding>
+                <element signature="e#3418#3419#0" expanded="true" />
+                <element signature="e#3487#3718#0" expanded="true" />
+                <element signature="e#3717#3718#0" expanded="true" />
+                <element signature="e#5093#5094#0" expanded="true" />
+>>>>>>> master
               </folding>
 >>>>>>> master
             </state>
@@ -214,7 +249,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> master
 <<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -241,12 +279,15 @@
                 <element signature="e#1280#1281#0" expanded="true" />
               </folding>
 >>>>>>> master
+<<<<<<< HEAD
 =======
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
               <caret line="49" column="36" selection-start-line="49" selection-start-column="36" selection-end-line="49" selection-end-column="36" />
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
             </state>
           </provider>
         </entry>
@@ -262,12 +303,15 @@
             <state relative-caret-position="153">
               <caret line="9" column="48" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
 >>>>>>> master
+<<<<<<< HEAD
 =======
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DetailProfilActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
               <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
             </state>
           </provider>
         </entry>
@@ -286,6 +330,7 @@
             <state relative-caret-position="340">
               <caret line="554" column="57" selection-start-line="554" selection-start-column="57" selection-end-line="554" selection-end-column="57" />
 >>>>>>> master
+<<<<<<< HEAD
 =======
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java">
@@ -293,6 +338,8 @@
             <state relative-caret-position="425">
               <caret line="88" column="30" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
             </state>
           </provider>
         </entry>
@@ -308,6 +355,7 @@
             <state relative-caret-position="539">
               <caret line="65" selection-start-line="62" selection-end-line="65" />
 >>>>>>> master
+<<<<<<< HEAD
 =======
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DetailDonasiActivity.java">
@@ -319,12 +367,17 @@
                 <element signature="e#4102#4103#0" expanded="true" />
               </folding>
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> master
 <<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
           <provider selected="true" editor-type-id="text-editor" />
@@ -416,6 +469,7 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_op_donasi.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/DonasiAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_op_info.xml" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/OpInfoFragment.java" />
 <<<<<<< Updated upstream
 >>>>>>> master
@@ -425,6 +479,11 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DetailDonasiActivity.java" />
 >>>>>>> Stashed changes
+=======
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/OpInfoFragment.java" />
+>>>>>>> master
+>>>>>>> master
       </list>
     </option>
   </component>
@@ -442,7 +501,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> master
 <<<<<<< HEAD
       <pane id="PackagesPane" />
       <pane id="Scope" />
@@ -527,8 +589,11 @@
               <item name="layout" type="462c0819:PsiDirectoryNode" />
 =======
       <pane id="ProjectPane" />
+<<<<<<< HEAD
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
       <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
@@ -540,32 +605,52 @@
             <path>
               <item name="TracerAlumni" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
+<<<<<<< HEAD
               <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
+=======
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+>>>>>>> master
             </path>
             <path>
               <item name="TracerAlumni" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+<<<<<<< HEAD
+=======
+              <item name="traceralumni" type="cbb59c9e:AndroidPsiDirectoryNode" />
+>>>>>>> master
             </path>
             <path>
               <item name="TracerAlumni" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="traceralumni" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TracerAlumni" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="traceralumni" type="cbb59c9e:AndroidPsiDirectoryNode" />
+<<<<<<< HEAD
+=======
               <item name="Activity" type="462c0819:PsiDirectoryNode" />
+>>>>>>> master
             </path>
             <path>
               <item name="TracerAlumni" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="traceralumni" type="cbb59c9e:AndroidPsiDirectoryNode" />
+<<<<<<< HEAD
+              <item name="Activity" type="462c0819:PsiDirectoryNode" />
+=======
               <item name="Adapter" type="462c0819:PsiDirectoryNode" />
+>>>>>>> master
+            </path>
+            <path>
+              <item name="TracerAlumni" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="traceralumni" type="cbb59c9e:AndroidPsiDirectoryNode" />
+<<<<<<< HEAD
+              <item name="Adapter" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="Fragment" type="462c0819:PsiDirectoryNode" />
+>>>>>>> master
             </path>
             <path>
               <item name="TracerAlumni" type="1abcf292:AndroidViewProjectNode" />
@@ -595,11 +680,15 @@
 <<<<<<< HEAD
 =======
       <pane id="PackagesPane" />
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 >>>>>>> master
 =======
       <pane id="ProjectPane" />
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
+>>>>>>> master
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -838,8 +927,11 @@
     </entry>
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Model/InfoModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -982,7 +1074,10 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> master
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/InfoAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1057,6 +1152,7 @@
           </folding>
 =======
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_op_info.xml">
+<<<<<<< HEAD
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1074,6 +1170,19 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< Updated upstream
+=======
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="33" column="35" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
+>>>>>>> master
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml">
+      <provider selected="true" editor-type-id="text-editor">
+>>>>>>> master
 <<<<<<< HEAD
         <state relative-caret-position="111">
           <caret line="76" column="38" selection-start-line="76" selection-start-column="38" selection-end-line="76" selection-end-column="38" />
@@ -1131,6 +1240,7 @@
 =======
         <state relative-caret-position="340">
           <caret line="554" column="57" selection-start-line="554" selection-start-column="57" selection-end-line="554" selection-end-column="57" />
+<<<<<<< HEAD
 =======
         <state relative-caret-position="306">
           <caret line="49" column="36" selection-start-line="49" selection-start-column="36" selection-end-line="49" selection-end-column="36" />
@@ -1203,6 +1313,32 @@
             <element signature="e#4102#4103#0" expanded="true" />
           </folding>
 >>>>>>> Stashed changes
+=======
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/ChatFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="65" selection-start-line="62" selection-end-line="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/OpDonasiFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="49">
+          <caret line="41" column="44" selection-start-line="41" selection-start-column="44" selection-end-line="41" selection-end-column="44" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/OpInfoFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
+>>>>>>> master
+>>>>>>> master
         </state>
       </provider>
     </entry>
