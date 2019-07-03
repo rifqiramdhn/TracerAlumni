@@ -11,6 +11,10 @@ import android.widget.TextView;
 
 import com.example.traceralumni.R;
 
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_PIMPINAN;
+
 public class DetailDonasiActivity extends AppCompatActivity {
 
     ConstraintLayout cl_back;
@@ -23,9 +27,6 @@ public class DetailDonasiActivity extends AppCompatActivity {
     String namaKegiatan, totalBiaya, keterangan, jumlahDonasiMasuk, fotoResId;
 
     public static String JENIS_USER;
-    public static final String JENIS_USER_ALUMNI = "jenis_user_alumni";
-    public static final String JENIS_USER_PIMPINAN = "jenis_user_pimpinan";
-    public static final String JENIS_USER_OPERATOR = "jenis_user_operator";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,9 @@ public class DetailDonasiActivity extends AppCompatActivity {
 
         getData();
 
-        setView(JENIS_USER);
+        setView();
+
+        setDonasiButton(JENIS_USER);
     }
 
     private void setIcon() {
@@ -69,18 +72,18 @@ public class DetailDonasiActivity extends AppCompatActivity {
         keterangan = intent.getStringExtra("keterangan");
     }
 
-    private void setView(String jenisUser) {
+    private void setView() {
         foto.setImageResource(Integer.valueOf(fotoResId));
         tv_namaKegiatan.setText(namaKegiatan);
         tv_totalBiaya.setText("Rp" + totalBiaya);
         tv_keterangan.setText(keterangan);
-        if (jenisUser.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
+        if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
             btn_donasi.setText("donasi");
             tv_totalDonasi.setVisibility(View.GONE);
             tv_jumlahDonasi.setVisibility(View.INVISIBLE);
-        } else if (jenisUser.equalsIgnoreCase(JENIS_USER_PIMPINAN)) {
+        } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_PIMPINAN)) {
             btn_donasi.setText("daftar donatur");
-        } else if (jenisUser.equalsIgnoreCase(JENIS_USER_OPERATOR)) {
+        } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)) {
             btn_donasi.setVisibility(View.GONE);
         }
     }
@@ -135,7 +138,12 @@ public class DetailDonasiActivity extends AppCompatActivity {
             btn_donasi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Diganti intentnya ke mana
+                    Intent i = new Intent(DetailDonasiActivity.this, NominalDonasiActivity.class);
+                    i.putExtra("namaKegiatan", namaKegiatan);
+                    i.putExtra("totalBiaya", totalBiaya);
+                    i.putExtra("keterangan", keterangan);
+                    i.putExtra("fotoResId", fotoResId);
+                    startActivity(i);
                 }
             });
         } else if (jenisUser.equalsIgnoreCase(JENIS_USER_PIMPINAN)) {

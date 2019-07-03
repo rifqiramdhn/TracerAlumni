@@ -42,14 +42,14 @@ public class LowonganFragment extends Fragment {
         edt_cari = rootView.findViewById(R.id.edt_lowongan_cari);
 
         listLowongan = new ArrayList<>();
-        listLowongan.add(new LowonganModel("Staff Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
-        listLowongan.add(new LowonganModel("Manager Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
-        listLowongan.add(new LowonganModel("Office Boy Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
-        listLowongan.add(new LowonganModel("Programmer Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
-        listLowongan.add(new LowonganModel("Database Admin Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
-        listLowongan.add(new LowonganModel("Staff Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
-        listLowongan.add(new LowonganModel("Staff Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
-        listLowongan.add(new LowonganModel("Staff Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
+        listLowongan.add(new LowonganModel(1,"Staff Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
+        listLowongan.add(new LowonganModel(2,"Manager Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
+        listLowongan.add(new LowonganModel(3,"Office Boy Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
+        listLowongan.add(new LowonganModel(4,"Programmer Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
+        listLowongan.add(new LowonganModel(5,"Database Admin Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
+        listLowongan.add(new LowonganModel(6,"Staff Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
+        listLowongan.add(new LowonganModel(7,"Staff Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
+        listLowongan.add(new LowonganModel(8,"Staff Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
 
         recyclerView = rootView.findViewById(R.id.rv_lowongan);
         recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.VERTICAL, false));
