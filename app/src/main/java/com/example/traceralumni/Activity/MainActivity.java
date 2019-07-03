@@ -22,6 +22,9 @@ import com.example.traceralumni.Adapter.PimFragPagerAdapter;
 import com.example.traceralumni.R;
 import com.example.traceralumni.Adapter.AlumniFragPagerAdapter;
 
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
+
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
@@ -62,6 +65,13 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.vp_main_alumni);
 
         tv_titleNavBar = findViewById(R.id.tv_navbar_top);
+
+        KeyboardVisibilityEvent.setEventListener(this, new KeyboardVisibilityEventListener() {
+            @Override
+            public void onVisibilityChanged(boolean isOpen) {
+                tabLayout.setVisibility(isOpen ? View.GONE : View.VISIBLE);
+            }
+        });
 
         //coba masuk sebagai alumni
         JENIS_USER = JENIS_USER_OPERATOR;
