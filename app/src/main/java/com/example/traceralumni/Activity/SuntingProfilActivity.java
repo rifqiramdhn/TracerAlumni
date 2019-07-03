@@ -1,6 +1,7 @@
 package com.example.traceralumni.Activity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -53,6 +54,13 @@ public class SuntingProfilActivity extends AppCompatActivity {
         setIcon();
         getView();
 
+        edt_alamat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moveToLocationPickerActivity();
+            }
+        });
+
         myCalendar = Calendar.getInstance();
 
         datePickerGetDate(edt_tanggal_lahir);
@@ -60,6 +68,11 @@ public class SuntingProfilActivity extends AppCompatActivity {
         datePickerSetDate();
 
         customSpinner();
+    }
+
+    private void moveToLocationPickerActivity(){
+        Intent i = new Intent(SuntingProfilActivity.this, LocationPickerActivity.class);
+        startActivity(i);
     }
 
     private void setIcon() {
@@ -110,7 +123,6 @@ public class SuntingProfilActivity extends AppCompatActivity {
         img_foto_profil = findViewById(R.id.img_sunting_profil_foto);
         img_edit_foto_profil = findViewById(R.id.img_sunting_profil_edit_foto);
     }
-
 
     private void datePickerGetDate(final EditText editText) {
         editText.setOnClickListener(new View.OnClickListener() {

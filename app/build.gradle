@@ -36,4 +36,6 @@ dependencies {
 
     //Keyboard show hide listener
     implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.3.0'
+
+    implementation 'com.google.android.gms:play-services-maps:16.1.0'
 }
