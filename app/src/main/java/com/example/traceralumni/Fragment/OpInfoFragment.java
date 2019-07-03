@@ -47,32 +47,32 @@ public class OpInfoFragment extends Fragment {
                 " aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris" +
                 " nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
                 " in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "https://www.google.com"));
-        infoModels.add(new InfoModel("Pencurian AC", "Lorem ipsum dolor sit amet, consectetur" +
+        infoModels.add(new InfoModel("Jalan Sehat", "Lorem ipsum dolor sit amet, consectetur" +
                 " adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna" +
                 " aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris" +
                 " nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
                 " in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "https://www.google.com"));
-        infoModels.add(new InfoModel("Pencurian AC", "Lorem ipsum dolor sit amet, consectetur" +
+        infoModels.add(new InfoModel("Kumpul Alumni", "Lorem ipsum dolor sit amet, consectetur" +
                 " adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna" +
                 " aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris" +
                 " nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
                 " in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "https://www.google.com"));
-        infoModels.add(new InfoModel("Pencurian AC", "Lorem ipsum dolor sit amet, consectetur" +
+        infoModels.add(new InfoModel("Legalisir Alumni", "Lorem ipsum dolor sit amet, consectetur" +
                 " adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna" +
                 " aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris" +
                 " nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
                 " in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "https://www.google.com"));
-        infoModels.add(new InfoModel("Pencurian AC", "Lorem ipsum dolor sit amet, consectetur" +
+        infoModels.add(new InfoModel("Rapat Besar", "Lorem ipsum dolor sit amet, consectetur" +
                 " adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna" +
                 " aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris" +
                 " nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
                 " in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "https://www.google.com"));
-        infoModels.add(new InfoModel("Pencurian AC", "Lorem ipsum dolor sit amet, consectetur" +
+        infoModels.add(new InfoModel("Reuni Akbar", "Lorem ipsum dolor sit amet, consectetur" +
                 " adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna" +
                 " aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris" +
                 " nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
                 " in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "https://www.google.com"));
-        infoModels.add(new InfoModel("Pencurian AC", "Lorem ipsum dolor sit amet, consectetur" +
+        infoModels.add(new InfoModel("Wisuda", "Lorem ipsum dolor sit amet, consectetur" +
                 " adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna" +
                 " aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris" +
                 " nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +

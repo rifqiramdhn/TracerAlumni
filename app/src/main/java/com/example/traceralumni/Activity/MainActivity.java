@@ -581,6 +581,12 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 3:
                         //icon search
+                        ConstraintLayout cl_search_donasi = findViewById(R.id.cl_fragment_op_donasi_search);
+                        if (cl_search_donasi.getVisibility() == View.GONE) {
+                            cl_search_donasi.setVisibility(View.VISIBLE);
+                        } else {
+                            cl_search_donasi.setVisibility(View.GONE);
+                        }
                         break;
                     case 4:
                         //icon logout

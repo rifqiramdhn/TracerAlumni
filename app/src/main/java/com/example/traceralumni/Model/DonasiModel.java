@@ -1,15 +1,20 @@
 package com.example.traceralumni.Model;
 
+import java.util.Date;
+
 public class DonasiModel {
     private String namaKegiatan, noRekening, keterangan, totalBiaya;
-    private int fotoResId;
+    private int id, fotoResId;
+    private Date tanggal;
 
-    public DonasiModel(String namaKegiatan, String noRekening, String keterangan, String totalBiaya, int fotoResId) {
+    public DonasiModel(String namaKegiatan, String noRekening, String keterangan, String totalBiaya, int id, int fotoResId, Date tanggal) {
         this.namaKegiatan = namaKegiatan;
         this.noRekening = noRekening;
         this.keterangan = keterangan;
-        this.fotoResId = fotoResId;
         this.totalBiaya = totalBiaya;
+        this.id = id;
+        this.fotoResId = fotoResId;
+        this.tanggal = tanggal;
     }
 
     public DonasiModel(String namaKegiatan, String keterangan, String totalBiaya) {
@@ -30,11 +35,19 @@ public class DonasiModel {
         return keterangan;
     }
 
+    public String getTotalBiaya() {
+        return totalBiaya;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     public int getFotoResId() {
         return fotoResId;
     }
 
-    public String getTotalBiaya() {
-        return totalBiaya;
+    public Date getTanggal() {
+        return tanggal;
     }
 }
