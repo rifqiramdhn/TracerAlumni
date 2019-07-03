@@ -1,7 +1,11 @@
 package com.example.traceralumni.Activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +21,7 @@ import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_PIMPINAN
 
 public class DetailDonasiActivity extends AppCompatActivity {
 
-    ConstraintLayout cl_back;
+    ConstraintLayout cl_back, cl_kontak;
     ImageView imgBack, foto;
     TextView tv_titleNavBar, tv_namaKegiatan, tv_totalBiaya, tv_keterangan, tv_totalDonasi, tv_jumlahDonasi;
     Button btn_donasi;
@@ -78,13 +82,19 @@ public class DetailDonasiActivity extends AppCompatActivity {
         tv_totalBiaya.setText("Rp" + totalBiaya);
         tv_keterangan.setText(keterangan);
         if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
+            btn_donasi.setVisibility(View.VISIBLE);
             btn_donasi.setText("donasi");
             tv_totalDonasi.setVisibility(View.GONE);
             tv_jumlahDonasi.setVisibility(View.INVISIBLE);
         } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_PIMPINAN)) {
+            btn_donasi.setVisibility(View.VISIBLE);
             btn_donasi.setText("daftar donatur");
+            tv_totalDonasi.setVisibility(View.VISIBLE);
+            tv_jumlahDonasi.setVisibility(View.VISIBLE);
         } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)) {
             btn_donasi.setVisibility(View.GONE);
+            tv_totalDonasi.setVisibility(View.VISIBLE);
+            tv_jumlahDonasi.setVisibility(View.VISIBLE);
         }
     }
 
@@ -96,6 +106,20 @@ public class DetailDonasiActivity extends AppCompatActivity {
         tv_totalDonasi = findViewById(R.id.tv_detail_donasi_total_donasi_masuk);
         tv_jumlahDonasi = findViewById(R.id.tv_detail_donasi_jumlah_donasi_masuk);
         btn_donasi = findViewById(R.id.btn_detail_donasi_donasi);
+        cl_kontak = findViewById(R.id.cl_detail_donasi_kontak);
+        cl_kontak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:0377778888"));
+
+                if (ActivityCompat.checkSelfPermission(DetailDonasiActivity.this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(callIntent);
+            }
+        });
     }
 
     private void setBackButton(String jenisUser) {

@@ -25,9 +25,9 @@ public class DonasiActivity extends AppCompatActivity {
     ImageView img_iconBack;
     TextView tv_titleBar;
 
-    private ConstraintLayout cl_icon_back, cl_icon_search;
-    private ImageView img_icon_back, img_icon_search;
-    private TextView tv_navbar;
+    ConstraintLayout cl_icon_back, cl_icon_search;
+    ImageView img_icon_back, img_icon_search;
+    TextView tv_navbar;
 
     ConstraintLayout cl_donasi_search;
 
