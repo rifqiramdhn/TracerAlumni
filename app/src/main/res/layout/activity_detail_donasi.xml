@@ -90,20 +90,32 @@
                 android:text="Hubungi\n088394938493"
                 android:textColor="@android:color/black"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/iv_detail_donasi_kontak"
+                app:layout_constraintEnd_toStartOf="@+id/cl_detail_donasi_kontak"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_detail_donasi_keterangan" />
 
-            <ImageView
-                android:id="@+id/iv_detail_donasi_kontak"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/cl_detail_donasi_kontak"
+                android:layout_width="@dimen/icon_btn_width"
+                android:layout_height="@dimen/icon_btn_height"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:src="@mipmap/ic_launcher"
+                android:background="@drawable/card_rounded_edges"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_detail_donasi_kontak"
                 app:layout_constraintStart_toEndOf="@+id/tv_detail_donasi_kontak"
-                app:layout_constraintTop_toTopOf="@+id/tv_detail_donasi_kontak" />
+                app:layout_constraintTop_toTopOf="@+id/tv_detail_donasi_kontak">
+
+                <ImageView
+                    android:id="@+id/iv_detail_donasi_kontak"
+                    android:layout_width="@dimen/icon_width"
+                    android:layout_height="@dimen/icon_height"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_local_phone" />
+            </android.support.constraint.ConstraintLayout>
+
 
             <TextView
                 android:id="@+id/tv_detail_donasi_total_donasi_masuk"
@@ -121,7 +133,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/tv_detail_donasi_jumlah_donasi_masuk"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_detail_donasi_kontak" />
+                app:layout_constraintTop_toBottomOf="@+id/cl_detail_donasi_kontak" />
 
             <TextView
                 android:id="@+id/tv_detail_donasi_jumlah_donasi_masuk"
