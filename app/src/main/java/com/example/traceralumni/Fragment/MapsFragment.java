@@ -14,13 +14,16 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.traceralumni.AlamatAsynctaskLoader;
 import com.example.traceralumni.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -35,14 +38,19 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import static com.example.traceralumni.Activity.LocationPickerActivity.LOKASI_EXTRA;
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MapsFragment extends Fragment implements OnMapReadyCallback {
+public class MapsFragment extends Fragment implements LoaderManager.LoaderCallbacks<String>, OnMapReadyCallback {
 
     GoogleMap mMap;
 
     LatLng user_touch;
+    private int ID_LOADER = 0;
+
+    MarkerOptions markerOptions = new MarkerOptions();
 
     public MapsFragment() {
         // Required empty public constructor
@@ -92,15 +100,17 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void onMapClick(LatLng latLng) {
 
-                MarkerOptions markerOptions = new MarkerOptions();
                 markerOptions.position(latLng);
-                markerOptions.title(getAddress(latLng.latitude, latLng.longitude));
+
+                Bundle bundle = new Bundle();
+                bundle.putDouble("lat", latLng.latitude);
+                bundle.putDouble("lng", latLng.longitude);
+
+                getLoaderManager().initLoader(ID_LOADER, bundle, MapsFragment.this);
+                ID_LOADER++;
 
                 user_touch = latLng;
                 mMap.clear();
-
-                Marker marker = mMap.addMarker(markerOptions);
-                marker.showInfoWindow();
 
                 CameraPosition cameraPosition = new CameraPosition.Builder()
                         .target(new LatLng(latLng.latitude, latLng.longitude))
@@ -111,39 +121,33 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         });
     }
 
-    public String getAddress(double lat, double lng) {
-
-//        new AsyncTask<URL, Integer, Long>() {
-//            protected Long doInBackground(URL... urls) {
-//                int count = urls.length;
-//                long totalSize = 0;
-//                for (int i = 0; i < count; i++) {
-//                    totalSize += Downloader.downloadFile(urls[i]);
-//                    publishProgress((int) ((i / (float) count) * 100));
-//                    // Escape early if cancel() is called
-//                    if (isCancelled()) break;
-//                }
-//                return totalSize;
-//            }
-//
-//            protected void onProgressUpdate(Integer... progress) {
-//                setProgressPercent(progress[0]);
-//            }
-//
-//            protected void onPostExecute(Long result) {
-//                showDialog("Downloaded " + result + " bytes");
-//            }
-//        }.execute(url1, url2, url3);
-
-        Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
-        try {
-            List<Address> addresses = geocoder.getFromLocation(lat, lng, 1);
-            Address obj = addresses.get(0);
-            String add = obj.getAddressLine(0);
-            return add;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "";
+    @NonNull
+    @Override
+    public Loader<String> onCreateLoader(int i, @Nullable Bundle bundle) {
+        double lat, lng;
+        Log.e("aldy", "oncreateloader jalan");
+        if (bundle != null){
+            lat = bundle.getDouble("lat");
+            lng = bundle.getDouble("lng");
+            Log.e("aldy", "lat : " + lat + "long : " + lng);
+            return new AlamatAsynctaskLoader(getActivity(), lat, lng);
+        } else {
+            Log.e("aldy", "bundle null");
+            return null;
         }
+    }
+
+    @Override
+    public void onLoadFinished(@NonNull Loader<String> loader, String s) {
+        Log.e("aldy", "onloadfinished jalan - lokasi : " + s);
+        markerOptions.title(s);
+        LOKASI_EXTRA = s;
+        Marker marker = mMap.addMarker(markerOptions);
+        marker.showInfoWindow();
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<String> loader) {
+
     }
 }

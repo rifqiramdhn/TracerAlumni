@@ -1,5 +1,6 @@
 package com.example.traceralumni.Activity;
 
+import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,9 @@ public class LocationPickerActivity extends AppCompatActivity {
     ConstraintLayout cl_iconBack, cl_iconConfirm;
     ImageView img_iconBack, img_iconConfirm;
     TextView tv_navBar;
+
+    public static String LOKASI_EXTRA = "";
+    public static final String LOKASI_EXTRA_KEY = "lokasi_extra_key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +64,8 @@ public class LocationPickerActivity extends AppCompatActivity {
     }
 
     public void sendLocation(){
-
+        Intent intent = new Intent(LocationPickerActivity.this, SuntingProfilActivity.class);
+        intent.putExtra(LOKASI_EXTRA_KEY, LOKASI_EXTRA);
+        startActivity(intent);
     }
 }
