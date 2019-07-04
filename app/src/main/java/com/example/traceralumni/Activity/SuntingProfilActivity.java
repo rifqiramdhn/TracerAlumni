@@ -2,7 +2,11 @@ package com.example.traceralumni.Activity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +23,8 @@ import android.widget.Toast;
 
 import com.example.traceralumni.R;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,6 +53,8 @@ public class SuntingProfilActivity extends AppCompatActivity {
 
     Spinner spn_kewarganegaraaan;
 
+    static final int PICK_PHOTO_REQUEST = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,19 +79,59 @@ public class SuntingProfilActivity extends AppCompatActivity {
         datePickerSetDate();
 
         customSpinner();
+
+        img_edit_foto_profil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getPhotoFromGallery();
+            }
+        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         Intent intent = getIntent();
-        if (intent != null){
+        if (intent != null) {
             edt_alamat.setText(intent.getStringExtra(LOKASI_EXTRA_KEY));
             edt_kode_pos.setText(intent.getStringExtra(KODE_POS_EXTRA_KEY));
         }
     }
 
-    private void moveToLocationPickerActivity(){
+    private void getPhotoFromGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, PICK_PHOTO_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == PICK_PHOTO_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                try {
+                    final Uri imageUri = data.getData();
+                    final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+//                    image_view.setImageBitmap(selectedImage);
+                    uploadPhoto(selectedImage);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void uploadPhoto(Bitmap selectedImage) {
+        //bla bla bla upload ke database
+        //kalau berhasil maka
+        setPhotoFromDatabase(selectedImage);
+    }
+
+    private void setPhotoFromDatabase(Bitmap photo) {
+        img_foto_profil.setImageBitmap(photo);
+    }
+
+    private void moveToLocationPickerActivity() {
         Intent i = new Intent(SuntingProfilActivity.this, LocationPickerActivity.class);
         startActivity(i);
     }

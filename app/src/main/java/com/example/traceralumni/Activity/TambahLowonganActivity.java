@@ -1,6 +1,9 @@
 package com.example.traceralumni.Activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -12,10 +15,15 @@ import android.widget.TextView;
 
 import com.example.traceralumni.R;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
+import static com.example.traceralumni.Activity.SuntingProfilActivity.PICK_PHOTO_REQUEST;
+
 public class TambahLowonganActivity extends AppCompatActivity {
 
     private ConstraintLayout cl_icon_back;
-    private ImageView img_icon_back;
+    private ImageView img_icon_back, img_logo;
     private TextView tv_navbar;
     private Button btn_next;
 
@@ -30,6 +38,15 @@ public class TambahLowonganActivity extends AppCompatActivity {
         img_icon_back = findViewById(R.id.img_icon1);
         tv_navbar = findViewById(R.id.tv_navbar_top);
         btn_next = findViewById(R.id.btn_next);
+
+        img_logo = findViewById(R.id.img_icon_tambah_lowongan);
+
+        img_logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getPhotoFromGallery();
+            }
+        });
 
         img_icon_back.setImageResource(R.drawable.ic_arrow_back);
 
@@ -50,5 +67,38 @@ public class TambahLowonganActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    private void getPhotoFromGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, PICK_PHOTO_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == PICK_PHOTO_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                try {
+                    final Uri imageUri = data.getData();
+                    final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+//                    image_view.setImageBitmap(selectedImage);
+                    uploadPhoto(selectedImage);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void uploadPhoto(Bitmap selectedImage) {
+        //bla bla bla upload ke database
+        //kalau berhasil maka
+        setPhotoFromDatabase(selectedImage);
+    }
+
+    private void setPhotoFromDatabase(Bitmap photo) {
+        img_logo.setImageBitmap(photo);
     }
 }
