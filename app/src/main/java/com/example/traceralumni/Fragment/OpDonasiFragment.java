@@ -1,6 +1,7 @@
 package com.example.traceralumni.Fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,10 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
-import com.example.traceralumni.Activity.DonasiActivity;
 import com.example.traceralumni.Adapter.DonasiAdapter;
 import com.example.traceralumni.Model.DonasiModel;
+import com.example.traceralumni.Activity.PermintaanDonasiActivity;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ public class OpDonasiFragment extends Fragment {
     RecyclerView donasiRecycler;
     DonasiAdapter donasiAdapter;
     ArrayList<DonasiModel> donasiModels;
+    TextView tv_permintaan_donasi;
 
     EditText edt_donasi_cari;
 
@@ -94,6 +97,15 @@ public class OpDonasiFragment extends Fragment {
 
             }
         });
+        tv_permintaan_donasi = rootView.findViewById(R.id.tv_fragment_op_donasi_permintaan);
+        tv_permintaan_donasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(rootView.getContext(), PermintaanDonasiActivity.class);
+                rootView.getContext().startActivity(intent);
+            }
+        });
+
         return rootView;
     }
 
