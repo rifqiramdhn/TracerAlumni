@@ -582,10 +582,13 @@ public class MainActivity extends AppCompatActivity {
                     case 3:
                         //icon search
                         ConstraintLayout cl_search_donasi = findViewById(R.id.cl_fragment_op_donasi_search);
+                        TextView tv_permintaan_donasi = findViewById(R.id.tv_fragment_op_donasi_permintaan);
                         if (cl_search_donasi.getVisibility() == View.GONE) {
                             cl_search_donasi.setVisibility(View.VISIBLE);
+                            tv_permintaan_donasi.setVisibility(View.GONE);
                         } else {
                             cl_search_donasi.setVisibility(View.GONE);
+                            tv_permintaan_donasi.setVisibility(View.VISIBLE);
                         }
                         break;
                     case 4:
