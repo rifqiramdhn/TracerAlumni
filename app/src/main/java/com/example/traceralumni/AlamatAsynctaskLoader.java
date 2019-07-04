@@ -6,10 +6,15 @@ import android.location.Geocoder;
 import android.support.annotation.Nullable;
 import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.example.traceralumni.Activity.LocationPickerActivity;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+
+import static com.example.traceralumni.Activity.LocationPickerActivity.KODE_POS_EXTRA;
 
 public class AlamatAsynctaskLoader extends AsyncTaskLoader<String> {
 
@@ -18,7 +23,7 @@ public class AlamatAsynctaskLoader extends AsyncTaskLoader<String> {
     private double lat, lng;
     private boolean HasResult = false;
 
-    public AlamatAsynctaskLoader(Context context, double lat, double lng){
+    public AlamatAsynctaskLoader(Context context, double lat, double lng) {
         super(context);
         this.context = context;
         this.lat = lat;
@@ -46,7 +51,7 @@ public class AlamatAsynctaskLoader extends AsyncTaskLoader<String> {
     protected void onReset() {
         super.onReset();
         onStopLoading();
-        if (HasResult){
+        if (HasResult) {
             hasil = "";
             HasResult = false;
         }
@@ -60,10 +65,30 @@ public class AlamatAsynctaskLoader extends AsyncTaskLoader<String> {
         try {
             List<Address> addresses = geocoder.getFromLocation(lat, lng, 1);
             Address obj = addresses.get(0);
-            String add = obj.getAddressLine(0);
+            String add = "";
+
+            if (obj.getThoroughfare() != null)
+                add += obj.getThoroughfare() + " ";
+            if (obj.getSubThoroughfare() != null)
+                add += "No. " + obj.getSubThoroughfare() + ", ";
+            if (obj.getSubLocality() != null)
+                add += obj.getSubLocality() + ", ";
+            if (obj.getLocality() != null)
+                add += obj.getLocality() + ", ";
+            if (obj.getSubAdminArea() != null)
+                add += obj.getSubAdminArea() + ", ";
+            if (obj.getAdminArea() != null)
+                add += obj.getAdminArea() + ", ";
+            if (obj.getCountryName() != null)
+                add += obj.getCountryName();
+
+            if (obj.getPostalCode() != null)
+                KODE_POS_EXTRA = obj.getPostalCode();
+
             return add;
         } catch (IOException e) {
             e.printStackTrace();
+            Toast.makeText(context, "Check Your Network Connection", Toast.LENGTH_SHORT).show();
             return "";
         }
     }

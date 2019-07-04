@@ -26,6 +26,9 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import static com.example.traceralumni.Activity.LocationPickerActivity.KODE_POS_EXTRA_KEY;
+import static com.example.traceralumni.Activity.LocationPickerActivity.LOKASI_EXTRA_KEY;
+
 public class SuntingProfilActivity extends AppCompatActivity {
 
     ConstraintLayout cl_iconBack, cl_iconConfirm;
@@ -68,6 +71,16 @@ public class SuntingProfilActivity extends AppCompatActivity {
         datePickerSetDate();
 
         customSpinner();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = getIntent();
+        if (intent != null){
+            edt_alamat.setText(intent.getStringExtra(LOKASI_EXTRA_KEY));
+            edt_kode_pos.setText(intent.getStringExtra(KODE_POS_EXTRA_KEY));
+        }
     }
 
     private void moveToLocationPickerActivity(){

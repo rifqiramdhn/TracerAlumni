@@ -22,6 +22,9 @@ public class LocationPickerActivity extends AppCompatActivity {
     public static String LOKASI_EXTRA = "";
     public static final String LOKASI_EXTRA_KEY = "lokasi_extra_key";
 
+    public static String KODE_POS_EXTRA = "";
+    public static final String KODE_POS_EXTRA_KEY = "kode_pos_extra_key";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +69,7 @@ public class LocationPickerActivity extends AppCompatActivity {
     public void sendLocation(){
         Intent intent = new Intent(LocationPickerActivity.this, SuntingProfilActivity.class);
         intent.putExtra(LOKASI_EXTRA_KEY, LOKASI_EXTRA);
+        intent.putExtra(KODE_POS_EXTRA_KEY, KODE_POS_EXTRA);
         startActivity(intent);
     }
 }
