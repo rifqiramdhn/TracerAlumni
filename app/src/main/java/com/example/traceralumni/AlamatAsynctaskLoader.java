@@ -84,11 +84,13 @@ public class AlamatAsynctaskLoader extends AsyncTaskLoader<String> {
 
             if (obj.getPostalCode() != null)
                 KODE_POS_EXTRA = obj.getPostalCode();
+            else
+                KODE_POS_EXTRA = "";
 
             return add;
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(context, "Check Your Network Connection", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "Check Your Network Connection", Toast.LENGTH_SHORT).show();
             return "";
         }
     }
