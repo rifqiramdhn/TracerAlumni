@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.traceralumni.Activity.AboutActivity;
 import com.example.traceralumni.Activity.ChangePasswordActivity;
+import com.example.traceralumni.Activity.DetailDonasiActivity;
+import com.example.traceralumni.Activity.DetailProfilActivity;
 import com.example.traceralumni.Activity.DonasiActivity;
 import com.example.traceralumni.Activity.RiwayatPekerjaanActivity;
 import com.example.traceralumni.Activity.SuntingProfilActivity;
@@ -50,13 +52,15 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
         holder.clDetailDonasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(context, DetailDonasiActivity.class);
+                context.startActivity(intent);
             }
         });
         holder.clProfilDonatur.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(context, DetailProfilActivity.class);
+                context.startActivity(intent);
             }
         });
         holder.clKonfirmasi.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +86,7 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView namaDonatur, namaKegiatan, totalDonasi;
+        private TextView namaDonatur, namaKegiatan, totalDonasi, tanggalDonasi;
 
         private ConstraintLayout clDetailDonasi, clProfilDonatur, clKonfirmasi, clTolak;
 
@@ -91,6 +95,7 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
             namaDonatur = itemView.findViewById(R.id.tv_card_permintaan_donasi_nama_donatur);
             namaKegiatan = itemView.findViewById(R.id.tv_card_permintaan_donasi_nama_donasi);
             totalDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_jumlah);
+            tanggalDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_tanggal);
             clDetailDonasi = itemView.findViewById(R.id.cl_card_permintaan_donasi_detail_donasi);
             clProfilDonatur = itemView.findViewById(R.id.cl_card_permintaan_donasi_profil_donatur);
             clKonfirmasi = itemView.findViewById(R.id.cl_card_permintaan_donasi_ok);

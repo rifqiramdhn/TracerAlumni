@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.PermintaanDonasiActivity">
+    tools:context=".Activity.PermintaanLowonganActivity">
 
     <include
-        android:id="@+id/include_permintaan_donasi"
+        android:id="@+id/include_permintaan_lowongan"
         layout="@layout/navigation_bar_top"
         android:layout_width="0dp"
         android:layout_height="@dimen/nav_bar_height"
@@ -16,14 +16,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_permintaan_donasi"
+        android:id="@+id/rv_permintaan_lowongan"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/include_permintaan_donasi"
-        tools:listitem="@layout/card_permintaan_donasi">
+        app:layout_constraintTop_toBottomOf="@id/include_permintaan_lowongan"
+        tools:listitem="@layout/card_permintaan_lowongan">
 
     </android.support.v7.widget.RecyclerView>
 

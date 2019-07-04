@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.PermintaanDonasiActivity"></activity>
+        <activity android:name=".Activity.PermintaanLowonganActivity"></activity>
+        <activity android:name=".Activity.PermintaanDonasiActivity" />
         <activity android:name=".Activity.LocationPickerActivity" />
         <activity android:name=".Activity.NominalDonasiActivity" />
         <activity android:name=".Activity.SuntingProfilActivity" />

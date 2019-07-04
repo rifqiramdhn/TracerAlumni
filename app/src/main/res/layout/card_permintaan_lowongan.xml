@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_card_permintaan_lowongan_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_card_permintaan_lowongan_jabatan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="Staff Marketing"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/cl_card_permintaan_lowongan_tolak"
+        app:layout_constraintStart_toEndOf="@+id/iv_card_permintaan_lowongan_foto"
+        app:layout_constraintTop_toBottomOf="@+id/tv_card_permintaan_lowongan_nama_pelowong" />
+
+    <TextView
+        android:id="@+id/tv_card_permintaan_lowongan_lokasi_perusahaan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Kota Malang"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_card_permintaan_lowongan_nama_perusahaan"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/tv_card_permintaan_lowongan_nama_perusahaan" />
+
+    <TextView
+        android:id="@+id/tv_card_permintaan_lowongan_gaji"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="~Rp50.000.000"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/v_card_permintaan_lowongan"
+        app:layout_constraintEnd_toEndOf="@+id/tv_card_permintaan_lowongan_lokasi_perusahaan"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/tv_card_permintaan_lowongan_lokasi_perusahaan" />
+
+    <TextView
+        android:id="@+id/tv_card_permintaan_lowongan_nama_perusahaan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Bank Muamalat"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="@+id/tv_card_permintaan_lowongan_jabatan"
+        app:layout_constraintStart_toStartOf="@+id/tv_card_permintaan_lowongan_jabatan"
+        app:layout_constraintTop_toBottomOf="@+id/tv_card_permintaan_lowongan_jabatan" />
+
+    <TextView
+        android:id="@+id/tv_card_permintaan_lowongan_nama_pelowong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Paidi Sugiono"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_card_permintaan_lowongan_tanggal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="12/12/2012"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_card_permintaan_lowongan_gaji"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_card_permintaan_lowongan_foto"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintStart_toStartOf="@+id/tv_card_permintaan_lowongan_nama_pelowong"
+        app:layout_constraintTop_toTopOf="@+id/tv_card_permintaan_lowongan_jabatan"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_card_permintaan_lowongan_tolak"
+        android:layout_width="@dimen/icon_btn_width"
+        android:layout_height="@dimen/icon_btn_height"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cl_card_permintaan_lowongan_konfirmasi"
+        app:layout_constraintEnd_toStartOf="@+id/cl_card_permintaan_lowongan_konfirmasi"
+        app:layout_constraintTop_toTopOf="@+id/cl_card_permintaan_lowongan_konfirmasi">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/icon_width"
+            android:layout_height="@dimen/icon_height"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/ic_clear" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_card_permintaan_lowongan_konfirmasi"
+        android:layout_width="@dimen/icon_btn_width"
+        android:layout_height="@dimen/icon_btn_height"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="@dimen/icon_width"
+            android:layout_height="@dimen/icon_height"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/ic_check" />
+    </android.support.constraint.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_card_permintaan_lowongan_lokasi_perusahaan"
+        app:layout_constraintStart_toStartOf="@+id/tv_card_permintaan_lowongan_nama_perusahaan"
+        app:layout_constraintTop_toTopOf="@+id/tv_card_permintaan_lowongan_lokasi_perusahaan"
+        tools:srcCompat="@drawable/ic_location_on" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_card_permintaan_lowongan_gaji"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="@+id/tv_card_permintaan_lowongan_gaji"
+        app:layout_constraintVertical_bias="0.51"
+        tools:srcCompat="@drawable/ic_salary" />
+
+    <View
+        android:id="@+id/v_card_permintaan_lowongan"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
