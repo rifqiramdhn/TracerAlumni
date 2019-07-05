@@ -28,11 +28,8 @@ public class AlumniFragPagerAdapter extends FragmentPagerAdapter {
                 return new BerandaFragment();
             case 3:
                 return new LowonganFragment();
-            case 4:
-                return new LainnyaFragment();
-            default:
-                return null;
         }
+        return new LainnyaFragment();
     }
 
     @Override

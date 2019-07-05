@@ -30,11 +30,8 @@ public class PimFragPagerAdapter extends FragmentPagerAdapter {
                 return new PimInfoFragment();
             case 2:
                 return new PimLowonganFragment();
-            case 3:
-                return new PimDonasiFragment();
-            default:
-                return null;
         }
+        return new PimDonasiFragment();
     }
 
     @Override

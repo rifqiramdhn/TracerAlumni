@@ -27,11 +27,8 @@ public class OpFragPagerAdapter extends FragmentPagerAdapter {
                 return new OpLowonganFragment();
             case 1:
                 return new OpInfoFragment();
-            case 2:
-                return new OpDonasiFragment();
-            default:
-                return null;
         }
+        return new OpDonasiFragment();
     }
 
     @Override

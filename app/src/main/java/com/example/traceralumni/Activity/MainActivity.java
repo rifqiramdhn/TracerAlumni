@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //coba masuk sebagai alumni
-        JENIS_USER = JENIS_USER_OPERATOR;
+        JENIS_USER = JENIS_USER_PIMPINAN;
         STATE_USER_LOGGED = 1;
         getDataUser();
     }
@@ -374,7 +374,7 @@ public class MainActivity extends AppCompatActivity {
         Log.e("aldy", JENIS_USER);
         if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
             if (getIntent() == null) {
-                TabLayout.Tab tab = tabLayout.getTabAt(2);
+                TabLayout.Tab tab = tabLayout.getTabAt(0);
                 tab.select();
                 INDEX_OPENED_TAB = 2;
             } else {
