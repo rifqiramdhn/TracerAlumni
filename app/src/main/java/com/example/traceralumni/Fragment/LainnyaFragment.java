@@ -42,7 +42,7 @@ public class LainnyaFragment extends Fragment {
 
     private void setRecyclerView() {
         lainnyaModels = new ArrayList<>();
-        lainnyaModels.add(new LainnyaModel("Kartu Identitas", R.mipmap.ic_launcher_round));
+        lainnyaModels.add(new LainnyaModel("Kartu Alumni", R.mipmap.ic_launcher_round));
         lainnyaModels.add(new LainnyaModel("Donasi", R.mipmap.ic_launcher_round));
         lainnyaModels.add(new LainnyaModel("Legalisir Ijazah", R.mipmap.ic_launcher_round));
         lainnyaModels.add(new LainnyaModel("Tracer Studi", R.mipmap.ic_launcher_round));
