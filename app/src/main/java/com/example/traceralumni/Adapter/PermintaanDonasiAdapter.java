@@ -49,6 +49,10 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
     public void onBindViewHolder(final PermintaanDonasiAdapter.ViewHolder holder, final int position) {
 
         final PermintaanDonasiModel permintaanDonasiModel = permintaanDonasiModels.get(position);
+        holder.namaDonatur.setText(permintaanDonasiModel.getNamaDonatur());
+        holder.namaKegiatan.setText("Untuk "+permintaanDonasiModel.getDetailDonasi());
+        holder.totalDonasi.setText("Jumlah Donasi : Rp "+permintaanDonasiModel.getJumlahDonasi());
+
         holder.clDetailDonasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

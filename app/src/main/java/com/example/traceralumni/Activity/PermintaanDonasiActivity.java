@@ -33,6 +33,7 @@ public class PermintaanDonasiActivity extends AppCompatActivity {
         setIcon();
 
         permintaanDonasiModels = new ArrayList<>();
+        permintaanDonasiModels.add(new PermintaanDonasiModel("Paidi Sugiono", "Pembangunan Kantin", 200000000));
         permintaanDonasiAdapter = new PermintaanDonasiAdapter(PermintaanDonasiActivity.this, permintaanDonasiModels);
         permintaanDonasiRecycler = findViewById(R.id.rv_permintaan_donasi);
         permintaanDonasiRecycler.setLayoutManager(new LinearLayoutManager(PermintaanDonasiActivity.this, LinearLayoutManager.VERTICAL, false));

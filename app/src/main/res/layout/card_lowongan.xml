@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_daftar_lowongan"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
     android:background="@android:color/white">
 
@@ -17,6 +17,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:src="@color/colorIconBiru"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +31,7 @@
         android:layout_marginTop="12dp"
         android:text="Staff Administrasi HRD"
         android:textColor="@android:color/black"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/iv_tambah_lowongan_logo"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,15 +45,15 @@
         android:layout_marginTop="5dp"
         android:text="PT. Bank Muamalat"
         android:textColor="@android:color/black"
-        android:textSize="10sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/iv_tambah_lowongan_logo"
         app:layout_constraintTop_toBottomOf="@+id/tv_nama_lowongan" />
 
     <ImageView
         android:id="@+id/img_lokasi"
-        android:layout_width="14dp"
-        android:layout_height="14dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_gravity="center"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
@@ -72,15 +73,15 @@
         android:layout_marginStart="4dp"
         android:text="Kota Malang, Indonesia"
         android:textColor="@android:color/black"
-        android:textSize="10sp"
+        android:textSize="14sp"
         android:textStyle="normal"
         app:layout_constraintStart_toEndOf="@+id/img_lokasi"
         app:layout_constraintTop_toBottomOf="@+id/tv_nama_perusahaan" />
 
     <ImageView
         android:id="@+id/img_gaji"
-        android:layout_width="14dp"
-        android:layout_height="14dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_gravity="center"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
@@ -100,7 +101,7 @@
         android:layout_marginBottom="10dp"
         android:text="~Rp 5.000.000"
         android:textColor="@android:color/black"
-        android:textSize="10sp"
+        android:textSize="14sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_gaji"
