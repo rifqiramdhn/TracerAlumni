@@ -39,7 +39,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
         tv_navbar = findViewById(R.id.tv_navbar_top);
         btn_next = findViewById(R.id.btn_next);
 
-        img_logo = findViewById(R.id.img_icon_tambah_lowongan);
+        img_logo = findViewById(R.id.iv_tambah_lowongan_logo);
 
         img_logo.setOnClickListener(new View.OnClickListener() {
             @Override

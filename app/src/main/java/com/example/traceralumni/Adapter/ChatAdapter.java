@@ -1,7 +1,6 @@
 package com.example.traceralumni.Adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,10 +13,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.traceralumni.Model.ChatModel;
-import com.example.traceralumni.Model.LainnyaModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> implements Filterable {
 
@@ -50,7 +50,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> im
         holder.chat.setText(chatModel.getChat());
 //        holder.waktu.setText(chatModel.getWaktu().toString());
 //        holder.foto.setImageResource(chatModel.getFotoResId());
-        holder.foto.setImageResource(R.mipmap.ic_launcher_round);
+        holder.foto.setImageResource(R.color.colorIconBiru);
 
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +73,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> im
         //Deklarasi TextView nama, chat, waktu
         private TextView nama, chat, waktu;
 
-        private ImageView foto;
+        private CircleImageView foto;
 
         //Deklarasi ConstraintLayout container
         private ConstraintLayout container;
@@ -83,7 +83,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> im
             nama = itemView.findViewById(R.id.card_chat_nama_text_view);
             chat = itemView.findViewById(R.id.card_chat_chat_text_view);
             waktu = itemView.findViewById(R.id.card_chat_waktu_text_view);
-            foto = itemView.findViewById(R.id.card_chat_foto_image_view);
+            foto = itemView.findViewById(R.id.iv_card_chat_foto);
             container = itemView.findViewById(R.id.card_chat_container);
         }
     }

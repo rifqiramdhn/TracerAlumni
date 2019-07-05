@@ -19,6 +19,8 @@ import com.example.traceralumni.R;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 import static com.example.traceralumni.Fragment.DaftarFragment.SEARCH_DAFTAR_USE_NAMA;
 import static com.example.traceralumni.Fragment.DaftarFragment.SEARCH_DAFTAR_USE_ANGKATAN;
 import static com.example.traceralumni.Fragment.DaftarFragment.TEXT_SEARCH_DAFTAR_USE_ANGKATAN;
@@ -60,7 +62,7 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
         holder.angkatan.setText(daftarModel.getAngkatan());
 
         //Mengisi item dari holder menjadi item dari objek daftarModel
-        holder.foto.setImageResource(R.mipmap.ic_launcher_round);
+        holder.foto.setImageResource(R.color.colorIconBiru);
 
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +87,7 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
         private TextView nama, prodi, angkatan;
 
         //Deklarasi ImageView foto
-        private ImageView foto;
+        private CircleImageView foto;
 
         //Deklarasi ConstraintLayout container
         private ConstraintLayout container;

@@ -9,64 +9,44 @@
     android:layout_marginBottom="8dp"
     android:background="@android:color/white">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/cl_logo"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_tambah_lowongan_logo"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/background_avatar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/icon_avatar"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:src="@mipmap/ic_launcher"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_nama_lowongan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="12dp"
         android:text="Staff Administrasi HRD"
         android:textColor="@android:color/black"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/cl_logo"
+        app:layout_constraintStart_toEndOf="@+id/iv_tambah_lowongan_logo"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_nama_perusahaan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="5dp"
         android:text="PT. Bank Muamalat"
         android:textColor="@android:color/black"
         android:textSize="10sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/cl_logo"
+        app:layout_constraintStart_toEndOf="@+id/iv_tambah_lowongan_logo"
         app:layout_constraintTop_toBottomOf="@+id/tv_nama_lowongan" />
 
     <ImageView
@@ -74,13 +54,13 @@
         android:layout_width="14dp"
         android:layout_height="14dp"
         android:layout_gravity="center"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="5dp"
-        app:srcCompat="@drawable/ic_location_on"
         android:tint="@color/colorIconBiru"
-        app:layout_constraintStart_toEndOf="@+id/cl_logo"
-        app:layout_constraintTop_toBottomOf="@+id/tv_nama_perusahaan" />
+        app:layout_constraintStart_toEndOf="@+id/iv_tambah_lowongan_logo"
+        app:layout_constraintTop_toBottomOf="@+id/tv_nama_perusahaan"
+        app:srcCompat="@drawable/ic_location_on" />
 
 
     <TextView
@@ -102,13 +82,13 @@
         android:layout_width="14dp"
         android:layout_height="14dp"
         android:layout_gravity="center"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="5dp"
-        app:srcCompat="@drawable/ic_salary"
-        app:layout_constraintStart_toEndOf="@+id/cl_logo"
+        android:tint="@color/colorIconBiru"
+        app:layout_constraintStart_toEndOf="@+id/iv_tambah_lowongan_logo"
         app:layout_constraintTop_toBottomOf="@+id/img_lokasi"
-        android:tint="@color/colorIconBiru"/>
+        app:srcCompat="@drawable/ic_salary" />
 
     <TextView
         android:id="@+id/tv_kisaran_gaji"

@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
@@ -19,12 +18,14 @@ import com.example.traceralumni.R;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLowonganHolder> implements Filterable {
     Context context;
     private ArrayList<LowonganModel> listLowongan;
     private ArrayList<LowonganModel> listLowonganFull;
 
-    public LowonganAdapter(ArrayList<LowonganModel> listLowongan){
+    public LowonganAdapter(ArrayList<LowonganModel> listLowongan) {
         this.listLowongan = listLowongan;
         listLowonganFull = new ArrayList<>(listLowongan);
     }
@@ -43,7 +44,7 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
         listLowonganHolder.txtTitle.setText(list.getNama_lowongan());
         listLowonganHolder.txtPerusahaan.setText(list.getNama_perusahaan());
         listLowonganHolder.txtLokasi.setText(list.getLokasi_perusahaan());
-        listLowonganHolder.txtKisaranGaji.setText("~Rp "+list.getKisaran_gaji());
+        listLowonganHolder.txtKisaranGaji.setText("~Rp " + list.getKisaran_gaji());
         listLowonganHolder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +52,7 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
                 listLowonganHolder.container.getContext().startActivity(i);
             }
         });
+        listLowonganHolder.ivLogo.setImageResource(R.color.colorIconBiru);
     }
 
     @Override
@@ -58,17 +60,19 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
         return listLowongan.size();
     }
 
-    public class ListLowonganHolder extends RecyclerView.ViewHolder{
+    public class ListLowonganHolder extends RecyclerView.ViewHolder {
         private TextView txtTitle, txtPerusahaan, txtLokasi, txtKisaranGaji;
         private ConstraintLayout container;
+        private CircleImageView ivLogo;
 
-        public ListLowonganHolder(View itemView){
+        public ListLowonganHolder(View itemView) {
             super(itemView);
 
             txtTitle = itemView.findViewById(R.id.tv_nama_lowongan);
             txtPerusahaan = itemView.findViewById(R.id.tv_nama_perusahaan);
             txtLokasi = itemView.findViewById(R.id.tv_lokasi_perusahaan);
             txtKisaranGaji = itemView.findViewById(R.id.tv_kisaran_gaji);
+            ivLogo = itemView.findViewById(R.id.iv_tambah_lowongan_logo);
             container = itemView.findViewById(R.id.card_daftar_lowongan);
         }
 
