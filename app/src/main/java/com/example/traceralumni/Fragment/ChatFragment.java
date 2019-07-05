@@ -43,7 +43,7 @@ public class ChatFragment extends Fragment {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_chat, container, false);
 
-        edt_cari = rootView.findViewById(R.id.edt_fragment_op_donasi_search);
+        edt_cari = rootView.findViewById(R.id.edt_fragment_chat_search);
 
         chatModels = new ArrayList<>();
         chatModels.add(new ChatModel("Budi Fauzan", "Halo"));
@@ -59,7 +59,7 @@ public class ChatFragment extends Fragment {
         chatModels.add(new ChatModel("Rizaldy Firman T.", "Apasi"));
         chatModels.add(new ChatModel("Rifqi Imam", "WTF"));
 
-        chatRecycler = rootView.findViewById(R.id.rv_fragment_op_donasi);
+        chatRecycler = rootView.findViewById(R.id.rv_fragment_chat);
 
         //Mengatur LayoutManager dari Recycler daftar
         chatRecycler.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.VERTICAL, false));

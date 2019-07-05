@@ -4,15 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.traceralumni.Activity.DetailDonasiActivity;
 import com.example.traceralumni.Activity.MainActivity;
@@ -86,7 +83,12 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
             holder.container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, "Detail donasi pimpinan", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(v.getContext(), DetailDonasiActivity.class);
+                    intent.putExtra("namaKegiatan", donasiModel.getNamaKegiatan());
+                    intent.putExtra("totalBiaya", donasiModel.getTotalBiaya());
+                    intent.putExtra("keterangan", donasiModel.getKeterangan());
+                    intent.putExtra("fotoResId", String.valueOf(donasiModel.getFotoResId()));
+                    v.getContext().startActivity(intent);
                 }
             });
         }
@@ -109,19 +111,19 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
 
         public ViewHolder(View itemView) {
             super(itemView);
-            namaKegiatan = itemView.findViewById(R.id.card_donasi_judul_donasi_text_view);
-            totalBiaya = itemView.findViewById(R.id.card_donasi_jumlah_donasi_text_view);
+            namaKegiatan = itemView.findViewById(R.id.tv_card_donasi_judul_donasi);
+            totalBiaya = itemView.findViewById(R.id.tv_card_donasi_jumlah_donasi);
             tanggalDonasi = itemView.findViewById(R.id.tv_card_donasi_tanggal);
             tulisanDonasi = itemView.findViewById(R.id.tv_card_donasi_tulisan_donasi);
             container = itemView.findViewById(R.id.card_donasi_container);
 
-            if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
-                tulisanDonasi.setVisibility(View.VISIBLE);
-                tanggalDonasi.setVisibility(View.INVISIBLE);
-            } else {
-                tulisanDonasi.setVisibility(View.INVISIBLE);
-                tanggalDonasi.setVisibility(View.VISIBLE);
-            }
+//            if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
+//                tulisanDonasi.setVisibility(View.VISIBLE);
+//                tanggalDonasi.setVisibility(View.INVISIBLE);
+//            } else {
+//                tulisanDonasi.setVisibility(View.INVISIBLE);
+//                tanggalDonasi.setVisibility(View.VISIBLE);
+//            }
         }
     }
 

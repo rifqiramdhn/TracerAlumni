@@ -8,7 +8,7 @@
     android:background="?android:attr/selectableItemBackground">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/card_daftar_image_view"
+        android:id="@+id/img_card_daftar"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
@@ -22,7 +22,7 @@
 
 
     <TextView
-        android:id="@+id/card_daftar_nama_text_view"
+        android:id="@+id/tv_card_daftar_nama"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -34,13 +34,13 @@
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/card_daftar_prodi_text_view"
+        app:layout_constraintBottom_toTopOf="@+id/tv_card_daftar_prodi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/barrier2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/card_daftar_prodi_text_view"
+        android:id="@+id/tv_card_daftar_prodi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -49,11 +49,11 @@
         android:textSize="16sp"
         app:fontFamily="@font/robotoregular"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/card_daftar_nama_text_view"
-        app:layout_constraintTop_toBottomOf="@+id/card_daftar_nama_text_view" />
+        app:layout_constraintStart_toStartOf="@+id/tv_card_daftar_nama"
+        app:layout_constraintTop_toBottomOf="@+id/tv_card_daftar_nama" />
 
     <TextView
-        android:id="@+id/card_daftar_angkatan_text_view"
+        android:id="@+id/tv_card_daftar_angkatan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -62,16 +62,16 @@
         android:textColor="@android:color/darker_gray"
         android:textSize="16sp"
         app:fontFamily="@font/robotoregular"
-        app:layout_constraintBottom_toBottomOf="@+id/card_daftar_prodi_text_view"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_card_daftar_prodi"
         app:layout_constraintStart_toEndOf="@+id/barrier"
-        app:layout_constraintTop_toTopOf="@+id/card_daftar_prodi_text_view" />
+        app:layout_constraintTop_toTopOf="@+id/tv_card_daftar_prodi" />
 
     <android.support.constraint.Barrier
         android:id="@+id/barrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="right"
-        app:constraint_referenced_ids="card_daftar_prodi_text_view"
+        app:constraint_referenced_ids="tv_card_daftar_prodi"
         tools:layout_editor_absoluteX="240dp"
         tools:layout_editor_absoluteY="62dp" />
 
@@ -80,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="right"
-        app:constraint_referenced_ids="card_daftar_image_view"
+        app:constraint_referenced_ids="img_card_daftar"
         tools:layout_editor_absoluteX="411dp" />
 
     <android.support.constraint.Barrier
@@ -88,7 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="card_daftar_nama_text_view"
+        app:constraint_referenced_ids="tv_card_daftar_nama"
         tools:layout_editor_absoluteY="77dp" />
 
 </android.support.constraint.ConstraintLayout>

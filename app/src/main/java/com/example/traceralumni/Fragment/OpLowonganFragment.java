@@ -3,6 +3,7 @@ package com.example.traceralumni.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -91,4 +92,27 @@ public class OpLowonganFragment extends Fragment {
         return rootview;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        lowonganRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                if (dy > 0){
+                    //scrolling up
+                    tv_permintaan.setVisibility(View.GONE);
+                } else {
+                    //scrolling down
+                    tv_permintaan.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+    }
 }

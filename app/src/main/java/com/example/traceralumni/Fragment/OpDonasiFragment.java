@@ -3,6 +3,7 @@ package com.example.traceralumni.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -73,7 +74,54 @@ public class OpDonasiFragment extends Fragment {
                 " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
                 " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
                 " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "8.900.000.000"));
-
+        donasiModels.add(new DonasiModel("Pembangunan Kantin", "Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "500.000.000"));
+        donasiModels.add(new DonasiModel("Pembangunan Gazebo", "Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "320.000.000"));
+        donasiModels.add(new DonasiModel("Pembangunan Gedung", "Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "453.000.000"));
+        donasiModels.add(new DonasiModel("Renovasi Kantin", "Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "2.500.000.000"));
+        donasiModels.add(new DonasiModel("Renovasi Gazebo", "Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "6.500.000.000"));
+        donasiModels.add(new DonasiModel("Renovasi Gedung", "Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "8.900.000.000"));
+        donasiModels.add(new DonasiModel("Pembangunan Kantin", "Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "500.000.000"));
+        donasiModels.add(new DonasiModel("Pembangunan Gazebo", "Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "320.000.000"));
+        donasiModels.add(new DonasiModel("Pembangunan Gedung", "Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "453.000.000"));
+        donasiModels.add(new DonasiModel("Renovasi Kantin", "Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "2.500.000.000"));
+        donasiModels.add(new DonasiModel("Renovasi Gazebo", "Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "6.500.000.000"));
+        donasiModels.add(new DonasiModel("Renovasi Gedung", "Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "8.900.000.000"));
         donasiRecycler = rootView.findViewById(R.id.rv_fragment_op_donasi);
 
         //Mengatur LayoutManager dari Recycler daftar
@@ -109,4 +157,27 @@ public class OpDonasiFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        donasiRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                if (dy > 0){
+                    //scrolling up
+                    tv_permintaan_donasi.setVisibility(View.GONE);
+                } else {
+                    //scrolling down
+                    tv_permintaan_donasi.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+    }
 }
