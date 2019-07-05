@@ -86,21 +86,21 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView namaDonatur, namaKegiatan, totalDonasi, tanggalDonasi;
+            private TextView namaDonatur, namaKegiatan, totalDonasi, tanggalDonasi;
 
-        private ConstraintLayout clDetailDonasi, clProfilDonatur, clKonfirmasi, clTolak;
+            private ConstraintLayout clDetailDonasi, clProfilDonatur, clKonfirmasi, clTolak;
 
-        public ViewHolder(View itemView) {
-            super(itemView);
-            namaDonatur = itemView.findViewById(R.id.tv_card_permintaan_donasi_nama_donatur);
-            namaKegiatan = itemView.findViewById(R.id.tv_card_permintaan_donasi_nama_donasi);
-            totalDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_jumlah);
-            tanggalDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_tanggal);
-            clDetailDonasi = itemView.findViewById(R.id.cl_card_permintaan_donasi_detail_donasi);
-            clProfilDonatur = itemView.findViewById(R.id.cl_card_permintaan_donasi_profil_donatur);
-            clKonfirmasi = itemView.findViewById(R.id.cl_card_permintaan_donasi_ok);
-            clTolak = itemView.findViewById(R.id.cl_card_permintaan_donasi_no);
-        }
+            public ViewHolder(View itemView) {
+                super(itemView);
+                namaDonatur = itemView.findViewById(R.id.tv_card_permintaan_donasi_nama_donatur);
+                namaKegiatan = itemView.findViewById(R.id.tv_card_permintaan_donasi_nama_donasi);
+                totalDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_jumlah);
+                tanggalDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_tanggal);
+                clDetailDonasi = itemView.findViewById(R.id.cl_card_permintaan_donasi_detail_donasi);
+                clProfilDonatur = itemView.findViewById(R.id.cl_card_permintaan_donasi_profil_donatur);
+                clKonfirmasi = itemView.findViewById(R.id.cl_card_permintaan_donasi_ok);
+                clTolak = itemView.findViewById(R.id.cl_card_permintaan_donasi_no);
+            }
     }
 
     private void showKonfirmasiDialog() {

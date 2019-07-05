@@ -89,17 +89,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_card_permintaan_lowongan_gaji"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/iv_card_permintaan_lowongan_foto"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:src="@color/colorIconBiru"
         app:layout_constraintBottom_toBottomOf="@+id/imageView6"
         app:layout_constraintStart_toStartOf="@+id/tv_card_permintaan_lowongan_nama_pelowong"
-        app:layout_constraintTop_toTopOf="@+id/tv_card_permintaan_lowongan_jabatan" />
-
+        app:layout_constraintTop_toTopOf="@+id/tv_card_permintaan_lowongan_jabatan"
+        app:srcCompat="@mipmap/ic_launcher" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/cl_card_permintaan_lowongan_tolak"
@@ -119,7 +118,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/ic_clear" />
+            app:srcCompat="@drawable/ic_clear"
+            android:tint="@android:color/holo_red_dark"/>
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
@@ -140,29 +140,30 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/ic_check" />
+            app:srcCompat="@drawable/ic_check"
+            android:tint="@color/colorIconBiru"/>
     </android.support.constraint.ConstraintLayout>
 
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:tint="@color/colorIconBiru"
         app:layout_constraintBottom_toBottomOf="@+id/tv_card_permintaan_lowongan_lokasi_perusahaan"
         app:layout_constraintStart_toStartOf="@+id/tv_card_permintaan_lowongan_nama_perusahaan"
         app:layout_constraintTop_toTopOf="@+id/tv_card_permintaan_lowongan_lokasi_perusahaan"
-        app:srcCompat="@drawable/ic_location_on" />
+        app:srcCompat="@drawable/ic_location_on"
+        android:tint="@color/colorIconBiru"/>
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:tint="@color/colorIconBiru"
         app:layout_constraintBottom_toBottomOf="@+id/tv_card_permintaan_lowongan_gaji"
         app:layout_constraintStart_toStartOf="@+id/imageView5"
         app:layout_constraintTop_toTopOf="@+id/tv_card_permintaan_lowongan_gaji"
         app:layout_constraintVertical_bias="0.51"
-        app:srcCompat="@drawable/ic_salary" />
+        app:srcCompat="@drawable/ic_salary"
+        android:tint="@color/colorIconBiru"/>
 
     <View
         android:id="@+id/v_card_permintaan_lowongan"

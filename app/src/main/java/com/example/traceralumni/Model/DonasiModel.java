@@ -3,13 +3,13 @@ package com.example.traceralumni.Model;
 import java.util.Date;
 
 public class DonasiModel {
-    private String namaKegiatan, noRekening, keterangan, totalBiaya;
+    private String namaKegiatan, noTelp, keterangan, totalBiaya;
     private int id, fotoResId;
     private Date tanggal;
 
-    public DonasiModel(String namaKegiatan, String noRekening, String keterangan, String totalBiaya, int id, int fotoResId, Date tanggal) {
+    public DonasiModel(String namaKegiatan, String noTelp, String keterangan, String totalBiaya, int id, int fotoResId, Date tanggal) {
         this.namaKegiatan = namaKegiatan;
-        this.noRekening = noRekening;
+        this.noTelp = noTelp;
         this.keterangan = keterangan;
         this.totalBiaya = totalBiaya;
         this.id = id;
@@ -27,8 +27,8 @@ public class DonasiModel {
         return namaKegiatan;
     }
 
-    public String getNoRekening() {
-        return noRekening;
+    public String getNoTelp() {
+        return noTelp;
     }
 
     public String getKeterangan() {

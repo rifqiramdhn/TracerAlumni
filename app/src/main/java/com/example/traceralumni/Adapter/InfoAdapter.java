@@ -13,6 +13,8 @@ import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traceralumni.Activity.MainActivity;
+import com.example.traceralumni.Activity.OpDetailInfoActivity;
 import com.example.traceralumni.Model.InfoModel;
 import com.example.traceralumni.R;
 
@@ -71,7 +73,11 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> im
             holder.cl_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, infoModel.getJudul(), Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(v.getContext(), OpDetailInfoActivity.class);
+                    i.putExtra("judul", infoModel.getJudul());
+                    i.putExtra("isi", infoModel.getIsi());
+                    i.putExtra("link", infoModel.getLink());
+                    v.getContext().startActivity(i);
                 }
             });
         }

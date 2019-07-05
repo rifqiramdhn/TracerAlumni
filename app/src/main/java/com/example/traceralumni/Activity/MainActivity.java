@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //coba masuk sebagai alumni
-        JENIS_USER = JENIS_USER_ALUMNI;
+        JENIS_USER = JENIS_USER_OPERATOR;
         STATE_USER_LOGGED = 1;
         getDataUser();
     }
@@ -547,6 +547,15 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 3:
                         //icon search
+                        ConstraintLayout cl_search_lowongan = findViewById(R.id.cl_fragment_op_lowongan_search);
+                        ConstraintLayout cl_permintaan_lowongan = findViewById(R.id.cl_permintaan_lowongan);
+                        if (cl_search_lowongan.getVisibility() == View.GONE){
+                            cl_search_lowongan.setVisibility(View.VISIBLE);
+                            cl_permintaan_lowongan.setVisibility(View.GONE);
+                        } else {
+                            cl_search_lowongan.setVisibility(View.GONE);
+                            cl_permintaan_lowongan.setVisibility(View.VISIBLE);
+                        }
                         break;
                     case 4:
                         //icon logout

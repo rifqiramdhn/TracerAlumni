@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.traceralumni.Activity.DetailDonasiActivity;
 import com.example.traceralumni.Activity.MainActivity;
+import com.example.traceralumni.Activity.OpDetailDonasiActivity;
 import com.example.traceralumni.Model.ChatModel;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.R;
@@ -72,7 +73,13 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
             holder.container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, "Detail donasi operator", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(v.getContext(), OpDetailDonasiActivity.class);
+                    intent.putExtra("namaKegiatan", donasiModel.getNamaKegiatan());
+                    intent.putExtra("totalBiaya", donasiModel.getTotalBiaya());
+                    intent.putExtra("keterangan", donasiModel.getKeterangan());
+                    intent.putExtra("fotoResId", donasiModel.getFotoResId());
+                    intent.putExtra("notelp", donasiModel.getNoTelp());
+                    v.getContext().startActivity(intent);
                 }
             });
         } else {

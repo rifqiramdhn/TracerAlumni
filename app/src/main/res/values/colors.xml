@@ -7,4 +7,7 @@
     <color name="colorBackgroundGrey">#DADDE1</color>
     <color name="colorTabSelected">#ffffff</color>
     <color name="colorTabUnselected">#72C9FF</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
 </resources>

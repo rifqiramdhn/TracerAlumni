@@ -9,15 +9,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.traceralumni.Adapter.PermintaanDonasiAdapter;
 import com.example.traceralumni.Adapter.PermintaanLowonganAdapter;
-import com.example.traceralumni.Model.PermintaanDonasiModel;
 import com.example.traceralumni.Model.PermintaanLowonganModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
 
-public class PermintaanLowonganActivity extends AppCompatActivity {
+public class OpPermintaanLowonganActivity extends AppCompatActivity {
 
     ConstraintLayout cl_back;
     ImageView imgBack;
@@ -34,9 +32,12 @@ public class PermintaanLowonganActivity extends AppCompatActivity {
         setIcon();
 
         permintaanLowonganModels = new ArrayList<>();
-        permintaanLowonganAdapter = new PermintaanLowonganAdapter(PermintaanLowonganActivity.this, permintaanLowonganModels);
+
+        permintaanLowonganModels.add(new PermintaanLowonganModel("1", "", "Paidi Sugiono", "Staff Marketing", "PT, Bank BCA", "Kota Surabaya, Indonesia", 5000000));
+
+        permintaanLowonganAdapter = new PermintaanLowonganAdapter(OpPermintaanLowonganActivity.this, permintaanLowonganModels);
         permintaanLowonganRecycler = findViewById(R.id.rv_permintaan_lowongan);
-        permintaanLowonganRecycler.setLayoutManager(new LinearLayoutManager(PermintaanLowonganActivity.this, LinearLayoutManager.VERTICAL, false));
+        permintaanLowonganRecycler.setLayoutManager(new LinearLayoutManager(OpPermintaanLowonganActivity.this, LinearLayoutManager.VERTICAL, false));
         permintaanLowonganRecycler.setAdapter(permintaanLowonganAdapter);
 
     }
