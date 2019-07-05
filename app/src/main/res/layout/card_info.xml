@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cl_card_info"
     android:layout_width="match_parent"
+    android:background="?android:attr/selectableItemBackground"
     android:layout_height="wrap_content">
 
     <TextView
@@ -31,10 +32,11 @@
         android:textColor="@android:color/black"
         android:textSize="12sp"
         app:fontFamily="@font/robotomedium"
-        app:layout_constraintBottom_toTopOf="@+id/tv_card_info_link"
+        app:layout_constraintBottom_toTopOf="@+id/v_card_info"
         app:layout_constraintEnd_toStartOf="@id/cl_card_info_link"
         app:layout_constraintStart_toStartOf="@+id/tv_card_info_judul"
-        app:layout_constraintTop_toBottomOf="@+id/tv_card_info_judul" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_card_info_judul"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tv_card_info_link"

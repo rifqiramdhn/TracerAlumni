@@ -531,6 +531,12 @@ public class MainActivity extends AppCompatActivity {
                 switch (iconNumber) {
                     case 3:
                         //icon search
+                        ConstraintLayout cl_search_donasi = findViewById(R.id.cl_fragment_pim_donasi_search);
+                        if (cl_search_donasi.getVisibility() == View.GONE) {
+                            cl_search_donasi.setVisibility(View.VISIBLE);
+                        } else {
+                            cl_search_donasi.setVisibility(View.GONE);
+                        }
                         break;
                     case 4:
                         //icon logout
@@ -558,13 +564,13 @@ public class MainActivity extends AppCompatActivity {
                     case 3:
                         //icon search
                         ConstraintLayout cl_search_lowongan = findViewById(R.id.cl_fragment_op_lowongan_search);
-                        ConstraintLayout cl_permintaan_lowongan = findViewById(R.id.cl_permintaan_lowongan);
+                        TextView tv_permintaan_lowongan = findViewById(R.id.tv_permintaan_lowongan);
                         if (cl_search_lowongan.getVisibility() == View.GONE){
                             cl_search_lowongan.setVisibility(View.VISIBLE);
-                            cl_permintaan_lowongan.setVisibility(View.GONE);
+                            tv_permintaan_lowongan.setVisibility(View.GONE);
                         } else {
                             cl_search_lowongan.setVisibility(View.GONE);
-                            cl_permintaan_lowongan.setVisibility(View.VISIBLE);
+                            tv_permintaan_lowongan.setVisibility(View.VISIBLE);
                         }
                         break;
                     case 4:

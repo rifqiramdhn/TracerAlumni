@@ -12,14 +12,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/rv_fragment_op_donasi"
+        app:layout_constraintBottom_toTopOf="@id/rv_fragment_chat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/edt_fragment_op_donasi_search"
+            android:id="@+id/edt_fragment_chat_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -43,7 +43,7 @@
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_fragment_op_donasi"
+        android:id="@+id/rv_fragment_chat"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

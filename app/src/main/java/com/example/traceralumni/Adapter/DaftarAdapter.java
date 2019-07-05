@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,10 +93,10 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
 
         public ViewHolder(View itemView) {
             super(itemView);
-            nama = itemView.findViewById(R.id.card_daftar_nama_text_view);
-            prodi = itemView.findViewById(R.id.card_daftar_prodi_text_view);
-            angkatan = itemView.findViewById(R.id.card_daftar_angkatan_text_view);
-            foto = itemView.findViewById(R.id.card_daftar_image_view);
+            nama = itemView.findViewById(R.id.tv_card_daftar_nama);
+            prodi = itemView.findViewById(R.id.tv_card_daftar_prodi);
+            angkatan = itemView.findViewById(R.id.tv_card_daftar_angkatan);
+            foto = itemView.findViewById(R.id.img_card_daftar);
             container = itemView.findViewById(R.id.card_daftar_container);
         }
     }

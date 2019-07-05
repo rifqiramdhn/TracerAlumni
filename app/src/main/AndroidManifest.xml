@@ -16,6 +16,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activity.OpListDonaturActivity"></activity>
         <activity android:name=".Activity.OpPermintaanLowonganActivity" />
+        <activity android:name=".Activity.KartuAlumniActivity" android:theme="@style/KartuAlumni"></activity>
+        <activity android:name=".Activity.PermintaanLowonganActivity" />
         <activity android:name=".Activity.PermintaanDonasiActivity" />
         <activity android:name=".Activity.LocationPickerActivity" />
         <activity android:name=".Activity.NominalDonasiActivity" />

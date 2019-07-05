@@ -6,19 +6,91 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="cok" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c78db56-e8e7-4a9f-a46a-7eb964ae2c21" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/KartuAlumniActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout-land/activity_kartu_alumni.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_kartu_alumni.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_customview_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_customview_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_customview_28_0_0_aar2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_customview_28_0_0_aar2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_vector_drawable_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_vector_drawable_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_vector_drawable_28_0_0_aar2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_vector_drawable_28_0_0_aar2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_versionedparcelable_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_versionedparcelable_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_versionedparcelable_28_0_0_aar2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_versionedparcelable_28_0_0_aar2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/BerandaAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Model/BerandaModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/card_beranda.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_core_runtime_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_core_runtime_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_livedata_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_livedata_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_livedata_core_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_livedata_core_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_runtime_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_runtime_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_viewmodel_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_viewmodel_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_animated_vector_drawable_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_animated_vector_drawable_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_appcompat_v7_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_appcompat_v7_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_asynclayoutinflater_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_asynclayoutinflater_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_asynclayoutinflater_28_0_0_aar2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_asynclayoutinflater_28_0_0_aar2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_cardview_v7_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_cardview_v7_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_constraint_constraint_layout_1_1_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_constraint_constraint_layout_1_1_3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_coordinatorlayout_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_coordinatorlayout_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_cursoradapter_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_cursoradapter_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_customview_28_0_0_aar2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_customview_28_0_0_aar2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_design_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_design_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_documentfile_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_documentfile_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_drawerlayout_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_drawerlayout_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_interpolator_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_interpolator_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_loader_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_loader_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_localbroadcastmanager_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_localbroadcastmanager_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_print_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_print_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_recyclerview_v7_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_recyclerview_v7_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_slidingpanelayout_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_slidingpanelayout_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_compat_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_compat_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_ui_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_ui_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_utils_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_utils_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_fragment_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_fragment_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_media_compat_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_media_compat_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_v4_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_v4_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_vector_drawable_28_0_0_aar2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_vector_drawable_28_0_0_aar2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_swiperefreshlayout_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_swiperefreshlayout_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_core_3_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_core_3_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_idling_resource_3_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_idling_resource_3_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_monitor_1_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_monitor_1_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_runner_1_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_runner_1_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_transition_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_transition_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_versionedparcelable_28_0_0_aar2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_versionedparcelable_28_0_0_aar2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_viewpager_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_viewpager_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_16_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_16_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_16_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_16_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_maps_16_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_maps_16_1_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_16_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_16_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__de_hdodenhof_circleimageview_3_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__de_hdodenhof_circleimageview_3_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__net_yslibrary_keyboardvisibilityevent_keyboardvisibilityevent_2_3_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_yslibrary_keyboardvisibilityevent_keyboardvisibilityevent_2_3_0_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/LanjutanTambahLowonganActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/LanjutanTambahLowonganActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/LainnyaFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/LainnyaFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/PermintaanDonasiActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/PermintaanDonasiActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/PermintaanDonasiAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/PermintaanDonasiAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Model/PermintaanDonasiModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Model/PermintaanDonasiModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/card_lowongan.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/card_lowongan.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpDetailDonasiActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpDetailDonasiActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpDetailInfoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpDetailInfoActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/TambahLowonganActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/TambahLowonganActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/DaftarAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/DaftarAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/DonasiAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/DonasiAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_op_detail_donasi.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_op_detail_donasi.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/BerandaFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/BerandaFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/ChatFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/ChatFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/PimDonasiFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/PimDonasiFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/card_daftar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/card_daftar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/card_donasi.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/card_donasi.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_beranda.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_beranda.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_pim_donasi.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_pim_donasi.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -89,11 +161,104 @@
     </system>
   </component>
   <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_kartu_alumni.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Model/PermintaanDonasiModel.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_op_list_donatur.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Model/BerandaModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="224">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
+              <folding>
+                <element signature="e#563#586#0" expanded="true" />
+              </folding>
+            <state relative-caret-position="374">
+              <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+              <folding>
+                <element signature="e#545#546#0" expanded="true" />
+                <element signature="e#578#579#0" expanded="true" />
+                <element signature="e#515#516#0" expanded="true" />
+                <element signature="e#549#550#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-land/activity_kartu_alumni.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/BerandaFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="712">
+              <caret line="71" column="166" selection-start-line="71" selection-start-column="166" selection-end-line="71" selection-end-column="166" />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="70" column="18" selection-start-line="70" selection-start-column="18" selection-end-line="70" selection-end-column="18" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_detail_lowongan.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_beranda.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+            <state relative-caret-position="313">
+              <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/background_kartu.png">
+          <provider selected="true" editor-type-id="images" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_lowongan.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/BerandaAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="595">
+              <caret line="59" column="34" selection-start-line="59" selection-start-column="34" selection-end-line="59" selection-end-column="34" />
+            <state relative-caret-position="141">
+              <caret line="47" selection-start-line="47" selection-end-line="47" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2118#2283#0" expanded="true" />
+                <element signature="e#2282#2283#0" expanded="true" />
+                <element signature="e#2228#2403#0" expanded="true" />
+                <element signature="e#2402#2403#0" expanded="true" />
+                <element signature="e#3013#3181#0" expanded="true" />
+                <element signature="e#3180#3181#0" expanded="true" />
+                <element signature="e#3722#3887#0" expanded="true" />
+                <element signature="e#3886#3887#0" expanded="true" />
+                <element signature="e#633#634#0" expanded="true" />
+                <element signature="e#657#658#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/card_sharp_edges.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Model/PermintaanDonasiModel.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+            <state relative-caret-position="-62">
               <caret column="39" selection-start-column="39" selection-end-column="39" />
               <folding>
                 <element signature="e#415#416#0" expanded="true" />
@@ -109,66 +274,147 @@
                 <element signature="e#851#852#0" expanded="true" />
                 <element signature="e#899#900#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpDetailDonasiActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="794">
-              <caret line="151" column="9" selection-start-line="151" selection-start-column="9" selection-end-line="151" selection-end-column="9" />
+            <state relative-caret-position="871">
+              <caret line="193" column="5" selection-start-line="130" selection-start-column="4" selection-end-line="193" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/LanjutanTambahLowonganActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/PermintaanDonasiAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="69" column="17" lean-forward="true" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
+            <state relative-caret-position="234">
+              <caret line="58" column="80" lean-forward="true" selection-start-line="58" selection-start-column="80" selection-end-line="58" selection-end-column="80" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/background_login_button.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_beranda.xml">
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/card_rounded_edges.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpDetailDonasiActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+            <state relative-caret-position="149">
+              <caret line="73" column="88" selection-start-line="73" selection-start-column="88" selection-end-line="73" selection-end-column="88" />
+            </state>
+          </provider>
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_chat.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/background_edit_text.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpListDonaturActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="34" column="50" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
+            <state relative-caret-position="442">
+              <caret line="76" column="38" selection-start-line="76" selection-start-column="38" selection-end-line="76" selection-end-column="38" />
+              <folding>
+                <element signature="method#onBackPressed#0;class#MainActivity#0" />
+                <element signature="e#3077#3352#1" />
+                <element signature="method#getDataUser#0;class#MainActivity#0" />
+                <element signature="e#3732#3786#0" />
+                <element signature="e#3939#3985#1" />
+                <element signature="e#4458#5046#1" />
+                <element signature="e#5096#5531#1" />
+                <element signature="e#5581#6093#1" />
+                <element signature="method#setIconNavBar#0;class#MainActivity#0" />
+                <element signature="e#6202#6946#1" />
+                <element signature="e#6243#6936#0" />
+                <element signature="e#6996#7797#1" />
+                <element signature="e#7037#7787#0" />
+                <element signature="e#7847#8714#1" />
+                <element signature="e#7888#8704#0" />
+                <element signature="method#moveActivityToLogin#0;class#MainActivity#0" />
+                <element signature="method#setIconVisibility#0;class#MainActivity#0" />
+                <element signature="e#10020#11456#1" />
+                <element signature="e#10061#11446#0" />
+                <element signature="e#11506#12677#1" />
+                <element signature="e#11547#12667#0" />
+                <element signature="e#12727#13633#1" />
+                <element signature="e#12768#13623#0" />
+                <element signature="method#setTabLayout#0;class#MainActivity#0" />
+                <element signature="e#13915#14020#1" />
+                <element signature="e#14157#14259#1" />
+                <element signature="e#14316#14462#1" />
+                <element signature="class#14511:15497" />
+                <element signature="method#onTabSelected#0;class#14511:15497" />
+                <element signature="method#onTabUnselected#0;class#14511:15497" />
+                <element signature="method#onTabReselected#0;class#14511:15497" />
+                <element signature="e#15650#16079#1" />
+                <element signature="e#15689#15831#1" />
+                <element signature="e#15837#16069#1" />
+                <element signature="e#16129#16255#1" />
+                <element signature="e#16305#16431#1" />
+                <element signature="method#setIconClicked#0;class#MainActivity#0" />
+                <element signature="e#16593#16669#1" />
+                <element signature="e#16718#16796#1" />
+                <element signature="e#16845#16923#1" />
+                <element signature="method#setIconClickedForAlumni#0;class#MainActivity#0" />
+                <element signature="e#17041#19570#0" />
+                <element signature="e#17135#17696#0" />
+                <element signature="e#17364#17474#1" />
+                <element signature="e#17480#17587#1" />
+                <element signature="e#17804#18458#0" />
+                <element signature="e#18130#18238#1" />
+                <element signature="e#18244#18349#1" />
+                <element signature="e#18642#19420#0" />
+                <element signature="e#19084#19196#1" />
+                <element signature="e#19202#19311#1" />
+                <element signature="e#19782#20002#0" />
+                <element signature="e#20109#20807#0" />
+                <element signature="e#20356#20455#1" />
+                <element signature="e#20461#20557#1" />
+                <element signature="e#20918#21235#0" />
+                <element signature="method#showKeluarDialog#0;class#MainActivity#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/background_avatar.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/PermintaanDonasiActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="42" column="22" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
+            <state relative-caret-position="217">
+              <caret line="35" column="112" selection-start-line="35" selection-start-column="112" selection-end-line="35" selection-end-column="112" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/DonasiAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="79" column="71" selection-start-line="79" selection-start-column="71" selection-end-line="79" selection-end-column="71" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/OpDonasiFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-15">
-              <caret line="68" column="60" selection-start-line="68" selection-start-column="60" selection-end-line="68" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_op_detail_donasi.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="112" column="31" selection-start-line="112" selection-start-column="31" selection-end-line="112" selection-end-column="31" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_daftar.xml">
           <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/ChatAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
+              <folding>
+                <element signature="e#563#581#0" expanded="true" />
+              </folding>
+            <state relative-caret-position="238">
+              <caret line="37" column="41" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="41" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-manifest" />
         </entry>
       </file>
     </leaf>
@@ -176,6 +422,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Class" />
         <option value="layoutResourceFile" />
         <option value="resourceFile" />
         <option value="Class" />
@@ -198,9 +445,10 @@
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/card_sharp_edges.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/OpDonasiFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/card_donasi.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_op_donasi.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/PermintaanDonasiActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/card_permintaan_donasi.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/ChangePasswordActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/PermintaanLowonganAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_permintaan_lowongan.xml" />
@@ -209,6 +457,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Model/PermintaanLowonganModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/PermintaanLowonganActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/card_permintaan_lowongan.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_op_lowongan.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_op_donasi.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/background_border.xml" />
@@ -221,15 +470,37 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/card_lowongan.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Model/PermintaanDonasiModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/PermintaanDonasiActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/PermintaanDonasiAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpDetailInfoActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/TambahLowonganActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/OpFragPagerAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/DonasiAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpDetailDonasiActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_op_detail_donasi.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/LanjutanTambahLowonganActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/PermintaanDonasiAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_permintaan_lowongan.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_permintaan_donasi.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_pim_donasi.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/PimDonasiFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/DonasiAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/ChatFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_beranda.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/card_daftar.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/DaftarAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_detail_profil.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_detail_lowongan.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_tambah_lowongan.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_sunting_profil.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/TambahLowonganActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/card_permintaan_lowongan.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/LainnyaFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/KartuAlumniActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-land/activity_kartu_alumni.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_kartu_alumni.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/card_donasi.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/BerandaAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Model/BerandaModel.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/card_beranda.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/BerandaFragment.java" />
       </list>
     </option>
   </component>
@@ -238,42 +509,87 @@
     <option name="y" value="-9" />
     <option name="width" value="1383" />
     <option name="height" value="745" />
+    <option name="x" value="1355" />
+    <option name="y" value="-11" />
+    <option name="width" value="1943" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
       <pane id="AndroidView">
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
+              <item name="TracerAlumni" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TracerAlumni" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
               <item name="TracerAlumni" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
             </path>
             <path>
               <item name="TracerAlumni" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="TracerAlumni" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TracerAlumni" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
-              <item name="TracerAlumni" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="traceralumni" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="TracerAlumni" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TracerAlumni" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="TracerAlumni" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="traceralumni" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="TracerAlumni" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TracerAlumni" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TracerAlumni" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TracerAlumni" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TracerAlumni" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TracerAlumni" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="traceralumni" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TracerAlumni" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TracerAlumni" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="traceralumni" type="462c0819:PsiDirectoryNode" />
               <item name="Activity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="TracerAlumni" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="traceralumni" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="TracerAlumni" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TracerAlumni" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="traceralumni" type="462c0819:PsiDirectoryNode" />
               <item name="Adapter" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -287,12 +603,61 @@
               <item name="TracerAlumni" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="traceralumni" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TracerAlumni" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
               <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+              <item name="TracerAlumni" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TracerAlumni" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="traceralumni" type="462c0819:PsiDirectoryNode" />
+              <item name="Fragment" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TracerAlumni" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+              <item name="activity_kartu_alumni" type="c431d0b8:AndroidResGroupNode" />
+              <item name="TracerAlumni" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TracerAlumni" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="traceralumni" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TracerAlumni" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="TracerAlumni" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TracerAlumni" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TracerAlumni" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TracerAlumni" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="layout" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -301,11 +666,14 @@
       <pane id="ProjectPane" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="device.picker.selection" value="Nexus_5_API_27" />
+    <property name="device.picker.selection" value="127.0.0.1:62026" />
+    <property name="device.picker.selection" value="127.0.0.1:62001" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../TrainingProject0" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
@@ -400,27 +768,13 @@
       <option name="presentableId" value="Default" />
       <updated>1562202153018</updated>
     </task>
-    <task id="LOCAL-00001" summary="fragment donasi, lowongan, dan printilannya sudah, cuma kurang yang dibagian navbarnya, sabar ya">
-      <created>1562300592266</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1562300592267</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
   <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="true" />
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="1358" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
@@ -429,22 +783,27 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="Project" order="5" visible="true" weight="0.22080536" />
+      <window_info id="Project" order="5" weight="0.18336888" />
       <window_info id="Image Layers" order="6" />
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Structure" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Build" order="0" weight="0.3286119" />
+      <window_info anchor="bottom" id="Build" order="0" weight="0.35584137" />
       <window_info anchor="bottom" id="Android Profiler" order="1" />
-      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50067115" side_tool="true" weight="0.3512748" />
-      <window_info anchor="bottom" id="TODO" order="3" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="4" sideWeight="0.49932885" visible="true" weight="0.3512748" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="TODO" order="3" />
+      <window_info anchor="bottom" id="Logcat" order="4" weight="0.32943144" />
+      <window_info anchor="bottom" id="Logcat" order="4" />
       <window_info anchor="bottom" id="Version Control" order="5" weight="0.3286119" />
-      <window_info anchor="bottom" id="Terminal" order="6" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="7" sideWeight="0.49932885" weight="0.3286119" />
+      <window_info anchor="bottom" id="Logcat" order="4" weight="0.3279743" />
+      <window_info anchor="bottom" id="Version Control" order="5" />
+      <window_info anchor="bottom" id="Terminal" order="6" weight="0.32943144" />
+      <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Debug" order="8" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.32943144" />
       <window_info anchor="right" id="Palette&#9;" order="0" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
-      <window_info anchor="right" id="Device File Explorer" order="2" side_tool="true" weight="0.3295302" />
+      <window_info anchor="right" id="Device File Explorer" order="2" side_tool="true" />
       <window_info anchor="right" id="Gradle" order="3" weight="0.3295302" />
       <window_info anchor="right" id="Theme Preview" order="4" />
       <window_info anchor="right" id="Preview" order="5" weight="0.3295302" />
@@ -455,93 +814,43 @@
       <window_info id="Build Variants" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Capture Tool" order="4" />
-      <window_info active="true" id="Project" order="5" visible="true" weight="0.22080536" />
+      <window_info id="Project" order="5" visible="true" weight="0.22080536" />
       <window_info id="Image Layers" order="6" />
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Structure" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Build" order="0" weight="0.3286119" />
+      <window_info anchor="bottom" id="Build" order="0" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Android Profiler" order="1" />
-      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50067115" side_tool="true" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="TODO" order="3" />
       <window_info anchor="bottom" id="Logcat" order="4" />
       <window_info anchor="bottom" id="Version Control" order="5" weight="0.3286119" />
       <window_info anchor="bottom" id="Terminal" order="6" weight="0.32943144" />
-      <window_info anchor="bottom" id="Run" order="7" sideWeight="0.49932885" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Run" order="7" />
       <window_info anchor="bottom" id="Debug" order="8" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.32943144" />
+      <window_info anchor="bottom" id="Flutter Performance" order="10" side_tool="true" />
       <window_info anchor="right" id="Palette&#9;" order="0" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Device File Explorer" order="2" side_tool="true" />
       <window_info anchor="right" id="Gradle" order="3" weight="0.3295302" />
       <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Preview" order="5" weight="0.32980332" />
       <window_info anchor="right" id="Preview" order="5" weight="0.3295302" />
     </layout-to-restore>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="fragment donasi, lowongan, dan printilannya sudah, cuma kurang yang dibagian navbarnya, sabar ya" />
-    <option name="LAST_COMMIT_MESSAGE" value="fragment donasi, lowongan, dan printilannya sudah, cuma kurang yang dibagian navbarnya, sabar ya" />
+      <window_info anchor="right" id="Preview" order="5" weight="0.32980332" />
+      <window_info anchor="right" id="Flutter Inspector" order="6" />
+      <window_info anchor="right" id="Flutter Outline" order="7" />
+      <window_info anchor="right" id="Assistant" order="8" weight="0.32995737" />
+    </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="37" column="28" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/PimDonasiFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/LainnyaFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2856">
-          <caret line="193" column="5" selection-start-line="130" selection-start-column="4" selection-end-line="193" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="42" column="36" selection-start-line="42" selection-start-column="36" selection-end-line="42" selection-end-column="36" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="28" column="28" lean-forward="true" selection-start-line="24" selection-start-column="12" selection-end-line="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_lainnya.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="62" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="62" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_donasi.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="61" selection-end-column="56" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/ChangePasswordActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -554,7 +863,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_info.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_permintaan_lowongan.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="46" column="36" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="36" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_permintaan_donasi.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sunting_profil.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Model/PermintaanDonasiModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="36" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_chat.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/PermintaanDonasiActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="43" column="46" selection-start-line="43" selection-start-column="46" selection-end-line="43" selection-end-column="46" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/PermintaanLowonganActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="32" column="60" selection-start-line="32" selection-start-column="60" selection-end-line="32" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_permintaan_lowongan.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" selection-start-line="26" selection-end-line="26" />
@@ -562,13 +916,200 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_permintaan_donasi.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/PermintaanLowonganAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="45" column="65" selection-start-line="45" selection-start-column="65" selection-end-line="45" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/PermintaanDonasiAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="42" column="121" selection-start-line="42" selection-start-column="121" selection-end-line="42" selection-end-column="121" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DetailDonasiActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/PimDonasiFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1411">
+          <caret line="101" selection-start-line="101" selection-end-line="101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/OpDonasiFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DonasiActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Model/PermintaanLowonganModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="36" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_permintaan_donasi.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" selection-start-line="26" selection-end-line="26" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Model/ChatModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/DaftarFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml">
       <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="687">
+          <caret line="53" column="43" lean-forward="true" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_daftar.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-707" />
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_lainnya.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_pim_lowongan.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_pim_info.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-180" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_pim_donasi.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="14" column="72" selection-start-line="14" selection-start-column="72" selection-end-line="14" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_lainnya.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_op_lowongan.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_op_info.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-180" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_op_donasi.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="534">
+          <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_donasi.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_pim_data_alumni.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="33" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="33" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_lowongan.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-197" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_maps.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/ChatFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="32" column="22" lean-forward="true" selection-start-line="26" selection-start-column="4" selection-end-line="32" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_permintaan_lowongan.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/ChatAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="37" column="41" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_chat.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_daftar.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/AlamatAsynctaskLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-580">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_permintaan_donasi.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="871">
+          <caret line="193" column="5" selection-start-line="130" selection-start-column="4" selection-end-line="193" selection-end-column="5" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/NominalDonasiActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_lowongan.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        <state relative-caret-position="374">
+          <caret line="44" column="20" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="20" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Model/LowonganModel.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -583,12 +1124,15 @@
           <caret line="92" column="6" lean-forward="true" selection-start-line="92" selection-start-column="6" selection-end-line="92" selection-end-column="6" />
         </state>
       </provider>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_detail_lowongan.xml">
       <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_op_donasi.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="36" column="25" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
+        <state relative-caret-position="323">
+          <caret line="48" column="38" lean-forward="true" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="38" />
         </state>
       </provider>
       <provider editor-type-id="android-designer2" />
@@ -602,6 +1146,8 @@
       <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Model/PermintaanLowonganModel.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_beranda.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="21" column="18" selection-start-line="20" selection-start-column="27" selection-end-line="21" selection-end-column="18" />
@@ -633,18 +1179,107 @@
             <element signature="e#1946#1947#0" expanded="true" />
             <element signature="e#1987#1988#0" expanded="true" />
           </folding>
+        <state relative-caret-position="313">
+          <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/background_border.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="5" column="77" selection-start-line="5" selection-start-column="77" selection-end-line="5" selection-end-column="77" />
+        <state relative-caret-position="442">
+          <caret line="76" column="38" selection-start-line="76" selection-start-column="38" selection-end-line="76" selection-end-column="38" />
+          <folding>
+            <element signature="method#onBackPressed#0;class#MainActivity#0" />
+            <element signature="e#3077#3352#1" />
+            <element signature="method#getDataUser#0;class#MainActivity#0" />
+            <element signature="e#3732#3786#0" />
+            <element signature="e#3939#3985#1" />
+            <element signature="e#4458#5046#1" />
+            <element signature="e#5096#5531#1" />
+            <element signature="e#5581#6093#1" />
+            <element signature="method#setIconNavBar#0;class#MainActivity#0" />
+            <element signature="e#6202#6946#1" />
+            <element signature="e#6243#6936#0" />
+            <element signature="e#6996#7797#1" />
+            <element signature="e#7037#7787#0" />
+            <element signature="e#7847#8714#1" />
+            <element signature="e#7888#8704#0" />
+            <element signature="method#moveActivityToLogin#0;class#MainActivity#0" />
+            <element signature="method#setIconVisibility#0;class#MainActivity#0" />
+            <element signature="e#10020#11456#1" />
+            <element signature="e#10061#11446#0" />
+            <element signature="e#11506#12677#1" />
+            <element signature="e#11547#12667#0" />
+            <element signature="e#12727#13633#1" />
+            <element signature="e#12768#13623#0" />
+            <element signature="method#setTabLayout#0;class#MainActivity#0" />
+            <element signature="e#13915#14020#1" />
+            <element signature="e#14157#14259#1" />
+            <element signature="e#14316#14462#1" />
+            <element signature="class#14511:15497" />
+            <element signature="method#onTabSelected#0;class#14511:15497" />
+            <element signature="method#onTabUnselected#0;class#14511:15497" />
+            <element signature="method#onTabReselected#0;class#14511:15497" />
+            <element signature="e#15650#16079#1" />
+            <element signature="e#15689#15831#1" />
+            <element signature="e#15837#16069#1" />
+            <element signature="e#16129#16255#1" />
+            <element signature="e#16305#16431#1" />
+            <element signature="method#setIconClicked#0;class#MainActivity#0" />
+            <element signature="e#16593#16669#1" />
+            <element signature="e#16718#16796#1" />
+            <element signature="e#16845#16923#1" />
+            <element signature="method#setIconClickedForAlumni#0;class#MainActivity#0" />
+            <element signature="e#17041#19570#0" />
+            <element signature="e#17135#17696#0" />
+            <element signature="e#17364#17474#1" />
+            <element signature="e#17480#17587#1" />
+            <element signature="e#17804#18458#0" />
+            <element signature="e#18130#18238#1" />
+            <element signature="e#18244#18349#1" />
+            <element signature="e#18642#19420#0" />
+            <element signature="e#19084#19196#1" />
+            <element signature="e#19202#19311#1" />
+            <element signature="e#19782#20002#0" />
+            <element signature="e#20109#20807#0" />
+            <element signature="e#20356#20455#1" />
+            <element signature="e#20461#20557#1" />
+            <element signature="e#20918#21235#0" />
+            <element signature="method#showKeluarDialog#0;class#MainActivity#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/background_button_upload.xml">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="541" column="19" selection-start-line="541" selection-start-column="19" selection-end-line="541" selection-end-column="19" />
+          <folding>
+            <element signature="e#2622#2845#0" expanded="true" />
+            <element signature="e#2844#2845#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpDetailInfoActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DetailLowonganActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/PimDataAlumniFragment.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -661,13 +1296,52 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/PermintaanLowonganAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_op_detail_donasi.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="97" selection-start-line="97" selection-end-line="97" />
+        <state relative-caret-position="240">
+          <caret line="192" column="28" selection-start-line="192" selection-start-column="28" selection-end-line="192" selection-end-column="28" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LowonganAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/PermintaanLowonganAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/BerandaAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="97" selection-start-line="97" selection-end-line="97" />
+        <state relative-caret-position="141">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2118#2283#0" expanded="true" />
+            <element signature="e#2282#2283#0" expanded="true" />
+            <element signature="e#2228#2403#0" expanded="true" />
+            <element signature="e#2402#2403#0" expanded="true" />
+            <element signature="e#3013#3181#0" expanded="true" />
+            <element signature="e#3180#3181#0" expanded="true" />
+            <element signature="e#3722#3887#0" expanded="true" />
+            <element signature="e#3886#3887#0" expanded="true" />
+            <element signature="e#633#634#0" expanded="true" />
+            <element signature="e#657#658#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/OpLowonganFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="62" column="76" selection-start-line="62" selection-start-column="75" selection-end-line="62" selection-end-column="76" />
         </state>
       </provider>
     </entry>
@@ -695,6 +1369,13 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpPermintaanLowonganActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
@@ -736,6 +1417,32 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/PermintaanDonasiActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Model/BerandaModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="35" column="112" selection-start-line="35" selection-start-column="112" selection-end-line="35" selection-end-column="112" />
+        <state relative-caret-position="374">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <element signature="e#545#546#0" expanded="true" />
+            <element signature="e#578#579#0" expanded="true" />
+            <element signature="e#515#516#0" expanded="true" />
+            <element signature="e#549#550#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpDetailDonasiActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/OpInfoFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="73" column="88" selection-start-line="73" selection-start-column="88" selection-end-line="73" selection-end-column="88" />
+        <state relative-caret-position="153">
+          <caret line="76" column="24" selection-start-line="76" selection-start-column="24" selection-end-line="76" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpListDonaturActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
@@ -743,137 +1450,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/PermintaanDonasiAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="65" column="80" selection-start-line="65" selection-start-column="80" selection-end-line="65" selection-end-column="80" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpPermintaanLowonganActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/PermintaanDonasiActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="35" column="112" selection-start-line="35" selection-start-column="112" selection-end-line="35" selection-end-column="112" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_detail_donasi.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/TambahRiwayatPekerjaanActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/NominalDonasiActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1088">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DetailLowonganActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DetailDonasiActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="114" selection-start-line="114" selection-end-line="114" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/TambahLowonganActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="73" column="37" selection-start-line="73" selection-start-column="37" selection-end-line="73" selection-end-column="37" />
-          <folding>
-            <element signature="e#2337#2898#0" expanded="true" />
-            <element signature="e#2897#2898#0" expanded="true" />
-            <element signature="e#4395#4396#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LowonganAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-272">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/InfoAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="71" column="22" selection-start-line="71" selection-start-column="22" selection-end-line="71" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/OpInfoFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-80">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpDetailInfoActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
-          <caret line="73" column="57" lean-forward="true" selection-start-line="73" selection-start-column="57" selection-end-line="73" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/OpFragPagerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/OpLowonganFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-142">
-          <caret line="62" column="76" selection-start-line="62" selection-start-column="75" selection-end-line="62" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DonasiActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-470">
-          <caret line="72" column="8" selection-start-line="72" selection-start-column="8" selection-end-line="77" selection-end-column="11" />
-          <folding>
-            <element signature="e#2442#2594#0" expanded="true" />
-            <element signature="e#2593#2594#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Model/PermintaanDonasiModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="-62">
           <caret column="39" selection-start-column="39" selection-end-column="39" />
           <folding>
             <element signature="e#415#416#0" expanded="true" />
@@ -892,49 +1471,188 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/OpDonasiFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/PermintaanDonasiAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_donasi.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
-          <caret line="68" column="60" selection-start-line="68" selection-start-column="60" selection-end-line="68" selection-end-column="60" />
+        <state relative-caret-position="234">
+          <caret line="58" column="80" lean-forward="true" selection-start-line="58" selection-start-column="80" selection-end-line="58" selection-end-column="80" />
+        <state relative-caret-position="68">
+          <caret line="4" column="42" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LowonganAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DonasiActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="113" column="103" selection-start-line="113" selection-start-column="103" selection-end-line="113" selection-end-column="103" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/LowonganFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="39" column="87" selection-start-line="39" selection-start-column="87" selection-end-line="39" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_info.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="33" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/DonasiAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="79" column="71" selection-start-line="79" selection-start-column="71" selection-end-line="79" selection-end-column="71" />
+        <state relative-caret-position="389">
+          <caret line="69" column="77" selection-start-line="69" selection-start-column="77" selection-end-line="69" selection-end-column="77" />
+          <folding>
+            <element signature="e#3665#4285#0" expanded="true" />
+            <element signature="e#4284#4285#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_op_detail_donasi.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="112" column="31" selection-start-line="112" selection-start-column="31" selection-end-line="112" selection-end-column="31" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpDetailDonasiActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="794">
-          <caret line="151" column="9" selection-start-line="151" selection-start-column="9" selection-end-line="151" selection-end-column="9" />
+        <state relative-caret-position="221">
+          <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/LainnyaFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="42" column="22" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
+        <state relative-caret-position="153">
+          <caret line="44" column="56" selection-start-line="44" selection-start-column="56" selection-end-line="44" selection-end-column="56" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/LanjutanTambahLowonganActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_permintaan_lowongan.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/LocationPickerActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="69" column="17" lean-forward="true" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
+        <state relative-caret-position="491">
+          <caret line="155" column="14" selection-start-line="155" selection-start-column="14" selection-end-line="155" selection-end-column="14" />
+        <state relative-caret-position="187">
+          <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/KartuAlumniActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="55" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DonasiActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="44" selection-start-line="44" selection-end-line="45" />
+          <folding>
+            <element signature="e#2442#2594#0" expanded="true" />
+            <element signature="e#2593#2594#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/background_edit_text.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/background_avatar.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/background_login_button.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/card_rounded_edges.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/card_sharp_edges.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/background_kartu.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="70" column="18" selection-start-line="70" selection-start-column="18" selection-end-line="70" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
+          <folding>
+            <element signature="e#563#581#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/KartuAlumniActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-land/activity_kartu_alumni.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_kartu_alumni.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/InfoAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="96" column="12" selection-start-line="96" selection-start-column="12" selection-end-line="111" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_beranda.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Fragment/BerandaFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="712">
+          <caret line="71" column="166" selection-start-line="71" selection-start-column="166" selection-end-line="71" selection-end-column="166" />
         </state>
       </provider>
     </entry>

@@ -18,8 +18,8 @@ import android.widget.Toast;
 import com.example.traceralumni.Activity.AboutActivity;
 import com.example.traceralumni.Activity.ChangePasswordActivity;
 import com.example.traceralumni.Activity.DonasiActivity;
+import com.example.traceralumni.Activity.KartuAlumniActivity;
 import com.example.traceralumni.Activity.LoginActivity;
-import com.example.traceralumni.Activity.MainActivity;
 import com.example.traceralumni.Activity.RiwayatPekerjaanActivity;
 import com.example.traceralumni.Activity.SuntingProfilActivity;
 import com.example.traceralumni.Model.LainnyaModel;
@@ -62,8 +62,12 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 switch (position) {
+                    case 0:
+                        Intent kartu = new Intent(context, KartuAlumniActivity.class);
+                        context.startActivity(kartu);
+                        break;
                     case 1:
-                        Intent donasi = new Intent(holder.container.getContext(), DonasiActivity.class);
+                        Intent donasi = new Intent(context, DonasiActivity.class);
                         context.startActivity(donasi);
                         break;
                     case 3:
@@ -100,6 +104,8 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
 
         if (lainnyaModel.getItem().equalsIgnoreCase("Keluar")) {
             holder.item.setTextColor(Color.RED);
+        } else {
+            holder.item.setTextColor(Color.BLACK);
         }
     }
 
@@ -130,8 +136,7 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
 
     private void showKeluarDialog() {
 
-        builder.setMessage("Apakah anda yakin ingin keluar?\n" +
-                "Anda harus login kembali apabila ingin menggunakan aplikasi");
+        builder.setMessage("Apakah anda yakin ingin keluar?");
 
         builder.setTitle("Keluar");
 
@@ -163,8 +168,7 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
     }
 
     private void showHapusSemuaChatDialog() {
-        builder.setMessage("Apakah anda yakin ingin menghapus semua chat?\n" +
-                "Chat yang sudah terhapus tidak akan bisa dikembalikan");
+        builder.setMessage("Apakah anda yakin ingin menghapus semua chat?");
 
         builder.setTitle("Hapus Semua Chat");
 

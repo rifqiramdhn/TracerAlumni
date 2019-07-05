@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_beranda_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/card_beranda_donasi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/include_beranda_donasi"
+            layout="@layout/card_donasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/card_beranda_lowongan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/card_beranda_donasi">
+
+        <include
+            android:id="@+id/include_beranda_lowongan"
+            layout="@layout/card_lowongan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/card_beranda_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/card_beranda_lowongan">
+
+        <include
+            android:id="@+id/include_beranda_info"
+            layout="@layout/card_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>
