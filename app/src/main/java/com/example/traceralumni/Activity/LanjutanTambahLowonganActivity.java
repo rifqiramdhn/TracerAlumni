@@ -5,14 +5,20 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.traceralumni.Fragment.LowonganFragment;
 import com.example.traceralumni.R;
 
 import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_PIMPINAN;
 
 public class LanjutanTambahLowonganActivity extends AppCompatActivity {
     private ConstraintLayout cl_icon_back, cl_icon_ok;
@@ -49,10 +55,19 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
         cl_icon_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(LanjutanTambahLowonganActivity.this, MainActivity.class);
-                i.putExtra("Tambah", INDEX_OPENED_TAB);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
+                if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
+                    Intent i = new Intent(LanjutanTambahLowonganActivity.this, MainActivity.class);
+                    i.putExtra("Tambah", INDEX_OPENED_TAB);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
+                } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)){
+                    Intent i = new Intent(LanjutanTambahLowonganActivity.this, MainActivity.class);
+                    i.putExtra("Tab", INDEX_OPENED_TAB);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Lowongan belum ditambahkan", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

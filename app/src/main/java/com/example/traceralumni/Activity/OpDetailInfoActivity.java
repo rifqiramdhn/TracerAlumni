@@ -10,11 +10,14 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.Selection;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.traceralumni.R;
+
+import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
 
 public class OpDetailInfoActivity extends AppCompatActivity {
     TextView tvNavBar;
@@ -22,6 +25,7 @@ public class OpDetailInfoActivity extends AppCompatActivity {
     ImageView img_iconBack, img_iconHapus;
     TextInputLayout tv_inpJudul, tv_inpIsi, tv_inpURL;
     EditText edt_judul, edt_isi, edt_url;
+    Button btn_simpan;
     AlertDialog.Builder builder;
 
     @Override
@@ -71,6 +75,16 @@ public class OpDetailInfoActivity extends AppCompatActivity {
         tv_inpURL = findViewById(R.id.edt_url_container);
 
         getData();
+
+        btn_simpan = findViewById(R.id.btn_simpan);
+        btn_simpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(OpDetailInfoActivity.this, MainActivity.class);
+                i.putExtra("Tab", INDEX_OPENED_TAB);
+                startActivity(i);
+            }
+        });
 
     }
 

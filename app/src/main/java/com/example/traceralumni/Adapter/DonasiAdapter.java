@@ -77,7 +77,6 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
                     intent.putExtra("namaKegiatan", donasiModel.getNamaKegiatan());
                     intent.putExtra("totalBiaya", donasiModel.getTotalBiaya());
                     intent.putExtra("keterangan", donasiModel.getKeterangan());
-                    intent.putExtra("fotoResId", donasiModel.getFotoResId());
                     intent.putExtra("notelp", donasiModel.getNoTelp());
                     v.getContext().startActivity(intent);
                 }

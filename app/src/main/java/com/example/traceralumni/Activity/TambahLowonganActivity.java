@@ -12,12 +12,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.traceralumni.R;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
 import static com.example.traceralumni.Activity.SuntingProfilActivity.PICK_PHOTO_REQUEST;
 
 public class TambahLowonganActivity extends AppCompatActivity {
@@ -28,7 +33,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
     private Button btn_next;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_lowongan);
 
@@ -63,8 +68,17 @@ public class TambahLowonganActivity extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(TambahLowonganActivity.this, LanjutanTambahLowonganActivity.class);
-                startActivity(i);
+                if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
+                    Intent i = new Intent(TambahLowonganActivity.this, LanjutanTambahLowonganActivity.class);
+                    i.putExtra("Tambah", INDEX_OPENED_TAB);
+                    startActivity(i);
+                } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)){
+                    Intent i = new Intent(TambahLowonganActivity.this, LanjutanTambahLowonganActivity.class);
+                    i.putExtra("Tab", INDEX_OPENED_TAB);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Lanjut", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

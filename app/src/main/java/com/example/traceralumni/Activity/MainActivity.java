@@ -384,9 +384,17 @@ public class MainActivity extends AppCompatActivity {
                 INDEX_OPENED_TAB = i.getIntExtra("Tambah", 2);
             }
         } else if (JENIS_USER.equals(JENIS_USER_OPERATOR)) {
-            TabLayout.Tab tab = tabLayout.getTabAt(1);
-            tab.select();
-            INDEX_OPENED_TAB = 1;
+            if (getIntent() == null){
+                TabLayout.Tab tab = tabLayout.getTabAt(1);
+                tab.select();
+                INDEX_OPENED_TAB = 1;
+            } else {
+                Intent i2 = getIntent();
+                TabLayout.Tab tab = tabLayout.getTabAt(i2.getIntExtra("Tab", 1));
+                tab.select();
+                INDEX_OPENED_TAB = i2.getIntExtra("Tab", 1);
+                Log.e("cok", "" + i2.getIntExtra("Tab", 1));
+            }
         } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)) {
             TabLayout.Tab tab = tabLayout.getTabAt(1);
             tab.select();
@@ -544,6 +552,8 @@ public class MainActivity extends AppCompatActivity {
                 switch (iconNumber) {
                     case 2:
                         //icon tambah lowongan
+                        Intent i = new Intent(MainActivity.this, TambahLowonganActivity.class);
+                        startActivity(i);
                         break;
                     case 3:
                         //icon search
@@ -570,6 +580,8 @@ public class MainActivity extends AppCompatActivity {
                 switch (iconNumber) {
                     case 2:
                         //icon tambah info
+                        Intent i = new Intent(MainActivity.this, OpDetailInfoActivity.class);
+                        startActivity(i);
                         break;
                     case 3:
                         //icon search
@@ -593,6 +605,8 @@ public class MainActivity extends AppCompatActivity {
                 switch (iconNumber) {
                     case 2:
                         //icon tambah donasi
+                        Intent i = new Intent(MainActivity.this, OpDetailDonasiActivity.class);
+                        startActivity(i);
                         break;
                     case 3:
                         //icon search

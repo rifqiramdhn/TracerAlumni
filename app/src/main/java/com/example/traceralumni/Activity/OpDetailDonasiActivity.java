@@ -14,12 +14,14 @@ import android.widget.TextView;
 
 import com.example.traceralumni.R;
 
+import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
+
 public class OpDetailDonasiActivity extends AppCompatActivity {
-    TextView tvNavBar;
+    TextView tvNavBar, tvTotalDonasi,tvFile;
     ConstraintLayout cl_iconBack, cl_iconHapus;
     ImageView img_iconBack, img_iconHapus;
     EditText edt_judul, edt_donasi, edt_deskripsi, edt_notelp;
-    Button btn_list_donatur;
+    Button btn_list_donatur, btn_simpan;
     AlertDialog.Builder builder;
 
     @Override
@@ -64,6 +66,8 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
         edt_donasi = findViewById(R.id.edt_total_donasi);
         edt_deskripsi = findViewById(R.id.edt_deskripsi);
         edt_notelp = findViewById(R.id.edt_notelp);
+        tvTotalDonasi = findViewById(R.id.tv_total_donasi);
+        tvFile = findViewById(R.id.tv_file);
 
         getData();
 
@@ -76,6 +80,15 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
             }
         });
 
+        btn_simpan = findViewById(R.id.btn_simpan);
+        btn_simpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(OpDetailDonasiActivity.this, MainActivity.class);
+                i.putExtra("Tab", INDEX_OPENED_TAB);
+                startActivity(i);
+            }
+        });
     }
 
     private void hapusDonasi(){
@@ -85,7 +98,7 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent i = new Intent(OpDetailDonasiActivity.this, MainActivity.class);
-                i.putExtra("tab",2);
+                i.putExtra("Tab",INDEX_OPENED_TAB);
                 startActivity(i);
             }
         });
@@ -107,6 +120,8 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
             edt_judul.setText(i.getStringExtra("namaKegiatan"));
             edt_judul.setTextColor(getResources().getColor(R.color.black));
             edt_judul.setSelection(edt_judul.getText().length());
+        } else {
+            edt_judul.setText("");
         }
 
         if (edt_donasi != null){
@@ -114,6 +129,8 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
             edt_donasi.setText(i.getStringExtra("totalBiaya"));
             edt_donasi.setTextColor(getResources().getColor(R.color.black));
             edt_donasi.setSelection(edt_donasi.getText().length());
+        } else {
+            edt_donasi.setText("");
         }
 
         if (edt_deskripsi != null){
@@ -121,13 +138,17 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
             edt_deskripsi.setText(i.getStringExtra("keterangan"));
             edt_deskripsi.setTextColor(getResources().getColor(R.color.black));
             edt_deskripsi.setSelection(edt_deskripsi.getText().length());
+        } else {
+            edt_deskripsi.setText("");
         }
 
         if (edt_notelp != null){
-            Intent i =getIntent();
+            Intent i = getIntent();
             edt_notelp.setText(i.getStringExtra("notelp"));
             edt_notelp.setTextColor(getResources().getColor(R.color.black));
             edt_notelp.setSelection(edt_notelp.getText().length());
+        } else {
+            edt_notelp.setText("");
         }
     }
 }
