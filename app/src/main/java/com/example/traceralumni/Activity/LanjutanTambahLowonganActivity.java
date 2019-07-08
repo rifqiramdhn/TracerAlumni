@@ -15,6 +15,7 @@ import com.example.traceralumni.Fragment.LowonganFragment;
 import com.example.traceralumni.R;
 
 import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
+import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB_KEY;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
@@ -57,12 +58,12 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
                     Intent i = new Intent(LanjutanTambahLowonganActivity.this, MainActivity.class);
-                    i.putExtra("Tambah", INDEX_OPENED_TAB);
+                    i.putExtra(INDEX_OPENED_TAB_KEY, INDEX_OPENED_TAB);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
                 } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)){
                     Intent i = new Intent(LanjutanTambahLowonganActivity.this, MainActivity.class);
-                    i.putExtra("Tab", INDEX_OPENED_TAB);
+                    i.putExtra(INDEX_OPENED_TAB_KEY, INDEX_OPENED_TAB);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
                 } else {
