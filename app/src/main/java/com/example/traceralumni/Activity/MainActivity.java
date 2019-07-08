@@ -106,12 +106,6 @@ public class MainActivity extends AppCompatActivity {
         }, 2000);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        bukaTabAwal();
-    }
-
     public void getDataUser() {
         //method untuk mendapatkan data" user login atau belum
         //jika sudah login maka ambil data yang sudah tersimpan di sharepreference
@@ -125,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
         PimFragPagerAdapter adapterPimpinan = new PimFragPagerAdapter(getSupportFragmentManager());
 
         //ngecheck kalau jenis usernya apa kemudian menginisialisasi tab layoutnya
-        Log.e("aldy", JENIS_USER);
         if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
             int arrayDrawable[] = {R.drawable.ic_person,
                     R.drawable.ic_chat,
@@ -378,6 +371,8 @@ public class MainActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+
+        bukaTabAwal();
     }
 
     public void bukaTabAwal() { //true kalau ada intent
@@ -642,8 +637,7 @@ public class MainActivity extends AppCompatActivity {
     private void showKeluarDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
-        builder.setMessage("Apakah anda yakin ingin keluar?\n" +
-                "Anda harus login kembali apabila ingin menggunakan aplikasi");
+        builder.setMessage("Apakah anda yakin ingin keluar?");
 
         builder.setTitle("Keluar");
 

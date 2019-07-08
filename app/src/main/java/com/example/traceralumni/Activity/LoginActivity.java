@@ -13,7 +13,6 @@ import com.example.traceralumni.R;
 
 public class LoginActivity extends AppCompatActivity {
     FrameLayout frameLayout;
-    int metu = 0;
     boolean doubleBackToExitPressedOnce = false;
 
     @Override

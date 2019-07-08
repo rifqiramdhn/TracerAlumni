@@ -89,7 +89,7 @@ public class OpDetailInfoActivity extends AppCompatActivity {
     }
 
     private void hapusInfo(){
-        builder.setMessage("Anda Yakin Ingin Menghapus Ini?");
+        builder.setMessage("Anda yakin ingin menghapus info ini?");
         builder.setCancelable(false);
         builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
             @Override

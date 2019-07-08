@@ -2,9 +2,11 @@ package com.example.traceralumni.Activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.example.traceralumni.Adapter.RiwayatPekerjaanAdapter;
 import com.example.traceralumni.Model.RiwayatPekerjaanModel;
@@ -12,15 +14,26 @@ import com.example.traceralumni.R;
 
 import java.util.ArrayList;
 
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
+
 public class DetailProfilActivity extends AppCompatActivity {
     RecyclerView riwayatRecycler;
     RiwayatPekerjaanAdapter riwayatAdapter;
     ArrayList<RiwayatPekerjaanModel> riwayatModel;
+    BottomNavigationView bnChat;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_profil);
+
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+        if (!JENIS_USER.equals(JENIS_USER_ALUMNI)){
+            bnChat = findViewById(R.id.bn_chat);
+            bnChat.setVisibility(View.GONE);
+        }
 
         riwayatModel = new ArrayList<>();
         riwayatModel.add(new RiwayatPekerjaanModel("Manager", "Akuntansi", "PT. Galon Jaya", "Palembang, Indonesia", 50000000, "2012", "2018" ));
@@ -34,5 +47,7 @@ public class DetailProfilActivity extends AppCompatActivity {
 
         riwayatAdapter = new RiwayatPekerjaanAdapter(riwayatModel);
         riwayatRecycler.setAdapter(riwayatAdapter);
+
+        riwayatRecycler.setNestedScrollingEnabled(false);
     }
 }

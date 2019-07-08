@@ -97,8 +97,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Nama Lowongan"
-                    android:inputType="text"
-                    android:textColor="#2699FB"
+                    android:inputType="textMultiLine|text"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
             </android.support.design.widget.TextInputLayout>
@@ -123,8 +123,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Nama Jabatan"
-                    android:inputType="text"
-                    android:textColor="#2699FB"
+                    android:inputType="textMultiLine|text"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
             </android.support.design.widget.TextInputLayout>
@@ -148,8 +148,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Nama Perusahaan"
-                    android:inputType="text"
-                    android:textColor="#2699FB"
+                    android:inputType="textMultiLine|text"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
             </android.support.design.widget.TextInputLayout>
@@ -173,8 +173,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Lokasi Perusahaan"
-                    android:inputType="text"
-                    android:textColor="#2699FB"
+                    android:inputType="textMultiLine|text"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
             </android.support.design.widget.TextInputLayout>
@@ -198,8 +198,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Kuota yang Dibutuhkan (orang)"
-                    android:inputType="text"
-                    android:textColor="#2699FB"
+                    android:inputType="number"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
             </android.support.design.widget.TextInputLayout>
@@ -223,8 +223,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Kisaran Gaji"
-                    android:inputType="text"
-                    android:textColor="#2699FB"
+                    android:inputType="number"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
             </android.support.design.widget.TextInputLayout>

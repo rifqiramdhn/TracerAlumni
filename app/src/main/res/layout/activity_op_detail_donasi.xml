@@ -47,7 +47,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Judul"
-                    android:inputType="text"
+                    android:inputType="textMultiLine|text"
                     android:textColor="#2699FB"
                     android:textSize="16sp" />
 
@@ -67,8 +67,8 @@
                     android:id="@+id/edt_total_donasi"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Total Donasi"
-                    android:inputType="text"
+                    android:hint="Anggaran yang Dibutuhkan"
+                    android:inputType="number"
                     android:textColor="#2699FB"
                     android:textSize="16sp" />
 
@@ -91,7 +91,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Deskripsi"
-                    android:inputType="textMultiLine|text"
+                    android:inputType="textMultiLine"
+                    android:maxLines="5"
                     android:textColor="#2699FB"
                     android:textSize="16sp" />
 

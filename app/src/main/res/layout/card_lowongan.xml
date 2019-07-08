@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_daftar_lowongan"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white">
+    android:background="?android:attr/selectableItemBackground">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_tambah_lowongan_logo"
@@ -67,9 +66,9 @@
         android:id="@+id/tv_lokasi_perusahaan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="4dp"
         android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="5dp"
         android:text="Kota Malang, Indonesia"
         android:textColor="@android:color/black"
         android:textSize="14sp"
@@ -84,10 +83,10 @@
         android:layout_gravity="center"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="5dp"
         android:tint="@color/colorIconBiru"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_kisaran_gaji"
         app:layout_constraintStart_toEndOf="@+id/iv_tambah_lowongan_logo"
-        app:layout_constraintTop_toBottomOf="@+id/img_lokasi"
+        app:layout_constraintTop_toTopOf="@+id/tv_kisaran_gaji"
         app:srcCompat="@drawable/ic_salary" />
 
     <TextView

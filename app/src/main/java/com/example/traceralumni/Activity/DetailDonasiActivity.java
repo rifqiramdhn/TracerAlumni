@@ -12,9 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.traceralumni.R;
 
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_PIMPINAN;
@@ -30,8 +32,6 @@ public class DetailDonasiActivity extends AppCompatActivity {
 
     String namaKegiatan, totalBiaya, keterangan, jumlahDonasiMasuk, fotoResId;
 
-    public static String JENIS_USER;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,11 +39,9 @@ public class DetailDonasiActivity extends AppCompatActivity {
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
-        JENIS_USER = JENIS_USER_ALUMNI;
-
         setIcon();
 
-        setBackButton(JENIS_USER);
+        setBackButton();
 
         getView();
 
@@ -51,7 +49,7 @@ public class DetailDonasiActivity extends AppCompatActivity {
 
         setView();
 
-        setDonasiButton(JENIS_USER);
+        setDonasiButton();
     }
 
     private void setIcon() {
@@ -77,7 +75,7 @@ public class DetailDonasiActivity extends AppCompatActivity {
     }
 
     private void setView() {
-        foto.setImageResource(Integer.valueOf(fotoResId));
+//        foto.setImageResource(Integer.valueOf(fotoResId));
         tv_namaKegiatan.setText(namaKegiatan);
         tv_totalBiaya.setText("Rp" + totalBiaya);
         tv_keterangan.setText(keterangan);
@@ -122,9 +120,9 @@ public class DetailDonasiActivity extends AppCompatActivity {
         });
     }
 
-    private void setBackButton(String jenisUser) {
+    private void setBackButton() {
 
-        if (jenisUser.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
+        if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
             cl_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -133,22 +131,19 @@ public class DetailDonasiActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-        } else if (jenisUser.equalsIgnoreCase(JENIS_USER_PIMPINAN)) {
+        } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_PIMPINAN)) {
             cl_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Diganti intentnya ke mana
-                    Intent intent = new Intent(DetailDonasiActivity.this, DonasiActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
+                    onBackPressed();
                 }
             });
-        } else if (jenisUser.equalsIgnoreCase(JENIS_USER_OPERATOR)) {
+        } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)) {
             cl_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //Diganti intentnya ke mana
-                    Intent intent = new Intent(DetailDonasiActivity.this, DonasiActivity.class);
+                    Intent intent = new Intent(DetailDonasiActivity.this, PermintaanDonasiActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
@@ -157,8 +152,8 @@ public class DetailDonasiActivity extends AppCompatActivity {
 
     }
 
-    private void setDonasiButton(String jenisUser) {
-        if (jenisUser.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
+    private void setDonasiButton() {
+        if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
             btn_donasi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -170,7 +165,7 @@ public class DetailDonasiActivity extends AppCompatActivity {
                     startActivity(i);
                 }
             });
-        } else if (jenisUser.equalsIgnoreCase(JENIS_USER_PIMPINAN)) {
+        } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_PIMPINAN)) {
             btn_donasi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
