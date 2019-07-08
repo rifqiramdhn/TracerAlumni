@@ -1,5 +1,6 @@
 package com.example.traceralumni.Activity;
 
+import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,9 @@ import com.example.traceralumni.Model.PermintaanLowonganModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
+
+import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
+import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB_KEY;
 
 public class OpPermintaanLowonganActivity extends AppCompatActivity {
 

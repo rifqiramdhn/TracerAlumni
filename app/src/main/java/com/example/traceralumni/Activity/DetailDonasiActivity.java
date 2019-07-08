@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.traceralumni.R;
 
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_PIMPINAN;
@@ -30,16 +31,12 @@ public class DetailDonasiActivity extends AppCompatActivity {
 
     String namaKegiatan, totalBiaya, keterangan, jumlahDonasiMasuk, fotoResId;
 
-    public static String JENIS_USER;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_donasi);
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-
-        JENIS_USER = JENIS_USER_ALUMNI;
 
         setIcon();
 
@@ -137,10 +134,7 @@ public class DetailDonasiActivity extends AppCompatActivity {
             cl_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Diganti intentnya ke mana
-                    Intent intent = new Intent(DetailDonasiActivity.this, DonasiActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
+                    onBackPressed();
                 }
             });
         } else if (jenisUser.equalsIgnoreCase(JENIS_USER_OPERATOR)) {
@@ -148,7 +142,7 @@ public class DetailDonasiActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     //Diganti intentnya ke mana
-                    Intent intent = new Intent(DetailDonasiActivity.this, DonasiActivity.class);
+                    Intent intent = new Intent(DetailDonasiActivity.this, PermintaanDonasiActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }

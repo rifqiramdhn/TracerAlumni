@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.traceralumni.R;
 
 import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
+import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB_KEY;
 
 public class OpDetailDonasiActivity extends AppCompatActivity {
     TextView tvNavBar, tvTotalDonasi,tvFile;
@@ -84,9 +85,10 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
         btn_simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(OpDetailDonasiActivity.this, MainActivity.class);
-                i.putExtra("Tab", INDEX_OPENED_TAB);
-                startActivity(i);
+//                Intent i = new Intent(OpDetailDonasiActivity.this, MainActivity.class);
+//                i.putExtra("Tab", INDEX_OPENED_TAB);
+//                startActivity(i);
+                onBackPressed();
             }
         });
     }
@@ -98,7 +100,7 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent i = new Intent(OpDetailDonasiActivity.this, MainActivity.class);
-                i.putExtra("Tab",INDEX_OPENED_TAB);
+                i.putExtra(INDEX_OPENED_TAB_KEY,INDEX_OPENED_TAB);
                 startActivity(i);
             }
         });
