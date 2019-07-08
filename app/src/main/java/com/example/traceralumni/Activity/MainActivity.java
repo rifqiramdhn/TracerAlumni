@@ -21,11 +21,14 @@ import com.example.traceralumni.Adapter.OpFragPagerAdapter;
 import com.example.traceralumni.Adapter.PimFragPagerAdapter;
 import com.example.traceralumni.R;
 import com.example.traceralumni.Adapter.AlumniFragPagerAdapter;
+import com.google.android.gms.dynamic.IFragmentWrapper;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
 
 import java.util.Arrays;
+
+import javax.security.auth.login.LoginException;
 
 public class MainActivity extends AppCompatActivity {
     ConstraintLayout cl_icon1, cl_icon2, cl_icon3, cl_icon4;
@@ -39,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String JENIS_USER_ALUMNI = "jenis_user_alumni";
     public static final String JENIS_USER_PIMPINAN = "jenis_user_pimpinan";
     public static final String JENIS_USER_OPERATOR = "jenis_user_operator";
+
+    public static final String INDEX_OPENED_TAB_KEY = "index_opened_tab_key";
 
     public static int INDEX_OPENED_TAB;
 
@@ -74,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //coba masuk sebagai alumni
-        JENIS_USER = JENIS_USER_OPERATOR;
+        JENIS_USER = JENIS_USER_PIMPINAN;
         STATE_USER_LOGGED = 1;
         getDataUser();
     }
@@ -99,6 +104,12 @@ public class MainActivity extends AppCompatActivity {
                 doubleBackToExitPressedOnce = false;
             }
         }, 2000);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        bukaTabAwal();
     }
 
     public void getDataUser() {
@@ -331,7 +342,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setTabLayout(TabLayout tabLayout, int arrayDrawable[], final String titleNavBar[]) {
-        Log.e("aldy", Arrays.toString(titleNavBar));
         View arrayCustomView[] = new View[arrayDrawable.length];
         for (int i = 0; i < arrayDrawable.length; i++) {
             arrayCustomView[i] = getLayoutInflater().inflate(R.layout.custom_view_tab, null);
@@ -368,39 +378,29 @@ public class MainActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+    }
 
+    public void bukaTabAwal() { //true kalau ada intent
+        Intent i = getIntent();
+        if (i != null) {
+            int tab_number;
+            if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
+                tab_number = i.getIntExtra(INDEX_OPENED_TAB_KEY, 2);
+            } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)) {
+                tab_number = i.getIntExtra(INDEX_OPENED_TAB_KEY, 0);
+            } else {
+                tab_number = i.getIntExtra(INDEX_OPENED_TAB_KEY, 1);
+            }
 
-        //langsung pilih ke beranda saat pertama buka aplikasi
-        Log.e("aldy", JENIS_USER);
-        if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
-            if (getIntent() == null) {
-                TabLayout.Tab tab = tabLayout.getTabAt(2);
-                tab.select();
-                INDEX_OPENED_TAB = 2;
+            if (tab_number == 0) {
+                tabLayout.getTabAt(1).select();
+                tabLayout.getTabAt(0).select();
+                INDEX_OPENED_TAB = 0;
             } else {
-                Intent i = getIntent();
-                TabLayout.Tab tab = tabLayout.getTabAt(i.getIntExtra("Tambah", 2));
-                tab.select();
-                INDEX_OPENED_TAB = i.getIntExtra("Tambah", 2);
+                tabLayout.getTabAt(tab_number).select();
+                INDEX_OPENED_TAB = tab_number;
             }
-        } else if (JENIS_USER.equals(JENIS_USER_OPERATOR)) {
-            if (getIntent() == null){
-                TabLayout.Tab tab = tabLayout.getTabAt(1);
-                tab.select();
-                INDEX_OPENED_TAB = 1;
-            } else {
-                Intent i2 = getIntent();
-                TabLayout.Tab tab = tabLayout.getTabAt(i2.getIntExtra("Tab", 1));
-                tab.select();
-                INDEX_OPENED_TAB = i2.getIntExtra("Tab", 1);
-                Log.e("cok", "" + i2.getIntExtra("Tab", 1));
-            }
-        } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)) {
-            TabLayout.Tab tab = tabLayout.getTabAt(1);
-            tab.select();
-            INDEX_OPENED_TAB = 1;
         } else {
-
         }
     }
 
@@ -565,7 +565,7 @@ public class MainActivity extends AppCompatActivity {
                         //icon search
                         ConstraintLayout cl_search_lowongan = findViewById(R.id.cl_fragment_op_lowongan_search);
                         TextView tv_permintaan_lowongan = findViewById(R.id.tv_permintaan_lowongan);
-                        if (cl_search_lowongan.getVisibility() == View.GONE){
+                        if (cl_search_lowongan.getVisibility() == View.GONE) {
                             cl_search_lowongan.setVisibility(View.VISIBLE);
                             tv_permintaan_lowongan.setVisibility(View.GONE);
                         } else {

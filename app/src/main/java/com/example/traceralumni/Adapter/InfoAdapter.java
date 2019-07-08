@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
 
 public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> implements Filterable {
 
@@ -69,7 +70,7 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> im
                 context.startActivity(intent);
             }
         });
-        if (!JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
+        if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)) {
             holder.cl_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
