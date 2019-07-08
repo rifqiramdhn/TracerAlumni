@@ -13,6 +13,8 @@ import com.example.traceralumni.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
+import static com.example.traceralumni.Activity.SuntingProfilActivity.PICK_ADDRESS_REQUEST;
+
 public class LocationPickerActivity extends AppCompatActivity {
 
     ConstraintLayout cl_iconBack, cl_iconConfirm;
@@ -71,6 +73,7 @@ public class LocationPickerActivity extends AppCompatActivity {
         intent.putExtra(LOKASI_EXTRA_KEY, LOKASI_EXTRA);
         intent.putExtra(KODE_POS_EXTRA_KEY, KODE_POS_EXTRA);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        this.setResult(PICK_ADDRESS_REQUEST, intent);
+        finish();
     }
 }
