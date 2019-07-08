@@ -415,6 +415,29 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_telpon"
                 app:layout_constraintTop_toBottomOf="@+id/txt_judul_hubungi" />
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/cl_btn_hubungi_lowongan"
+                android:layout_width="@dimen/icon_btn_width"
+                android:layout_height="@dimen/icon_btn_height"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:background="@drawable/card_sharp_edges"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_hubungi"
+                app:layout_constraintStart_toEndOf="@+id/txt_hubungi"
+                app:layout_constraintTop_toTopOf="@+id/txt_judul_hubungi">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="@dimen/icon_width"
+                    android:layout_height="@dimen/icon_height"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_local_phone" />
+            </android.support.constraint.ConstraintLayout>
+
         </android.support.constraint.ConstraintLayout>
 
     </ScrollView>

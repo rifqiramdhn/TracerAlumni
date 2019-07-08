@@ -54,6 +54,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
     Spinner spn_kewarganegaraaan;
 
     static final int PICK_PHOTO_REQUEST = 1;
+    static final int PICK_ADDRESS_REQUEST = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,16 +89,6 @@ public class SuntingProfilActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Intent intent = getIntent();
-        if (intent != null) {
-            edt_alamat.setText(intent.getStringExtra(LOKASI_EXTRA_KEY));
-            edt_kode_pos.setText(intent.getStringExtra(KODE_POS_EXTRA_KEY));
-        }
-    }
-
     private void getPhotoFromGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
@@ -118,6 +109,9 @@ public class SuntingProfilActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+        } else if (requestCode == PICK_ADDRESS_REQUEST){
+            edt_alamat.setText(data.getStringExtra(LOKASI_EXTRA_KEY));
+            edt_kode_pos.setText(data.getStringExtra(KODE_POS_EXTRA_KEY));
         }
     }
 
@@ -133,7 +127,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
 
     private void moveToLocationPickerActivity() {
         Intent i = new Intent(SuntingProfilActivity.this, LocationPickerActivity.class);
-        startActivity(i);
+        startActivityForResult(i, PICK_ADDRESS_REQUEST);
     }
 
     private void setIcon() {
