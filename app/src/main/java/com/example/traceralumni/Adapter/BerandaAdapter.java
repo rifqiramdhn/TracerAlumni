@@ -1,6 +1,8 @@
 package com.example.traceralumni.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -9,8 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.traceralumni.Activity.DetailDonasiActivity;
+import com.example.traceralumni.Activity.DetailLowonganActivity;
 import com.example.traceralumni.Model.BerandaModel;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.Model.InfoModel;
@@ -53,7 +58,8 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
             viewHolder.container_donasi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //intent pindah ke detail donasi
+                    Intent intent = new Intent(context, DetailDonasiActivity.class);
+                    context.startActivity(intent);
                 }
             });
 
@@ -63,20 +69,16 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
             viewHolder.container_donasi.setVisibility(View.VISIBLE);
         } else if (list.getJenis_data().equals("data_info")) {
             final InfoModel infoModel = list.getInfoModel();
-            viewHolder.i_cl_link.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //intent pindah ke browser pakai link dari infoModel.getLink()
-                }
-            });
             viewHolder.i_isi.setText(infoModel.getIsi());
             viewHolder.i_judul.setText(infoModel.getJudul());
             viewHolder.i_tanggal.setText("" + infoModel.getTanggal());
-            viewHolder.i_link.setText(infoModel.getLink());
             viewHolder.container_info.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //ini kalau infonya diclick
+                    String url = infoModel.getLink();
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    context.startActivity(intent);
                 }
             });
 
@@ -93,7 +95,8 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
             viewHolder.container_lowongan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //intent pindah ke detail lowongan
+                    Intent intent = new Intent(context, DetailLowonganActivity.class);
+                    context.startActivity(intent);
                 }
             });
 
@@ -114,8 +117,8 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
         private TextView d_namaKegiatan, d_totalBiaya, d_tanggalDonasi, d_tulisanDonasi;
 
         //untuk info
-        private TextView i_judul, i_isi, i_link, i_tanggal;
-        private ConstraintLayout i_cl_link;
+        private TextView i_judul, i_isi, i_tanggal;
+        private ImageView i_iv_link;
 
         //untuk lowongan
         private TextView l_txtTitle, l_txtPerusahaan, l_txtLokasi, l_txtKisaranGaji;
@@ -145,20 +148,17 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
             //untuk info
             i_judul = itemView.findViewById(R.id.tv_card_info_judul);
             i_isi = itemView.findViewById(R.id.tv_card_info_isi);
-            i_link = itemView.findViewById(R.id.tv_card_info_link);
             i_tanggal = itemView.findViewById(R.id.tv_card_info_tanggal);
+            i_iv_link = itemView.findViewById(R.id.img_card_info_link);
 
             //buat diklik
-            i_cl_link = itemView.findViewById(R.id.cl_card_info_link);
             container_info = itemView.findViewById(R.id.card_beranda_info);
 
             if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
-                i_cl_link.setVisibility(View.VISIBLE);
-                i_link.setVisibility(View.GONE);
+                i_iv_link.setVisibility(View.VISIBLE);
                 i_tanggal.setVisibility(View.GONE);
             } else {
-                i_cl_link.setVisibility(View.GONE);
-                i_link.setVisibility(View.VISIBLE);
+                i_iv_link.setVisibility(View.GONE);
                 i_tanggal.setVisibility(View.VISIBLE);
             }
 

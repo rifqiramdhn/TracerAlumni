@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,18 +51,8 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> im
         final InfoModel infoModel = infoModels.get(position);
         holder.judul.setText(infoModel.getJudul());
         holder.isi.setText(infoModel.getIsi());
-        holder.link.setText(infoModel.getLink());
 //        holder.tanggal.setText(infoModel.getTanggal().toString());
-        holder.link.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String url = infoModel.getLink();
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(url));
-                context.startActivity(intent);
-            }
-        });
-        holder.cl_link.setOnClickListener(new View.OnClickListener() {
+        holder.cl_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String url = infoModel.getLink();
@@ -94,27 +85,26 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> im
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         //Deklarasi TextView nama, chat, waktu
-        private TextView judul, isi, link, tanggal;
+        private TextView judul, isi, tanggal;
 
-        private ConstraintLayout cl_link, cl_card;
+        private ConstraintLayout cl_card;
+
+        private ImageView iv_link;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
             judul = itemView.findViewById(R.id.tv_card_info_judul);
             isi = itemView.findViewById(R.id.tv_card_info_isi);
-            link = itemView.findViewById(R.id.tv_card_info_link);
             tanggal = itemView.findViewById(R.id.tv_card_info_tanggal);
-            cl_link = itemView.findViewById(R.id.cl_card_info_link);
+            iv_link = itemView.findViewById(R.id.img_card_info_link);
             cl_card = itemView.findViewById(R.id.cl_card_info);
 
             if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
-                cl_link.setVisibility(View.VISIBLE);
-                link.setVisibility(View.GONE);
+                iv_link.setVisibility(View.VISIBLE);
                 tanggal.setVisibility(View.GONE);
             } else {
-                cl_link.setVisibility(View.GONE);
-                link.setVisibility(View.VISIBLE);
+                iv_link.setVisibility(View.GONE);
                 tanggal.setVisibility(View.VISIBLE);
             }
         }

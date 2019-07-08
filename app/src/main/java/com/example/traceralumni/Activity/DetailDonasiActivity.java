@@ -41,8 +41,6 @@ public class DetailDonasiActivity extends AppCompatActivity {
 
         setIcon();
 
-        setBackButton();
-
         getView();
 
         getData();
@@ -64,6 +62,13 @@ public class DetailDonasiActivity extends AppCompatActivity {
         imgBack.setImageResource(R.drawable.ic_arrow_back);
 
         cl_back.setVisibility(View.VISIBLE);
+
+        cl_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     private void getData() {
@@ -120,38 +125,6 @@ public class DetailDonasiActivity extends AppCompatActivity {
         });
     }
 
-    private void setBackButton() {
-
-        if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
-            cl_back.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(DetailDonasiActivity.this, DonasiActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                }
-            });
-        } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_PIMPINAN)) {
-            cl_back.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onBackPressed();
-                }
-            });
-        } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)) {
-            cl_back.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //Diganti intentnya ke mana
-                    Intent intent = new Intent(DetailDonasiActivity.this, PermintaanDonasiActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                }
-            });
-        }
-
-    }
-
     private void setDonasiButton() {
         if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
             btn_donasi.setOnClickListener(new View.OnClickListener() {
@@ -169,7 +142,8 @@ public class DetailDonasiActivity extends AppCompatActivity {
             btn_donasi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Diganti intentnya ke mana
+                    Intent intent = new Intent(DetailDonasiActivity.this,OpListDonaturActivity.class);
+                    startActivity(intent);
                 }
             });
 
