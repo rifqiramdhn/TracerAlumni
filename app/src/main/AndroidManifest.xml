@@ -17,7 +17,6 @@
         <activity android:name=".Activity.OpListDonaturActivity"></activity>
         <activity android:name=".Activity.OpPermintaanLowonganActivity" />
         <activity android:name=".Activity.KartuAlumniActivity" android:theme="@style/KartuAlumni"></activity>
-        <activity android:name=".Activity.PermintaanLowonganActivity" />
         <activity android:name=".Activity.PermintaanDonasiActivity" />
         <activity android:name=".Activity.LocationPickerActivity" />
         <activity android:name=".Activity.NominalDonasiActivity" />
@@ -42,7 +41,7 @@
         <activity android:name=".Activity.TambahRiwayatPekerjaanActivity" />
         <activity android:name=".Activity.OpDetailInfoActivity" />
         <activity android:name=".Activity.OpDetailDonasiActivity" />
-
+        <activity android:name=".Activity.DaftarAlumniActivity" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
