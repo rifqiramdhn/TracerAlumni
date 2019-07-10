@@ -47,10 +47,10 @@ public class BerandaFragment extends Fragment {
         listBeranda = new ArrayList<>();
         listBeranda.add(new BerandaModel("data_lowongan", new LowonganModel(1,"Staff Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000")));
 
-        listBeranda.add(new BerandaModel("data_donasi", new DonasiModel("Pembangunan Kantin", "Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "500.000.000")));
+//        listBeranda.add(new BerandaModel("data_donasi", new DonasiModel("Pembangunan Kantin", "Excepteur" +
+//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "500.000.000")));
 
         listBeranda.add(new BerandaModel("data_info", new InfoModel("Pencurian AC", "Lorem ipsum dolor sit amet, consectetur" +
                 " adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna" +
@@ -64,10 +64,10 @@ public class BerandaFragment extends Fragment {
                 " nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" +
                 " in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "https://www.google.com")));
 
-        listBeranda.add(new BerandaModel("data_donasi", new DonasiModel("Pembangunan Kantin", "Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "500.000.000")));
+//        listBeranda.add(new BerandaModel("data_donasi", new DonasiModel("Pembangunan Kantin", "Excepteur" +
+//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
+//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "500.000.000")));
 
         listBeranda.add(new BerandaModel("data_lowongan", new LowonganModel(1,"Staff Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000")));
 

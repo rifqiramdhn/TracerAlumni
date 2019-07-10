@@ -1,53 +1,68 @@
 package com.example.traceralumni.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class DonasiModel {
-    private String namaKegiatan, noTelp, keterangan, totalBiaya;
-    private int id, fotoResId;
-    private Date tanggal;
+    @SerializedName("id_opendonasi")
+    private Integer idDonasi;
 
-    public DonasiModel(String namaKegiatan, String noTelp, String keterangan, String totalBiaya, int id, int fotoResId, Date tanggal) {
+    @SerializedName("nama_kegiatan")
+    private String namaKegiatan;
+
+    @SerializedName("file")
+    private String file;
+
+    @SerializedName("no_rekening")
+    private Integer noRekening;
+
+    @SerializedName("keterangan")
+    private String keterangan;
+
+    @SerializedName("lokasi")
+    private String lokasi;
+
+    @SerializedName("contact_person")
+    private String contactPerson;
+
+    @SerializedName("total_anggaran")
+    private Integer totalAnggaran;
+
+    public DonasiModel(String namaKegiatan, Integer totalAnggaran) {
         this.namaKegiatan = namaKegiatan;
-        this.noTelp = noTelp;
-        this.keterangan = keterangan;
-        this.totalBiaya = totalBiaya;
-        this.id = id;
-        this.fotoResId = fotoResId;
-        this.tanggal = tanggal;
+        this.totalAnggaran = totalAnggaran;
     }
 
-    public DonasiModel(String namaKegiatan, String keterangan, String totalBiaya) {
-        this.namaKegiatan = namaKegiatan;
-        this.keterangan = keterangan;
-        this.totalBiaya = totalBiaya;
+    public Integer getIdDonasi() {
+        return idDonasi;
     }
 
     public String getNamaKegiatan() {
         return namaKegiatan;
     }
 
-    public String getNoTelp() {
-        return noTelp;
+    public String getFile() {
+        return file;
+    }
+
+    public Integer getNoRekening() {
+        return noRekening;
     }
 
     public String getKeterangan() {
         return keterangan;
     }
 
-    public String getTotalBiaya() {
-        return totalBiaya;
+    public String getLokasi() {
+        return lokasi;
     }
 
-    public int getId() {
-        return id;
+    public String getContactPerson() {
+        return contactPerson;
     }
 
-    public int getFotoResId() {
-        return fotoResId;
-    }
-
-    public Date getTanggal() {
-        return tanggal;
+    public Integer getTotalAnggaran() {
+        return totalAnggaran;
     }
 }

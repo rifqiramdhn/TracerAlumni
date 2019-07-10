@@ -54,7 +54,7 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
             DonasiModel donasiModel = list.getDonasiModel();
             viewHolder.d_namaKegiatan.setText(donasiModel.getNamaKegiatan());
 //            viewHolder.d_tanggalDonasi.setText("" + donasiModel.getTanggal());
-            viewHolder.d_totalBiaya.setText(donasiModel.getTotalBiaya());
+            viewHolder.d_totalBiaya.setText(donasiModel.getTotalAnggaran());
             viewHolder.container_donasi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

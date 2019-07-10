@@ -13,12 +13,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.traceralumni.Adapter.DonasiAdapter;
+import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DonasiActivity extends AppCompatActivity {
     ConstraintLayout cl_iconBack;
@@ -33,7 +41,7 @@ public class DonasiActivity extends AppCompatActivity {
 
     RecyclerView donasiRecycler;
     DonasiAdapter donasiAdapter;
-    ArrayList<DonasiModel> donasiModels;
+    ArrayList<DonasiModel> arrayDonasi;
 
     EditText edt_donasi_cari;
 
@@ -88,39 +96,9 @@ public class DonasiActivity extends AppCompatActivity {
             }
         });
 
-        donasiModels = new ArrayList<>();
-
-        donasiModels.add(new DonasiModel("Pembangunan Kantin", "Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "500.000.000"));
-        donasiModels.add(new DonasiModel("Pembangunan Gazebo", "Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "320.000.000"));
-        donasiModels.add(new DonasiModel("Pembangunan Gedung", "Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "453.000.000"));
-        donasiModels.add(new DonasiModel("Renovasi Kantin", "Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "2.500.000.000"));
-        donasiModels.add(new DonasiModel("Renovasi Gazebo", "Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "6.500.000.000"));
-        donasiModels.add(new DonasiModel("Renovasi Gedung", "Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "8.900.000.000"));
-
         donasiRecycler = findViewById(R.id.rv_activity_donasi);
 
-        //Mengatur LayoutManager dari Recycler daftar
-        donasiRecycler.setLayoutManager(new LinearLayoutManager(DonasiActivity.this, LinearLayoutManager.VERTICAL, false));
-        donasiAdapter = new DonasiAdapter(DonasiActivity.this, donasiModels);
-        donasiRecycler.setAdapter(donasiAdapter);
+        getAllDonasi();
 
         edt_donasi_cari.addTextChangedListener(new TextWatcher() {
             @Override
@@ -138,5 +116,39 @@ public class DonasiActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void getAllDonasi(){
+        arrayDonasi = new ArrayList<>();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.22.250.25/tracer/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<ArrayList<DonasiModel>> call = jsonPlaceHolderApi.getAllDonasi();
+        call.enqueue(new Callback<ArrayList<DonasiModel>>() {
+            @Override
+            public void onResponse(Call<ArrayList<DonasiModel>> call, Response<ArrayList<DonasiModel>> response) {
+                if (!response.isSuccessful()){
+                    return;
+                }
+
+                ArrayList<DonasiModel> donasiModels = response.body();
+                arrayDonasi.addAll(donasiModels);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<DonasiModel>> call, Throwable t) {
+                Toast.makeText(DonasiActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //Mengatur LayoutManager dari Recycler daftar
+        donasiRecycler.setLayoutManager(new LinearLayoutManager(DonasiActivity.this, LinearLayoutManager.VERTICAL, false));
+        donasiAdapter = new DonasiAdapter(DonasiActivity.this, arrayDonasi);
+        donasiRecycler.setAdapter(donasiAdapter);
     }
 }

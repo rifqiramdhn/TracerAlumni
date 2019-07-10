@@ -52,7 +52,7 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
 
         //Mengisi item dari holder menjadi item dari objek lainnyaModel
         holder.namaKegiatan.setText(donasiModel.getNamaKegiatan());
-        holder.totalBiaya.setText("Rp" + donasiModel.getTotalBiaya());
+        holder.totalBiaya.setText("Rp" + donasiModel.getTotalAnggaran());
 //        holder.tanggalDonasi.setText(donasiModel.getTanggal().toString());
         if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
             holder.container.setOnClickListener(new View.OnClickListener() {
@@ -60,9 +60,9 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), DetailDonasiActivity.class);
                     intent.putExtra("namaKegiatan", donasiModel.getNamaKegiatan());
-                    intent.putExtra("totalBiaya", donasiModel.getTotalBiaya());
+                    intent.putExtra("totalBiaya", donasiModel.getTotalAnggaran());
                     intent.putExtra("keterangan", donasiModel.getKeterangan());
-                    intent.putExtra("fotoResId", String.valueOf(donasiModel.getFotoResId()));
+//                    intent.putExtra("fotoResId", String.valueOf(donasiModel.getFotoResId()));
                     v.getContext().startActivity(intent);
                 }
             });
@@ -72,9 +72,9 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), OpDetailDonasiActivity.class);
                     intent.putExtra("namaKegiatan", donasiModel.getNamaKegiatan());
-                    intent.putExtra("totalBiaya", donasiModel.getTotalBiaya());
+                    intent.putExtra("totalBiaya", donasiModel.getTotalAnggaran());
                     intent.putExtra("keterangan", donasiModel.getKeterangan());
-                    intent.putExtra("notelp", donasiModel.getNoTelp());
+//                    intent.putExtra("notelp", donasiModel.getNoTelp());
                     v.getContext().startActivity(intent);
                 }
             });
@@ -84,9 +84,9 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), DetailDonasiActivity.class);
                     intent.putExtra("namaKegiatan", donasiModel.getNamaKegiatan());
-                    intent.putExtra("totalBiaya", donasiModel.getTotalBiaya());
+                    intent.putExtra("totalBiaya", donasiModel.getTotalAnggaran());
                     intent.putExtra("keterangan", donasiModel.getKeterangan());
-                    intent.putExtra("fotoResId", String.valueOf(donasiModel.getFotoResId()));
+//                    intent.putExtra("fotoResId", String.valueOf(donasiModel.getFotoResId()));
                     v.getContext().startActivity(intent);
                 }
             });
