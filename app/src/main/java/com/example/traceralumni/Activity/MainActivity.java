@@ -2,6 +2,7 @@ package com.example.traceralumni.Activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
@@ -45,9 +46,14 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String INDEX_OPENED_TAB_KEY = "index_opened_tab_key";
 
-    public static int INDEX_OPENED_TAB;
+    public static final String SHARE_PREFS = "share_prefs";
+    public static final String NIM_PREF = "nim_pref";
+    public static final String JENIS_USER_PREF = "jenis_user_pref";
+    public static final String STATE_USER_LOGGED_PREF = "state_user_logged_pref";
 
-    private static int STATE_USER_LOGGED = 0; //0 berarti belum login, 1 berarti sudah login
+    public static int INDEX_OPENED_TAB;
+    public static int STATE_USER_LOGGED; //0 berarti belum login, 1 berarti sudah login
+    public static int NIM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,9 +84,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //coba masuk sebagai alumni
-        JENIS_USER = JENIS_USER_ALUMNI;
-        STATE_USER_LOGGED = 1;
+        loadData();
         getDataUser();
     }
 
@@ -106,14 +110,20 @@ public class MainActivity extends AppCompatActivity {
         }, 2000);
     }
 
-    public void getDataUser() {
-        //method untuk mendapatkan data" user login atau belum
-        //jika sudah login maka ambil data yang sudah tersimpan di sharepreference
-        int user_log = STATE_USER_LOGGED;
-        if (user_log == 0) {
+    private void loadData(){
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREFS, MODE_PRIVATE);
+        STATE_USER_LOGGED = sharedPreferences.getInt(STATE_USER_LOGGED_PREF, 0);
+        if (STATE_USER_LOGGED != 0){
+            JENIS_USER = sharedPreferences.getString(JENIS_USER_PREF, "");
+            if (JENIS_USER.equals(JENIS_USER_ALUMNI)){
+                NIM = sharedPreferences.getInt(NIM_PREF, 0);
+            }
+        } else {
             moveActivityToLogin();
         }
+    }
 
+    public void getDataUser() {
         AlumniFragPagerAdapter adapterAlumni = new AlumniFragPagerAdapter(getSupportFragmentManager());
         OpFragPagerAdapter adapterOperator = new OpFragPagerAdapter(getSupportFragmentManager());
         PimFragPagerAdapter adapterPimpinan = new PimFragPagerAdapter(getSupportFragmentManager());

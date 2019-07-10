@@ -61,10 +61,10 @@ public class DaftarFragment extends Fragment {
         edt_cari_angkatan = rootView.findViewById(R.id.edt_fragment_daftar_tahun);
 
         daftarModels = new ArrayList<>();
-        daftarModels.add(new DaftarModel("Rifqi Ramdhani", "2019", 1));
-        daftarModels.add(new DaftarModel("Budi Fauzan", "2016", 2));
-        daftarModels.add(new DaftarModel("Rizaldy Ilham Akbar", "2014", 3));
-        daftarModels.add(new DaftarModel("Rosa Mardiana", "2014", 4));
+//        daftarModels.add(new DaftarModel("Rifqi Ramdhani", "2019", 1));
+//        daftarModels.add(new DaftarModel("Budi Fauzan", "2016", 2));
+//        daftarModels.add(new DaftarModel("Rizaldy Ilham Akbar", "2014", 3));
+//        daftarModels.add(new DaftarModel("Rosa Mardiana", "2014", 4));
 
         daftarRecycler = rootView.findViewById(R.id.fragment_daftar_recycler_view);
 
