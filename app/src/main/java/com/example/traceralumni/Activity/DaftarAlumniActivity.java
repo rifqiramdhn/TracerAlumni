@@ -40,22 +40,22 @@ public class DaftarAlumniActivity extends AppCompatActivity {
         setNavBar();
 
         daftarModels = new ArrayList<>();
-        daftarModels.add(new DaftarModel("Rifqi Ramdhani", "2019", 1));
-        daftarModels.add(new DaftarModel("Budi Fauzan", "2016", 2));
-        daftarModels.add(new DaftarModel("Rizaldy Ilham Akbar", "2014", 3));
-        daftarModels.add(new DaftarModel("Rosa Mardiana", "2014", 4));
-        daftarModels.add(new DaftarModel("Rifqi Ramdhani", "2019", 1));
-        daftarModels.add(new DaftarModel("Budi Fauzan", "2016", 2));
-        daftarModels.add(new DaftarModel("Rizaldy Ilham Akbar", "2014", 3));
-        daftarModels.add(new DaftarModel("Rosa Mardiana", "2014", 4));
-        daftarModels.add(new DaftarModel("Rifqi Ramdhani", "2019", 1));
-        daftarModels.add(new DaftarModel("Budi Fauzan", "2016", 2));
-        daftarModels.add(new DaftarModel("Rizaldy Ilham Akbar", "2014", 3));
-        daftarModels.add(new DaftarModel("Rosa Mardiana", "2014", 4));
-        daftarModels.add(new DaftarModel("Rifqi Ramdhani", "2019", 1));
-        daftarModels.add(new DaftarModel("Budi Fauzan", "2016", 2));
-        daftarModels.add(new DaftarModel("Rizaldy Ilham Akbar", "2014", 3));
-        daftarModels.add(new DaftarModel("Rosa Mardiana", "2014", 4));
+//        daftarModels.add(new DaftarModel("Rifqi Ramdhani", "2019", 1));
+//        daftarModels.add(new DaftarModel("Budi Fauzan", "2016", 2));
+//        daftarModels.add(new DaftarModel("Rizaldy Ilham Akbar", "2014", 3));
+//        daftarModels.add(new DaftarModel("Rosa Mardiana", "2014", 4));
+//        daftarModels.add(new DaftarModel("Rifqi Ramdhani", "2019", 1));
+//        daftarModels.add(new DaftarModel("Budi Fauzan", "2016", 2));
+//        daftarModels.add(new DaftarModel("Rizaldy Ilham Akbar", "2014", 3));
+//        daftarModels.add(new DaftarModel("Rosa Mardiana", "2014", 4));
+//        daftarModels.add(new DaftarModel("Rifqi Ramdhani", "2019", 1));
+//        daftarModels.add(new DaftarModel("Budi Fauzan", "2016", 2));
+//        daftarModels.add(new DaftarModel("Rizaldy Ilham Akbar", "2014", 3));
+//        daftarModels.add(new DaftarModel("Rosa Mardiana", "2014", 4));
+//        daftarModels.add(new DaftarModel("Rifqi Ramdhani", "2019", 1));
+//        daftarModels.add(new DaftarModel("Budi Fauzan", "2016", 2));
+//        daftarModels.add(new DaftarModel("Rizaldy Ilham Akbar", "2014", 3));
+//        daftarModels.add(new DaftarModel("Rosa Mardiana", "2014", 4));
 
         daftarRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         daftarAdapter = new DaftarAdapter(this, daftarModels);

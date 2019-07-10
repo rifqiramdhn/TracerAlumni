@@ -40,9 +40,9 @@ public class MainActivity extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce = false;
 
     public static String JENIS_USER = "";
-    public static final String JENIS_USER_ALUMNI = "jenis_user_alumni";
-    public static final String JENIS_USER_PIMPINAN = "jenis_user_pimpinan";
-    public static final String JENIS_USER_OPERATOR = "jenis_user_operator";
+    public static final String JENIS_USER_ALUMNI = "alumni";
+    public static final String JENIS_USER_PIMPINAN = "pimpinan";
+    public static final String JENIS_USER_OPERATOR = "operator";
 
     public static final String INDEX_OPENED_TAB_KEY = "index_opened_tab_key";
 
@@ -84,7 +84,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        loadData();
+//        loadData();
+
+        if (STATE_USER_LOGGED == 0){
+            moveActivityToLogin();
+        }
+
         getDataUser();
     }
 

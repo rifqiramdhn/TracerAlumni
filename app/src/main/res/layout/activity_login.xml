@@ -36,7 +36,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText
-            android:id="@+id/edt_sunting_profil_alamat"
+            android:id="@+id/edt_login_username"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Username"
@@ -60,7 +60,7 @@
         app:passwordToggleEnabled="true">
 
         <EditText
-            android:id="@+id/edt_password"
+            android:id="@+id/edt_login_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Password"

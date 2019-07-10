@@ -55,7 +55,7 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
         holder.nama.setText(daftarModel.getNama());
 
         //Mengisi item dari holder menjadi item dari objek daftarModel
-        holder.prodi.setText(String.valueOf(daftarModel.getIdProdi()));
+        holder.prodi.setText(String.valueOf(daftarModel.getId_prodi()));
 
         //Mengisi item dari holder menjadi item dari objek daftarModel
         holder.angkatan.setText(daftarModel.getAngkatan());
