@@ -1,6 +1,7 @@
 package com.example.traceralumni.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -21,7 +22,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_PREF;
+import static com.example.traceralumni.Activity.MainActivity.NIM_PREF;
+import static com.example.traceralumni.Activity.MainActivity.SHARE_PREFS;
 import static com.example.traceralumni.Activity.MainActivity.STATE_USER_LOGGED;
+import static com.example.traceralumni.Activity.MainActivity.STATE_USER_LOGGED_PREF;
 
 public class LoginActivity extends AppCompatActivity {
     FrameLayout frameLayout;
@@ -62,11 +68,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 DaftarModel daftarModel = response.body();
-                Toast.makeText(LoginActivity.this, daftarModel.getStatus_data(), Toast.LENGTH_SHORT).show();
                 if (daftarModel.getStatus_data().equals("y")){
-                    saveData();
-                    JENIS_USER = daftarModel.getJenis_user();
-                    STATE_USER_LOGGED = 1;
+                    saveData(daftarModel);
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
@@ -79,8 +82,20 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void saveData(){
+    private void saveData(DaftarModel daftarModel){
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
+        editor.putString(JENIS_USER_PREF, daftarModel.getJenis_user());
+        editor.putInt(STATE_USER_LOGGED_PREF, 1);
+
+        if (daftarModel.getJenis_user().equals(JENIS_USER_ALUMNI)){
+            editor.putString(NIM_PREF, daftarModel.getNim());
+        }
+
+        editor.apply();
+
+//        Toast.makeText(this, "jenis user : " + daftarModel.getJenis_user() + "\nnim user : " + daftarModel.getNim(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

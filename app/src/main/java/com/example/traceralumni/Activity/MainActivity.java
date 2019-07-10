@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static int INDEX_OPENED_TAB;
     public static int STATE_USER_LOGGED; //0 berarti belum login, 1 berarti sudah login
-    public static int NIM;
+    public static String NIM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,11 +84,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        loadData();
+        loadData();
 
-        if (STATE_USER_LOGGED == 0){
-            moveActivityToLogin();
-        }
+//        if (STATE_USER_LOGGED == 0){
+//            moveActivityToLogin();
+//        }
 
         getDataUser();
     }
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         if (STATE_USER_LOGGED != 0){
             JENIS_USER = sharedPreferences.getString(JENIS_USER_PREF, "");
             if (JENIS_USER.equals(JENIS_USER_ALUMNI)){
-                NIM = sharedPreferences.getInt(NIM_PREF, 0);
+                NIM = sharedPreferences.getString(NIM_PREF, "");
             }
         } else {
             moveActivityToLogin();
