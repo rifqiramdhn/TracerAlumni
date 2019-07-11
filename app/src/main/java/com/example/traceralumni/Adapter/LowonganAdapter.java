@@ -27,7 +27,8 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
     private ArrayList<LowonganModel> listLowongan;
     private ArrayList<LowonganModel> listLowonganFull;
 
-    public LowonganAdapter(ArrayList<LowonganModel> listLowongan){
+    public LowonganAdapter(Context context, ArrayList<LowonganModel> listLowongan){
+        this.context = context;
         this.listLowongan = listLowongan;
         listLowonganFull = new ArrayList<>(listLowongan);
     }
@@ -45,7 +46,7 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
         LowonganModel list = listLowongan.get(i);
         listLowonganHolder.txtTitle.setText(list.getNama_lowongan());
         listLowonganHolder.txtPerusahaan.setText(list.getNama_perusahaan());
-        listLowonganHolder.txtLokasi.setText(list.getLokasi_perusahaan());
+        listLowonganHolder.txtLokasi.setText(list.getAlamat_perusahaan());
         listLowonganHolder.txtKisaranGaji.setText("~Rp "+list.getKisaran_gaji());
         if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
             listLowonganHolder.container.setOnClickListener(new View.OnClickListener() {

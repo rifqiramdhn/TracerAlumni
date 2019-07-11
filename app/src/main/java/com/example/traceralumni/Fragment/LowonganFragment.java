@@ -2,6 +2,8 @@ package com.example.traceralumni.Fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,21 +13,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.LowonganModel;
 import com.example.traceralumni.R;
 import com.example.traceralumni.Adapter.LowonganAdapter;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class LowonganFragment extends Fragment {
-    RecyclerView recyclerView;
+    RecyclerView lowonganRecycler;
     LowonganAdapter lowonganAdapter;
-    ArrayList<LowonganModel> listLowongan;
+    ArrayList<LowonganModel> arrayLowongan;
 
     EditText edt_cari;
 
@@ -41,28 +53,64 @@ public class LowonganFragment extends Fragment {
 
         edt_cari = rootView.findViewById(R.id.edt_lowongan_cari);
 
-        listLowongan = new ArrayList<>();
-        listLowongan.add(new LowonganModel(1,"Staff Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
-        listLowongan.add(new LowonganModel(2,"Manager Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
-        listLowongan.add(new LowonganModel(3,"Office Boy Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
-        listLowongan.add(new LowonganModel(4,"Programmer Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
-        listLowongan.add(new LowonganModel(5,"Database Admin Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
-        listLowongan.add(new LowonganModel(6,"Staff Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
-        listLowongan.add(new LowonganModel(7,"Staff Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
-        listLowongan.add(new LowonganModel(8,"Staff Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000"));
+        arrayLowongan = new ArrayList<>();
 
-        recyclerView = rootView.findViewById(R.id.rv_lowongan);
-        recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.VERTICAL, false));
+        lowonganRecycler = rootView.findViewById(R.id.rv_lowongan);
 
-        lowonganAdapter = new LowonganAdapter(listLowongan);
-        recyclerView.setAdapter(lowonganAdapter);
+        lowonganRecycler.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.VERTICAL, false));
+
+        lowonganAdapter = new LowonganAdapter(rootView.getContext(), arrayLowongan);
+        lowonganRecycler.setAdapter(lowonganAdapter);
 
         return rootView;
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getAllLowongan();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
+    }
+
+    private void getAllLowongan(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<ArrayList<LowonganModel>> lowongan = jsonPlaceHolderApi.getAllLowongan();
+        lowongan.enqueue(new Callback<ArrayList<LowonganModel>>() {
+            @Override
+            public void onResponse(Call<ArrayList<LowonganModel>> call, Response<ArrayList<LowonganModel>> response) {
+                if(!response.isSuccessful()){
+                    return;
+                }
+
+                arrayLowongan.clear();
+                ArrayList<LowonganModel> lowonganResponse = response.body();
+                arrayLowongan.addAll(lowonganResponse);
+
+                final LowonganAdapter lowonganAdapterNew = new LowonganAdapter(getActivity(), arrayLowongan);
+                lowonganRecycler.setAdapter(lowonganAdapterNew);
+
+                setSearch(lowonganAdapterNew);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<LowonganModel>> call, Throwable t) {
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        lowonganAdapter.notifyDataSetChanged();
+    }
+
+    private void setSearch(final LowonganAdapter lowonganAdapter){
         edt_cari.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

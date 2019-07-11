@@ -22,10 +22,19 @@ import com.example.traceralumni.Activity.KartuAlumniActivity;
 import com.example.traceralumni.Activity.LoginActivity;
 import com.example.traceralumni.Activity.RiwayatPekerjaanActivity;
 import com.example.traceralumni.Activity.SuntingProfilActivity;
+import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.Model.LainnyaModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHolder> {
 
@@ -196,4 +205,5 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
 
         alertDialog.show();
     }
+
 }

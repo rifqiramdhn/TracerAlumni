@@ -89,7 +89,7 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
         } else {
             LowonganModel lowonganModel = list.getLowonganModel();
             viewHolder.l_txtKisaranGaji.setText(lowonganModel.getKisaran_gaji());
-            viewHolder.l_txtLokasi.setText(lowonganModel.getLokasi_perusahaan());
+            viewHolder.l_txtLokasi.setText(lowonganModel.getAlamat_perusahaan());
             viewHolder.l_txtPerusahaan.setText(lowonganModel.getNama_perusahaan());
             viewHolder.l_txtTitle.setText(lowonganModel.getNama_lowongan());
             viewHolder.container_lowongan.setOnClickListener(new View.OnClickListener() {
