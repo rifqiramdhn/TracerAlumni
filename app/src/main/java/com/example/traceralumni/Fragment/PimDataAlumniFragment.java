@@ -65,12 +65,14 @@ public class PimDataAlumniFragment extends Fragment {
 
     private void customSpinner(){
         String[] jurusan = new String[]{
+            "Jurusan",
             "Ilmu Ekonomi",
             "Akuntansi",
             "Manajemen"
         };
 
         String[] prodi = new String[]{
+            "Prodi",
             "S1 - Akuntansi (Internasional)",
             "S1 - Ekonomi, Keuangan, dan Perbankan",
             "S1 - Ekonomi, Keuangan, dan Perbankan (Internasional)",
