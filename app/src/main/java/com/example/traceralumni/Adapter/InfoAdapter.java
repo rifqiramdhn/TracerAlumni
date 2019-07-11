@@ -1,10 +1,12 @@
 package com.example.traceralumni.Adapter;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,10 +68,17 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> im
             holder.cl_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String url = infoModel.getLink();
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(url));
-                    context.startActivity(intent);
+                    String url = infoModels.get(position).getLink();
+                    try {
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(url));
+                        context.startActivity(i);
+                    } catch (ActivityNotFoundException e){
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        String urlNew = "http://" + url;
+                        i.setData(Uri.parse(urlNew));
+                        context.startActivity(i);
+                    }
                 }
             });
         }

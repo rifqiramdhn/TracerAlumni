@@ -90,7 +90,7 @@ public class PimInfoFragment extends Fragment {
                 ArrayList<InfoModel> donasiResponse = response.body();
                 arrayInfo.addAll(donasiResponse);
 
-                final InfoAdapter infoAdapterNew = new InfoAdapter(rootView.getContext(), arrayInfo);
+                final InfoAdapter infoAdapterNew = new InfoAdapter(getActivity(), arrayInfo);
                 infoRecycler.setAdapter(infoAdapterNew);
 
                 setSearch(infoAdapterNew);
