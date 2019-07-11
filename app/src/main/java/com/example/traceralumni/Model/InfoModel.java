@@ -1,30 +1,43 @@
 package com.example.traceralumni.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class InfoModel {
-    private String judul,isi,link;
+
+    @SerializedName("id_info")
+    private Integer idInfo;
+
+    @SerializedName("judul")
+    private String judul;
+
+    @SerializedName("keterangan")
+    private String keterangan;
+
+    @SerializedName("link")
+    private String link;
+
     private Date tanggal;
 
-    public InfoModel(String judul, String isi, String link, Date tanggal) {
-        this.judul = judul;
-        this.isi = isi;
-        this.link = link;
-        this.tanggal = tanggal;
-    }
+//    public InfoModel(Integer idInfo, String judul, String keterangan, String link, Date tanggal) {
+//        this.idInfo = idInfo;
+//        this.judul = judul;
+//        this.keterangan = keterangan;
+//        this.link = link;
+//        this.tanggal = tanggal;
+//    }
 
-    public InfoModel(String judul, String isi, String link) {
-        this.judul = judul;
-        this.isi = isi;
-        this.link = link;
+    public Integer getIdInfo() {
+        return idInfo;
     }
 
     public String getJudul() {
         return judul;
     }
 
-    public String getIsi() {
-        return isi;
+    public String getKeterangan() {
+        return keterangan;
     }
 
     public String getLink() {

@@ -69,7 +69,7 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
             viewHolder.container_donasi.setVisibility(View.VISIBLE);
         } else if (list.getJenis_data().equals("data_info")) {
             final InfoModel infoModel = list.getInfoModel();
-            viewHolder.i_isi.setText(infoModel.getIsi());
+            viewHolder.i_isi.setText(infoModel.getKeterangan());
             viewHolder.i_judul.setText(infoModel.getJudul());
             viewHolder.i_tanggal.setText("" + infoModel.getTanggal());
             viewHolder.container_info.setOnClickListener(new View.OnClickListener() {

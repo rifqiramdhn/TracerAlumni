@@ -29,10 +29,10 @@ public class DonasiModel {
     @SerializedName("total_anggaran")
     private Integer totalAnggaran;
 
-    public DonasiModel(String namaKegiatan, Integer totalAnggaran) {
-        this.namaKegiatan = namaKegiatan;
-        this.totalAnggaran = totalAnggaran;
-    }
+//    public DonasiModel(String namaKegiatan, Integer totalAnggaran) {
+//        this.namaKegiatan = namaKegiatan;
+//        this.totalAnggaran = totalAnggaran;
+//    }
 
     public Integer getIdDonasi() {
         return idDonasi;
