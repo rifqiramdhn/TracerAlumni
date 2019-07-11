@@ -4,11 +4,13 @@ package com.example.traceralumni.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traceralumni.Activity.DonasiActivity;
 import com.example.traceralumni.Adapter.DonasiAdapter;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DonasiModel;
@@ -67,22 +70,6 @@ public class OpDonasiFragment extends Fragment {
         donasiAdapter = new DonasiAdapter(rootView.getContext(), arrayDonasi);
         donasiRecycler.setAdapter(donasiAdapter);
 
-        edt_donasi_cari.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                donasiAdapter.getFilter().filter(charSequence);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
         tv_permintaan_donasi = rootView.findViewById(R.id.tv_fragment_op_donasi_permintaan);
         tv_permintaan_donasi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,10 +83,18 @@ public class OpDonasiFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        Log.e("aldy", "onViewCreated jalan");
+        super.onViewCreated(view, savedInstanceState);
+        getAllDonasi();
+    }
+
+    @Override
     public void onResume() {
+        Log.e("aldy", "onResume jalan");
         super.onResume();
 
-        getAllDonasi();
+//        getAllDonasi();
 
         donasiRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -138,8 +133,14 @@ public class OpDonasiFragment extends Fragment {
                     return;
                 }
 
+                arrayDonasi.clear();
                 ArrayList<DonasiModel> donasiResponse = response.body();
                 arrayDonasi.addAll(donasiResponse);
+
+                final DonasiAdapter donasiAdapterNew = new DonasiAdapter(getActivity(), arrayDonasi);
+                donasiRecycler.setAdapter(donasiAdapterNew);
+
+                setSearch(donasiAdapterNew);
             }
 
             @Override
@@ -147,8 +148,24 @@ public class OpDonasiFragment extends Fragment {
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
-//        donasiAdapter = new DonasiAdapter(getActivity(), arrayDonasi)
-        donasiAdapter.notifyDataSetChanged();
+    private void setSearch(final DonasiAdapter donasiAdapter){
+        edt_donasi_cari.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                donasiAdapter.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 }

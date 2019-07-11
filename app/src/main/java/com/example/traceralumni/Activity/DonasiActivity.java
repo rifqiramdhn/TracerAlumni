@@ -124,6 +124,7 @@ public class DonasiActivity extends AppCompatActivity {
                     return;
                 }
 
+                arrayDonasi.clear();
                 ArrayList<DonasiModel> donasiModels = response.body();
                 arrayDonasi.addAll(donasiModels);
 
