@@ -2,7 +2,6 @@ package com.example.traceralumni;
 
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.DonasiModel;
-import com.example.traceralumni.Model.LowonganModel;
 
 import java.util.ArrayList;
 
@@ -21,6 +20,6 @@ public interface JsonPlaceHolderApi {
     @GET("get_all_donasi.php")
     Call<ArrayList<DonasiModel>> getAllDonasi();
 
-    @GET("get_all_lowongan_pekerjaan.php")
-    Call<ArrayList<LowonganModel>> getAllLowongan();
+    @GET("get_daftar_alumni.php")
+    Call<ArrayList<DaftarModel>> getDaftarAlumni();
 }

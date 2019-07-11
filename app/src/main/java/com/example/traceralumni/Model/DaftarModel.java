@@ -3,12 +3,41 @@ package com.example.traceralumni.Model;
 import java.util.Date;
 
 public class DaftarModel {
-    private String email, nim, nama, jenjang, angkatan, tahun_lulus, kewarganegaraan, alamat,
-            kode_pos, nama_negara, nama_provinsi, nama_kota, nomor_telepon, nomor_hp, jenis_kelamin,
-            tempat_lahir, facebook, twitter, foto, status_bekerja, jenis_user, status_data;
-    private int id_jurusan, id_prodi;
-    private Date tanggal_yudisium, tanggal_lahir;
-    
+    private String username;
+    private String email;
+    private String nim;
+    private String nama;
+    private String jenjang;
+    private String jurusan;
+    private String prodi;
+    private String angkatan;
+    private String tahun_lulus;
+    private String kewarganegaraan;
+    private String alamat;
+    private String kode_pos;
+    private String nama_negara;
+    private String nama_provinsi;
+    private String nama_kota;
+    private String nomor_telepon;
+    private String nomor_hp;
+    private String jenis_kelamin;
+    private String tempat_lahir;
+    private String facebook;
+    private String twitter;
+    private String foto;
+    private String status_bekerja;
+    private String status_alumni;
+
+    private String jenis_user;
+    private String status_data;
+
+    private Date tanggal_yudisium;
+    private Date tanggal_lahir;
+
+    public String getUsername() {
+        return username;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -23,6 +52,14 @@ public class DaftarModel {
 
     public String getJenjang() {
         return jenjang;
+    }
+
+    public String getJurusan() {
+        return jurusan;
+    }
+
+    public String getProdi() {
+        return prodi;
     }
 
     public String getAngkatan() {
@@ -89,20 +126,16 @@ public class DaftarModel {
         return status_bekerja;
     }
 
+    public String getStatus_alumni() {
+        return status_alumni;
+    }
+
     public String getJenis_user() {
         return jenis_user;
     }
 
     public String getStatus_data() {
         return status_data;
-    }
-
-    public int getId_jurusan() {
-        return id_jurusan;
-    }
-
-    public int getId_prodi() {
-        return id_prodi;
     }
 
     public Date getTanggal_yudisium() {
