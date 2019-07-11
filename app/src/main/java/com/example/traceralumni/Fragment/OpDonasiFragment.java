@@ -14,13 +14,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.traceralumni.Adapter.DonasiAdapter;
+import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.Activity.PermintaanDonasiActivity;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,7 +41,7 @@ public class OpDonasiFragment extends Fragment {
 
     RecyclerView donasiRecycler;
     DonasiAdapter donasiAdapter;
-    ArrayList<DonasiModel> donasiModels;
+    ArrayList<DonasiModel> arrayDonasi;
     TextView tv_permintaan_donasi;
 
     EditText edt_donasi_cari;
@@ -48,85 +58,13 @@ public class OpDonasiFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_op_donasi, container, false);
         edt_donasi_cari = rootView.findViewById(R.id.edt_fragment_op_donasi_search);
 
-        donasiModels = new ArrayList<>();
+        arrayDonasi = new ArrayList<>();
 
-//        donasiModels.add(new DonasiModel("Pembangunan Kantin", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "500.000.000"));
-//        donasiModels.add(new DonasiModel("Pembangunan Gazebo", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "320.000.000"));
-//        donasiModels.add(new DonasiModel("Pembangunan Gedung", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "453.000.000"));
-//        donasiModels.add(new DonasiModel("Renovasi Kantin", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "2.500.000.000"));
-//        donasiModels.add(new DonasiModel("Renovasi Gazebo", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "6.500.000.000"));
-//        donasiModels.add(new DonasiModel("Renovasi Gedung", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "8.900.000.000"));
-//        donasiModels.add(new DonasiModel("Pembangunan Kantin", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "500.000.000"));
-//        donasiModels.add(new DonasiModel("Pembangunan Gazebo", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "320.000.000"));
-//        donasiModels.add(new DonasiModel("Pembangunan Gedung", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "453.000.000"));
-//        donasiModels.add(new DonasiModel("Renovasi Kantin", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "2.500.000.000"));
-//        donasiModels.add(new DonasiModel("Renovasi Gazebo", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "6.500.000.000"));
-//        donasiModels.add(new DonasiModel("Renovasi Gedung", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "8.900.000.000"));
-//        donasiModels.add(new DonasiModel("Pembangunan Kantin", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "500.000.000"));
-//        donasiModels.add(new DonasiModel("Pembangunan Gazebo", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "320.000.000"));
-//        donasiModels.add(new DonasiModel("Pembangunan Gedung", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "453.000.000"));
-//        donasiModels.add(new DonasiModel("Renovasi Kantin", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "2.500.000.000"));
-//        donasiModels.add(new DonasiModel("Renovasi Gazebo", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "6.500.000.000"));
-//        donasiModels.add(new DonasiModel("Renovasi Gedung", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "8.900.000.000"));
         donasiRecycler = rootView.findViewById(R.id.rv_fragment_op_donasi);
 
         //Mengatur LayoutManager dari Recycler daftar
         donasiRecycler.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.VERTICAL, false));
-        donasiAdapter = new DonasiAdapter(rootView.getContext(), donasiModels);
+        donasiAdapter = new DonasiAdapter(rootView.getContext(), arrayDonasi);
         donasiRecycler.setAdapter(donasiAdapter);
 
         edt_donasi_cari.addTextChangedListener(new TextWatcher() {
@@ -160,6 +98,9 @@ public class OpDonasiFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        getAllDonasi();
+
         donasiRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -179,5 +120,35 @@ public class OpDonasiFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void getAllDonasi(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<ArrayList<DonasiModel>> call = jsonPlaceHolderApi.getAllDonasi();
+        call.enqueue(new Callback<ArrayList<DonasiModel>>() {
+            @Override
+            public void onResponse(Call<ArrayList<DonasiModel>> call, Response<ArrayList<DonasiModel>> response) {
+                if (!response.isSuccessful()){
+                    return;
+                }
+
+                ArrayList<DonasiModel> donasiResponse = response.body();
+                arrayDonasi.addAll(donasiResponse);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<DonasiModel>> call, Throwable t) {
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+//        donasiAdapter = new DonasiAdapter(getActivity(), arrayDonasi)
+        donasiAdapter.notifyDataSetChanged();
     }
 }

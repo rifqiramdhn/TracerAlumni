@@ -48,27 +48,27 @@ public class PimDonasiFragment extends Fragment {
 
         donasiModels = new ArrayList<>();
 
-//        donasiModels.add(new DonasiModel("Pembangunan Kantin", "Excepteur" +
+//        arrayDonasi.add(new DonasiModel("Pembangunan Kantin", "Excepteur" +
 //                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
 //                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
 //                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "500.000.000"));
-//        donasiModels.add(new DonasiModel("Pembangunan Gazebo", "Excepteur" +
+//        arrayDonasi.add(new DonasiModel("Pembangunan Gazebo", "Excepteur" +
 //                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
 //                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
 //                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "320.000.000"));
-//        donasiModels.add(new DonasiModel("Pembangunan Gedung", "Excepteur" +
+//        arrayDonasi.add(new DonasiModel("Pembangunan Gedung", "Excepteur" +
 //                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
 //                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
 //                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "453.000.000"));
-//        donasiModels.add(new DonasiModel("Renovasi Kantin", "Excepteur" +
+//        arrayDonasi.add(new DonasiModel("Renovasi Kantin", "Excepteur" +
 //                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
 //                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
 //                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "2.500.000.000"));
-//        donasiModels.add(new DonasiModel("Renovasi Gazebo", "Excepteur" +
+//        arrayDonasi.add(new DonasiModel("Renovasi Gazebo", "Excepteur" +
 //                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
 //                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
 //                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "6.500.000.000"));
-//        donasiModels.add(new DonasiModel("Renovasi Gedung", "Excepteur" +
+//        arrayDonasi.add(new DonasiModel("Renovasi Gedung", "Excepteur" +
 //                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
 //                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
 //                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "8.900.000.000"));

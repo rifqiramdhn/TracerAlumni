@@ -28,6 +28,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+
 public class DonasiActivity extends AppCompatActivity {
     ConstraintLayout cl_iconBack;
     ImageView img_iconBack;
@@ -98,6 +100,11 @@ public class DonasiActivity extends AppCompatActivity {
 
         donasiRecycler = findViewById(R.id.rv_activity_donasi);
 
+        //Mengatur LayoutManager dari Recycler daftar
+        donasiRecycler.setLayoutManager(new LinearLayoutManager(DonasiActivity.this, LinearLayoutManager.VERTICAL, false));
+        donasiAdapter = new DonasiAdapter(DonasiActivity.this, arrayDonasi);
+        donasiRecycler.setAdapter(donasiAdapter);
+
         getAllDonasi();
 
         edt_donasi_cari.addTextChangedListener(new TextWatcher() {
@@ -122,7 +129,7 @@ public class DonasiActivity extends AppCompatActivity {
         arrayDonasi = new ArrayList<>();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.22.250.25/tracer/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -146,9 +153,6 @@ public class DonasiActivity extends AppCompatActivity {
             }
         });
 
-        //Mengatur LayoutManager dari Recycler daftar
-        donasiRecycler.setLayoutManager(new LinearLayoutManager(DonasiActivity.this, LinearLayoutManager.VERTICAL, false));
-        donasiAdapter = new DonasiAdapter(DonasiActivity.this, arrayDonasi);
-        donasiRecycler.setAdapter(donasiAdapter);
+        donasiAdapter.notifyDataSetChanged();
     }
 }
