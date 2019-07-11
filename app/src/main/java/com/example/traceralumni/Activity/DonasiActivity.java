@@ -99,35 +99,16 @@ public class DonasiActivity extends AppCompatActivity {
         });
 
         donasiRecycler = findViewById(R.id.rv_activity_donasi);
-
+        arrayDonasi = new ArrayList<>();
         //Mengatur LayoutManager dari Recycler daftar
         donasiRecycler.setLayoutManager(new LinearLayoutManager(DonasiActivity.this, LinearLayoutManager.VERTICAL, false));
         donasiAdapter = new DonasiAdapter(DonasiActivity.this, arrayDonasi);
         donasiRecycler.setAdapter(donasiAdapter);
 
         getAllDonasi();
-
-        edt_donasi_cari.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                donasiAdapter.getFilter().filter(charSequence);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
     }
 
     private void getAllDonasi(){
-        arrayDonasi = new ArrayList<>();
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -145,6 +126,11 @@ public class DonasiActivity extends AppCompatActivity {
 
                 ArrayList<DonasiModel> donasiModels = response.body();
                 arrayDonasi.addAll(donasiModels);
+
+                final DonasiAdapter donasiAdapterNew = new DonasiAdapter(DonasiActivity.this, arrayDonasi);
+                donasiRecycler.setAdapter(donasiAdapterNew);
+
+                setSearch(donasiAdapterNew);
             }
 
             @Override
@@ -152,7 +138,24 @@ public class DonasiActivity extends AppCompatActivity {
                 Toast.makeText(DonasiActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
-        donasiAdapter.notifyDataSetChanged();
+    private void setSearch(final DonasiAdapter donasiAdapter){
+        edt_donasi_cari.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                donasiAdapter.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 }
