@@ -1,6 +1,5 @@
 package com.example.traceralumni.Activity;
 
-import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +15,7 @@ import com.example.traceralumni.R;
 
 import java.util.ArrayList;
 
-public class PermintaanDonasiActivity extends AppCompatActivity {
+public class OpPermintaanDonasiActivity extends AppCompatActivity {
 
     ConstraintLayout cl_back;
     ImageView imgBack;
@@ -34,9 +33,9 @@ public class PermintaanDonasiActivity extends AppCompatActivity {
 
         permintaanDonasiModels = new ArrayList<>();
         permintaanDonasiModels.add(new PermintaanDonasiModel("Paidi Sugiono", "Pembangunan Kantin", 200000000));
-        permintaanDonasiAdapter = new PermintaanDonasiAdapter(PermintaanDonasiActivity.this, permintaanDonasiModels);
+        permintaanDonasiAdapter = new PermintaanDonasiAdapter(OpPermintaanDonasiActivity.this, permintaanDonasiModels);
         permintaanDonasiRecycler = findViewById(R.id.rv_permintaan_donasi);
-        permintaanDonasiRecycler.setLayoutManager(new LinearLayoutManager(PermintaanDonasiActivity.this, LinearLayoutManager.VERTICAL, false));
+        permintaanDonasiRecycler.setLayoutManager(new LinearLayoutManager(OpPermintaanDonasiActivity.this, LinearLayoutManager.VERTICAL, false));
         permintaanDonasiRecycler.setAdapter(permintaanDonasiAdapter);
 
     }

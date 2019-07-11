@@ -47,7 +47,7 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(final DaftarAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final DaftarAdapter.ViewHolder holder, final int position) {
 
         final DaftarModel daftarModel = daftarModels.get(position);
 
@@ -63,11 +63,13 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, DetailProfilActivity.class);
-                holder.container.getContext().startActivity(i);
+                i.putExtra("daftarModel", daftarModels.get(position));
+                context.startActivity(i);
             }
         });
 
     }
+
 
     @Override
     public int getItemCount() {

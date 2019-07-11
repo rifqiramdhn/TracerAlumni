@@ -18,11 +18,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.traceralumni.Activity.DonasiActivity;
 import com.example.traceralumni.Adapter.DonasiAdapter;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DonasiModel;
-import com.example.traceralumni.Activity.PermintaanDonasiActivity;
+import com.example.traceralumni.Activity.OpPermintaanDonasiActivity;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
@@ -72,7 +71,7 @@ public class OpDonasiFragment extends Fragment {
         tv_permintaan_donasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(rootView.getContext(), PermintaanDonasiActivity.class);
+                Intent intent = new Intent(rootView.getContext(), OpPermintaanDonasiActivity.class);
                 rootView.getContext().startActivity(intent);
             }
         });

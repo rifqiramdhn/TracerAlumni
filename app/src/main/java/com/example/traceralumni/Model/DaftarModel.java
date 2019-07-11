@@ -1,8 +1,11 @@
 package com.example.traceralumni.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
-public class DaftarModel {
+public class DaftarModel implements Parcelable {
     private String username;
     private String email;
     private String nim;
@@ -33,6 +36,47 @@ public class DaftarModel {
 
     private Date tanggal_yudisium;
     private Date tanggal_lahir;
+
+    protected DaftarModel(Parcel in) {
+        username = in.readString();
+        email = in.readString();
+        nim = in.readString();
+        nama = in.readString();
+        jenjang = in.readString();
+        jurusan = in.readString();
+        prodi = in.readString();
+        angkatan = in.readString();
+        tahun_lulus = in.readString();
+        kewarganegaraan = in.readString();
+        alamat = in.readString();
+        kode_pos = in.readString();
+        nama_negara = in.readString();
+        nama_provinsi = in.readString();
+        nama_kota = in.readString();
+        nomor_telepon = in.readString();
+        nomor_hp = in.readString();
+        jenis_kelamin = in.readString();
+        tempat_lahir = in.readString();
+        facebook = in.readString();
+        twitter = in.readString();
+        foto = in.readString();
+        status_bekerja = in.readString();
+        status_alumni = in.readString();
+        jenis_user = in.readString();
+        status_data = in.readString();
+    }
+
+    public static final Creator<DaftarModel> CREATOR = new Creator<DaftarModel>() {
+        @Override
+        public DaftarModel createFromParcel(Parcel in) {
+            return new DaftarModel(in);
+        }
+
+        @Override
+        public DaftarModel[] newArray(int size) {
+            return new DaftarModel[size];
+        }
+    };
 
     public String getUsername() {
         return username;
@@ -144,5 +188,40 @@ public class DaftarModel {
 
     public Date getTanggal_lahir() {
         return tanggal_lahir;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(username);
+        dest.writeString(email);
+        dest.writeString(nim);
+        dest.writeString(nama);
+        dest.writeString(jenjang);
+        dest.writeString(jurusan);
+        dest.writeString(prodi);
+        dest.writeString(angkatan);
+        dest.writeString(tahun_lulus);
+        dest.writeString(kewarganegaraan);
+        dest.writeString(alamat);
+        dest.writeString(kode_pos);
+        dest.writeString(nama_negara);
+        dest.writeString(nama_provinsi);
+        dest.writeString(nama_kota);
+        dest.writeString(nomor_telepon);
+        dest.writeString(nomor_hp);
+        dest.writeString(jenis_kelamin);
+        dest.writeString(tempat_lahir);
+        dest.writeString(facebook);
+        dest.writeString(twitter);
+        dest.writeString(foto);
+        dest.writeString(status_bekerja);
+        dest.writeString(status_alumni);
+        dest.writeString(jenis_user);
+        dest.writeString(status_data);
     }
 }

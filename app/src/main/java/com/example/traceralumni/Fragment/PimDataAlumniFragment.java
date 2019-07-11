@@ -4,7 +4,6 @@ package com.example.traceralumni.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.traceralumni.Activity.DaftarAlumniActivity;
+import com.example.traceralumni.Activity.PimDaftarAlumniActivity;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
@@ -48,7 +47,7 @@ public class PimDataAlumniFragment extends Fragment {
         btn_lihatDaftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), DaftarAlumniActivity.class);
+                Intent i = new Intent(v.getContext(), PimDaftarAlumniActivity.class);
                 startActivity(i);
             }
         });

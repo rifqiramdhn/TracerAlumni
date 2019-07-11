@@ -12,17 +12,28 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.traceralumni.Adapter.DaftarAdapter;
+import com.example.traceralumni.Adapter.DonasiAdapter;
+import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DaftarModel;
+import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Fragment.DaftarFragment.SEARCH_DAFTAR_USE_NAMA;
 import static com.example.traceralumni.Fragment.DaftarFragment.TEXT_SEARCH_DAFTAR_USE_NAMA;
 
-public class DaftarAlumniActivity extends AppCompatActivity {
+public class PimDaftarAlumniActivity extends AppCompatActivity {
     ConstraintLayout cl_iconBack, cl_iconSearch, cl_search_daftar;
     ImageView img_iconBack, img_iconSearch;
     TextView tvNavBar;
@@ -36,30 +47,18 @@ public class DaftarAlumniActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pim_daftar_alumni);
 
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         ambilView();
         setNavBar();
 
-        daftarModels = new ArrayList<>();
-//        daftarModels.add(new DaftarModel("Rifqi Ramdhani", "2019", 1));
-//        daftarModels.add(new DaftarModel("Budi Fauzan", "2016", 2));
-//        daftarModels.add(new DaftarModel("Rizaldy Ilham Akbar", "2014", 3));
-//        daftarModels.add(new DaftarModel("Rosa Mardiana", "2014", 4));
-//        daftarModels.add(new DaftarModel("Rifqi Ramdhani", "2019", 1));
-//        daftarModels.add(new DaftarModel("Budi Fauzan", "2016", 2));
-//        daftarModels.add(new DaftarModel("Rizaldy Ilham Akbar", "2014", 3));
-//        daftarModels.add(new DaftarModel("Rosa Mardiana", "2014", 4));
-//        daftarModels.add(new DaftarModel("Rifqi Ramdhani", "2019", 1));
-//        daftarModels.add(new DaftarModel("Budi Fauzan", "2016", 2));
-//        daftarModels.add(new DaftarModel("Rizaldy Ilham Akbar", "2014", 3));
-//        daftarModels.add(new DaftarModel("Rosa Mardiana", "2014", 4));
-//        daftarModels.add(new DaftarModel("Rifqi Ramdhani", "2019", 1));
-//        daftarModels.add(new DaftarModel("Budi Fauzan", "2016", 2));
-//        daftarModels.add(new DaftarModel("Rizaldy Ilham Akbar", "2014", 3));
-//        daftarModels.add(new DaftarModel("Rosa Mardiana", "2014", 4));
 
+        daftarModels = new ArrayList<>();
         daftarRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         daftarAdapter = new DaftarAdapter(this, daftarModels);
         daftarRecycler.setAdapter(daftarAdapter);
+
+        getDaftarAlumni();
 
         cl_iconSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,27 +100,57 @@ public class DaftarAlumniActivity extends AppCompatActivity {
         tvNavBar.setText("DAFTAR ALUMNI");
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+    private void getDaftarAlumni(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<ArrayList<DaftarModel>> call = jsonPlaceHolderApi.getDaftarAlumni();
+        call.enqueue(new Callback<ArrayList<DaftarModel>>() {
+            @Override
+            public void onResponse(Call<ArrayList<DaftarModel>> call, Response<ArrayList<DaftarModel>> response) {
+                if (!response.isSuccessful()){
+                    return;
+                }
+
+                daftarModels.clear();
+                ArrayList<DaftarModel> daftarModelsResponse = response.body();
+                daftarModels.addAll(daftarModelsResponse);
+
+                final DaftarAdapter daftarAdapterNew = new DaftarAdapter(PimDaftarAlumniActivity.this, daftarModels);
+                daftarRecycler.setAdapter(daftarAdapterNew);
+
+                setSearch(daftarAdapterNew);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<DaftarModel>> call, Throwable t) {
+                Toast.makeText(PimDaftarAlumniActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void setSearch(final DaftarAdapter daftarAdapter){
         edt_search.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-                SEARCH_DAFTAR_USE_NAMA = true;
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 TEXT_SEARCH_DAFTAR_USE_NAMA = charSequence.toString().toLowerCase().trim();
                 daftarAdapter.getFilter().filter(charSequence);
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
+            public void afterTextChanged(Editable editable) {
 
             }
         });
     }
+
 }

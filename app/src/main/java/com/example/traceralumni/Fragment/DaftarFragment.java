@@ -121,40 +121,6 @@ public class DaftarFragment extends Fragment {
 
     }
 
-    private void getProdi() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<ArrayList<DaftarModel>> call = jsonPlaceHolderApi.getDaftarAlumni();
-        call.enqueue(new Callback<ArrayList<DaftarModel>>() {
-            @Override
-            public void onResponse(Call<ArrayList<DaftarModel>> call, Response<ArrayList<DaftarModel>> response) {
-                if (!response.isSuccessful()) {
-                    return;
-                }
-
-                daftarModels.clear();
-                ArrayList<DaftarModel> daftarModelsResponse = response.body();
-                daftarModels.addAll(daftarModelsResponse);
-
-                final DaftarAdapter daftarAdapterNew = new DaftarAdapter(getActivity(), daftarModels);
-                daftarRecycler.setAdapter(daftarAdapterNew);
-
-                setSearch(daftarAdapterNew);
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<DaftarModel>> call, Throwable t) {
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
-
     private void customSpinner() {
 
         String[] prodi = new String[]{
