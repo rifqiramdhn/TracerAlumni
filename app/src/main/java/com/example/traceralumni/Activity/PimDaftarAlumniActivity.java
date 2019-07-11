@@ -30,7 +30,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
-import static com.example.traceralumni.Fragment.DaftarFragment.SEARCH_DAFTAR_USE_NAMA;
 import static com.example.traceralumni.Fragment.DaftarFragment.TEXT_SEARCH_DAFTAR_USE_NAMA;
 
 public class PimDaftarAlumniActivity extends AppCompatActivity {

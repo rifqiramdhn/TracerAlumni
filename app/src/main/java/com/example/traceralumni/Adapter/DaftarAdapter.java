@@ -21,10 +21,9 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static com.example.traceralumni.Fragment.DaftarFragment.SEARCH_DAFTAR_USE_NAMA;
-import static com.example.traceralumni.Fragment.DaftarFragment.SEARCH_DAFTAR_USE_ANGKATAN;
 import static com.example.traceralumni.Fragment.DaftarFragment.TEXT_SEARCH_DAFTAR_USE_ANGKATAN;
 import static com.example.traceralumni.Fragment.DaftarFragment.TEXT_SEARCH_DAFTAR_USE_NAMA;
+import static com.example.traceralumni.Fragment.DaftarFragment.SPINNER_SEARCH_DAFTAR_USE_PRODI;
 
 public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder> implements Filterable {
 
@@ -108,19 +107,27 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             ArrayList<DaftarModel> filteredList = new ArrayList<>();
-            Log.e("aldy", "\nnama : " + TEXT_SEARCH_DAFTAR_USE_NAMA + "\n angkatan : " + TEXT_SEARCH_DAFTAR_USE_ANGKATAN);
+            String filterAngkatan = TEXT_SEARCH_DAFTAR_USE_ANGKATAN;
+            String filterNama = TEXT_SEARCH_DAFTAR_USE_NAMA;
+            String filterProdi = SPINNER_SEARCH_DAFTAR_USE_PRODI;
             if ((TEXT_SEARCH_DAFTAR_USE_NAMA == null
                     || TEXT_SEARCH_DAFTAR_USE_NAMA.length() == 0)
                     && (TEXT_SEARCH_DAFTAR_USE_ANGKATAN == null
-                    || TEXT_SEARCH_DAFTAR_USE_ANGKATAN.length() == 0)) {
+                    || TEXT_SEARCH_DAFTAR_USE_ANGKATAN.length() == 0)
+                    && SPINNER_SEARCH_DAFTAR_USE_PRODI.equalsIgnoreCase("prodi")) {
                 filteredList.addAll(daftarModelsFull);
-            } else {
-                String filterAngkatan = TEXT_SEARCH_DAFTAR_USE_ANGKATAN;
-                String filterNama = TEXT_SEARCH_DAFTAR_USE_NAMA;
-
+            } else if (SPINNER_SEARCH_DAFTAR_USE_PRODI.equalsIgnoreCase("prodi")) {
                 for (DaftarModel item : daftarModelsFull) {
                     if (item.getAngkatan().toLowerCase().contains(filterAngkatan)
                             && item.getNama().toLowerCase().contains(filterNama)) {
+                        filteredList.add(item);
+                    }
+                }
+            } else {
+                for (DaftarModel item : daftarModelsFull) {
+                    if (item.getAngkatan().toLowerCase().contains(filterAngkatan)
+                            && item.getNama().toLowerCase().contains(filterNama)
+                            && item.getProdi().equalsIgnoreCase(filterProdi)) {
                         filteredList.add(item);
                     }
                 }

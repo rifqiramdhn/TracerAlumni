@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -55,11 +56,9 @@ public class DaftarFragment extends Fragment {
 
     EditText edt_cari_nama, edt_cari_angkatan;
 
-    public static boolean SEARCH_DAFTAR_USE_ANGKATAN = false;
-    public static boolean SEARCH_DAFTAR_USE_NAMA = false;
-
     public static String TEXT_SEARCH_DAFTAR_USE_ANGKATAN = "";
     public static String TEXT_SEARCH_DAFTAR_USE_NAMA = "";
+    public static String SPINNER_SEARCH_DAFTAR_USE_PRODI = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -149,13 +148,7 @@ public class DaftarFragment extends Fragment {
                 rootView.getContext(), R.layout.card_spinner, prodiList) {
             @Override
             public boolean isEnabled(int position) {
-                if (position == 0) {
-                    // Disable the first item from Spinner
-                    // First item will be use for hint
-                    return false;
-                } else {
-                    return true;
-                }
+                return true;
             }
 
             @Override
@@ -212,8 +205,18 @@ public class DaftarFragment extends Fragment {
 
             }
         });
-    }
+        spn_prodi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                SPINNER_SEARCH_DAFTAR_USE_PRODI = spn_prodi.getSelectedItem().toString();
+                daftarAdapter.getFilter().filter(null);
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
 
 
 }
