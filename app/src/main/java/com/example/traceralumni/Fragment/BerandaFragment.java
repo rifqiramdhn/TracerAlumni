@@ -45,9 +45,6 @@ public class BerandaFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_beranda, container, false);
 
         listBeranda = new ArrayList<>();
-        listBeranda.add(new BerandaModel("data_lowongan", new LowonganModel(1,"Staff Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000")));
-
-        listBeranda.add(new BerandaModel("data_lowongan", new LowonganModel(1,"Staff Administrasi HRD", "PT. Bank Muamalat", "Kota Malang, Indonesia", "5.000.000")));
 
         berandaRecycler = rootView.findViewById(R.id.rv_fragment_beranda);
         berandaRecycler.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.VERTICAL, false));

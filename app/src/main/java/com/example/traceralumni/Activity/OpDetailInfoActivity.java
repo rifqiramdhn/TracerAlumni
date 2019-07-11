@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.traceralumni.Model.InfoModel;
 import com.example.traceralumni.R;
 
 import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
@@ -37,6 +38,45 @@ public class OpDetailInfoActivity extends AppCompatActivity {
 
         builder = new AlertDialog.Builder(this);
 
+        initView();
+
+        getData();
+
+        btn_simpan = findViewById(R.id.btn_simpan);
+        btn_simpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(OpDetailInfoActivity.this, MainActivity.class);
+                i.putExtra("Tab", INDEX_OPENED_TAB);
+                startActivity(i);
+            }
+        });
+
+    }
+
+    private void hapusInfo() {
+        builder.setMessage("Anda yakin ingin menghapus info ini?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent i = new Intent(OpDetailInfoActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
+
+        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void initView() {
         tvNavBar = findViewById(R.id.tv_navbar_top);
         tvNavBar.setText("DETAIL INFO");
 
@@ -73,63 +113,19 @@ public class OpDetailInfoActivity extends AppCompatActivity {
         tv_inpJudul = findViewById(R.id.edt_judul_container);
         tv_inpIsi = findViewById(R.id.edt_isi_container);
         tv_inpURL = findViewById(R.id.edt_url_container);
-
-        getData();
-
-        btn_simpan = findViewById(R.id.btn_simpan);
-        btn_simpan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(OpDetailInfoActivity.this, MainActivity.class);
-                i.putExtra("Tab", INDEX_OPENED_TAB);
-                startActivity(i);
-            }
-        });
-
     }
 
-    private void hapusInfo(){
-        builder.setMessage("Anda yakin ingin menghapus info ini?");
-        builder.setCancelable(false);
-        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent i = new Intent(OpDetailInfoActivity.this, MainActivity.class);
-                startActivity(i);
-            }
-        });
+    private void getData() {
 
-        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
+        Intent intent = getIntent();
 
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
+        InfoModel infoModel = intent.getParcelableExtra("object_info");
 
-    private void getData(){
-        if (edt_judul != null){
-            Intent i = getIntent();
-            edt_judul.setText(i.getStringExtra("judul"));
-            edt_judul.setTextColor(getResources().getColor(R.color.black));
-            edt_judul.setSelection(edt_judul.getText().length());
-        }
-
-        if (edt_isi != null){
-            Intent i = getIntent();
-            edt_isi.setText(i.getStringExtra("isi"));
-            edt_isi.setTextColor(getResources().getColor(R.color.black));
-            edt_isi.setSelection(edt_isi.getText().length());
-        }
-
-        if (edt_url != null){
-            Intent i = getIntent();
-            edt_url.setText(i.getStringExtra("link"));
-            edt_url.setTextColor(getResources().getColor(R.color.black));
-            edt_url.setSelection(edt_url.getText().length());
-        }
+        edt_judul.setText(infoModel.getJudul());
+//        edt_judul.setSelection(edt_judul.getText().length());
+        edt_isi.setText(infoModel.getKeterangan());
+//        edt_isi.setSelection(edt_isi.getText().length());
+        edt_url.setText(infoModel.getLink());
+//        edt_url.setSelection(edt_url.getText().length());
     }
 }

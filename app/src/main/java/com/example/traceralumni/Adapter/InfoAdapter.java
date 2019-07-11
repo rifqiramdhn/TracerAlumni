@@ -52,24 +52,24 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> im
         holder.judul.setText(infoModel.getJudul());
         holder.isi.setText(infoModel.getKeterangan());
 //        holder.tanggal.setText(infoModel.getTanggal().toString());
-        holder.cl_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String url = infoModel.getLink();
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(url));
-                context.startActivity(intent);
-            }
-        });
+
         if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)) {
             holder.cl_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(v.getContext(), OpDetailInfoActivity.class);
-                    i.putExtra("judul", infoModel.getJudul());
-                    i.putExtra("isi", infoModel.getKeterangan());
-                    i.putExtra("link", infoModel.getLink());
-                    v.getContext().startActivity(i);
+                    i.putExtra("object_info", infoModels.get(position));
+                    context.startActivity(i);
+                }
+            });
+        } else {
+            holder.cl_card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String url = infoModel.getLink();
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    context.startActivity(intent);
                 }
             });
         }

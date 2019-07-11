@@ -54,43 +54,15 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
         holder.namaKegiatan.setText(donasiModel.getNamaKegiatan());
         holder.totalBiaya.setText("Rp" + donasiModel.getTotalAnggaran());
 //        holder.tanggalDonasi.setText(donasiModel.getTanggal().toString());
-        if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
-            holder.container.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), DetailDonasiActivity.class);
-                    intent.putExtra("namaKegiatan", donasiModel.getNamaKegiatan());
-                    intent.putExtra("totalBiaya", donasiModel.getTotalAnggaran());
-                    intent.putExtra("keterangan", donasiModel.getKeterangan());
-//                    intent.putExtra("fotoResId", String.valueOf(donasiModel.getFotoResId()));
-                    v.getContext().startActivity(intent);
-                }
-            });
-        } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)) {
-            holder.container.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), OpDetailDonasiActivity.class);
-                    intent.putExtra("namaKegiatan", donasiModel.getNamaKegiatan());
-                    intent.putExtra("totalBiaya", donasiModel.getTotalAnggaran());
-                    intent.putExtra("keterangan", donasiModel.getKeterangan());
-//                    intent.putExtra("notelp", donasiModel.getNoTelp());
-                    v.getContext().startActivity(intent);
-                }
-            });
-        } else {
-            holder.container.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), DetailDonasiActivity.class);
-                    intent.putExtra("namaKegiatan", donasiModel.getNamaKegiatan());
-                    intent.putExtra("totalBiaya", donasiModel.getTotalAnggaran());
-                    intent.putExtra("keterangan", donasiModel.getKeterangan());
-//                    intent.putExtra("fotoResId", String.valueOf(donasiModel.getFotoResId()));
-                    v.getContext().startActivity(intent);
-                }
-            });
-        }
+
+        holder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailDonasiActivity.class);
+                intent.putExtra("object_donasi", donasiModels.get(position));
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

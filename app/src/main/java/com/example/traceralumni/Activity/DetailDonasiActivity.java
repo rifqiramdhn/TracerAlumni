@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.R;
 
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
@@ -39,18 +40,23 @@ public class DetailDonasiActivity extends AppCompatActivity {
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
-        setIcon();
+        initView();
 
-        getView();
+        DonasiModel donasiModel;
 
-        getData();
+        Intent intent = getIntent();
+        donasiModel = intent.getParcelableExtra("object_donasi");
 
-        setView();
+//        tv_jumlahDonasi.setText();
+        tv_keterangan.setText(donasiModel.getKeterangan());
+        tv_namaKegiatan.setText(donasiModel.getNamaKegiatan());
+        tv_totalBiaya.setText("" + donasiModel.getTotalAnggaran());
 
-        setDonasiButton();
+//        setDonasiButton();
     }
 
-    private void setIcon() {
+    private void initView() {
+
         cl_back = findViewById(R.id.cl_icon1);
 
         imgBack = findViewById(R.id.img_icon1);
@@ -69,39 +75,7 @@ public class DetailDonasiActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-    }
 
-    private void getData() {
-        intent = getIntent();
-        fotoResId = intent.getStringExtra("fotoResId");
-        namaKegiatan = intent.getStringExtra("namaKegiatan");
-        totalBiaya = intent.getStringExtra("totalBiaya");
-        keterangan = intent.getStringExtra("keterangan");
-    }
-
-    private void setView() {
-//        foto.setImageResource(Integer.valueOf(fotoResId));
-        tv_namaKegiatan.setText(namaKegiatan);
-        tv_totalBiaya.setText("Rp" + totalBiaya);
-        tv_keterangan.setText(keterangan);
-        if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
-            btn_donasi.setVisibility(View.VISIBLE);
-            btn_donasi.setText("donasi");
-            tv_totalDonasi.setVisibility(View.GONE);
-            tv_jumlahDonasi.setVisibility(View.INVISIBLE);
-        } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_PIMPINAN)) {
-            btn_donasi.setVisibility(View.VISIBLE);
-            btn_donasi.setText("daftar donatur");
-            tv_totalDonasi.setVisibility(View.VISIBLE);
-            tv_jumlahDonasi.setVisibility(View.VISIBLE);
-        } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)) {
-            btn_donasi.setVisibility(View.GONE);
-            tv_totalDonasi.setVisibility(View.VISIBLE);
-            tv_jumlahDonasi.setVisibility(View.VISIBLE);
-        }
-    }
-
-    private void getView() {
         foto = findViewById(R.id.iv_detail_donasi_foto);
         tv_namaKegiatan = findViewById(R.id.tv_detail_donasi_judul_donasi);
         tv_totalBiaya = findViewById(R.id.tv_detail_donasi_total_biaya);
@@ -123,6 +97,22 @@ public class DetailDonasiActivity extends AppCompatActivity {
                 startActivity(callIntent);
             }
         });
+
+        if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
+            btn_donasi.setVisibility(View.VISIBLE);
+            btn_donasi.setText("donasi");
+            tv_totalDonasi.setVisibility(View.GONE);
+            tv_jumlahDonasi.setVisibility(View.INVISIBLE);
+        } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_PIMPINAN)) {
+            btn_donasi.setVisibility(View.VISIBLE);
+            btn_donasi.setText("daftar donatur");
+            tv_totalDonasi.setVisibility(View.VISIBLE);
+            tv_jumlahDonasi.setVisibility(View.VISIBLE);
+        } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)) {
+            btn_donasi.setVisibility(View.GONE);
+            tv_totalDonasi.setVisibility(View.VISIBLE);
+            tv_jumlahDonasi.setVisibility(View.VISIBLE);
+        }
     }
 
     private void setDonasiButton() {
@@ -142,7 +132,7 @@ public class DetailDonasiActivity extends AppCompatActivity {
             btn_donasi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(DetailDonasiActivity.this,OpListDonaturActivity.class);
+                    Intent intent = new Intent(DetailDonasiActivity.this, OpListDonaturActivity.class);
                     startActivity(intent);
                 }
             });

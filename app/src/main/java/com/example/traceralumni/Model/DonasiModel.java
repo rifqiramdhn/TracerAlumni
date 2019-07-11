@@ -1,10 +1,13 @@
 package com.example.traceralumni.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
-public class DonasiModel {
+public class DonasiModel implements Parcelable {
     @SerializedName("id_opendonasi")
     private Integer idDonasi;
 
@@ -29,10 +32,73 @@ public class DonasiModel {
     @SerializedName("total_anggaran")
     private Integer totalAnggaran;
 
-//    public DonasiModel(String namaKegiatan, Integer totalAnggaran) {
-//        this.namaKegiatan = namaKegiatan;
-//        this.totalAnggaran = totalAnggaran;
-//    }
+    protected DonasiModel(Parcel in) {
+        if (in.readByte() == 0) {
+            idDonasi = null;
+        } else {
+            idDonasi = in.readInt();
+        }
+        namaKegiatan = in.readString();
+        file = in.readString();
+        if (in.readByte() == 0) {
+            noRekening = null;
+        } else {
+            noRekening = in.readInt();
+        }
+        keterangan = in.readString();
+        lokasi = in.readString();
+        contactPerson = in.readString();
+        if (in.readByte() == 0) {
+            totalAnggaran = null;
+        } else {
+            totalAnggaran = in.readInt();
+        }
+    }
+
+    public static final Creator<DonasiModel> CREATOR = new Creator<DonasiModel>() {
+        @Override
+        public DonasiModel createFromParcel(Parcel in) {
+            return new DonasiModel(in);
+        }
+
+        @Override
+        public DonasiModel[] newArray(int size) {
+            return new DonasiModel[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
+        if (idDonasi == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(idDonasi);
+        }
+        parcel.writeString(namaKegiatan);
+        parcel.writeString(file);
+        if (noRekening == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(noRekening);
+        }
+        parcel.writeString(keterangan);
+        parcel.writeString(lokasi);
+        parcel.writeString(contactPerson);
+        if (totalAnggaran == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(totalAnggaran);
+        }
+    }
 
     public Integer getIdDonasi() {
         return idDonasi;

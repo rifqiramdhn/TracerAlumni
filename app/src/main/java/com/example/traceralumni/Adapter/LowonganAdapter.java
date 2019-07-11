@@ -42,26 +42,19 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ListLowonganHolder listLowonganHolder, int i) {
-        LowonganModel list = listLowongan.get(i);
-        listLowonganHolder.txtTitle.setText(list.getNama_lowongan());
-        listLowonganHolder.txtPerusahaan.setText(list.getNama_perusahaan());
-        listLowonganHolder.txtLokasi.setText(list.getAlamat_perusahaan());
-        listLowonganHolder.txtKisaranGaji.setText("~Rp "+list.getKisaran_gaji());
-        if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
-            listLowonganHolder.container.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(v.getContext(), DetailLowonganActivity.class);
-                }
-            });
-        }
+    public void onBindViewHolder(@NonNull final ListLowonganHolder holder, final int position) {
+        LowonganModel list = listLowongan.get(position);
+        holder.txtTitle.setText(list.getNama_lowongan());
+        holder.txtPerusahaan.setText(list.getNama_perusahaan());
+        holder.txtLokasi.setText(list.getAlamat_perusahaan());
+        holder.txtKisaranGaji.setText("~Rp "+list.getKisaran_gaji());
 
-        listLowonganHolder.container.setOnClickListener(new View.OnClickListener() {
+        holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(listLowonganHolder.container.getContext(), DetailLowonganActivity.class);
-                listLowonganHolder.container.getContext().startActivity(i);
+                Intent i = new Intent(context, DetailLowonganActivity.class);
+                i.putExtra("object_lowongan", listLowongan.get(position));
+                context.startActivity(i);
             }
         });
     }
