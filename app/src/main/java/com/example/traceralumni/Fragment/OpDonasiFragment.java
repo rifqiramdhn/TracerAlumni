@@ -40,6 +40,10 @@ import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
  */
 public class OpDonasiFragment extends Fragment {
 
+    public OpDonasiFragment() {
+        // Required empty public constructor
+    }
+
     View rootView;
 
     RecyclerView donasiRecycler;
@@ -49,25 +53,19 @@ public class OpDonasiFragment extends Fragment {
 
     EditText edt_donasi_cari;
 
-    public OpDonasiFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_op_donasi, container, false);
+
         edt_donasi_cari = rootView.findViewById(R.id.edt_fragment_op_donasi_search);
 
         arrayDonasi = new ArrayList<>();
-
-        donasiRecycler = rootView.findViewById(R.id.rv_fragment_op_donasi);
-
-        //Mengatur LayoutManager dari Recycler daftar
-        donasiRecycler.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.VERTICAL, false));
         donasiAdapter = new DonasiAdapter(rootView.getContext(), arrayDonasi);
+        donasiRecycler = rootView.findViewById(R.id.rv_fragment_op_donasi);
+        donasiRecycler.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.VERTICAL, false));
         donasiRecycler.setAdapter(donasiAdapter);
 
         tv_permintaan_donasi = rootView.findViewById(R.id.tv_fragment_op_donasi_permintaan);
@@ -106,7 +104,7 @@ public class OpDonasiFragment extends Fragment {
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                if (dy > 0){
+                if (dy > 0) {
                     //scrolling up
                     tv_permintaan_donasi.setVisibility(View.GONE);
                 } else {
@@ -117,7 +115,7 @@ public class OpDonasiFragment extends Fragment {
         });
     }
 
-    private void getAllDonasi(){
+    private void getAllDonasi() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -129,7 +127,7 @@ public class OpDonasiFragment extends Fragment {
         call.enqueue(new Callback<ArrayList<DonasiModel>>() {
             @Override
             public void onResponse(Call<ArrayList<DonasiModel>> call, Response<ArrayList<DonasiModel>> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
 
@@ -150,7 +148,7 @@ public class OpDonasiFragment extends Fragment {
         });
     }
 
-    private void setSearch(final DonasiAdapter donasiAdapter){
+    private void setSearch(final DonasiAdapter donasiAdapter) {
         edt_donasi_cari.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

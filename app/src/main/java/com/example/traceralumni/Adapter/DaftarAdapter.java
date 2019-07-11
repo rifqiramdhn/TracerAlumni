@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,25 +49,20 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
     @Override
     public void onBindViewHolder(final DaftarAdapter.ViewHolder holder, int position) {
 
-        //Instansiasi objek pengaturanModel yang isinya sama dengan daftarModels pada index position
         final DaftarModel daftarModel = daftarModels.get(position);
 
-        //Mengisi item dari holder menjadi item dari objek daftarModel
         holder.nama.setText(daftarModel.getNama());
 
-        //Mengisi item dari holder menjadi item dari objek daftarModel
-        holder.prodi.setText(String.valueOf(daftarModel.getId_prodi()));
+        holder.prodi.setText(daftarModel.getProdi());
 
-        //Mengisi item dari holder menjadi item dari objek daftarModel
         holder.angkatan.setText(daftarModel.getAngkatan());
 
-        //Mengisi item dari holder menjadi item dari objek daftarModel
         holder.foto.setImageResource(R.color.colorIconBiru);
 
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(holder.container.getContext(), DetailProfilActivity.class);
+                Intent i = new Intent(context, DetailProfilActivity.class);
                 holder.container.getContext().startActivity(i);
             }
         });
@@ -103,14 +99,14 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
 
     @Override
     public Filter getFilter() {
-            return daftarModelsFilterNamaTahun;
+        return daftarModelsFilterNamaTahun;
     }
 
     private Filter daftarModelsFilterNamaTahun = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             ArrayList<DaftarModel> filteredList = new ArrayList<>();
-
+            Log.e("aldy", "\nnama : " + TEXT_SEARCH_DAFTAR_USE_NAMA + "\n angkatan : " + TEXT_SEARCH_DAFTAR_USE_ANGKATAN);
             if ((TEXT_SEARCH_DAFTAR_USE_NAMA == null
                     || TEXT_SEARCH_DAFTAR_USE_NAMA.length() == 0)
                     && (TEXT_SEARCH_DAFTAR_USE_ANGKATAN == null

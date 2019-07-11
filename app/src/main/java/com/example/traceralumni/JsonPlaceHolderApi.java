@@ -19,4 +19,7 @@ public interface JsonPlaceHolderApi {
 
     @GET("get_all_donasi.php")
     Call<ArrayList<DonasiModel>> getAllDonasi();
+
+    @GET("get_daftar_alumni.php")
+    Call<ArrayList<DaftarModel>> getDaftarAlumni();
 }
