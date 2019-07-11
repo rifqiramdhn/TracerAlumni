@@ -61,31 +61,6 @@ public class PimDonasiFragment extends Fragment {
 
         arrayDonasi = new ArrayList<>();
 
-//        arrayDonasi.add(new DonasiModel("Pembangunan Kantin", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "500.000.000"));
-//        arrayDonasi.add(new DonasiModel("Pembangunan Gazebo", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "320.000.000"));
-//        arrayDonasi.add(new DonasiModel("Pembangunan Gedung", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "453.000.000"));
-//        arrayDonasi.add(new DonasiModel("Renovasi Kantin", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "2.500.000.000"));
-//        arrayDonasi.add(new DonasiModel("Renovasi Gazebo", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "6.500.000.000"));
-//        arrayDonasi.add(new DonasiModel("Renovasi Gedung", "Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur" +
-//                " sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", "8.900.000.000"));
-
         donasiRecycler = rootView.findViewById(R.id.rv_fragment_pim_donasi);
 
         //Mengatur LayoutManager dari Recycler daftar

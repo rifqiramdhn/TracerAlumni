@@ -50,7 +50,7 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> im
         //Instansiasi objek lainnyaModel yang isinya sama dengan lainnyaModels pada index position
         final InfoModel infoModel = infoModels.get(position);
         holder.judul.setText(infoModel.getJudul());
-        holder.isi.setText(infoModel.getIsi());
+        holder.isi.setText(infoModel.getKeterangan());
 //        holder.tanggal.setText(infoModel.getTanggal().toString());
         holder.cl_card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +67,7 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> im
                 public void onClick(View v) {
                     Intent i = new Intent(v.getContext(), OpDetailInfoActivity.class);
                     i.putExtra("judul", infoModel.getJudul());
-                    i.putExtra("isi", infoModel.getIsi());
+                    i.putExtra("isi", infoModel.getKeterangan());
                     i.putExtra("link", infoModel.getLink());
                     v.getContext().startActivity(i);
                 }
