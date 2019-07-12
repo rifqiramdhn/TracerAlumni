@@ -8,15 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import com.example.traceralumni.Adapter.BerandaAdapter;
-import com.example.traceralumni.Adapter.ChatAdapter;
 import com.example.traceralumni.Model.BerandaModel;
-import com.example.traceralumni.Model.ChatModel;
-import com.example.traceralumni.Model.DonasiModel;
-import com.example.traceralumni.Model.InfoModel;
-import com.example.traceralumni.Model.LowonganModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;

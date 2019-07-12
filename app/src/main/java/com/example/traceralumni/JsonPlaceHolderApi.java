@@ -69,4 +69,17 @@ public interface JsonPlaceHolderApi {
             @Query("angkatan") String angkatan,
             @Query("lainnya") String lainnya
     );
+    @FormUrlEncoded
+    @POST("create_lowongan_pekerjaan.php")
+    Call<Void> createLowongan(@Field("judulLowongan") String judulLowongan,
+                              @Field("jabatan") String jabatan,
+                              @Field("namaPerusahaan") String namaPerusahaan,
+                              @Field("alamatPerusahaan") String alamat,
+                              @Field("kuota") Integer kuota,
+                              @Field("gaji") String gaji,
+                              @Field("syarat") String syaratPekerjaan,
+                              @Field("website") String website,
+                              @Field("email") String email,
+                              @Field("noTelp") String noTelp,
+                              @Field("cp") String cp);
 }

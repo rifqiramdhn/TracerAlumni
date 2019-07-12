@@ -10,15 +10,21 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.R;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
@@ -32,6 +38,8 @@ public class TambahLowonganActivity extends AppCompatActivity {
     private TextView tv_navbar;
     private Button btn_next;
 
+    EditText edt_judulLowongan, edt_jabatan, edt_namaPerusahaan, edt_alamatPerusahaan, edt_kuota, edt_gaji;
+
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,12 +47,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
-        cl_icon_back = findViewById(R.id.cl_icon1);
-        img_icon_back = findViewById(R.id.img_icon1);
-        tv_navbar = findViewById(R.id.tv_navbar_top);
-        btn_next = findViewById(R.id.btn_next);
-
-        img_logo = findViewById(R.id.iv_tambah_lowongan_logo);
+        initView();
 
         img_logo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +73,12 @@ public class TambahLowonganActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
                     Intent i = new Intent(TambahLowonganActivity.this, LanjutanTambahLowonganActivity.class);
+                    i.putExtra("judulLowongan", edt_judulLowongan.getText().toString().trim());
+                    i.putExtra("jabatan", edt_jabatan.getText().toString().trim());
+                    i.putExtra("namaPerusahaan", edt_namaPerusahaan.getText().toString().trim());
+                    i.putExtra("alamat", edt_alamatPerusahaan.getText().toString().trim());
+                    i.putExtra("kuota", Integer.valueOf(edt_kuota.getText().toString()));
+                    i.putExtra("gaji", edt_gaji.getText().toString().trim());
                     i.putExtra("Tambah", INDEX_OPENED_TAB);
                     startActivity(i);
                 } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)){
@@ -114,5 +123,20 @@ public class TambahLowonganActivity extends AppCompatActivity {
 
     private void setPhotoFromDatabase(Bitmap photo) {
         img_logo.setImageBitmap(photo);
+    }
+
+    private void initView(){
+        cl_icon_back = findViewById(R.id.cl_icon1);
+        img_icon_back = findViewById(R.id.img_icon1);
+        tv_navbar = findViewById(R.id.tv_navbar_top);
+        img_logo = findViewById(R.id.iv_tambah_lowongan_logo);
+
+        btn_next = findViewById(R.id.btn_next);
+        edt_judulLowongan = findViewById(R.id.edt_lowongan);
+        edt_jabatan = findViewById(R.id.edt_jabatan);
+        edt_namaPerusahaan = findViewById(R.id.edt_perusahaan);
+        edt_alamatPerusahaan = findViewById(R.id.edt_lokasi);
+        edt_kuota = findViewById(R.id.edt_kuota);
+        edt_gaji = findViewById(R.id.edt_gaji);
     }
 }
