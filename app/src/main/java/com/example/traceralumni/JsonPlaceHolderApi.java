@@ -30,4 +30,19 @@ public interface JsonPlaceHolderApi {
 
     @GET("get_all_lowongan_pekerjaan.php")
     Call<ArrayList<LowonganModel>> getAllLowongan();
+
+    @FormUrlEncoded
+    @POST("create_info.php")
+    Call<Void> createInfo(@Field("idInfo") Integer integer,
+                          @Field("judul") String judul,
+                          @Field("keterangan") String keterangan,
+                          @Field("link") String link);
+
+    @FormUrlEncoded
+    @POST("create_donasi.php")
+    Call<Void> createDonasi(@Field("idDonasi") Integer integer,
+                          @Field("namaKegiatan") String namaKegiatan,
+                          @Field("noTelepon") String noTelepon,
+                          @Field("keterangan") String keterangan,
+                          @Field("totalAnggaran") Integer totalAnggaran);
 }

@@ -81,18 +81,7 @@ public class OpDonasiFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Log.e("aldy", "onViewCreated jalan");
         super.onViewCreated(view, savedInstanceState);
-        getAllDonasi();
-    }
-
-    @Override
-    public void onResume() {
-        Log.e("aldy", "onResume jalan");
-        super.onResume();
-
-//        getAllDonasi();
-
         donasiRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -112,6 +101,12 @@ public class OpDonasiFragment extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getAllDonasi();
     }
 
     private void getAllDonasi() {

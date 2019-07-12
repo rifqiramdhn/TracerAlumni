@@ -11,9 +11,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.R;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
 import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB_KEY;
 
@@ -21,9 +31,12 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
     TextView tvNavBar, tvTotalDonasi,tvFile;
     ConstraintLayout cl_iconBack, cl_iconHapus;
     ImageView img_iconBack, img_iconHapus;
-    EditText edt_judul, edt_donasi, edt_deskripsi, edt_notelp;
+    EditText edt_judul, edt_donasi, edt_deskripsi, edt_noTelp;
     Button btn_list_donatur, btn_simpan;
     AlertDialog.Builder builder;
+
+    Integer idDonasi, totalAnggaran;
+    String namaKegiatan, noTelepon, deskripsi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +46,38 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         builder = new AlertDialog.Builder(this);
+        initView();
+        getData();
 
+        btn_list_donatur = findViewById(R.id.btn_list_donatur);
+        btn_list_donatur.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(OpDetailDonasiActivity.this, OpListDonaturActivity.class);
+                startActivity(i);
+            }
+        });
+
+        btn_simpan = findViewById(R.id.btn_simpan);
+        btn_simpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent i = new Intent(OpDetailDonasiActivity.this, MainActivity.class);
+//                i.putExtra("Tab", INDEX_OPENED_TAB);
+//                startActivity(i);
+                totalAnggaran = Integer.valueOf(edt_donasi.getText().toString().trim());
+                namaKegiatan = edt_judul.getText().toString().trim();
+                noTelepon = edt_noTelp.getText().toString().trim();
+                deskripsi = edt_deskripsi.getText().toString().trim();
+
+                saveData(idDonasi, namaKegiatan, deskripsi, noTelepon, totalAnggaran);
+
+                onBackPressed();
+            }
+        });
+    }
+
+    private void initView(){
         tvNavBar = findViewById(R.id.tv_navbar_top);
         tvNavBar.setText("DETAIL DONASI");
 
@@ -63,34 +107,12 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
             }
         });
 
-        edt_judul = findViewById(R.id.edt_judul);
+        edt_judul = findViewById(R.id.edt_judul_donasi);
         edt_donasi = findViewById(R.id.edt_total_donasi);
         edt_deskripsi = findViewById(R.id.edt_deskripsi);
-        edt_notelp = findViewById(R.id.edt_notelp);
+        edt_noTelp = findViewById(R.id.edt_notelp_op_donasi);
         tvTotalDonasi = findViewById(R.id.tv_total_donasi);
         tvFile = findViewById(R.id.tv_file);
-
-        getData();
-
-        btn_list_donatur = findViewById(R.id.btn_list_donatur);
-        btn_list_donatur.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(OpDetailDonasiActivity.this, OpListDonaturActivity.class);
-                startActivity(i);
-            }
-        });
-
-        btn_simpan = findViewById(R.id.btn_simpan);
-        btn_simpan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent i = new Intent(OpDetailDonasiActivity.this, MainActivity.class);
-//                i.putExtra("Tab", INDEX_OPENED_TAB);
-//                startActivity(i);
-                onBackPressed();
-            }
-        });
     }
 
     private void hapusDonasi(){
@@ -117,40 +139,42 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
     }
 
     private void getData(){
-        if (edt_judul != null){
-            Intent i = getIntent();
-            edt_judul.setText(i.getStringExtra("namaKegiatan"));
-            edt_judul.setTextColor(getResources().getColor(R.color.black));
-            edt_judul.setSelection(edt_judul.getText().length());
-        } else {
-            edt_judul.setText("");
+        Intent intent = getIntent();
+        DonasiModel donasiModel = intent.getParcelableExtra("object_donasi");
+        if (donasiModel != null){
+            edt_judul.setText(donasiModel.getNamaKegiatan());
+            edt_donasi.setText("" + donasiModel.getTotalAnggaran());
+            edt_deskripsi.setText(donasiModel.getKeterangan());
+            edt_noTelp.setText(donasiModel.getContactPerson());
+            idDonasi = donasiModel.getIdDonasi();
         }
+    }
 
-        if (edt_donasi != null){
-            Intent i = getIntent();
-            edt_donasi.setText(i.getStringExtra("totalBiaya"));
-            edt_donasi.setTextColor(getResources().getColor(R.color.black));
-            edt_donasi.setSelection(edt_donasi.getText().length());
-        } else {
-            edt_donasi.setText("");
-        }
+    private void saveData(Integer idDonasi, String namaKegiatan, String keterangan, String noTelepon, Integer totalAnggaran){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-        if (edt_deskripsi != null){
-            Intent i = getIntent();
-            edt_deskripsi.setText(i.getStringExtra("keterangan"));
-            edt_deskripsi.setTextColor(getResources().getColor(R.color.black));
-            edt_deskripsi.setSelection(edt_deskripsi.getText().length());
-        } else {
-            edt_deskripsi.setText("");
-        }
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
-        if (edt_notelp != null){
-            Intent i = getIntent();
-            edt_notelp.setText(i.getStringExtra("notelp"));
-            edt_notelp.setTextColor(getResources().getColor(R.color.black));
-            edt_notelp.setSelection(edt_notelp.getText().length());
-        } else {
-            edt_notelp.setText("");
-        }
+        Call<Void> call = jsonPlaceHolderApi.createDonasi(idDonasi, namaKegiatan, noTelepon, keterangan, totalAnggaran);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()){
+                    return;
+                }
+
+                Toast.makeText(OpDetailDonasiActivity.this, "Data tersimpan", Toast.LENGTH_SHORT).show();
+
+                onBackPressed();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(OpDetailDonasiActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

@@ -58,9 +58,16 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, DetailDonasiActivity.class);
-                intent.putExtra("object_donasi", donasiModels.get(position));
-                context.startActivity(intent);
+                if (JENIS_USER.equals(JENIS_USER_OPERATOR)){
+                    Intent intent = new Intent(context, OpDetailDonasiActivity.class);
+                    intent.putExtra("object_donasi", donasiModels.get(position));
+                    context.startActivity(intent);
+                } else {
+                    Intent intent = new Intent(context, DetailDonasiActivity.class);
+                    intent.putExtra("object_donasi", donasiModels.get(position));
+                    context.startActivity(intent);
+                }
+
             }
         });
     }

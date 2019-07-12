@@ -3,6 +3,7 @@ package com.example.traceralumni.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -14,11 +15,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.InfoModel;
 import com.example.traceralumni.R;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
+import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB_KEY;
 
 public class OpDetailInfoActivity extends AppCompatActivity {
     TextView tvNavBar;
@@ -28,6 +39,9 @@ public class OpDetailInfoActivity extends AppCompatActivity {
     EditText edt_judul, edt_isi, edt_url;
     Button btn_simpan;
     AlertDialog.Builder builder;
+
+    Integer idInfo;
+    String judul, isi, link;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +60,11 @@ public class OpDetailInfoActivity extends AppCompatActivity {
         btn_simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(OpDetailInfoActivity.this, MainActivity.class);
-                i.putExtra("Tab", INDEX_OPENED_TAB);
-                startActivity(i);
+                judul = edt_judul.getText().toString().trim();
+                isi = edt_isi.getText().toString().trim();
+                link = edt_url.getText().toString().trim();
+
+                saveData(idInfo, judul, isi, link);
             }
         });
 
@@ -116,16 +132,47 @@ public class OpDetailInfoActivity extends AppCompatActivity {
     }
 
     private void getData() {
-
         Intent intent = getIntent();
-
         InfoModel infoModel = intent.getParcelableExtra("object_info");
+        if (infoModel != null){
+            edt_judul.setText(infoModel.getJudul());
+            edt_isi.setText(infoModel.getKeterangan());
+            edt_url.setText(infoModel.getLink());
+            idInfo = infoModel.getIdInfo();
+        }
 
-        edt_judul.setText(infoModel.getJudul());
-//        edt_judul.setSelection(edt_judul.getText().length());
-        edt_isi.setText(infoModel.getKeterangan());
-//        edt_isi.setSelection(edt_isi.getText().length());
-        edt_url.setText(infoModel.getLink());
-//        edt_url.setSelection(edt_url.getText().length());
+        Toast.makeText(this, "id : " + idInfo, Toast.LENGTH_SHORT).show();
+    }
+
+    private void saveData(Integer idInfo, String judul, String keterangan, String link){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<Void> call = jsonPlaceHolderApi.createInfo(idInfo, judul, keterangan, link);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()){
+                    return;
+                }
+
+                Toast.makeText(OpDetailInfoActivity.this, "Data tersimpan", Toast.LENGTH_SHORT).show();
+
+//                Intent i = new Intent(OpDetailInfoActivity.this, MainActivity.class);
+//                i.putExtra(INDEX_OPENED_TAB_KEY, INDEX_OPENED_TAB);
+//                startActivity(i);
+
+                onBackPressed();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(OpDetailInfoActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
