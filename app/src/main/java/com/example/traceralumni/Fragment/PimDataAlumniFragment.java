@@ -14,13 +14,26 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.traceralumni.Activity.PimDaftarAlumniActivity;
+import com.example.traceralumni.Adapter.DonasiAdapter;
+import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Model.DaftarModel;
+import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +44,7 @@ public class PimDataAlumniFragment extends Fragment {
     TextView tv_totalAlumni;
     EditText edt_angkatan, edt_jabatan;
     Button btn_lihatDaftar;
+    ArrayList<DaftarModel> daftarModels;
 
     public PimDataAlumniFragment() {
         // Required empty public constructor
@@ -42,80 +56,85 @@ public class PimDataAlumniFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_pim_data_alumni, container, false);
 
+        daftarModels = new ArrayList<>();
+
         ambilView();
         customSpinner();
 
         btn_lihatDaftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), PimDaftarAlumniActivity.class);
-                startActivity(i);
+                getDataAlumniDaftar();
+                Intent intent = new Intent(getActivity(), PimDaftarAlumniActivity.class);
+                intent.putParcelableArrayListExtra("daftarModels", daftarModels);
+                getActivity().startActivity(intent);
             }
         });
+
         return rootView;
     }
 
-    private void ambilView(){
+    private void ambilView() {
         spn_jurusan = rootView.findViewById(R.id.spn_daftar_jurusan);
         spn_prodi = rootView.findViewById(R.id.spn_daftar_prodi);
         tv_totalAlumni = rootView.findViewById(R.id.tv_total_alumni);
         edt_angkatan = rootView.findViewById(R.id.edt_angkatan);
-        edt_jabatan = rootView.findViewById(R.id.edt_jabatan);
+        edt_jabatan = rootView.findViewById(R.id.edt_jabatan_kerja);
         btn_lihatDaftar = rootView.findViewById(R.id.btn_lihat_daftar);
     }
 
-    private void customSpinner(){
+    private void customSpinner() {
         String[] jurusan = new String[]{
-            "Jurusan",
-            "Akuntansi",
-            "Ilmu Ekonomi",
-            "Manajemen"
+                "Jurusan",
+                "Akuntansi",
+                "Ilmu Ekonomi",
+                "Manajemen"
         };
 
         String[] prodi = new String[]{
-            "Prodi",
-            "S1 - Akuntansi (Internasional)",
-            "S1 - Ekonomi, Keuangan, dan Perbankan (Internasional)",
-            "S2 - Akuntansi",
-            "S3 - Ilmu Akuntansi",
-            "PPAk",
-            "S1 - Ekonomi Pembangunan",
-            "S1 - Ekonomi Pembangunan (Internasional)",
-            "S2 - Ilmu Ekonomi",
-            "S3 - Ilmu Ekonomi",
-            "S1 - Ekonomi, Keuangan, dan Perbankan",
-            "S1 - Kewirausahaan",
-            "S1 - Manajemen",
-            "S1 - Manajemen (Internasional)",
-            "S2 - Manajemen",
-            "S3 - Ilmu Manajemen"
+                "Prodi",
+                "S1 - Akuntansi (Internasional)",
+                "S1 - Ekonomi, Keuangan, dan Perbankan (Internasional)",
+                "S2 - Akuntansi",
+                "S3 - Ilmu Akuntansi",
+                "PPAk",
+                "S1 - Ekonomi Pembangunan",
+                "S1 - Ekonomi Pembangunan (Internasional)",
+                "S2 - Ilmu Ekonomi",
+                "S3 - Ilmu Ekonomi",
+                "S1 - Ekonomi, Keuangan, dan Perbankan",
+                "S1 - Kewirausahaan",
+                "S1 - Manajemen",
+                "S1 - Manajemen (Internasional)",
+                "S2 - Manajemen",
+                "S3 - Ilmu Manajemen"
         };
 
         String[] prodiAkuntansi = new String[]{
-            "Prodi",
-            "S1 - Akuntansi (Internasional)",
-            "S1 - Ekonomi, Keuangan, dan Perbankan (Internasional)",
-            "S2 - Akuntansi",
-            "S3 - Ilmu Akuntansi",
-            "PPAk"
+                "Prodi",
+                "S1 - Akuntansi (Internasional)",
+                "S1 - Ekonomi, Keuangan, dan Perbankan (Internasional)",
+                "S2 - Akuntansi",
+                "S3 - Ilmu Akuntansi",
+                "PPAk"
         };
 
         String[] prodiIlmuEkonomi = new String[]{
-            "Prodi",
-            "S1 - Ekonomi Pembangunan",
-            "S1 - Ekonomi Pembangunan (Internasional)",
-            "S2 - Ilmu Ekonomi",
-            "S3 - Ilmu Ekonomi",
+                "Prodi",
+                "S1 - Ekonomi Pembangunan",
+                "S1 - Ekonomi Pembangunan (Internasional)",
+                "S2 - Ilmu Ekonomi",
+                "S3 - Ilmu Ekonomi",
         };
 
         String[] prodiManajemen = new String[]{
-            "Prodi",
-            "S1 - Ekonomi, Keuangan, dan Perbankan",
-            "S1 - Kewirausahaan",
-            "S1 - Manajemen",
-            "S1 - Manajemen (Internasional)",
-            "S2 - Manajemen",
-            "S3 - Ilmu Manajemen",
+                "Prodi",
+                "S1 - Ekonomi, Keuangan, dan Perbankan",
+                "S1 - Kewirausahaan",
+                "S1 - Manajemen",
+                "S1 - Manajemen (Internasional)",
+                "S2 - Manajemen",
+                "S3 - Ilmu Manajemen",
         };
 
         List<String> list = new ArrayList<>();
@@ -126,17 +145,18 @@ public class PimDataAlumniFragment extends Fragment {
         final List<String> prodiListIlmuEkonomi = new ArrayList<>(Arrays.asList(prodiIlmuEkonomi));
         final List<String> prodiListManajemen = new ArrayList<>(Arrays.asList(prodiManajemen));
 
+
         final ArrayAdapter<String> spinnerArrayAdapterJurusan = new ArrayAdapter<String>(
-            rootView.getContext(), R.layout.card_spinner, jurusanList) {
+                rootView.getContext(), R.layout.card_spinner, jurusanList) {
             @Override
             public boolean isEnabled(int position) {
                 return true;
             }
 
-            public View getDropDownView(int position, View convertView, ViewGroup parent){
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                if (position == 0){
+                if (position == 0) {
                     tv.setTextColor(Color.GRAY);
                 } else {
                     tv.setTextColor(getResources().getColor(R.color.colorIconBiru));
@@ -152,10 +172,10 @@ public class PimDataAlumniFragment extends Fragment {
                 return true;
             }
 
-            public View getDropDownView(int position, View convertView, ViewGroup parent){
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                if (position == 0){
+                if (position == 0) {
                     tv.setTextColor(Color.GRAY);
                 } else {
                     tv.setTextColor(getResources().getColor(R.color.colorIconBiru));
@@ -171,10 +191,10 @@ public class PimDataAlumniFragment extends Fragment {
                 return true;
             }
 
-            public View getDropDownView(int position, View convertView, ViewGroup parent){
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                if (position == 0){
+                if (position == 0) {
                     tv.setTextColor(Color.GRAY);
                 } else {
                     tv.setTextColor(getResources().getColor(R.color.colorIconBiru));
@@ -190,10 +210,10 @@ public class PimDataAlumniFragment extends Fragment {
                 return true;
             }
 
-            public View getDropDownView(int position, View convertView, ViewGroup parent){
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                if (position == 0){
+                if (position == 0) {
                     tv.setTextColor(Color.GRAY);
                 } else {
                     tv.setTextColor(getResources().getColor(R.color.colorIconBiru));
@@ -209,10 +229,10 @@ public class PimDataAlumniFragment extends Fragment {
                 return true;
             }
 
-            public View getDropDownView(int position, View convertView, ViewGroup parent){
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                if (position == 0){
+                if (position == 0) {
                     tv.setTextColor(Color.GRAY);
                 } else {
                     tv.setTextColor(getResources().getColor(R.color.colorIconBiru));
@@ -228,13 +248,13 @@ public class PimDataAlumniFragment extends Fragment {
         spn_jurusan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 1){
+                if (position == 1) {
                     spinnerArrayAdapterAkuntansi.setDropDownViewResource(R.layout.card_spinner);
                     spn_prodi.setAdapter(spinnerArrayAdapterAkuntansi);
-                } else if (position == 2){
+                } else if (position == 2) {
                     spinnerArrayAdapterIlmuEkonomi.setDropDownViewResource(R.layout.card_spinner);
                     spn_prodi.setAdapter(spinnerArrayAdapterIlmuEkonomi);
-                } else if (position == 3){
+                } else if (position == 3) {
                     spinnerArrayAdapterManajemen.setDropDownViewResource(R.layout.card_spinner);
                     spn_prodi.setAdapter(spinnerArrayAdapterManajemen);
                 } else {
@@ -250,4 +270,68 @@ public class PimDataAlumniFragment extends Fragment {
         });
 
     }
+
+    private void getDataAlumniDaftar() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<ArrayList<DaftarModel>> call = jsonPlaceHolderApi.getDataAlumniDaftar(
+                spn_jurusan.getSelectedItem().toString(),
+                spn_prodi.getSelectedItem().toString(),
+                edt_angkatan.getText().toString(),
+                edt_jabatan.getText().toString());
+
+        call.enqueue(new Callback<ArrayList<DaftarModel>>() {
+            @Override
+            public void onResponse(Call<ArrayList<DaftarModel>> call, Response<ArrayList<DaftarModel>> response) {
+                if (!response.isSuccessful()) {
+                    return;
+                }
+                daftarModels.clear();
+                ArrayList<DaftarModel> daftarModelsResponse = response.body();
+                daftarModels.addAll(daftarModelsResponse);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<DaftarModel>> call, Throwable t) {
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void getDataAlumniCount() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<DaftarModel> call = jsonPlaceHolderApi.getDataAlumniCount(
+                spn_jurusan.getSelectedItem().toString(),
+                spn_prodi.getSelectedItem().toString(),
+                edt_angkatan.getText().toString(),
+                edt_jabatan.getText().toString());
+        call.enqueue(new Callback<DaftarModel>() {
+            @Override
+            public void onResponse(Call<DaftarModel> call, Response<DaftarModel> response) {
+                if (!response.isSuccessful()) {
+                    return;
+                }
+                DaftarModel daftarResponse = response.body();
+                tv_totalAlumni.setText(daftarResponse.getJumlah());
+            }
+
+            @Override
+            public void onFailure(Call<DaftarModel> call, Throwable t) {
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 }

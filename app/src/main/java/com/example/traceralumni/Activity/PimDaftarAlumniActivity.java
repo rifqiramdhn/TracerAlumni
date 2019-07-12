@@ -1,5 +1,6 @@
 package com.example.traceralumni.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -51,18 +52,19 @@ public class PimDaftarAlumniActivity extends AppCompatActivity {
         ambilView();
         setNavBar();
 
-
-        daftarModels = new ArrayList<>();
+        Intent intent = getIntent();
+        daftarModels = intent.getParcelableArrayListExtra("daftarModels");
         daftarRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         daftarAdapter = new DaftarAdapter(this, daftarModels);
+        setSearch(daftarAdapter);
         daftarRecycler.setAdapter(daftarAdapter);
 
-        getDaftarAlumni();
+//        getDaftarAlumni();
 
         cl_iconSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cl_search_daftar.getVisibility() == View.GONE){
+                if (cl_search_daftar.getVisibility() == View.GONE) {
                     cl_search_daftar.setVisibility(View.VISIBLE);
                 } else {
                     cl_search_daftar.setVisibility(View.GONE);
@@ -78,7 +80,7 @@ public class PimDaftarAlumniActivity extends AppCompatActivity {
         });
     }
 
-    private void ambilView(){
+    private void ambilView() {
         cl_iconBack = findViewById(R.id.cl_icon1);
         cl_iconSearch = findViewById(R.id.cl_icon4);
         cl_search_daftar = findViewById(R.id.cl_activity_pim_daftar_search);
@@ -89,7 +91,7 @@ public class PimDaftarAlumniActivity extends AppCompatActivity {
         edt_search = findViewById(R.id.edt_activity_pim_daftar_search);
     }
 
-    private void setNavBar(){
+    private void setNavBar() {
         img_iconBack.setImageResource(R.drawable.ic_arrow_back);
         img_iconSearch.setImageResource(R.drawable.ic_search);
 
@@ -99,7 +101,7 @@ public class PimDaftarAlumniActivity extends AppCompatActivity {
         tvNavBar.setText("DAFTAR ALUMNI");
     }
 
-    private void getDaftarAlumni(){
+    private void getDaftarAlumni() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -111,7 +113,7 @@ public class PimDaftarAlumniActivity extends AppCompatActivity {
         call.enqueue(new Callback<ArrayList<DaftarModel>>() {
             @Override
             public void onResponse(Call<ArrayList<DaftarModel>> call, Response<ArrayList<DaftarModel>> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
 
@@ -132,7 +134,7 @@ public class PimDaftarAlumniActivity extends AppCompatActivity {
         });
     }
 
-    private void setSearch(final DaftarAdapter daftarAdapter){
+    private void setSearch(final DaftarAdapter daftarAdapter) {
         edt_search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

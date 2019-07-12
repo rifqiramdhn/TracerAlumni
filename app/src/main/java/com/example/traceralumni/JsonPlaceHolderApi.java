@@ -12,6 +12,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface JsonPlaceHolderApi {
 
@@ -41,10 +42,10 @@ public interface JsonPlaceHolderApi {
     @FormUrlEncoded
     @POST("create_donasi.php")
     Call<Void> createDonasi(@Field("idDonasi") Integer integer,
-                          @Field("namaKegiatan") String namaKegiatan,
-                          @Field("noTelepon") String noTelepon,
-                          @Field("keterangan") String keterangan,
-                          @Field("totalAnggaran") Integer totalAnggaran);
+                            @Field("namaKegiatan") String namaKegiatan,
+                            @Field("noTelepon") String noTelepon,
+                            @Field("keterangan") String keterangan,
+                            @Field("totalAnggaran") Integer totalAnggaran);
 
     @FormUrlEncoded
     @POST("delete_info.php")
@@ -53,4 +54,19 @@ public interface JsonPlaceHolderApi {
     @FormUrlEncoded
     @POST("delete_donasi.php")
     Call<Void> deleteDonasi(@Field("idDonasi") Integer integer);
+
+    @GET("get_data_alumni_daftar.php")
+    Call<ArrayList<DaftarModel>> getDataAlumniDaftar(
+            @Query("jurusan") String jurusan,
+            @Query("prodi") String prodi,
+            @Query("angkatan") String angkatan,
+            @Query("lainnya") String lainnya);
+
+    @GET("get_data_alumni_count.php")
+    Call<DaftarModel> getDataAlumniCount(
+            @Query("jurusan") String jurusan,
+            @Query("prodi") String prodi,
+            @Query("angkatan") String angkatan,
+            @Query("lainnya") String lainnya
+    );
 }
