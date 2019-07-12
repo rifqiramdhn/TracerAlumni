@@ -45,4 +45,12 @@ public interface JsonPlaceHolderApi {
                           @Field("noTelepon") String noTelepon,
                           @Field("keterangan") String keterangan,
                           @Field("totalAnggaran") Integer totalAnggaran);
+
+    @FormUrlEncoded
+    @POST("delete_info.php")
+    Call<Void> deleteInfo(@Field("idInfo") Integer integer);
+
+    @FormUrlEncoded
+    @POST("delete_donasi.php")
+    Call<Void> deleteDonasi(@Field("idDonasi") Integer integer);
 }
