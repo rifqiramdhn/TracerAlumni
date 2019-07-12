@@ -121,9 +121,7 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
         builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent i = new Intent(OpDetailDonasiActivity.this, MainActivity.class);
-                i.putExtra(INDEX_OPENED_TAB_KEY,INDEX_OPENED_TAB);
-                startActivity(i);
+                deleteDonasiID(idDonasi);
             }
         });
 
@@ -136,6 +134,34 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    private void deleteDonasiID(Integer idDonasi){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<Void> call = jsonPlaceHolderApi.deleteDonasi(idDonasi);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()){
+                    return;
+                }
+
+                Intent i = new Intent(OpDetailDonasiActivity.this, MainActivity.class);
+                i.putExtra(INDEX_OPENED_TAB_KEY,INDEX_OPENED_TAB);
+                startActivity(i);
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(OpDetailDonasiActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void getData(){

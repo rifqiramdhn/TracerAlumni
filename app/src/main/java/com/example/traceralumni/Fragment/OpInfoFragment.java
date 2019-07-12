@@ -74,7 +74,6 @@ public class OpInfoFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.e("aldy", "onresume op info jalan");
         getAllInfo();
     }
 
