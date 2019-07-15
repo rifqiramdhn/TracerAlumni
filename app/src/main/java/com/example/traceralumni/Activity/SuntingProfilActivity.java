@@ -50,7 +50,7 @@ import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 public class SuntingProfilActivity extends AppCompatActivity {
 
     ConstraintLayout cl_iconBack, cl_iconConfirm;
-    ImageView img_iconBack, img_iconConfirm,img_foto_profil,img_edit_foto_profil;
+    ImageView img_iconBack, img_iconConfirm, img_foto_profil, img_edit_foto_profil;
     TextView tv_titleBar;
     Calendar myCalendar;
     DatePickerDialog.OnDateSetListener tanggalLahir, tanggalYudisium;
@@ -328,7 +328,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
         Call<Void> call = jsonPlaceHolderApi.suntingProfil(
-                daftarModel.getUsername(),
+                daftarModel.getNim(),
                 edt_email.getText().toString(),
                 edt_tempat_lahir.getText().toString(),
                 edt_tanggal_lahir.getText().toString(),
@@ -346,10 +346,6 @@ public class SuntingProfilActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if (!response.isSuccessful()) {
-                    return;
-                }
-                Toast.makeText(SuntingProfilActivity.this, "Data telah diubah", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -357,7 +353,8 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 Toast.makeText(SuntingProfilActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
+        Toast.makeText(SuntingProfilActivity.this, "Data telah diubah", Toast.LENGTH_SHORT).show();
+        onBackPressed();
 
     }
 
@@ -441,6 +438,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
                         showKonfirmasiKembaliDialog();
                     }
                 });
+
             }
         });
     }
