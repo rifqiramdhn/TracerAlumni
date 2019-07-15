@@ -52,7 +52,7 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
         final PermintaanDonasiModel permintaanDonasiModel = permintaanDonasiModels.get(position);
         holder.namaDonatur.setText(permintaanDonasiModel.getNamaDonatur());
         holder.namaKegiatan.setText(permintaanDonasiModel.getNamaDonasi());
-        holder.totalDonasi.setText("Jumlah Donasi : Rp " + permintaanDonasiModel.getBantuan());
+        holder.totalDonasi.setText("Jumlah Donasi : Rp " + String.format("%.0f", permintaanDonasiModel.getBantuan()));
 
         holder.clDetailDonasi.setOnClickListener(new View.OnClickListener() {
             @Override

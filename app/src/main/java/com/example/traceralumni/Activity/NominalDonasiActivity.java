@@ -37,7 +37,8 @@ public class NominalDonasiActivity extends AppCompatActivity {
     RadioGroup rdGroup;
     AlertDialog.Builder builder;
 
-    Integer idDonasi, totalBantuan;
+    Integer idDonasi;
+    Double totalBantuan;
     String nim;
 
     @Override
@@ -90,42 +91,42 @@ public class NominalDonasiActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.rdBtn_1:
-                        totalBantuan = 5000000;
+                        totalBantuan = 5000000.0;
                         edt_lainnya.setText("");
                         edt_lainnya.clearFocus();
                         break;
                     case R.id.rdBtn_2:
-                        totalBantuan = 10000000;
+                        totalBantuan = 10000000.0;
                         edt_lainnya.setText("");
                         edt_lainnya.clearFocus();
                         break;
                     case R.id.rdBtn_3:
-                        totalBantuan = 20000000;
+                        totalBantuan = 20000000.0;
                         edt_lainnya.setText("");
                         edt_lainnya.clearFocus();
                         break;
                     case R.id.rdBtn_4:
-                        totalBantuan = 50000000;
+                        totalBantuan = 50000000.0;
                         edt_lainnya.setText("");
                         edt_lainnya.clearFocus();
                         break;
                     case R.id.rdBtn_5:
-                        totalBantuan = 100000000;
+                        totalBantuan = 100000000.0;
                         edt_lainnya.setText("");
                         edt_lainnya.clearFocus();
                         break;
                     case R.id.rdBtn_6:
-                        totalBantuan = 200000000;
+                        totalBantuan = 200000000.0;
                         edt_lainnya.setText("");
                         edt_lainnya.clearFocus();
                         break;
                     case R.id.rdBtn_7:
-                        totalBantuan = 500000000;
+                        totalBantuan = 500000000.0;
                         edt_lainnya.setText("");
                         edt_lainnya.clearFocus();
                         break;
                     case R.id.rdBtn_8:
-                        totalBantuan = 1000000000;
+                        totalBantuan = 1000000000.0;
                         edt_lainnya.setText("");
                         edt_lainnya.clearFocus();
                         break;
@@ -149,7 +150,8 @@ public class NominalDonasiActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (!edt_lainnya.getText().toString().equals("")) {
-                    totalBantuan = Integer.valueOf(edt_lainnya.getText().toString().trim());
+//                    totalBantuan = Integer.valueOf(edt_lainnya.getText().toString().trim());
+                    totalBantuan = Double.parseDouble(edt_lainnya.getText().toString().trim());
                 }
 
                 if (edt_lainnya.getText().toString().equals("") && rdGroup.getCheckedRadioButtonId() == -1) {
@@ -171,7 +173,7 @@ public class NominalDonasiActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void saveData(Integer totalBantuan) {
+    private void saveData(Double totalBantuan) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
