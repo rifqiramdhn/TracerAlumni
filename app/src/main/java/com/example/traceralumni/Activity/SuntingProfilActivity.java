@@ -1,6 +1,7 @@
 package com.example.traceralumni.Activity;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,9 +9,11 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -21,6 +24,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;
 
 import java.io.FileNotFoundException;
@@ -32,26 +37,28 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 import static com.example.traceralumni.Activity.LocationPickerActivity.KODE_POS_EXTRA_KEY;
 import static com.example.traceralumni.Activity.LocationPickerActivity.LOKASI_EXTRA_KEY;
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 
 public class SuntingProfilActivity extends AppCompatActivity {
 
     ConstraintLayout cl_iconBack, cl_iconConfirm;
-    ImageView img_iconBack, img_iconConfirm;
+    ImageView img_iconBack, img_iconConfirm,img_foto_profil,img_edit_foto_profil;
     TextView tv_titleBar;
-
     Calendar myCalendar;
-
     DatePickerDialog.OnDateSetListener tanggalLahir, tanggalYudisium;
-
-    ImageView img_foto_profil, img_edit_foto_profil;
-
     EditText edt_email, edt_tempat_lahir, edt_tanggal_lahir, edt_alamat, edt_kode_pos, edt_angkatan,
             edt_tahun_lulus, edt_tanggal_yudisium, edt_negara, edt_no_hp, edt_no_telp, edt_facebook,
             edt_twitter;
-
     Spinner spn_kewarganegaraaan;
+    DaftarModel daftarModel;
 
     static final int PICK_PHOTO_REQUEST = 1;
     static final int PICK_ADDRESS_REQUEST = 2;
@@ -63,8 +70,12 @@ public class SuntingProfilActivity extends AppCompatActivity {
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
+        daftarModel = getIntent().getParcelableExtra("daftarModel");
+
         setIcon();
         getView();
+        customSpinner();
+        cekPerubahan();
 
         edt_alamat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,20 +90,12 @@ public class SuntingProfilActivity extends AppCompatActivity {
         datePickerGetDate(edt_tanggal_yudisium);
         datePickerSetDate();
 
-        customSpinner();
-
         img_edit_foto_profil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getPhotoFromGallery();
             }
         });
-    }
-
-    private void getPhotoFromGallery() {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        startActivityForResult(intent, PICK_PHOTO_REQUEST);
     }
 
     @Override
@@ -109,10 +112,98 @@ public class SuntingProfilActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        } else if (requestCode == PICK_ADDRESS_REQUEST){
+        } else if (requestCode == PICK_ADDRESS_REQUEST) {
             edt_alamat.setText(data.getStringExtra(LOKASI_EXTRA_KEY));
             edt_kode_pos.setText(data.getStringExtra(KODE_POS_EXTRA_KEY));
         }
+    }
+
+    private void setIcon() {
+        cl_iconBack = findViewById(R.id.cl_icon1);
+        cl_iconBack.setVisibility(View.VISIBLE);
+        cl_iconBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+        cl_iconConfirm = findViewById(R.id.cl_icon4);
+        cl_iconConfirm.setVisibility(View.VISIBLE);
+        cl_iconConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (edt_email.getText().toString().equalsIgnoreCase("")) {
+                    edt_email.setError("Wajib diisi!");
+                } else if (edt_tempat_lahir.getText().toString().equalsIgnoreCase("")) {
+                    edt_tempat_lahir.setError("Wajib diisi!");
+                } else if (edt_tanggal_lahir.getText().toString().equalsIgnoreCase("")) {
+                    Toast.makeText(SuntingProfilActivity.this, "Anda belum mengisi tanggal lahir!", Toast.LENGTH_SHORT).show();
+                } else if (edt_alamat.getText().toString().equalsIgnoreCase("")) {
+                    Toast.makeText(SuntingProfilActivity.this, "Anda belum mengisi alamat!", Toast.LENGTH_SHORT).show();
+                } else if (edt_kode_pos.getText().toString().equalsIgnoreCase("")) {
+                    edt_kode_pos.setError("Wajib diisi!");
+                } else if (edt_angkatan.getText().toString().equalsIgnoreCase("")) {
+                    edt_angkatan.setError("Wajib diisi!");
+                } else if (edt_tahun_lulus.getText().toString().equalsIgnoreCase("")) {
+                    edt_tahun_lulus.setError("Wajib diisi!");
+                } else if (spn_kewarganegaraaan.getSelectedItem().toString().equalsIgnoreCase("Kewarganegaraan")) {
+                    Toast.makeText(SuntingProfilActivity.this, "Anda belum memilih kewarganegaraan!", Toast.LENGTH_SHORT).show();
+                } else if (edt_negara.getText().toString().equalsIgnoreCase("")) {
+                    edt_negara.setError("Wajib diisi!");
+                } else if (edt_no_hp.getText().toString().equalsIgnoreCase("")) {
+                    edt_no_hp.setError("Wajib diisi!");
+                } else {
+                    showSimpanPerubahanDialog();
+                }
+            }
+        });
+
+        img_iconBack = findViewById(R.id.img_icon1);
+        img_iconBack.setImageResource(R.drawable.ic_arrow_back);
+
+        img_iconConfirm = findViewById(R.id.img_icon4);
+        img_iconConfirm.setImageResource(R.drawable.ic_check);
+
+        tv_titleBar = findViewById(R.id.tv_navbar_top);
+        tv_titleBar.setText("SUNTING PROFIL");
+    }
+
+    private void getView() {
+        edt_email = findViewById(R.id.edt_sunting_profil_email);
+        edt_email.setText(daftarModel.getEmail());
+        edt_tempat_lahir = findViewById(R.id.edt_sunting_profil_tempat_lahir);
+        edt_tempat_lahir.setText(daftarModel.getTempat_lahir());
+        edt_tanggal_lahir = findViewById(R.id.edt_sunting_profil_tanggal_lahir);
+//        edt_tanggal_lahir.setText(DATA_USER.getTanggal_lahir().toString());
+        edt_alamat = findViewById(R.id.edt_sunting_profil_alamat);
+        edt_alamat.setText(daftarModel.getAlamat());
+        edt_kode_pos = findViewById(R.id.edt_sunting_profil_kode_pos);
+        edt_kode_pos.setText(daftarModel.getKode_pos());
+        edt_angkatan = findViewById(R.id.edt_sunting_profil_angkatan);
+        edt_angkatan.setText(daftarModel.getAngkatan());
+        edt_tahun_lulus = findViewById(R.id.edt_sunting_profil_tahun_lulus);
+        edt_tahun_lulus.setText(daftarModel.getTahun_lulus());
+        edt_tanggal_yudisium = findViewById(R.id.edt_sunting_profil_tanggal_yudisium);
+//        edt_tanggal_yudisium.setText(DATA_USER.getTanggal_yudisium().toString());
+        spn_kewarganegaraaan = findViewById(R.id.spn_sunting_profil_kewarganegaraan);
+        edt_negara = findViewById(R.id.edt_sunting_profil_negara);
+        edt_negara.setText(daftarModel.getNama_negara());
+        edt_no_hp = findViewById(R.id.edt_sunting_profil_no_hp);
+        edt_no_hp.setText(daftarModel.getNomor_hp());
+        edt_no_telp = findViewById(R.id.edt_sunting_profil_no_telepon);
+        edt_no_telp.setText(daftarModel.getNomor_telepon());
+        edt_facebook = findViewById(R.id.edt_sunting_profil_facebook);
+        edt_facebook.setText(daftarModel.getFacebook());
+        edt_twitter = findViewById(R.id.edt_sunting_profil_twitter);
+        edt_twitter.setText(daftarModel.getTwitter());
+        img_foto_profil = findViewById(R.id.img_sunting_profil_foto);
+        img_edit_foto_profil = findViewById(R.id.img_sunting_profil_edit_foto);
+    }
+
+    private void getPhotoFromGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, PICK_PHOTO_REQUEST);
     }
 
     private void uploadPhoto(Bitmap selectedImage) {
@@ -128,55 +219,6 @@ public class SuntingProfilActivity extends AppCompatActivity {
     private void moveToLocationPickerActivity() {
         Intent i = new Intent(SuntingProfilActivity.this, LocationPickerActivity.class);
         startActivityForResult(i, PICK_ADDRESS_REQUEST);
-    }
-
-    private void setIcon() {
-        cl_iconBack = findViewById(R.id.cl_icon1);
-        cl_iconBack.setVisibility(View.VISIBLE);
-        cl_iconBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-
-        cl_iconConfirm = findViewById(R.id.cl_icon4);
-        cl_iconConfirm.setVisibility(View.VISIBLE);
-        cl_iconConfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(SuntingProfilActivity.this, "Mantaap", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        img_iconBack = findViewById(R.id.img_icon1);
-        img_iconBack.setImageResource(R.drawable.ic_arrow_back);
-
-        img_iconConfirm = findViewById(R.id.img_icon4);
-        img_iconConfirm.setImageResource(R.drawable.ic_check);
-
-        tv_titleBar = findViewById(R.id.tv_navbar_top);
-        tv_titleBar.setText("SUNTING PROFIL");
-    }
-
-    private void getView() {
-
-        edt_email = findViewById(R.id.edt_sunting_profil_email);
-        edt_tempat_lahir = findViewById(R.id.edt_sunting_profil_tempat_lahir);
-        edt_tanggal_lahir = findViewById(R.id.edt_sunting_profil_tanggal_lahir);
-        edt_alamat = findViewById(R.id.edt_sunting_profil_alamat);
-        edt_kode_pos = findViewById(R.id.edt_sunting_profil_kode_pos);
-        edt_angkatan = findViewById(R.id.edt_sunting_profil_angkatan);
-        edt_tahun_lulus = findViewById(R.id.edt_sunting_profil_tahun_lulus);
-        edt_tanggal_yudisium = findViewById(R.id.edt_sunting_profil_tanggal_yudisium);
-        spn_kewarganegaraaan = findViewById(R.id.spn_sunting_profil_kewarganegaraan);
-        edt_negara = findViewById(R.id.edt_sunting_profil_negara);
-        edt_no_hp = findViewById(R.id.edt_sunting_profil_no_hp);
-        edt_no_telp = findViewById(R.id.edt_sunting_profil_no_telepon);
-        edt_facebook = findViewById(R.id.edt_sunting_profil_facebook);
-        edt_twitter = findViewById(R.id.edt_sunting_profil_twitter);
-        img_foto_profil = findViewById(R.id.img_sunting_profil_foto);
-        img_edit_foto_profil = findViewById(R.id.img_sunting_profil_edit_foto);
     }
 
     private void datePickerGetDate(final EditText editText) {
@@ -234,7 +276,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
 
     private void customSpinner() {
         String[] kewarganegaraan = new String[]{
-                "Kewarganegaraan*",
+                "Kewarganegaraan",
                 "WNI",
                 "WNA"
         };
@@ -270,5 +312,153 @@ public class SuntingProfilActivity extends AppCompatActivity {
         };
         spinnerArrayAdapter.setDropDownViewResource(R.layout.card_spinner);
         spn_kewarganegaraaan.setAdapter(spinnerArrayAdapter);
+        if (daftarModel.getKewarganegaraan().equalsIgnoreCase("WNI")) {
+            spn_kewarganegaraaan.setSelection(1);
+        } else {
+            spn_kewarganegaraaan.setSelection(2);
+        }
     }
+
+    private void suntingProfil() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<Void> call = jsonPlaceHolderApi.suntingProfil(
+                daftarModel.getUsername(),
+                edt_email.getText().toString(),
+                edt_tempat_lahir.getText().toString(),
+                edt_tanggal_lahir.getText().toString(),
+                edt_alamat.getText().toString(),
+                edt_kode_pos.getText().toString(),
+                edt_angkatan.getText().toString(),
+                edt_tahun_lulus.getText().toString(),
+                edt_tanggal_yudisium.getText().toString(),
+                spn_kewarganegaraaan.getSelectedItem().toString(),
+                edt_negara.getText().toString(),
+                edt_no_hp.getText().toString(),
+                edt_no_telp.getText().toString(),
+                edt_facebook.getText().toString(),
+                edt_twitter.getText().toString());
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()) {
+                    return;
+                }
+                Toast.makeText(SuntingProfilActivity.this, "Data telah diubah", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(SuntingProfilActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+
+    private void showSimpanPerubahanDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(SuntingProfilActivity.this);
+
+        builder.setMessage("Simpan perubahan?");
+
+        builder.setTitle("Sunting Profil");
+
+        builder.setCancelable(false);
+
+        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                suntingProfil();
+            }
+        });
+
+        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+
+        alertDialog.show();
+    }
+
+    private void showKonfirmasiKembaliDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(SuntingProfilActivity.this);
+
+        builder.setMessage("Anda yakin ingin kembali?\nPerubahan yang anda buat tidak akan disimpan");
+
+        builder.setTitle("Kembali");
+
+        builder.setCancelable(false);
+
+        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                onBackPressed();
+            }
+        });
+
+        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+
+        alertDialog.show();
+    }
+
+    private void setTextWatcher(EditText editText) {
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                cl_iconBack.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        showKonfirmasiKembaliDialog();
+                    }
+                });
+            }
+        });
+    }
+
+    private void cekPerubahan() {
+        setTextWatcher(edt_email);
+        setTextWatcher(edt_tempat_lahir);
+        setTextWatcher(edt_tanggal_lahir);
+        setTextWatcher(edt_alamat);
+        setTextWatcher(edt_kode_pos);
+        setTextWatcher(edt_angkatan);
+        setTextWatcher(edt_tahun_lulus);
+        setTextWatcher(edt_tanggal_yudisium);
+        setTextWatcher(edt_negara);
+        setTextWatcher(edt_no_hp);
+        setTextWatcher(edt_no_telp);
+        setTextWatcher(edt_facebook);
+        setTextWatcher(edt_twitter);
+    }
+
 }
