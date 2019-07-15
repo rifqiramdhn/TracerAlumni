@@ -77,10 +77,24 @@ public class TambahLowonganActivity extends AppCompatActivity {
                 i.putExtra("jabatan", edt_jabatan.getText().toString().trim());
                 i.putExtra("namaPerusahaan", edt_namaPerusahaan.getText().toString().trim());
                 i.putExtra("alamat", edt_alamatPerusahaan.getText().toString().trim());
-                i.putExtra("kuota", Integer.valueOf(edt_kuota.getText().toString()));
+                i.putExtra("kuota", edt_kuota.getText().toString().trim());
                 i.putExtra("gaji", edt_gaji.getText().toString().trim());
-                startActivity(i);
 
+                if (edt_judulLowongan.getText().toString().equalsIgnoreCase("")){
+                    edt_judulLowongan.setError("Harap isi judul lowongan");
+                } else if (edt_jabatan.getText().toString().equalsIgnoreCase("")){
+                    edt_jabatan.setError("Harap isi jabatan");
+                } else if (edt_namaPerusahaan.getText().toString().equalsIgnoreCase("")){
+                    edt_namaPerusahaan.setError("Harap isi nama perusahaan");
+                } else if (edt_alamatPerusahaan.getText().toString().equalsIgnoreCase("")){
+                    edt_alamatPerusahaan.setError("Harap isi alamat perusahaan");
+                } else if (edt_kuota.getText().toString().equalsIgnoreCase("")){
+                    edt_kuota.setError("Harap isi kuota");
+                } else if (edt_gaji.getText().toString().equalsIgnoreCase("")){
+                    edt_gaji.setError("Harap isi gaji");
+                } else {
+                    startActivity(i);
+                }
             }
         });
     }

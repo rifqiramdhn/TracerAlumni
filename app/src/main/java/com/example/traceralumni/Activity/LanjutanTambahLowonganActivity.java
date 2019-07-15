@@ -70,7 +70,19 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
         cl_icon_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showKonfirmasiTambah();
+                if (edt_syarat.getText().toString().equalsIgnoreCase("")){
+                    edt_syarat.setError("Harap isi syarat pekerjaan");
+                } else if (edt_website.getText().toString().equalsIgnoreCase("")){
+                    edt_website.setError("Harap isi website");
+                } else if (edt_email.getText().toString().equalsIgnoreCase("")){
+                    edt_email.setError("Harap isi email");
+                } else if (edt_notelp.getText().toString().equalsIgnoreCase("")){
+                    edt_notelp.setError("Harap isi nomor telepon");
+                } else if (edt_cp.getText().toString().equalsIgnoreCase("")){
+                    edt_cp.setError("Harap isi kontak yang dapat dihubungi");
+                } else {
+                    showKonfirmasiTambah();
+                }
             }
         });
 

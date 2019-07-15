@@ -83,7 +83,8 @@ public interface JsonPlaceHolderApi {
                               @Field("website") String website,
                               @Field("email") String email,
                               @Field("noTelp") String noTelp,
-                              @Field("cp") String cp);
+                              @Field("cp") String cp,
+                              @Field("status") String status);
 
     @FormUrlEncoded
     @POST("post_get_user_data.php")
