@@ -22,12 +22,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
-import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_PREF;
-import static com.example.traceralumni.Activity.MainActivity.NIM_PREF;
+import static com.example.traceralumni.Activity.MainActivity.USERNAME_PREF;
 import static com.example.traceralumni.Activity.MainActivity.SHARE_PREFS;
-import static com.example.traceralumni.Activity.MainActivity.STATE_USER_LOGGED;
 import static com.example.traceralumni.Activity.MainActivity.STATE_USER_LOGGED_PREF;
 
 public class LoginActivity extends AppCompatActivity {
@@ -91,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         editor.putInt(STATE_USER_LOGGED_PREF, 1);
 
         if (daftarModel.getJenis_user().equals(JENIS_USER_ALUMNI)){
-            editor.putString(NIM_PREF, daftarModel.getNim());
+            editor.putString(USERNAME_PREF, daftarModel.getNim());
         }
 
         editor.apply();

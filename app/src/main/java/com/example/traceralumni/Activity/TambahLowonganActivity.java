@@ -29,6 +29,7 @@ import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_PIMPINAN;
 import static com.example.traceralumni.Activity.SuntingProfilActivity.PICK_PHOTO_REQUEST;
 
 public class TambahLowonganActivity extends AppCompatActivity {
@@ -71,23 +72,15 @@ public class TambahLowonganActivity extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
-                    Intent i = new Intent(TambahLowonganActivity.this, LanjutanTambahLowonganActivity.class);
-                    i.putExtra("judulLowongan", edt_judulLowongan.getText().toString().trim());
-                    i.putExtra("jabatan", edt_jabatan.getText().toString().trim());
-                    i.putExtra("namaPerusahaan", edt_namaPerusahaan.getText().toString().trim());
-                    i.putExtra("alamat", edt_alamatPerusahaan.getText().toString().trim());
-                    i.putExtra("kuota", Integer.valueOf(edt_kuota.getText().toString()));
-                    i.putExtra("gaji", edt_gaji.getText().toString().trim());
-                    i.putExtra("Tambah", INDEX_OPENED_TAB);
-                    startActivity(i);
-                } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)){
-                    Intent i = new Intent(TambahLowonganActivity.this, LanjutanTambahLowonganActivity.class);
-                    i.putExtra("Tab", INDEX_OPENED_TAB);
-                    startActivity(i);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Lanjut", Toast.LENGTH_SHORT).show();
-                }
+                Intent i = new Intent(TambahLowonganActivity.this, LanjutanTambahLowonganActivity.class);
+                i.putExtra("judulLowongan", edt_judulLowongan.getText().toString().trim());
+                i.putExtra("jabatan", edt_jabatan.getText().toString().trim());
+                i.putExtra("namaPerusahaan", edt_namaPerusahaan.getText().toString().trim());
+                i.putExtra("alamat", edt_alamatPerusahaan.getText().toString().trim());
+                i.putExtra("kuota", Integer.valueOf(edt_kuota.getText().toString()));
+                i.putExtra("gaji", edt_gaji.getText().toString().trim());
+                startActivity(i);
+
             }
         });
     }
@@ -125,7 +118,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
         img_logo.setImageBitmap(photo);
     }
 
-    private void initView(){
+    private void initView() {
         cl_icon_back = findViewById(R.id.cl_icon1);
         img_icon_back = findViewById(R.id.img_icon1);
         tv_navbar = findViewById(R.id.tv_navbar_top);

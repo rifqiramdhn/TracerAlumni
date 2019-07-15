@@ -73,9 +73,17 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
                 showKonfirmasiTambah();
             }
         });
+
+        Intent i = getIntent();
+        judulLowongan = i.getStringExtra("judulLowongan");
+        jabatan = i.getStringExtra("jabatan");
+        namaPerusahaan = i.getStringExtra("namaPerusahaan");
+        alamatPerusahaan = i.getStringExtra("alamat");
+        kuota = i.getIntExtra("kuota", 0);
+        gaji = i.getStringExtra("gaji");
     }
 
-    private void initView(){
+    private void initView() {
         cl_icon_back = findViewById(R.id.cl_icon1);
         img_icon_back = findViewById(R.id.img_icon1);
         cl_icon_ok = findViewById(R.id.cl_icon4);
@@ -89,20 +97,14 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
         edt_cp = findViewById(R.id.edt_kontak);
     }
 
-    private void showKonfirmasiTambah(){
-        builder.setMessage("Apakah yakin anda akan menambahkan lowongan ini?"+"\nAnda tidak bisa mengedit lowongan lagi.");
+    private void showKonfirmasiTambah() {
+        builder.setMessage("Apakah yakin anda akan menambahkan lowongan ini?" + "\nAnda tidak bisa mengedit lowongan lagi.");
         builder.setTitle("Konfirmasi Tambah Lowongan");
         builder.setCancelable(false);
         builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent i = getIntent();
-                judulLowongan = i.getStringExtra("judulLowongan");
-                jabatan = i.getStringExtra("jabatan");
-                namaPerusahaan = i.getStringExtra("namaPerusahaan");
-                alamatPerusahaan = i.getStringExtra("alamat");
-                kuota = i.getIntExtra("kuota", 0);
-                gaji = i.getStringExtra("gaji");
+
                 syarat = edt_syarat.getText().toString().trim();
                 website = edt_website.getText().toString().trim();
                 email = edt_email.getText().toString().trim();
@@ -124,24 +126,25 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void saveData(String judulLowongan, String jabatan, String namaPerusahaan, String alamat, Integer kuota, String gaji, String syarat, String website, String email, String notelp, String cp){
+    private void saveData(String judulLowongan, String jabatan, String namaPerusahaan, String alamat, Integer kuota, String gaji, String syarat, String website, String email, String notelp, String cp) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<Void> call = jsonPlaceHolderApi.createLowongan(judulLowongan,jabatan,namaPerusahaan,alamat,kuota,gaji,syarat,website,email,notelp,cp);
+        Call<Void> call = jsonPlaceHolderApi.createLowongan(judulLowongan, jabatan, namaPerusahaan, alamat, kuota, gaji, syarat, website, email, notelp, cp);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if(!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
 
                 Toast.makeText(LanjutanTambahLowonganActivity.this, "Tunggu konfirmasi dari operator", Toast.LENGTH_SHORT).show();
+
                 Intent a = new Intent(LanjutanTambahLowonganActivity.this, MainActivity.class);
-                a.putExtra("Tambah", INDEX_OPENED_TAB);
+                a.putExtra(INDEX_OPENED_TAB_KEY, INDEX_OPENED_TAB);
                 startActivity(a);
             }
 

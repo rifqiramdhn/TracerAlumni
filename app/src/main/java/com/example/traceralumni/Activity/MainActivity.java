@@ -12,7 +12,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,14 +21,9 @@ import com.example.traceralumni.Adapter.OpFragPagerAdapter;
 import com.example.traceralumni.Adapter.PimFragPagerAdapter;
 import com.example.traceralumni.R;
 import com.example.traceralumni.Adapter.AlumniFragPagerAdapter;
-import com.google.android.gms.dynamic.IFragmentWrapper;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
-
-import java.util.Arrays;
-
-import javax.security.auth.login.LoginException;
 
 public class MainActivity extends AppCompatActivity {
     ConstraintLayout cl_icon1, cl_icon2, cl_icon3, cl_icon4;
@@ -49,13 +43,13 @@ public class MainActivity extends AppCompatActivity {
     public static final String INDEX_OPENED_TAB_KEY = "index_opened_tab_key";
 
     public static final String SHARE_PREFS = "share_prefs";
-    public static final String NIM_PREF = "nim_pref";
+    public static final String USERNAME_PREF = "username_pref";
     public static final String JENIS_USER_PREF = "jenis_user_pref";
     public static final String STATE_USER_LOGGED_PREF = "state_user_logged_pref";
 
     public static int INDEX_OPENED_TAB;
     public static int STATE_USER_LOGGED; //0 berarti belum login, 1 berarti sudah login
-    public static String NIM;
+    public static String USERNAME;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         if (STATE_USER_LOGGED != 0){
             JENIS_USER = sharedPreferences.getString(JENIS_USER_PREF, "");
             if (JENIS_USER.equals(JENIS_USER_ALUMNI)){
-                NIM = sharedPreferences.getString(NIM_PREF, "");
+                USERNAME = sharedPreferences.getString(USERNAME_PREF, "");
             }
         } else {
             moveActivityToLogin();
@@ -412,7 +406,6 @@ public class MainActivity extends AppCompatActivity {
                 tabLayout.getTabAt(tab_number).select();
                 INDEX_OPENED_TAB = tab_number;
             }
-        } else {
         }
     }
 

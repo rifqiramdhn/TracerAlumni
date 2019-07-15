@@ -8,6 +8,10 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Date;
 
 public class DonasiModel implements Parcelable {
+
+    @SerializedName("donasi_masuk")
+    private Integer donasiMasuk;
+
     @SerializedName("id_opendonasi")
     private Integer idDonasi;
 
@@ -33,6 +37,11 @@ public class DonasiModel implements Parcelable {
     private Integer totalAnggaran;
 
     protected DonasiModel(Parcel in) {
+        if (in.readByte() == 0) {
+            donasiMasuk = null;
+        } else {
+            donasiMasuk = in.readInt();
+        }
         if (in.readByte() == 0) {
             idDonasi = null;
         } else {
@@ -74,7 +83,12 @@ public class DonasiModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-
+        if (donasiMasuk == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(donasiMasuk);
+        }
         if (idDonasi == null) {
             parcel.writeByte((byte) 0);
         } else {
@@ -98,6 +112,10 @@ public class DonasiModel implements Parcelable {
             parcel.writeByte((byte) 1);
             parcel.writeInt(totalAnggaran);
         }
+    }
+
+    public Integer getDonasiMasuk() {
+        return donasiMasuk;
     }
 
     public Integer getIdDonasi() {
