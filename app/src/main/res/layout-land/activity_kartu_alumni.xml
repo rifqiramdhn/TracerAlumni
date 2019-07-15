@@ -61,11 +61,11 @@
         android:text="165150293029303"
         android:textColor="@android:color/black"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_kartu_alumni_tahun_lulus"
-        app:layout_constraintStart_toStartOf="@+id/tv_kartu_alumni_tahun_lulus" />
+        app:layout_constraintBottom_toTopOf="@+id/tv_kartu_alumni_angkatan"
+        app:layout_constraintStart_toStartOf="@+id/tv_kartu_alumni_angkatan" />
 
     <TextView
-        android:id="@+id/tv_kartu_alumni_tahun_lulus"
+        android:id="@+id/tv_kartu_alumni_angkatan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
