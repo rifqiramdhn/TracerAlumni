@@ -171,7 +171,6 @@ public class DaftarFragment extends Fragment {
     }
 
     private void setSearch(final DaftarAdapter daftarAdapter) {
-        Log.e("aldy", "setSearch jalan");
         edt_cari_nama.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

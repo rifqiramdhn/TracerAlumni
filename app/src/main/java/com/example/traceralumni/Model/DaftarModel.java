@@ -37,7 +37,7 @@ public class DaftarModel implements Parcelable {
     private Date tanggal_yudisium;
     private Date tanggal_lahir;
 
-    private Integer jumlah;
+    private String jumlah;
 
     protected DaftarModel(Parcel in) {
         username = in.readString();
@@ -192,7 +192,7 @@ public class DaftarModel implements Parcelable {
         return tanggal_lahir;
     }
 
-    public Integer getJumlah() {
+    public String getJumlah() {
         return jumlah;
     }
 

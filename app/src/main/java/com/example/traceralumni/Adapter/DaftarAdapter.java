@@ -114,9 +114,11 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
                     || TEXT_SEARCH_DAFTAR_USE_NAMA.length() == 0)
                     && (TEXT_SEARCH_DAFTAR_USE_ANGKATAN == null
                     || TEXT_SEARCH_DAFTAR_USE_ANGKATAN.length() == 0)
-                    && SPINNER_SEARCH_DAFTAR_USE_PRODI.equalsIgnoreCase("prodi")) {
+                    && (SPINNER_SEARCH_DAFTAR_USE_PRODI.equalsIgnoreCase("prodi")
+                    || SPINNER_SEARCH_DAFTAR_USE_PRODI.equalsIgnoreCase(""))) {
                 filteredList.addAll(daftarModelsFull);
-            } else if (SPINNER_SEARCH_DAFTAR_USE_PRODI.equalsIgnoreCase("prodi")) {
+            } else if ((SPINNER_SEARCH_DAFTAR_USE_PRODI.equalsIgnoreCase("prodi")
+                    || SPINNER_SEARCH_DAFTAR_USE_PRODI.equalsIgnoreCase(""))) {
                 for (DaftarModel item : daftarModelsFull) {
                     if (item.getAngkatan().toLowerCase().contains(filterAngkatan)
                             && item.getNama().toLowerCase().contains(filterNama)) {

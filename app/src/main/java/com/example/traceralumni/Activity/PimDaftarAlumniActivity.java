@@ -13,24 +13,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.traceralumni.Adapter.DaftarAdapter;
-import com.example.traceralumni.Adapter.DonasiAdapter;
-import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DaftarModel;
-import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Fragment.DaftarFragment.TEXT_SEARCH_DAFTAR_USE_NAMA;
 
 public class PimDaftarAlumniActivity extends AppCompatActivity {
@@ -57,9 +46,9 @@ public class PimDaftarAlumniActivity extends AppCompatActivity {
         daftarRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         daftarAdapter = new DaftarAdapter(this, daftarModels);
         setSearch(daftarAdapter);
-        daftarRecycler.setAdapter(daftarAdapter);
-
-//        getDaftarAlumni();
+        if (daftarModels.get(0).getStatus_data().equalsIgnoreCase("y")) {
+            daftarRecycler.setAdapter(daftarAdapter);
+        }
 
         cl_iconSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,39 +90,6 @@ public class PimDaftarAlumniActivity extends AppCompatActivity {
         tvNavBar.setText("DAFTAR ALUMNI");
     }
 
-    private void getDaftarAlumni() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<ArrayList<DaftarModel>> call = jsonPlaceHolderApi.getDaftarAlumni();
-        call.enqueue(new Callback<ArrayList<DaftarModel>>() {
-            @Override
-            public void onResponse(Call<ArrayList<DaftarModel>> call, Response<ArrayList<DaftarModel>> response) {
-                if (!response.isSuccessful()) {
-                    return;
-                }
-
-                daftarModels.clear();
-                ArrayList<DaftarModel> daftarModelsResponse = response.body();
-                daftarModels.addAll(daftarModelsResponse);
-
-                final DaftarAdapter daftarAdapterNew = new DaftarAdapter(PimDaftarAlumniActivity.this, daftarModels);
-                daftarRecycler.setAdapter(daftarAdapterNew);
-
-                setSearch(daftarAdapterNew);
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<DaftarModel>> call, Throwable t) {
-                Toast.makeText(PimDaftarAlumniActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
     private void setSearch(final DaftarAdapter daftarAdapter) {
         edt_search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -143,7 +99,7 @@ public class PimDaftarAlumniActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                TEXT_SEARCH_DAFTAR_USE_NAMA = charSequence.toString().toLowerCase().trim();
+                TEXT_SEARCH_DAFTAR_USE_NAMA = charSequence.toString();
                 daftarAdapter.getFilter().filter(charSequence);
             }
 
@@ -152,6 +108,7 @@ public class PimDaftarAlumniActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
 }
