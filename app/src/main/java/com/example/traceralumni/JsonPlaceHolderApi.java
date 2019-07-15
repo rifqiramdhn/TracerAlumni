@@ -4,6 +4,7 @@ import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.Model.InfoModel;
 import com.example.traceralumni.Model.LowonganModel;
+import com.example.traceralumni.Model.PermintaanDonasiModel;
 
 import java.util.ArrayList;
 
@@ -86,11 +87,11 @@ public interface JsonPlaceHolderApi {
 
     @FormUrlEncoded
     @POST("post_get_user_data.php")
-    Call<DaftarModel> getUserData(@Field("username") String username);
+    Call<DaftarModel> getUserData(@Field("nim") String nim);
 
     @FormUrlEncoded
     @POST("post_sunting_profil.php")
-    Call<Void> suntingProfil(@Field("username") String username,
+    Call<Void> suntingProfil(@Field("nim") String nim,
                              @Field("email") String email,
                              @Field("tempat_lahir") String tempat_lahir,
                              @Field("tanggal_lahir") String tanggal_lahir,
@@ -105,4 +106,23 @@ public interface JsonPlaceHolderApi {
                              @Field("nomor_telepon") String nomor_telepon,
                              @Field("facebook") String facebook,
                              @Field("twitter") String twitter);
+
+    @FormUrlEncoded
+    @POST("create_permintaan_donasi.php")
+    Call<Void> createPermintaanDonasi(@Field("idDonasi") Integer integer,
+                                      @Field("nim") String nim,
+                                      @Field("totalBantuan") Integer totalBantuan);
+
+    @GET("get_all_permintaan_donasi.php")
+    Call<ArrayList<PermintaanDonasiModel>> getPerDonasi();
+
+    @FormUrlEncoded
+    @POST("confirm_permintaan_donasi.php")
+    Call<Void> confirmDonasi(@Field("idDaftarDonasi") Integer idDaftarDonasi,
+                             @Field("confirm") String confirm);
+
+    @FormUrlEncoded
+    @POST("post_get_donasi_data.php")
+    Call<DonasiModel> getDonasi(@Field("idDaftarDonasi") Integer idDaftarDonasi);
+
 }

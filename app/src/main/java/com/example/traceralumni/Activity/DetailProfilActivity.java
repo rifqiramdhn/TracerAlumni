@@ -8,18 +8,27 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.traceralumni.Adapter.RiwayatPekerjaanAdapter;
+import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.RiwayatPekerjaanModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 
@@ -88,22 +97,69 @@ public class DetailProfilActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         DaftarModel daftarModel = intent.getParcelableExtra("daftarModel");
-        tvNama.setText(daftarModel.getNama());
-        tvProdi.setText(daftarModel.getProdi());
-        tvAngkatan.setText(daftarModel.getAngkatan());
-        tvThnLulus.setText(daftarModel.getTahun_lulus());
+        if (daftarModel != null){
+            tvNama.setText(daftarModel.getNama());
+            tvProdi.setText(daftarModel.getProdi());
+            tvAngkatan.setText(daftarModel.getAngkatan());
+            tvThnLulus.setText(daftarModel.getTahun_lulus());
 //        tvTglYudisium.setText(daftarModel.getTanggal_yudisium());
-        tvKwn.setText(daftarModel.getKewarganegaraan());
-        tvNegara.setText(daftarModel.getNama_negara());
-        tvEmail.setText(daftarModel.getEmail());
-        tvTTL.setText(daftarModel.getTempat_lahir());
-        tvAlamat.setText(daftarModel.getAlamat());
-        tvKodePos.setText(daftarModel.getKode_pos());
-        tvNoHp.setText(daftarModel.getNomor_hp());
-        tvNoTelp.setText(daftarModel.getNomor_telepon());
-        tvFacebook.setText(daftarModel.getFacebook());
-        tvTwitter.setText(daftarModel.getTwitter());
-        tvStatus.setText(daftarModel.getStatus_bekerja());
+            tvKwn.setText(daftarModel.getKewarganegaraan());
+            tvNegara.setText(daftarModel.getNama_negara());
+            tvEmail.setText(daftarModel.getEmail());
+            tvTTL.setText(daftarModel.getTempat_lahir());
+            tvAlamat.setText(daftarModel.getAlamat());
+            tvKodePos.setText(daftarModel.getKode_pos());
+            tvNoHp.setText(daftarModel.getNomor_hp());
+            tvNoTelp.setText(daftarModel.getNomor_telepon());
+            tvFacebook.setText(daftarModel.getFacebook());
+            tvTwitter.setText(daftarModel.getTwitter());
+            tvStatus.setText(daftarModel.getStatus_bekerja());
+        } else {
+            getDataFromNIM(intent.getStringExtra("nim"));
+        }
+    }
+
+    private void getDataFromNIM(String nim){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<DaftarModel> call = jsonPlaceHolderApi.getUserData(nim);
+        call.enqueue(new Callback<DaftarModel>() {
+            @Override
+            public void onResponse(Call<DaftarModel> call, Response<DaftarModel> response) {
+                if (!response.isSuccessful()){
+                    return;
+                }
+
+                DaftarModel daftarModel = response.body();
+
+                tvNama.setText(daftarModel.getNama());
+                tvProdi.setText(daftarModel.getProdi());
+                tvAngkatan.setText(daftarModel.getAngkatan());
+                tvThnLulus.setText(daftarModel.getTahun_lulus());
+//        tvTglYudisium.setText(daftarModel.getTanggal_yudisium());
+                tvKwn.setText(daftarModel.getKewarganegaraan());
+                tvNegara.setText(daftarModel.getNama_negara());
+                tvEmail.setText(daftarModel.getEmail());
+                tvTTL.setText(daftarModel.getTempat_lahir());
+                tvAlamat.setText(daftarModel.getAlamat());
+                tvKodePos.setText(daftarModel.getKode_pos());
+                tvNoHp.setText(daftarModel.getNomor_hp());
+                tvNoTelp.setText(daftarModel.getNomor_telepon());
+                tvFacebook.setText(daftarModel.getFacebook());
+                tvTwitter.setText(daftarModel.getTwitter());
+                tvStatus.setText(daftarModel.getStatus_bekerja());
+            }
+
+            @Override
+            public void onFailure(Call<DaftarModel> call, Throwable t) {
+                Toast.makeText(DetailProfilActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

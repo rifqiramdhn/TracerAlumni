@@ -14,9 +14,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.R;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
@@ -31,7 +39,7 @@ public class DetailDonasiActivity extends AppCompatActivity {
 
     Intent intent;
 
-    String namaKegiatan, totalBiaya, keterangan, jumlahDonasiMasuk, fotoResId;
+    Integer mIdDonasi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +49,60 @@ public class DetailDonasiActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         initView();
+        getData();
+
+        setDonasiButton();
+    }
+
+    private void getData() {
 
         DonasiModel donasiModel;
 
         Intent intent = getIntent();
         donasiModel = intent.getParcelableExtra("object_donasi");
+        if (donasiModel != null) {
+            mIdDonasi = donasiModel.getIdDonasi();
 
-//        tv_jumlahDonasi.setText();
-        tv_keterangan.setText(donasiModel.getKeterangan());
-        tv_namaKegiatan.setText(donasiModel.getNamaKegiatan());
-        tv_totalBiaya.setText("" + donasiModel.getTotalAnggaran());
+            tv_jumlahDonasi.setText("" + donasiModel.getDonasiMasuk());
+            tv_keterangan.setText(donasiModel.getKeterangan());
+            tv_namaKegiatan.setText(donasiModel.getNamaKegiatan());
+            tv_totalBiaya.setText("" + donasiModel.getTotalAnggaran());
+        } else {
+            getDataFromID(intent.getIntExtra("id_donasi", -1));
+        }
+    }
 
-//        setDonasiButton();
+    private void getDataFromID(int idDonasi){
+        if (idDonasi != -1){
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+            Call<DonasiModel> call = jsonPlaceHolderApi.getDonasi(idDonasi);
+            call.enqueue(new Callback<DonasiModel>() {
+                @Override
+                public void onResponse(Call<DonasiModel> call, Response<DonasiModel> response) {
+                    if (!response.isSuccessful()){
+                        return;
+                    }
+
+                    DonasiModel donasiModelNew = response.body();
+                    mIdDonasi = donasiModelNew.getIdDonasi();
+
+                    tv_jumlahDonasi.setText("" + donasiModelNew.getDonasiMasuk());
+                    tv_keterangan.setText(donasiModelNew.getKeterangan());
+                    tv_namaKegiatan.setText(donasiModelNew.getNamaKegiatan());
+                    tv_totalBiaya.setText("" + donasiModelNew.getTotalAnggaran());
+                }
+
+                @Override
+                public void onFailure(Call<DonasiModel> call, Throwable t) {
+                    Toast.makeText(DetailDonasiActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     private void initView() {
@@ -121,10 +171,7 @@ public class DetailDonasiActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Intent i = new Intent(DetailDonasiActivity.this, NominalDonasiActivity.class);
-                    i.putExtra("namaKegiatan", namaKegiatan);
-                    i.putExtra("totalBiaya", totalBiaya);
-                    i.putExtra("keterangan", keterangan);
-                    i.putExtra("fotoResId", fotoResId);
+                    i.putExtra("id_donasi", mIdDonasi);
                     startActivity(i);
                 }
             });
@@ -133,6 +180,7 @@ public class DetailDonasiActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(DetailDonasiActivity.this, OpListDonaturActivity.class);
+                    intent.putExtra("id_donasi", mIdDonasi);
                     startActivity(intent);
                 }
             });

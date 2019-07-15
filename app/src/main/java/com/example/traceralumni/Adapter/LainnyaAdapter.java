@@ -36,7 +36,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
-import static com.example.traceralumni.Activity.MainActivity.USERNAME;
+import static com.example.traceralumni.Activity.MainActivity.NIM;
 
 public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHolder> {
 
@@ -216,7 +216,7 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
 
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
-        Call<DaftarModel> call = jsonPlaceHolderApi.getUserData(USERNAME);
+        Call<DaftarModel> call = jsonPlaceHolderApi.getUserData(NIM);
         call.enqueue(new Callback<DaftarModel>() {
             @Override
             public void onResponse(Call<DaftarModel> call, Response<DaftarModel> response) {
