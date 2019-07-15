@@ -3,8 +3,6 @@ package com.example.traceralumni.Adapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -14,17 +12,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.traceralumni.Activity.AboutActivity;
-import com.example.traceralumni.Activity.ChangePasswordActivity;
 import com.example.traceralumni.Activity.DetailDonasiActivity;
 import com.example.traceralumni.Activity.DetailProfilActivity;
-import com.example.traceralumni.Activity.DonasiActivity;
-import com.example.traceralumni.Activity.RiwayatPekerjaanActivity;
-import com.example.traceralumni.Activity.SuntingProfilActivity;
+import com.example.traceralumni.Activity.MainActivity;
+import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.PermintaanDonasiModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDonasiAdapter.ViewHolder> {
     private Context context;
@@ -50,13 +51,14 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
 
         final PermintaanDonasiModel permintaanDonasiModel = permintaanDonasiModels.get(position);
         holder.namaDonatur.setText(permintaanDonasiModel.getNamaDonatur());
-        holder.namaKegiatan.setText("Untuk "+permintaanDonasiModel.getDetailDonasi());
-        holder.totalDonasi.setText("Jumlah Donasi : Rp "+permintaanDonasiModel.getJumlahDonasi());
+        holder.namaKegiatan.setText(permintaanDonasiModel.getNamaDonasi());
+        holder.totalDonasi.setText("Jumlah Donasi : Rp " + permintaanDonasiModel.getBantuan());
 
         holder.clDetailDonasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailDonasiActivity.class);
+                intent.putExtra("id_donasi", permintaanDonasiModel.getIdDonasi());
                 context.startActivity(intent);
             }
         });
@@ -64,19 +66,20 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailProfilActivity.class);
+                intent.putExtra("nim", permintaanDonasiModel.getNim());
                 context.startActivity(intent);
             }
         });
         holder.clKonfirmasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showKonfirmasiDialog();
+                showKonfirmasiDialog(position);
             }
         });
         holder.clTolak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showTolakDialog();
+                showTolakDialog(position);
             }
         });
     }
@@ -90,80 +93,95 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-            private TextView namaDonatur, namaKegiatan, totalDonasi, tanggalDonasi;
+        private TextView namaDonatur, namaKegiatan, totalDonasi, tanggalDonasi;
 
-            private ConstraintLayout clDetailDonasi, clProfilDonatur, clKonfirmasi, clTolak;
+        private ConstraintLayout clDetailDonasi, clProfilDonatur, clKonfirmasi, clTolak;
 
-            public ViewHolder(View itemView) {
-                super(itemView);
-                namaDonatur = itemView.findViewById(R.id.tv_card_permintaan_donasi_nama_donatur);
-                namaKegiatan = itemView.findViewById(R.id.tv_card_permintaan_donasi_nama_donasi);
-                totalDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_jumlah);
-                tanggalDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_tanggal);
-                clDetailDonasi = itemView.findViewById(R.id.cl_card_permintaan_donasi_detail_donasi);
-                clProfilDonatur = itemView.findViewById(R.id.cl_card_permintaan_donasi_profil_donatur);
-                clKonfirmasi = itemView.findViewById(R.id.cl_card_permintaan_donasi_ok);
-                clTolak = itemView.findViewById(R.id.cl_card_permintaan_donasi_no);
-            }
+        public ViewHolder(View itemView) {
+            super(itemView);
+            namaDonatur = itemView.findViewById(R.id.tv_card_permintaan_donasi_nama_donatur);
+            namaKegiatan = itemView.findViewById(R.id.tv_card_permintaan_donasi_nama_donasi);
+            totalDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_jumlah);
+            tanggalDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_tanggal);
+            clDetailDonasi = itemView.findViewById(R.id.cl_card_permintaan_donasi_detail_donasi);
+            clProfilDonatur = itemView.findViewById(R.id.cl_card_permintaan_donasi_profil_donatur);
+            clKonfirmasi = itemView.findViewById(R.id.cl_card_permintaan_donasi_ok);
+            clTolak = itemView.findViewById(R.id.cl_card_permintaan_donasi_no);
+        }
     }
 
-    private void showKonfirmasiDialog() {
-
+    private void showKonfirmasiDialog(final int position) {
         builder.setMessage("Konfirmasi permintaan donasi?");
-
         builder.setTitle("Konfirmasi");
-
         builder.setCancelable(false);
-
         builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(context, "Permintaan donasi telah dikonfirmasi!", Toast.LENGTH_SHORT).show();
+                confirmDonation(position, permintaanDonasiModels.get(position).getIdDonatur(), "y");
             }
         });
-
         builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 dialog.cancel();
             }
         });
-
         AlertDialog alertDialog = builder.create();
-
         alertDialog.show();
     }
 
-    private void showTolakDialog() {
+    private void showTolakDialog(final int position) {
         builder.setMessage("Tolak permintaan donasi?");
-
         builder.setTitle("Tolak");
-
         builder.setCancelable(false);
-
         builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-                Toast.makeText(context, "Permintaan donasi telah ditolak!", Toast.LENGTH_SHORT).show();
+                confirmDonation(position, permintaanDonasiModels.get(position).getIdDonatur(), "n");
             }
         });
-
         builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 dialog.cancel();
             }
         });
-
         AlertDialog alertDialog = builder.create();
-
         alertDialog.show();
+    }
+
+    private void confirmDonation(final int position, int idDonatur, final String confirm) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(MainActivity.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<Void> call = jsonPlaceHolderApi.confirmDonasi(idDonatur, confirm);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()) {
+                    return;
+                }
+
+                if (confirm.equals("y")) {
+                    Toast.makeText(context, "Donasi diterima", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Donasi ditolak", Toast.LENGTH_SHORT).show();
+                }
+
+                permintaanDonasiModels.remove(position);
+                notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

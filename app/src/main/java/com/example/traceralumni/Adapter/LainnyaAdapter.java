@@ -42,6 +42,7 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
 
     private Context context;
     private ArrayList<LainnyaModel> lainnyaModels;
+    private DaftarModel daftarModel;
     AlertDialog.Builder builder;
 
     public LainnyaAdapter(Context context, ArrayList<LainnyaModel> data) {
@@ -74,8 +75,7 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
             public void onClick(View v) {
                 switch (position) {
                     case 0:
-                        Intent kartu = new Intent(context, KartuAlumniActivity.class);
-                        context.startActivity(kartu);
+                        getData(0);
                         break;
                     case 1:
                         Intent donasi = new Intent(context, DonasiActivity.class);
@@ -88,7 +88,7 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                         context.startActivity(tracerStudi);
                         break;
                     case 4:
-                        suntingProfil();
+                        getData(4);
                         break;
                     case 5:
                         Intent riwayat = new Intent(context, RiwayatPekerjaanActivity.class);
@@ -207,7 +207,7 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
         alertDialog.show();
     }
 
-    private void suntingProfil() {
+    private void getData(final int index) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -223,10 +223,15 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                 if (!response.isSuccessful()) {
                     return;
                 }
-                DaftarModel daftarModel = response.body();
-                Intent suntingProfil = new Intent(context, SuntingProfilActivity.class);
-                suntingProfil.putExtra("daftarModel", daftarModel);
-                context.startActivity(suntingProfil);
+                daftarModel = response.body();
+                Intent intent;
+                if (index == 0) {
+                    intent = new Intent(context, KartuAlumniActivity.class);
+                } else {
+                    intent = new Intent(context, SuntingProfilActivity.class);
+                }
+                intent.putExtra("daftarModel", daftarModel);
+                context.startActivity(intent);
             }
 
             @Override

@@ -4,11 +4,11 @@ import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.Model.InfoModel;
 import com.example.traceralumni.Model.LowonganModel;
+import com.example.traceralumni.Model.PermintaanDonasiModel;
 
 import java.util.ArrayList;
 
 import retrofit2.Call;
-import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -48,6 +48,14 @@ public interface JsonPlaceHolderApi {
                             @Field("keterangan") String keterangan,
                             @Field("totalAnggaran") Integer totalAnggaran);
 
+    @FormUrlEncoded
+    @POST("delete_info.php")
+    Call<Void> deleteInfo(@Field("idInfo") Integer integer);
+
+    @FormUrlEncoded
+    @POST("delete_donasi.php")
+    Call<Void> deleteDonasi(@Field("idDonasi") Integer integer);
+
     @GET("get_data_alumni_daftar.php")
     Call<ArrayList<DaftarModel>> getDataAlumniDaftar(
             @Query("jurusan") String jurusan,
@@ -75,18 +83,46 @@ public interface JsonPlaceHolderApi {
                               @Field("website") String website,
                               @Field("email") String email,
                               @Field("noTelp") String noTelp,
-                              @Field("cp") String cp,
-                              @Field("status") String status);
+                              @Field("cp") String cp);
 
     @FormUrlEncoded
-    @POST("delete_info.php")
-    Call<Void> deleteInfo(@Field("idInfo") Integer integer);
+    @POST("post_get_user_data.php")
+    Call<DaftarModel> getUserData(@Field("nim") String nim);
 
     @FormUrlEncoded
-    @POST("delete_donasi.php")
-    Call<Void> deleteDonasi(@Field("idDonasi") Integer integer);
+    @POST("post_sunting_profil.php")
+    Call<Void> suntingProfil(@Field("nim") String nim,
+                             @Field("email") String email,
+                             @Field("tempat_lahir") String tempat_lahir,
+                             @Field("tanggal_lahir") String tanggal_lahir,
+                             @Field("alamat") String alamat,
+                             @Field("kode_pos") String kode_pos,
+                             @Field("angkatan") String angkatan,
+                             @Field("tahun_lulus") String tahun_lulus,
+                             @Field("tanggal_yudisium") String tanggal_yudisium,
+                             @Field("kewarganegaraan") String kewarganegaraan,
+                             @Field("nama_negara") String nama_negara,
+                             @Field("nomor_hp") String nomor_hp,
+                             @Field("nomor_telepon") String nomor_telepon,
+                             @Field("facebook") String facebook,
+                             @Field("twitter") String twitter);
 
     @FormUrlEncoded
-    @POST("delete_lowongan_pekerjaan.php")
-    Call<Void> deleteLowongan(@Field("idLowongan") Integer integer);
+    @POST("create_permintaan_donasi.php")
+    Call<Void> createPermintaanDonasi(@Field("idDonasi") Integer integer,
+                                      @Field("nim") String nim,
+                                      @Field("totalBantuan") Integer totalBantuan);
+
+    @GET("get_all_permintaan_donasi.php")
+    Call<ArrayList<PermintaanDonasiModel>> getPerDonasi();
+
+    @FormUrlEncoded
+    @POST("confirm_permintaan_donasi.php")
+    Call<Void> confirmDonasi(@Field("idDaftarDonasi") Integer idDaftarDonasi,
+                             @Field("confirm") String confirm);
+
+    @FormUrlEncoded
+    @POST("post_get_donasi_data.php")
+    Call<DonasiModel> getDonasi(@Field("idDaftarDonasi") Integer idDaftarDonasi);
+
 }
