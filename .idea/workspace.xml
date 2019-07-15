@@ -61,18 +61,25 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DetailDonasiActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DetailDonasiActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DetailProfilActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/DetailProfilActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/LoginActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/NominalDonasiActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/NominalDonasiActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpPermintaanDonasiActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpPermintaanDonasiActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/PermintaanDonasiAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/PermintaanDonasiAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/JsonPlaceHolderApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/JsonPlaceHolderApi.java" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Model/PermintaanDonasiModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Model/PermintaanDonasiModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_detail_profil.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_detail_profil.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_nominal_donasi.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_nominal_donasi.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_op_detail_donasi.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_op_detail_donasi.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_op_detail_info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_op_detail_info.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/card_permintaan_donasi.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/card_permintaan_donasi.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sunting_profil.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sunting_profil.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/JsonPlaceHolderApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/JsonPlaceHolderApi.java" afterDir="false" />
+>>>>>>> master
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -142,16 +149,217 @@
           </provider>
         </entry>
       </file>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpPermintaanDonasiActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="712">
               <caret line="97" column="13" lean-forward="true" selection-start-line="97" selection-start-column="13" selection-end-line="97" selection-end-column="13" />
+=======
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/SuntingProfilActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/JsonPlaceHolderApi.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-115">
+              <caret line="73" column="41" selection-start-line="73" selection-start-column="41" selection-end-line="73" selection-end-column="41" />
+            <state relative-caret-position="369">
+              <caret line="99" column="10" lean-forward="true" selection-start-line="99" selection-start-column="10" selection-end-line="99" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/SuntingProfilActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="644">
+              <caret line="100" column="13" lean-forward="true" selection-start-line="100" selection-start-column="13" selection-end-line="100" selection-end-column="13" />
+              <folding>
+                <element signature="e#2870#3063#0" />
+                <element signature="e#3069#3990#0" />
+                <element signature="e#3220#3780#1" />
+                <element signature="e#3263#3770#1" />
+                <element signature="e#3285#3663#0" />
+                <element signature="e#3696#3756#0" />
+                <element signature="e#3827#3984#1" />
+                <element signature="e#3996#4166#0" />
+                <element signature="e#4053#4085#0" />
+                <element signature="e#4280#4477#0" />
+                <element signature="e#4483#7229#0" />
+                <element signature="e#5117#5192#1" />
+                <element signature="e#5262#5344#1" />
+                <element signature="e#5415#5562#1" />
+                <element signature="e#5626#5766#1" />
+                <element signature="e#5832#5910#1" />
+                <element signature="e#5976#6054#1" />
+                <element signature="e#6123#6204#1" />
+                <element signature="e#6301#6450#1" />
+                <element signature="e#6514#6590#1" />
+                <element signature="e#6653#6728#1" />
+                <element signature="e#6734#6854#1" />
+                <element signature="e#7235#9412#0" />
+                <element signature="e#9418#10237#0" />
+                <element signature="e#9657#9926#1" />
+                <element signature="e#9932#10204#1" />
+                <element signature="e#10243#11238#0" />
+                <element signature="e#11244#11498#0" />
+                <element signature="e#11504#13023#0" />
+                <element signature="class#11836:12878" />
+                <element signature="method#isEnabled#0;class#11836:12878" />
+                <element signature="e#12036#12203#1" />
+                <element signature="e#12058#12096#0" />
+                <element signature="e#12209#12261#1" />
+                <element signature="method#getDropDownView#0;class#11836:12878" />
+                <element signature="e#12595#12715#1" />
+                <element signature="e#12721#12825#1" />
+                <element signature="e#13188#13249#1" />
+                <element signature="e#13255#13316#1" />
+                <element signature="e#13361#14728#0" />
+                <element signature="class#13664:14441" />
+                <element signature="method#onResponse#0;class#13664:14441" />
+                <element signature="e#13850#13897#1" />
+                <element signature="method#onFailure#0;class#13664:14441" />
+                <element signature="e#14997#16014#0" />
+                <element signature="e#16042#16864#0" />
+                <element signature="e#16043#16535#0" />
+                <element signature="class#16135:16527" />
+                <element signature="method#beforeTextChanged#0;class#16135:16527" />
+                <element signature="method#onTextChanged#0;class#16135:16527" />
+                <element signature="method#afterTextChanged#0;class#17013:17604" />
+                <element signature="e#17449#17986#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="158">
+              <caret line="228" selection-start-line="228" selection-end-line="228" />
+              <folding>
+                <element signature="e#3069#3990#0" />
+                <element signature="e#3220#3780#1" />
+                <element signature="e#3263#3770#1" />
+                <element signature="e#3285#3663#0" />
+                <element signature="e#3696#3756#0" />
+                <element signature="e#3827#3984#1" />
+                <element signature="e#3358#6051#0" />
+                <element signature="e#3991#4066#1" />
+                <element signature="e#4136#4218#1" />
+                <element signature="e#4289#4436#1" />
+                <element signature="e#4500#4640#1" />
+                <element signature="e#4706#4784#1" />
+                <element signature="e#4850#4928#1" />
+                <element signature="e#4997#5078#1" />
+                <element signature="e#5175#5324#1" />
+                <element signature="e#5388#5464#1" />
+                <element signature="e#5527#5602#1" />
+                <element signature="e#5608#5676#1" />
+                <element signature="e#6057#8058#0" />
+                <element signature="e#2870#3063#0" />
+                <element signature="e#3996#4166#0" />
+                <element signature="e#4053#4085#0" />
+                <element signature="e#4280#4477#0" />
+                <element signature="e#9418#10237#0" />
+                <element signature="e#9657#9926#1" />
+                <element signature="e#9932#10204#1" />
+                <element signature="e#10243#11238#0" />
+                <element signature="e#11244#11498#0" />
+                <element signature="e#11504#13023#0" />
+                <element signature="class#11836:12878" />
+                <element signature="method#isEnabled#0;class#11836:12878" />
+                <element signature="e#12036#12203#1" />
+                <element signature="e#12058#12096#0" />
+                <element signature="e#12209#12261#1" />
+                <element signature="method#getDropDownView#0;class#11836:12878" />
+                <element signature="e#12595#12715#1" />
+                <element signature="e#12721#12825#1" />
+                <element signature="e#13188#13249#1" />
+                <element signature="e#13255#13316#1" />
+                <element signature="e#13361#14728#0" />
+                <element signature="class#13664:14441" />
+                <element signature="method#onResponse#0;class#13664:14441" />
+                <element signature="e#13850#13897#1" />
+                <element signature="method#onFailure#0;class#13664:14441" />
+                <element signature="e#14997#16014#0" />
+                <element signature="e#15526#15714#0" expanded="true" />
+                <element signature="e#15713#15714#0" expanded="true" />
+                <element signature="e#15761#15949#0" expanded="true" />
+                <element signature="e#15948#15949#0" expanded="true" />
+                <element signature="e#16042#16864#0" />
+                <element signature="e#16403#16591#0" expanded="true" />
+                <element signature="e#16590#16591#0" expanded="true" />
+                <element signature="e#16638#16826#0" expanded="true" />
+                <element signature="e#16825#16826#0" expanded="true" />
+                <element signature="e#16043#16535#0" />
+                <element signature="class#16135:16527" />
+                <element signature="method#beforeTextChanged#0;class#16135:16527" />
+                <element signature="method#onTextChanged#0;class#16135:16527" />
+                <element signature="method#afterTextChanged#0;class#17013:17604" />
+                <element signature="e#17449#17986#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="219" column="69" lean-forward="true" selection-start-line="219" selection-start-column="69" selection-end-line="219" selection-end-column="69" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/LoginActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="284">
+              <caret line="91" column="71" selection-start-line="91" selection-start-column="71" selection-end-line="91" selection-end-column="71" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            <state relative-caret-position="284">
+              <caret line="91" column="59" selection-start-line="91" selection-start-column="59" selection-end-line="91" selection-end-column="59" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="298">
+              <caret line="660" selection-start-line="660" selection-end-line="693" />
+            <state relative-caret-position="286">
+              <caret line="51" column="28" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/TambahLowonganActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>*</find>
+      <find>confirm</find>
+      <find>toast</find>
+    </findStrings>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -177,6 +385,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/SuntingProfilActivity.java" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/NominalDonasiActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/JsonPlaceHolderApi.java" />
@@ -184,6 +393,14 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_detail_profil.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/PermintaanDonasiAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/OpPermintaanDonasiActivity.java" />
+=======
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_sunting_profil.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/SuntingProfilActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/LoginActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/JsonPlaceHolderApi.java" />
+>>>>>>> master
       </list>
     </option>
   </component>
@@ -360,7 +577,11 @@
       <window_info id="Build Variants" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Capture Tool" order="4" />
+<<<<<<< HEAD
       <window_info id="Project" order="5" visible="true" weight="0.14072494" />
+=======
+      <window_info active="true" id="Project" order="5" visible="true" weight="0.1860817" />
+>>>>>>> master
       <window_info id="Image Layers" order="6" />
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Structure" order="8" side_tool="true" />
@@ -474,6 +695,128 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/JsonPlaceHolderApi.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47">
+          <caret line="88" column="22" selection-start-line="88" selection-start-column="22" selection-end-line="88" selection-end-column="22" />
+        <state relative-caret-position="284">
+          <caret line="91" column="59" selection-start-line="91" selection-start-column="59" selection-end-line="91" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/LoginActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/SuntingProfilActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="91" column="71" selection-start-line="91" selection-start-column="71" selection-end-line="91" selection-end-column="71" />
+        <state relative-caret-position="644">
+          <caret line="100" column="13" lean-forward="true" selection-start-line="100" selection-start-column="13" selection-end-line="100" selection-end-column="13" />
+          <folding>
+            <element signature="e#3069#3990#0" />
+            <element signature="e#3220#3780#1" />
+            <element signature="e#3263#3770#1" />
+            <element signature="e#3285#3663#0" />
+            <element signature="e#3696#3756#0" />
+            <element signature="e#3827#3984#1" />
+            <element signature="e#3358#6051#0" />
+            <element signature="e#3991#4066#1" />
+            <element signature="e#4136#4218#1" />
+            <element signature="e#4289#4436#1" />
+            <element signature="e#4500#4640#1" />
+            <element signature="e#4706#4784#1" />
+            <element signature="e#4850#4928#1" />
+            <element signature="e#4997#5078#1" />
+            <element signature="e#5175#5324#1" />
+            <element signature="e#5388#5464#1" />
+            <element signature="e#5527#5602#1" />
+            <element signature="e#5608#5676#1" />
+            <element signature="e#6057#8058#0" />
+            <element signature="e#2870#3063#0" />
+            <element signature="e#3996#4166#0" />
+            <element signature="e#4053#4085#0" />
+            <element signature="e#4280#4477#0" />
+            <element signature="e#9418#10237#0" />
+            <element signature="e#9657#9926#1" />
+            <element signature="e#9932#10204#1" />
+            <element signature="e#10243#11238#0" />
+            <element signature="e#11244#11498#0" />
+            <element signature="e#11504#13023#0" />
+            <element signature="class#11836:12878" />
+            <element signature="method#isEnabled#0;class#11836:12878" />
+            <element signature="e#12036#12203#1" />
+            <element signature="e#12058#12096#0" />
+            <element signature="e#12209#12261#1" />
+            <element signature="method#getDropDownView#0;class#11836:12878" />
+            <element signature="e#12595#12715#1" />
+            <element signature="e#12721#12825#1" />
+            <element signature="e#13188#13249#1" />
+            <element signature="e#13255#13316#1" />
+            <element signature="e#13361#14728#0" />
+            <element signature="class#13664:14441" />
+            <element signature="method#onResponse#0;class#13664:14441" />
+            <element signature="e#13850#13897#1" />
+            <element signature="method#onFailure#0;class#13664:14441" />
+            <element signature="e#14997#16014#0" />
+            <element signature="e#15526#15714#0" expanded="true" />
+            <element signature="e#15713#15714#0" expanded="true" />
+            <element signature="e#15761#15949#0" expanded="true" />
+            <element signature="e#15948#15949#0" expanded="true" />
+            <element signature="e#16042#16864#0" />
+            <element signature="e#16403#16591#0" expanded="true" />
+            <element signature="e#16590#16591#0" expanded="true" />
+            <element signature="e#16638#16826#0" expanded="true" />
+            <element signature="e#16825#16826#0" expanded="true" />
+            <element signature="e#16043#16535#0" />
+            <element signature="class#16135:16527" />
+            <element signature="method#beforeTextChanged#0;class#16135:16527" />
+            <element signature="method#onTextChanged#0;class#16135:16527" />
+            <element signature="method#afterTextChanged#0;class#17013:17604" />
+            <element signature="e#17449#17986#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="51" column="28" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="219" column="69" lean-forward="true" selection-start-line="219" selection-start-column="69" selection-end-line="219" selection-end-column="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Adapter/LainnyaAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="228" selection-start-line="228" selection-end-line="228" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="660" selection-start-line="660" selection-end-line="693" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> master
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/Activity/SuntingProfilActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-115">
@@ -535,6 +878,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_lanjutan_tambah_lowongan.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
@@ -677,6 +1021,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="712">
           <caret line="97" column="13" lean-forward="true" selection-start-line="97" selection-start-column="13" selection-end-line="97" selection-end-column="13" />
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/traceralumni/JsonPlaceHolderApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="99" column="10" lean-forward="true" selection-start-line="99" selection-start-column="10" selection-end-line="99" selection-end-column="10" />
+>>>>>>> master
         </state>
       </provider>
     </entry>

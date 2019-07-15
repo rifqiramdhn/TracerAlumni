@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String INDEX_OPENED_TAB_KEY = "index_opened_tab_key";
 
     public static final String SHARE_PREFS = "share_prefs";
-    public static final String NIM_PREF = "username_pref";
+    public static final String NIM_PREF = "nim_pref";
     public static final String JENIS_USER_PREF = "jenis_user_pref";
     public static final String STATE_USER_LOGGED_PREF = "state_user_logged_pref";
 
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         STATE_USER_LOGGED = sharedPreferences.getInt(STATE_USER_LOGGED_PREF, 0);
         if (STATE_USER_LOGGED != 0) {
             JENIS_USER = sharedPreferences.getString(JENIS_USER_PREF, "");
-            if (JENIS_USER.equals(JENIS_USER_ALUMNI)){
+            if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
                 NIM = sharedPreferences.getString(NIM_PREF, "");
             }
         } else {
