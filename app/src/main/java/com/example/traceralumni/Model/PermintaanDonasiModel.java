@@ -24,7 +24,7 @@ public class PermintaanDonasiModel implements Parcelable {
     String namaDonatur;
 
     @SerializedName("bantuan")
-    Integer bantuan;
+    Double bantuan;
 
     @SerializedName("nama_kegiatan")
     String namaDonasi;
@@ -46,7 +46,7 @@ public class PermintaanDonasiModel implements Parcelable {
         if (in.readByte() == 0) {
             bantuan = null;
         } else {
-            bantuan = in.readInt();
+            bantuan = in.readDouble();
         }
         namaDonasi = in.readString();
     }
@@ -89,7 +89,7 @@ public class PermintaanDonasiModel implements Parcelable {
             parcel.writeByte((byte) 0);
         } else {
             parcel.writeByte((byte) 1);
-            parcel.writeInt(bantuan);
+            parcel.writeDouble(bantuan);
         }
         parcel.writeString(namaDonasi);
     }
@@ -114,7 +114,7 @@ public class PermintaanDonasiModel implements Parcelable {
         return namaDonatur;
     }
 
-    public Integer getBantuan() {
+    public Double getBantuan() {
         return bantuan;
     }
 

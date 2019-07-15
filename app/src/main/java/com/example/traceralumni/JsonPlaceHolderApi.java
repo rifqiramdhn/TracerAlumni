@@ -111,7 +111,7 @@ public interface JsonPlaceHolderApi {
     @POST("create_permintaan_donasi.php")
     Call<Void> createPermintaanDonasi(@Field("idDonasi") Integer integer,
                                       @Field("nim") String nim,
-                                      @Field("totalBantuan") Integer totalBantuan);
+                                      @Field("totalBantuan") Double totalBantuan);
 
     @GET("get_all_permintaan_donasi.php")
     Call<ArrayList<PermintaanDonasiModel>> getPerDonasi();
