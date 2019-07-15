@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class LowonganModel implements Parcelable {
     @SerializedName("id_lowongan")
-    private Integer id;
+    private Integer idLowongan;
 
     @SerializedName("username")
     private String username;
@@ -53,9 +53,9 @@ public class LowonganModel implements Parcelable {
 
     protected LowonganModel(Parcel in) {
         if (in.readByte() == 0) {
-            id = null;
+            idLowongan = null;
         } else {
-            id = in.readInt();
+            idLowongan = in.readInt();
         }
         username = in.readString();
         nama_lowongan = in.readString();
@@ -96,11 +96,11 @@ public class LowonganModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        if (id == null) {
+        if (idLowongan == null) {
             parcel.writeByte((byte) 0);
         } else {
             parcel.writeByte((byte) 1);
-            parcel.writeInt(id);
+            parcel.writeInt(idLowongan);
         }
         parcel.writeString(username);
         parcel.writeString(nama_lowongan);
@@ -123,8 +123,8 @@ public class LowonganModel implements Parcelable {
         parcel.writeString(url_logo);
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdLowongan() {
+        return idLowongan;
     }
 
     public String getUsername() {

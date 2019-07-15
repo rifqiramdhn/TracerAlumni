@@ -36,7 +36,7 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
     private ConstraintLayout cl_icon_back, cl_icon_ok;
     private ImageView img_icon_back, img_icon_ok;
     private TextView tv_navbar;
-
+    private String status;
     Integer idLowongan, kuota;
     String judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, gaji, syarat, website, email, notelp, cp;
     EditText edt_syarat, edt_website, edt_email, edt_notelp, edt_cp;
@@ -79,7 +79,7 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
         jabatan = i.getStringExtra("jabatan");
         namaPerusahaan = i.getStringExtra("namaPerusahaan");
         alamatPerusahaan = i.getStringExtra("alamat");
-        kuota = i.getIntExtra("kuota", 0);
+        kuota = Integer.valueOf(i.getStringExtra("kuota"));
         gaji = i.getStringExtra("gaji");
     }
 
@@ -111,7 +111,13 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
                 notelp = edt_notelp.getText().toString().trim();
                 cp = edt_cp.getText().toString().trim();
 
-                saveData(judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp);
+                if(JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
+                    status = "BelumValid";
+                } else {
+                    status = "Valid";
+                }
+
+                saveData(judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, status);
             }
         });
 
@@ -126,14 +132,14 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void saveData(String judulLowongan, String jabatan, String namaPerusahaan, String alamat, Integer kuota, String gaji, String syarat, String website, String email, String notelp, String cp) {
+    private void saveData(String judulLowongan, String jabatan, String namaPerusahaan, String alamat, Integer kuota, String gaji, String syarat, String website, String email, String notelp, String cp, String status) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<Void> call = jsonPlaceHolderApi.createLowongan(judulLowongan, jabatan, namaPerusahaan, alamat, kuota, gaji, syarat, website, email, notelp, cp);
+        Call<Void> call = jsonPlaceHolderApi.createLowongan(judulLowongan, jabatan, namaPerusahaan, alamat, kuota, gaji, syarat, website, email, notelp, cp, status);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -141,11 +147,17 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
                     return;
                 }
 
-                Toast.makeText(LanjutanTambahLowonganActivity.this, "Tunggu konfirmasi dari operator", Toast.LENGTH_SHORT).show();
-
-                Intent a = new Intent(LanjutanTambahLowonganActivity.this, MainActivity.class);
-                a.putExtra(INDEX_OPENED_TAB_KEY, INDEX_OPENED_TAB);
-                startActivity(a);
+                if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
+                    Toast.makeText(LanjutanTambahLowonganActivity.this, "Tunggu konfirmasi dari operator", Toast.LENGTH_SHORT).show();
+                    Intent a = new Intent(LanjutanTambahLowonganActivity.this, MainActivity.class);
+                    a.putExtra(INDEX_OPENED_TAB_KEY, INDEX_OPENED_TAB);
+                    startActivity(a);
+                } else {
+                    Toast.makeText(LanjutanTambahLowonganActivity.this, "Lowongan Berhasil Ditambahkan", Toast.LENGTH_SHORT).show();
+                    Intent a = new Intent(LanjutanTambahLowonganActivity.this, MainActivity.class);
+                    a.putExtra(INDEX_OPENED_TAB_KEY, INDEX_OPENED_TAB);
+                    startActivity(a);
+                }
             }
 
             @Override

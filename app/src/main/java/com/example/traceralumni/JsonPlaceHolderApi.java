@@ -8,6 +8,7 @@ import com.example.traceralumni.Model.LowonganModel;
 import java.util.ArrayList;
 
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -47,14 +48,6 @@ public interface JsonPlaceHolderApi {
                             @Field("keterangan") String keterangan,
                             @Field("totalAnggaran") Integer totalAnggaran);
 
-    @FormUrlEncoded
-    @POST("delete_info.php")
-    Call<Void> deleteInfo(@Field("idInfo") Integer integer);
-
-    @FormUrlEncoded
-    @POST("delete_donasi.php")
-    Call<Void> deleteDonasi(@Field("idDonasi") Integer integer);
-
     @GET("get_data_alumni_daftar.php")
     Call<ArrayList<DaftarModel>> getDataAlumniDaftar(
             @Query("jurusan") String jurusan,
@@ -82,27 +75,18 @@ public interface JsonPlaceHolderApi {
                               @Field("website") String website,
                               @Field("email") String email,
                               @Field("noTelp") String noTelp,
-                              @Field("cp") String cp);
+                              @Field("cp") String cp,
+                              @Field("status") String status);
 
     @FormUrlEncoded
-    @POST("post_get_user_data.php")
-    Call<DaftarModel> getUserData(@Field("nim") String nim);
+    @POST("delete_info.php")
+    Call<Void> deleteInfo(@Field("idInfo") Integer integer);
 
     @FormUrlEncoded
-    @POST("post_sunting_profil.php")
-    Call<Void> suntingProfil(@Field("nim") String nim,
-                             @Field("email") String email,
-                             @Field("tempat_lahir") String tempat_lahir,
-                             @Field("tanggal_lahir") String tanggal_lahir,
-                             @Field("alamat") String alamat,
-                             @Field("kode_pos") String kode_pos,
-                             @Field("angkatan") String angkatan,
-                             @Field("tahun_lulus") String tahun_lulus,
-                             @Field("tanggal_yudisium") String tanggal_yudisium,
-                             @Field("kewarganegaraan") String kewarganegaraan,
-                             @Field("nama_negara") String nama_negara,
-                             @Field("nomor_hp") String nomor_hp,
-                             @Field("nomor_telepon") String nomor_telepon,
-                             @Field("facebook") String facebook,
-                             @Field("twitter") String twitter);
+    @POST("delete_donasi.php")
+    Call<Void> deleteDonasi(@Field("idDonasi") Integer integer);
+
+    @FormUrlEncoded
+    @POST("delete_lowongan_pekerjaan.php")
+    Call<Void> deleteLowongan(@Field("idLowongan") Integer integer);
 }
