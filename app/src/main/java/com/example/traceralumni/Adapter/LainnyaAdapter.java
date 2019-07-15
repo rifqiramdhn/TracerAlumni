@@ -23,18 +23,20 @@ import com.example.traceralumni.Activity.LoginActivity;
 import com.example.traceralumni.Activity.RiwayatPekerjaanActivity;
 import com.example.traceralumni.Activity.SuntingProfilActivity;
 import com.example.traceralumni.JsonPlaceHolderApi;
-import com.example.traceralumni.Model.DonasiModel;
+import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.LainnyaModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+import static com.example.traceralumni.Activity.MainActivity.USERNAME;
 
 public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHolder> {
 
@@ -86,8 +88,7 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                         context.startActivity(tracerStudi);
                         break;
                     case 4:
-                        Intent suntingProfil = new Intent(context, SuntingProfilActivity.class);
-                        context.startActivity(suntingProfil);
+                        suntingProfil();
                         break;
                     case 5:
                         Intent riwayat = new Intent(context, RiwayatPekerjaanActivity.class);
@@ -204,6 +205,36 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
         AlertDialog alertDialog = builder.create();
 
         alertDialog.show();
+    }
+
+    private void suntingProfil() {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<DaftarModel> call = jsonPlaceHolderApi.getUserData(USERNAME);
+        call.enqueue(new Callback<DaftarModel>() {
+            @Override
+            public void onResponse(Call<DaftarModel> call, Response<DaftarModel> response) {
+                if (!response.isSuccessful()) {
+                    return;
+                }
+                DaftarModel daftarModel = response.body();
+                Intent suntingProfil = new Intent(context, SuntingProfilActivity.class);
+                suntingProfil.putExtra("daftarModel", daftarModel);
+                context.startActivity(suntingProfil);
+            }
+
+            @Override
+            public void onFailure(Call<DaftarModel> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 }

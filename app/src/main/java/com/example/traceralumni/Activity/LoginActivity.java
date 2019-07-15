@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         editor.putInt(STATE_USER_LOGGED_PREF, 1);
 
         if (daftarModel.getJenis_user().equals(JENIS_USER_ALUMNI)){
-            editor.putString(USERNAME_PREF, daftarModel.getNim());
+            editor.putString(USERNAME_PREF, daftarModel.getUsername());
         }
 
         editor.apply();

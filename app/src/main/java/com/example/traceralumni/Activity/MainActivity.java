@@ -19,11 +19,19 @@ import android.widget.Toast;
 
 import com.example.traceralumni.Adapter.OpFragPagerAdapter;
 import com.example.traceralumni.Adapter.PimFragPagerAdapter;
+import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;
 import com.example.traceralumni.Adapter.AlumniFragPagerAdapter;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     ConstraintLayout cl_icon1, cl_icon2, cl_icon3, cl_icon4;
@@ -111,12 +119,12 @@ public class MainActivity extends AppCompatActivity {
         }, 2000);
     }
 
-    private void loadData(){
+    private void loadData() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREFS, MODE_PRIVATE);
         STATE_USER_LOGGED = sharedPreferences.getInt(STATE_USER_LOGGED_PREF, 0);
-        if (STATE_USER_LOGGED != 0){
+        if (STATE_USER_LOGGED != 0) {
             JENIS_USER = sharedPreferences.getString(JENIS_USER_PREF, "");
-            if (JENIS_USER.equals(JENIS_USER_ALUMNI)){
+            if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
                 USERNAME = sharedPreferences.getString(USERNAME_PREF, "");
             }
         } else {
@@ -683,4 +691,5 @@ public class MainActivity extends AppCompatActivity {
 
         alertDialog.show();
     }
+
 }
