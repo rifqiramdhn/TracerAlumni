@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,8 +32,9 @@ import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR
 
 public class DetailLowonganActivity extends AppCompatActivity {
     Button btn_profil, btn_hapus;
-    ConstraintLayout clBtnHubungi;
-
+    ConstraintLayout clBtnHubungi, cl_iconBack, cl_iconHapus;
+    ImageView img_iconBack, img_iconHapus;
+    TextView tvNavBar;
     private TextView tvNamaLowongan, tvNamaPerusahaan, tvLokasi, tvKisaranGaji, tvProfil
             , tvSyarat, tvKuota, tvJabatan, tvWeb, tvEmail, tvTelepon, tvHubungi;
     Integer idLowongan;
@@ -46,33 +48,9 @@ public class DetailLowonganActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         builder = new AlertDialog.Builder(this);
 
-//        btn_profil.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(DetailLowonganActivity.this, DetailProfilActivity.class);
-//                startActivity(i);
-//            }
-//        });
-
-        clBtnHubungi = findViewById(R.id.cl_btn_hubungi_lowongan);
-        clBtnHubungi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(DetailLowonganActivity.this, "hubungi ah", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         initView();
-
         getData();
-        if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)){
-            btn_hapus.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showKonfirmasiHapus();
-                }
-            });
-        }
+
     }
 
     private void getData(){
@@ -84,7 +62,6 @@ public class DetailLowonganActivity extends AppCompatActivity {
             tvNamaPerusahaan.setText(lowonganModel.getNama_perusahaan());
             tvLokasi.setText(lowonganModel.getAlamat_perusahaan());
             tvKisaranGaji.setText("~Rp " + lowonganModel.getKisaran_gaji());
-//          tvProfil.setText(lowonganModel.);
             tvSyarat.setText(lowonganModel.getSyarat_pekerjaan());
             tvKuota.setText(lowonganModel.getKuota() + " orang");
             tvJabatan.setText(lowonganModel.getJabatan());
@@ -97,6 +74,12 @@ public class DetailLowonganActivity extends AppCompatActivity {
     }
 
     private void initView(){
+        cl_iconBack = findViewById(R.id.cl_icon1);
+        cl_iconHapus = findViewById(R.id.cl_icon4);
+        img_iconBack = findViewById(R.id.img_icon1);
+        img_iconHapus = findViewById(R.id.img_icon4);
+        tvNavBar = findViewById(R.id.tv_navbar_top);
+        clBtnHubungi = findViewById(R.id.cl_btn_hubungi_lowongan);
         tvNamaLowongan = findViewById(R.id.tv_nama_lowongan);
         tvNamaPerusahaan = findViewById(R.id.tv_nama_perusahaan);
         tvLokasi = findViewById(R.id.tv_lokasi_perusahaan);
@@ -110,13 +93,38 @@ public class DetailLowonganActivity extends AppCompatActivity {
         tvTelepon = findViewById(R.id.tv_telpon);
         tvHubungi = findViewById(R.id.txt_hubungi);
         btn_profil = findViewById(R.id.btn_lihat_profil);
-        btn_hapus = findViewById(R.id.btn_hapus_lowongan);
 
-        if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
-            btn_hapus.setVisibility(View.GONE);
+        tvNavBar.setText("DETAIL LOWONGAN");
+        img_iconBack.setImageResource(R.drawable.ic_arrow_back);
+        img_iconHapus.setImageResource(R.drawable.ic_delete);
+        cl_iconBack.setVisibility(View.VISIBLE);
+
+        cl_iconBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)){
+            cl_iconHapus.setVisibility(View.VISIBLE);
+            cl_iconHapus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showKonfirmasiHapus();
+                }
+            });
         } else {
-            btn_hapus.setVisibility(View.VISIBLE);
+            cl_iconHapus.setVisibility(View.GONE);
         }
+
+        clBtnHubungi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(DetailLowonganActivity.this, "hubungi ah", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void showKonfirmasiHapus(){

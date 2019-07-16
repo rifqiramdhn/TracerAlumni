@@ -5,9 +5,11 @@ import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.Model.InfoModel;
 import com.example.traceralumni.Model.LowonganModel;
 import com.example.traceralumni.Model.PermintaanDonasiModel;
+import com.example.traceralumni.Model.PermintaanLowonganModel;
 import com.example.traceralumni.Model.RiwayatPekerjaanModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -74,7 +76,8 @@ public interface JsonPlaceHolderApi {
 
     @FormUrlEncoded
     @POST("create_lowongan_pekerjaan.php")
-    Call<Void> createLowongan(@Field("judulLowongan") String judulLowongan,
+    Call<Void> createLowongan(@Field("username") String username,
+                              @Field("judulLowongan") String judulLowongan,
                               @Field("jabatan") String jabatan,
                               @Field("namaPerusahaan") String namaPerusahaan,
                               @Field("alamatPerusahaan") String alamat,
@@ -123,6 +126,14 @@ public interface JsonPlaceHolderApi {
     Call<Void> confirmDonasi(@Field("idDaftarDonasi") Integer idDaftarDonasi,
                              @Field("confirm") String confirm);
 
+    @GET("get_all_permintaan_lowongan.php")
+    Call<ArrayList<PermintaanLowonganModel>> getPerLowongan();
+
+    @FormUrlEncoded
+    @POST("confirm_permintaan_lowongan.php")
+    Call<Void> confirmLowongan(@Field("idPermintaanLowongan") Integer idPermintaanLowongan,
+                               @Field("confirm") String confirm);
+
     @FormUrlEncoded
     @POST("post_get_donasi_data.php")
     Call<DonasiModel> getDonasi(@Field("idDaftarDonasi") Integer idDaftarDonasi);
@@ -139,6 +150,12 @@ public interface JsonPlaceHolderApi {
 
     @GET("get_count_permintaan_donasi.php")
     Call<String> getCountPermintaanDonasi();
+
+    @GET("get_all_donatur.php")
+    Call<ArrayList<PermintaanDonasiModel>> getAllDonatur(@Query("id_opendonasi") Integer id_opendonasi);
+
+    @GET("get_jumlah_duit.php")
+    Call<PermintaanDonasiModel> getJumlahDuit(@Query("id_opendonasi") Integer id_opendonasi);
 
     @FormUrlEncoded
     @POST("post_riwayat_pekerjaan.php")

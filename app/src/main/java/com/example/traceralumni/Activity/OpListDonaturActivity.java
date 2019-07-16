@@ -8,12 +8,22 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.traceralumni.Adapter.ListDonaturAdapter;
-import com.example.traceralumni.Model.ListDonaturModel;
+import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Model.PermintaanDonasiModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 
 public class OpListDonaturActivity extends AppCompatActivity {
     ConstraintLayout cl_iconBack;
@@ -22,12 +32,14 @@ public class OpListDonaturActivity extends AppCompatActivity {
 
     RecyclerView listDonaturRecycler;
     ListDonaturAdapter listDonaturAdapter;
-    ArrayList<ListDonaturModel> listDonaturModels;
+    ArrayList<PermintaanDonasiModel> listDonaturModels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_op_list_donatur);
+
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         tvNavBar = findViewById(R.id.tv_navbar_top);
         tvNavBar.setText("LIST DONATUR");
@@ -45,15 +57,45 @@ public class OpListDonaturActivity extends AppCompatActivity {
             }
         });
 
-        listDonaturModels = new ArrayList<>();
-        listDonaturModels.add(new ListDonaturModel("Paidi Sugiono", 20000000));
-        listDonaturModels.add(new ListDonaturModel("Paidi Sugiono", 20000000));
-        listDonaturModels.add(new ListDonaturModel("Paidi Sugiono", 20000000));
-        listDonaturModels.add(new ListDonaturModel("Paidi Sugiono", 20000000));
-
-        listDonaturAdapter = new ListDonaturAdapter(OpListDonaturActivity.this, listDonaturModels);
         listDonaturRecycler = findViewById(R.id.rv_list_donatur);
+        listDonaturModels = new ArrayList<>();
         listDonaturRecycler.setLayoutManager(new LinearLayoutManager(OpListDonaturActivity.this, LinearLayoutManager.VERTICAL, false));
+        listDonaturAdapter = new ListDonaturAdapter(OpListDonaturActivity.this, listDonaturModels);
         listDonaturRecycler.setAdapter(listDonaturAdapter);
+        getAllDonatur();
     }
+
+    private void getAllDonatur() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<ArrayList<PermintaanDonasiModel>> call = jsonPlaceHolderApi.getAllDonatur(getIntent().getIntExtra("id_donasi", 0));
+        call.enqueue(new Callback<ArrayList<PermintaanDonasiModel>>() {
+            @Override
+            public void onResponse(Call<ArrayList<PermintaanDonasiModel>> call, Response<ArrayList<PermintaanDonasiModel>> response) {
+                if (!response.isSuccessful()) {
+                    return;
+                }
+                listDonaturModels.clear();
+                ArrayList<PermintaanDonasiModel> listDonaturModelResponse = response.body();
+                listDonaturModels.addAll(listDonaturModelResponse);
+
+                if (!listDonaturModels.get(0).getStatus_data().equalsIgnoreCase("n")) {
+                    final ListDonaturAdapter listDonaturAdapterNew = new ListDonaturAdapter(OpListDonaturActivity.this, listDonaturModels);
+                    listDonaturRecycler.setAdapter(listDonaturAdapterNew);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<PermintaanDonasiModel>> call, Throwable t) {
+                Toast.makeText(OpListDonaturActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
 }

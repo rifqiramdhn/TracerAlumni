@@ -9,13 +9,23 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.traceralumni.Adapter.PermintaanLowonganAdapter;
+import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.PermintaanLowonganModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
 import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB_KEY;
 
@@ -37,13 +47,12 @@ public class OpPermintaanLowonganActivity extends AppCompatActivity {
 
         permintaanLowonganModels = new ArrayList<>();
 
-        permintaanLowonganModels.add(new PermintaanLowonganModel("1", "", "Paidi Sugiono", "Staff Marketing", "PT, Bank BCA", "Kota Surabaya, Indonesia", 5000000));
-
         permintaanLowonganAdapter = new PermintaanLowonganAdapter(OpPermintaanLowonganActivity.this, permintaanLowonganModels);
         permintaanLowonganRecycler = findViewById(R.id.rv_permintaan_lowongan);
         permintaanLowonganRecycler.setLayoutManager(new LinearLayoutManager(OpPermintaanLowonganActivity.this, LinearLayoutManager.VERTICAL, false));
         permintaanLowonganRecycler.setAdapter(permintaanLowonganAdapter);
 
+        getAllPermintaanLowongan();
     }
 
     private void setIcon() {
@@ -63,6 +72,35 @@ public class OpPermintaanLowonganActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onBackPressed();
+            }
+        });
+    }
+
+    private void getAllPermintaanLowongan(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        Call<ArrayList<PermintaanLowonganModel>> call = jsonPlaceHolderApi.getPerLowongan();
+        call.enqueue(new Callback<ArrayList<PermintaanLowonganModel>>() {
+            @Override
+            public void onResponse(Call<ArrayList<PermintaanLowonganModel>> call, Response<ArrayList<PermintaanLowonganModel>> response) {
+                if (!response.isSuccessful()){
+                    return;
+                }
+
+                permintaanLowonganModels.clear();
+                ArrayList<PermintaanLowonganModel> perLowonganModels = response.body();
+                permintaanLowonganModels.addAll(perLowonganModels);
+
+                permintaanLowonganAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<PermintaanLowonganModel>> call, Throwable t) {
+                Toast.makeText(OpPermintaanLowonganActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

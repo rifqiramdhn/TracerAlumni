@@ -54,7 +54,6 @@ public class DonasiActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         initView();
         arrayDonasi = new ArrayList<>();
-        //Mengatur LayoutManager dari Recycler daftar
         donasiRecycler.setLayoutManager(new LinearLayoutManager(DonasiActivity.this, LinearLayoutManager.VERTICAL, false));
         donasiAdapter = new DonasiAdapter(DonasiActivity.this, arrayDonasi);
         donasiRecycler.setAdapter(donasiAdapter);

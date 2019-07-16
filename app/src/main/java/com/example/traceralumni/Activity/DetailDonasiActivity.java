@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DonasiModel;
+import com.example.traceralumni.Model.PermintaanDonasiModel;
 import com.example.traceralumni.R;
 
 import retrofit2.Call;
@@ -36,7 +37,7 @@ public class DetailDonasiActivity extends AppCompatActivity {
     ImageView imgBack, foto;
     TextView tv_titleNavBar, tv_namaKegiatan, tv_totalBiaya, tv_keterangan, tv_totalDonasi, tv_jumlahDonasi;
     Button btn_donasi;
-
+    DonasiModel donasiModel;
     Intent intent;
 
     Integer mIdDonasi;
@@ -50,13 +51,12 @@ public class DetailDonasiActivity extends AppCompatActivity {
 
         initView();
         getData();
+        getJumlahDuit();
 
         setDonasiButton();
     }
 
     private void getData() {
-
-        DonasiModel donasiModel;
 
         Intent intent = getIntent();
         donasiModel = intent.getParcelableExtra("object_donasi");
@@ -72,8 +72,8 @@ public class DetailDonasiActivity extends AppCompatActivity {
         }
     }
 
-    private void getDataFromID(int idDonasi){
-        if (idDonasi != -1){
+    private void getDataFromID(int idDonasi) {
+        if (idDonasi != -1) {
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
@@ -84,7 +84,7 @@ public class DetailDonasiActivity extends AppCompatActivity {
             call.enqueue(new Callback<DonasiModel>() {
                 @Override
                 public void onResponse(Call<DonasiModel> call, Response<DonasiModel> response) {
-                    if (!response.isSuccessful()){
+                    if (!response.isSuccessful()) {
                         return;
                     }
 
@@ -187,4 +187,36 @@ public class DetailDonasiActivity extends AppCompatActivity {
 
         }
     }
+
+    private void getJumlahDuit() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<PermintaanDonasiModel> call = jsonPlaceHolderApi.getJumlahDuit(donasiModel.getIdDonasi());
+        call.enqueue(new Callback<PermintaanDonasiModel>() {
+            @Override
+            public void onResponse(Call<PermintaanDonasiModel> call, Response<PermintaanDonasiModel> response) {
+                if (!response.isSuccessful()) {
+                    return;
+                }
+                PermintaanDonasiModel donaturModelResponse = response.body();
+                if (donaturModelResponse.getTotal() != null) {
+                    tv_jumlahDonasi.setText("Rp " + String.format("%.0f", donaturModelResponse.getTotal()));
+                } else {
+                    tv_jumlahDonasi.setText("Rp 0");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PermintaanDonasiModel> call, Throwable t) {
+                Toast.makeText(DetailDonasiActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
 }

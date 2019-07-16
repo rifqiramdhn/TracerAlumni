@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.traceralumni.Fragment.LowonganFragment;
 import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;
 
 import retrofit2.Call;
@@ -31,6 +32,7 @@ import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_PIMPINAN;
+import static com.example.traceralumni.Activity.MainActivity.NIM;
 
 public class LanjutanTambahLowonganActivity extends AppCompatActivity {
     private ConstraintLayout cl_icon_back, cl_icon_ok;
@@ -38,11 +40,11 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
     private TextView tv_navbar;
     private String status;
     Integer idLowongan, kuota;
-    String judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, gaji, syarat, website, email, notelp, cp;
+    String username, judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, gaji, syarat, website, email, notelp, cp;
     EditText edt_syarat, edt_website, edt_email, edt_notelp, edt_cp;
 
     AlertDialog.Builder builder;
-
+    DaftarModel daftarModel;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +53,7 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         builder = new AlertDialog.Builder(this);
 
+        getData();
         initView();
 
         img_icon_back.setImageResource(R.drawable.ic_arrow_back);
@@ -85,7 +88,6 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
                 }
             }
         });
-
         Intent i = getIntent();
         judulLowongan = i.getStringExtra("judulLowongan");
         jabatan = i.getStringExtra("jabatan");
@@ -125,11 +127,11 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
 
                 if(JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
                     status = "BelumValid";
+                    saveData(daftarModel.getNim(), judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, status);
                 } else {
                     status = "Valid";
+                    saveData("Admin", judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, status);
                 }
-
-                saveData(judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, status);
             }
         });
 
@@ -144,14 +146,14 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void saveData(String judulLowongan, String jabatan, String namaPerusahaan, String alamat, Integer kuota, String gaji, String syarat, String website, String email, String notelp, String cp, String status) {
+    private void saveData(String username, String judulLowongan, String jabatan, String namaPerusahaan, String alamat, Integer kuota, String gaji, String syarat, String website, String email, String notelp, String cp, String status) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<Void> call = jsonPlaceHolderApi.createLowongan(judulLowongan, jabatan, namaPerusahaan, alamat, kuota, gaji, syarat, website, email, notelp, cp, status);
+        Call<Void> call = jsonPlaceHolderApi.createLowongan(username, judulLowongan, jabatan, namaPerusahaan, alamat, kuota, gaji, syarat, website, email, notelp, cp, status);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -177,5 +179,32 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
                 Toast.makeText(LanjutanTambahLowonganActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void getData() {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<DaftarModel> call = jsonPlaceHolderApi.getUserData(NIM);
+        call.enqueue(new Callback<DaftarModel>() {
+            @Override
+            public void onResponse(Call<DaftarModel> call, Response<DaftarModel> response) {
+                if (!response.isSuccessful()) {
+                    return;
+                }
+                daftarModel = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<DaftarModel> call, Throwable t) {
+                Toast.makeText(LanjutanTambahLowonganActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }

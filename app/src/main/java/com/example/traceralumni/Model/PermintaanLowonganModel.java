@@ -1,84 +1,105 @@
 package com.example.traceralumni.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
-public class PermintaanLowonganModel {
-    private String id, url_logo, pelowong, nama_lowongan, nama_perusahaan, lokasi_perusahaan;
-    private int gaji;
-    private Date tanggal_permintaan;
+public class PermintaanLowonganModel implements Parcelable {
+    @SerializedName("id_lowongan")
+    Integer idLowongan;
 
-    public PermintaanLowonganModel(String id, String url_logo, String pelowong, String nama_lowongan, String nama_perusahaan, String lokasi_perusahaan, int gaji) {
-        this.id = id;
-        this.url_logo = url_logo;
-        this.pelowong = pelowong;
-        this.nama_lowongan = nama_lowongan;
-        this.nama_perusahaan = nama_perusahaan;
-        this.lokasi_perusahaan = lokasi_perusahaan;
-        this.gaji = gaji;
-//        this.tanggal_permintaan = tanggal_permintaan;
+    @SerializedName("username")
+    String username;
+
+    @SerializedName("nama")
+    String nama;
+
+    @SerializedName("nama_lowongan")
+    String namaLowongan;
+
+    @SerializedName("nama_perusahaan")
+    String namaPerusahaan;
+
+    @SerializedName("alamat_perusahaan")
+    String alamatPerusahaan;
+
+    @SerializedName("kisaran_gaji")
+    String kisaranGaji;
+
+    protected PermintaanLowonganModel(Parcel in){
+        if (in.readByte() == 0){
+            idLowongan = null;
+        } else {
+            idLowongan = in.readInt();
+        }
+        nama = in.readString();
+        namaLowongan = in.readString();
+        namaPerusahaan = in.readString();
+        alamatPerusahaan = in.readString();
+        kisaranGaji = in.readString();
     }
 
-    public String getId() {
-        return id;
+    public static final Creator<PermintaanLowonganModel> CREATOR = new Creator<PermintaanLowonganModel>() {
+        @Override
+        public PermintaanLowonganModel createFromParcel(Parcel in) {
+            return new PermintaanLowonganModel(in);
+        }
+
+        @Override
+        public PermintaanLowonganModel[] newArray(int size) {
+            return new PermintaanLowonganModel[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    @Override
+    public void writeToParcel(Parcel parcel, int flags) {
+        if (idLowongan == null){
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(idLowongan);
+        }
+
+        parcel.writeString(nama);
+        parcel.writeString(namaLowongan);
+        parcel.writeString(namaPerusahaan);
+        parcel.writeString(alamatPerusahaan);
+        parcel.writeString(kisaranGaji);
     }
 
-    public String getUrl_logo() {
-        return url_logo;
+    public Integer getIdLowongan() {
+        return idLowongan;
     }
 
-    public void setUrl_logo(String url_logo) {
-        this.url_logo = url_logo;
+    public String getNama() {
+        return nama;
     }
 
-    public String getPelowong() {
-        return pelowong;
+    public String getNamaLowongan() {
+        return namaLowongan;
     }
 
-    public void setPelowong(String pelowong) {
-        this.pelowong = pelowong;
+    public String getNamaPerusahaan() {
+        return namaPerusahaan;
     }
 
-    public String getNama_lowongan() {
-        return nama_lowongan;
+    public String getAlamatPerusahaan() {
+        return alamatPerusahaan;
     }
 
-    public void setNama_lowongan(String nama_lowongan) {
-        this.nama_lowongan = nama_lowongan;
+    public String getKisaranGaji() {
+        return kisaranGaji;
     }
 
-    public String getNama_perusahaan() {
-        return nama_perusahaan;
-    }
-
-    public void setNama_perusahaan(String nama_perusahaan) {
-        this.nama_perusahaan = nama_perusahaan;
-    }
-
-    public String getLokasi_perusahaan() {
-        return lokasi_perusahaan;
-    }
-
-    public void setLokasi_perusahaan(String lokasi_perusahaan) {
-        this.lokasi_perusahaan = lokasi_perusahaan;
-    }
-
-    public int getGaji() {
-        return gaji;
-    }
-
-    public void setGaji(int gaji) {
-        this.gaji = gaji;
-    }
-
-    public Date getTanggal_permintaan() {
-        return tanggal_permintaan;
-    }
-
-    public void setTanggal_permintaan(Date tanggal_permintaan) {
-        this.tanggal_permintaan = tanggal_permintaan;
+    public String getUsername() {
+        return username;
     }
 }
