@@ -1,8 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: de.hdodenhof:circleimageview:3.0.0@aar">
     <CLASSES>
+<<<<<<< Updated upstream
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2b64e3ec1a48d3dc9c0215678caa94fc/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2b64e3ec1a48d3dc9c0215678caa94fc/res" />
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cc26ccf108c49ca389459eefff2a6ca8/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cc26ccf108c49ca389459eefff2a6ca8/res" />
+>>>>>>> Stashed changes
     </CLASSES>
     <JAVADOC />
     <SOURCES>

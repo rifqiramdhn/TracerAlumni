@@ -45,6 +45,10 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
     private DaftarModel daftarModel;
     AlertDialog.Builder builder;
 
+    public LainnyaAdapter(Context context) {
+        this.context = context;
+    }
+
     public LainnyaAdapter(Context context, ArrayList<LainnyaModel> data) {
         this.context = context;
         this.lainnyaModels = data;
@@ -207,7 +211,7 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
         alertDialog.show();
     }
 
-    private void getData(final int index) {
+    public void getData(final int index) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -241,5 +245,6 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
         });
 
     }
+
 
 }

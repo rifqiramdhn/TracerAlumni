@@ -1,6 +1,7 @@
 package com.example.traceralumni.Fragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,6 +26,7 @@ public class LainnyaFragment extends Fragment {
     LainnyaAdapter lainnyaAdapter;
     ArrayList<LainnyaModel> lainnyaModels;
     View rootView;
+    public static Context CONTEXT;
 
     public LainnyaFragment() {
         // Required empty public constructor
@@ -37,6 +39,7 @@ public class LainnyaFragment extends Fragment {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_lainnya, container, false);
         setRecyclerView();
+        CONTEXT = getActivity();
         return rootView;
     }
 

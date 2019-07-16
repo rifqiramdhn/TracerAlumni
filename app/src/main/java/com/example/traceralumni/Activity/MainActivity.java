@@ -17,8 +17,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traceralumni.Adapter.LainnyaAdapter;
 import com.example.traceralumni.Adapter.OpFragPagerAdapter;
 import com.example.traceralumni.Adapter.PimFragPagerAdapter;
+import com.example.traceralumni.Fragment.LainnyaFragment;
 import com.example.traceralumni.Fragment.OpDonasiFragment;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DaftarModel;
@@ -33,6 +35,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.traceralumni.Fragment.LainnyaFragment.CONTEXT;
 
 public class MainActivity extends AppCompatActivity {
     ConstraintLayout cl_icon1, cl_icon2, cl_icon3, cl_icon4;
@@ -414,6 +418,9 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 tabLayout.getTabAt(tab_number).select();
                 INDEX_OPENED_TAB = tab_number;
+            }
+            if (i.getBooleanExtra("sunting_profil", false)) {
+                new LainnyaAdapter(CONTEXT).getData(4);
             }
         }
     }
