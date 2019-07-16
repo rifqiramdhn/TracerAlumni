@@ -77,14 +77,9 @@ public class OpLowonganFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        getAllLowongan();
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
+        getAllLowongan();
         lowonganRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {

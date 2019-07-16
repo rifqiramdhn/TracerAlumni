@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.traceralumni.Adapter.OpFragPagerAdapter;
 import com.example.traceralumni.Adapter.PimFragPagerAdapter;
+import com.example.traceralumni.Fragment.OpDonasiFragment;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;
@@ -642,7 +643,8 @@ public class MainActivity extends AppCompatActivity {
                             tv_permintaan_donasi.setVisibility(View.GONE);
                         } else {
                             cl_search_donasi.setVisibility(View.GONE);
-                            tv_permintaan_donasi.setVisibility(View.VISIBLE);
+                            if (!OpDonasiFragment.permintaanDonasi0())
+                                tv_permintaan_donasi.setVisibility(View.VISIBLE);
                         }
                         break;
                     case 4:

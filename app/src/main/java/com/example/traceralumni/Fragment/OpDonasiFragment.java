@@ -52,7 +52,7 @@ public class OpDonasiFragment extends Fragment {
 
     EditText edt_donasi_cari;
 
-    String jumlahRequest = "0";
+    static String jumlahRequest = "0";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -78,6 +78,14 @@ public class OpDonasiFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    public static boolean permintaanDonasi0(){
+        if (jumlahRequest.equals("0")){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
