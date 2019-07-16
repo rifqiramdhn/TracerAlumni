@@ -16,6 +16,7 @@ import com.example.traceralumni.R;
 
 import java.util.ArrayList;
 
+import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
 
 public class RiwayatPekerjaanAdapter extends RecyclerView.Adapter<RiwayatPekerjaanAdapter.ViewHolder> {
@@ -46,7 +47,7 @@ public class RiwayatPekerjaanAdapter extends RecyclerView.Adapter<RiwayatPekerja
         holder.clContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (list.getNim().equals(NIM)){
+                if (list.getNim().equals(NIM) && INDEX_OPENED_TAB != 0){
                     Intent intent = new Intent(context, TambahRiwayatPekerjaanActivity.class);
                     intent.putExtra("object_riwayat", list);
                     context.startActivity(intent);
