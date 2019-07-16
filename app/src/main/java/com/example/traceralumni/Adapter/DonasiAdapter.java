@@ -94,14 +94,6 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
             tanggalDonasi = itemView.findViewById(R.id.tv_card_donasi_tanggal);
             tulisanDonasi = itemView.findViewById(R.id.tv_card_donasi_tulisan_donasi);
             container = itemView.findViewById(R.id.card_donasi_container);
-
-//            if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
-//                tulisanDonasi.setVisibility(View.VISIBLE);
-//                tanggalDonasi.setVisibility(View.INVISIBLE);
-//            } else {
-//                tulisanDonasi.setVisibility(View.INVISIBLE);
-//                tanggalDonasi.setVisibility(View.VISIBLE);
-//            }
         }
     }
 

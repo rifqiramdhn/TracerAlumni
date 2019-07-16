@@ -26,48 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:text="tes"
-                android:textSize="4sp"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/edt_jabatan_container"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/test">
-
-                <EditText
-                    android:id="@+id/edt_jabatan"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Posisi Jabatan (Manager, Staff, Direktur, dll)"
-                    android:inputType="text"
-                    android:textColor="#2699FB"
-                    android:textSize="16sp" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/edt_bidKerja_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -78,15 +38,14 @@
                 android:textColorHint="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edt_jabatan_container">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
-                    android:id="@+id/edt_bidKerja"
+                    android:id="@+id/edt_riwayat_pekerjaan"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Bidang Kerja (Akuntansi, Perbankan, dll)"
+                    android:hint="Pekerjaan"
                     android:inputType="text"
-                    android:textColor="#2699FB"
                     android:textSize="16sp" />
 
             </android.support.design.widget.TextInputLayout>
@@ -103,15 +62,14 @@
                 android:textColorHint="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edt_bidKerja_container">
+                app:layout_constraintTop_toBottomOf="@+id/edt_jabatan_container">
 
                 <EditText
-                    android:id="@+id/edt_nmPerusahaan"
+                    android:id="@+id/edt_riwayat_nama_perusahaan"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Nama Perusahaan"
                     android:inputType="text"
-                    android:textColor="#2699FB"
                     android:textSize="16sp" />
 
             </android.support.design.widget.TextInputLayout>
@@ -131,12 +89,11 @@
                 app:layout_constraintTop_toBottomOf="@id/edt_nmPerusahaan_container">
 
                 <EditText
-                    android:id="@+id/edt_lokasi"
+                    android:id="@+id/edt_riwayat_lokasi"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Lokasi Tempat Kerja"
                     android:inputType="text"
-                    android:textColor="#2699FB"
                     android:textSize="16sp" />
 
             </android.support.design.widget.TextInputLayout>
@@ -156,12 +113,11 @@
                 app:layout_constraintTop_toBottomOf="@id/edt_lokasi_container">
 
                 <EditText
-                    android:id="@+id/edt_thnMasuk"
+                    android:id="@+id/edt_riwayat_thn_awal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Tahun Masuk Kerja"
                     android:inputType="text"
-                    android:textColor="#2699FB"
                     android:textSize="16sp" />
 
             </android.support.design.widget.TextInputLayout>
@@ -181,37 +137,11 @@
                 app:layout_constraintTop_toBottomOf="@id/edt_thnMasuk_container">
 
                 <EditText
-                    android:id="@+id/edt_thnSelesai"
+                    android:id="@+id/edt_riwayat_thn_akhir"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Tahun Selesai Kerja"
                     android:inputType="text"
-                    android:textColor="#2699FB"
-                    android:textSize="16sp" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/edt_golongan_container"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edt_thnSelesai_container">
-
-                <EditText
-                    android:id="@+id/edt_golongan"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Golongan PNS"
-                    android:inputType="text"
-                    android:textColor="#2699FB"
                     android:textSize="16sp" />
 
             </android.support.design.widget.TextInputLayout>
@@ -228,15 +158,14 @@
                 android:textColorHint="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edt_golongan_container">
+                app:layout_constraintTop_toBottomOf="@+id/edt_thnSelesai_container">
 
                 <EditText
-                    android:id="@+id/edt_gaji"
+                    android:id="@+id/edt_riwayat_gaji"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Pendapatan per Bulan"
                     android:inputType="text"
-                    android:textColor="#2699FB"
                     android:textSize="16sp" />
 
             </android.support.design.widget.TextInputLayout>
@@ -244,5 +173,23 @@
         </android.support.constraint.ConstraintLayout>
 
     </ScrollView>
+
+    <Button
+        android:id="@+id/btn_riwayat_simpan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="32dp"
+        android:background="@color/colorIconBiru"
+        android:text="SIMPAN"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sv_tambah_riwayat" />
 
 </android.support.constraint.ConstraintLayout>

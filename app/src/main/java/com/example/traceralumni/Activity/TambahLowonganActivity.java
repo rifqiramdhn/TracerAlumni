@@ -13,23 +13,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.R;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
-import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
-import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
-import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
-import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
-import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_PIMPINAN;
 import static com.example.traceralumni.Activity.SuntingProfilActivity.PICK_PHOTO_REQUEST;
 
 public class TambahLowonganActivity extends AppCompatActivity {
@@ -139,10 +128,10 @@ public class TambahLowonganActivity extends AppCompatActivity {
 
         btn_next = findViewById(R.id.btn_next);
         edt_judulLowongan = findViewById(R.id.edt_lowongan);
-        edt_jabatan = findViewById(R.id.edt_jabatan);
+        edt_jabatan = findViewById(R.id.edt_riwayat_pekerjaan);
         edt_namaPerusahaan = findViewById(R.id.edt_perusahaan);
-        edt_alamatPerusahaan = findViewById(R.id.edt_lokasi);
+        edt_alamatPerusahaan = findViewById(R.id.edt_riwayat_lokasi);
         edt_kuota = findViewById(R.id.edt_kuota);
-        edt_gaji = findViewById(R.id.edt_gaji);
+        edt_gaji = findViewById(R.id.edt_riwayat_gaji);
     }
 }

@@ -5,6 +5,7 @@ import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.Model.InfoModel;
 import com.example.traceralumni.Model.LowonganModel;
 import com.example.traceralumni.Model.PermintaanDonasiModel;
+import com.example.traceralumni.Model.RiwayatPekerjaanModel;
 
 import java.util.ArrayList;
 
@@ -138,4 +139,23 @@ public interface JsonPlaceHolderApi {
 
     @GET("get_count_permintaan_donasi.php")
     Call<String> getCountPermintaanDonasi();
+
+    @FormUrlEncoded
+    @POST("post_riwayat_pekerjaan.php")
+    Call<ArrayList<RiwayatPekerjaanModel>> getRiwayat(@Field("nim") String nim);
+
+    @FormUrlEncoded
+    @POST("create_riwayat_pekerjaan.php")
+    Call<Void> createRiwayat(@Field("idRiwayat") Integer idRiwayat,
+                             @Field("nim") String nim,
+                             @Field("nama_riwayat") String pekerjaan,
+                             @Field("lokasi_riwayat") String lokasi,
+                             @Field("perusahaan_riwayat") String namaPerusahaan,
+                             @Field("gaji_riwayat") String gaji,
+                             @Field("tahun_awal") String tahunAwal,
+                             @Field("tahun_akhir") String tahunAkhir);
+
+    @FormUrlEncoded
+    @POST("delete_riwayat_pekerjaan.php")
+    Call<Void> deleteRiwayat(@Field("idRiwayat") Integer idRiwayat);
 }

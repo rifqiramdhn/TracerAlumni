@@ -20,6 +20,7 @@ import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.RiwayatPekerjaanModel;
 import com.example.traceralumni.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -47,23 +48,15 @@ public class DetailProfilActivity extends AppCompatActivity {
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
-        bnChat = findViewById(R.id.bn_chat);
+        initView();
 
         if (!JENIS_USER.equals(JENIS_USER_ALUMNI)) {
             bnChat.setVisibility(View.GONE);
         }
 
         riwayatModel = new ArrayList<>();
-        riwayatModel.add(new RiwayatPekerjaanModel("Manager", "Akuntansi", "PT. Galon Jaya", "Palembang, Indonesia", 50000000, "2012", "2018"));
-        riwayatModel.add(new RiwayatPekerjaanModel("Manager", "Akuntansi", "PT. Galon Jaya", "Palembang, Indonesia", 50000000, "2012", "2018"));
-        riwayatModel.add(new RiwayatPekerjaanModel("Manager", "Akuntansi", "PT. Galon Jaya", "Palembang, Indonesia", 50000000, "2012", "2018"));
-        riwayatModel.add(new RiwayatPekerjaanModel("Manager", "Akuntansi", "PT. Galon Jaya", "Palembang, Indonesia", 50000000, "2012", "2018"));
-        riwayatModel.add(new RiwayatPekerjaanModel("Manager", "Akuntansi", "PT. Galon Jaya", "Palembang, Indonesia", 50000000, "2012", "2018"));
-
-        riwayatRecycler = findViewById(R.id.rv_riwayat_pekerjaan);
         riwayatRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-
-        riwayatAdapter = new RiwayatPekerjaanAdapter(riwayatModel);
+        riwayatAdapter = new RiwayatPekerjaanAdapter(this, riwayatModel);
         riwayatRecycler.setAdapter(riwayatAdapter);
 
         riwayatRecycler.setNestedScrollingEnabled(false);
@@ -78,23 +71,10 @@ public class DetailProfilActivity extends AppCompatActivity {
             }
         });
 
-        tvNama = findViewById(R.id.txt_nama);
-        tvProdi = findViewById(R.id.txt_prodi);
-        tvAngkatan = findViewById(R.id.txt_angkatan);
-        tvThnLulus = findViewById(R.id.txt_thnLulus);
-        tvTglYudisium = findViewById(R.id.txt_tglYudisium);
-        tvKwn = findViewById(R.id.txt_kewarganegaraan);
-        tvNegara = findViewById(R.id.txt_wargaNegara);
-        tvEmail = findViewById(R.id.tv_email);
-        tvTTL = findViewById(R.id.txt_ttl);
-        tvAlamat = findViewById(R.id.txt_alamat);
-        tvKodePos = findViewById(R.id.txt_kodePos);
-        tvNoHp = findViewById(R.id.txt_noHP);
-        tvNoTelp = findViewById(R.id.txt_notelp);
-        tvFacebook = findViewById(R.id.txt_facebook);
-        tvTwitter = findViewById(R.id.txt_twitter);
-        tvStatus = findViewById(R.id.txt_status);
+        getDataFromIntent();
+    }
 
+    private void getDataFromIntent(){
         Intent intent = getIntent();
         DaftarModel daftarModel = intent.getParcelableExtra("daftarModel");
         if (daftarModel != null){
@@ -114,9 +94,41 @@ public class DetailProfilActivity extends AppCompatActivity {
             tvFacebook.setText(daftarModel.getFacebook());
             tvTwitter.setText(daftarModel.getTwitter());
             tvStatus.setText(daftarModel.getStatus_bekerja());
+
+            getRiwayatPekerjaan(daftarModel.getNim());
         } else {
             getDataFromNIM(intent.getStringExtra("nim"));
+            getRiwayatPekerjaan(intent.getStringExtra("nim"));
         }
+    }
+
+    private void getRiwayatPekerjaan(String nim){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<ArrayList<RiwayatPekerjaanModel>> call = jsonPlaceHolderApi.getRiwayat(nim);
+        call.enqueue(new Callback<ArrayList<RiwayatPekerjaanModel>>() {
+            @Override
+            public void onResponse(Call<ArrayList<RiwayatPekerjaanModel>> call, Response<ArrayList<RiwayatPekerjaanModel>> response) {
+                if (!response.isSuccessful()){
+                    return;
+                }
+
+                riwayatModel.clear();
+                ArrayList<RiwayatPekerjaanModel> riwayatPekerjaanModels = response.body();
+                riwayatModel.addAll(riwayatPekerjaanModels);
+                riwayatAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<RiwayatPekerjaanModel>> call, Throwable t) {
+                Toast.makeText(DetailProfilActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void getDataFromNIM(String nim){
@@ -162,4 +174,24 @@ public class DetailProfilActivity extends AppCompatActivity {
         });
     }
 
+    private void initView(){
+        riwayatRecycler = findViewById(R.id.rv_riwayat_pekerjaan);
+        tvNama = findViewById(R.id.txt_nama);
+        tvProdi = findViewById(R.id.txt_prodi);
+        tvAngkatan = findViewById(R.id.txt_angkatan);
+        tvThnLulus = findViewById(R.id.txt_thnLulus);
+        tvTglYudisium = findViewById(R.id.txt_tglYudisium);
+        tvKwn = findViewById(R.id.txt_kewarganegaraan);
+        tvNegara = findViewById(R.id.txt_wargaNegara);
+        tvEmail = findViewById(R.id.tv_email);
+        tvTTL = findViewById(R.id.txt_ttl);
+        tvAlamat = findViewById(R.id.txt_alamat);
+        tvKodePos = findViewById(R.id.txt_kodePos);
+        tvNoHp = findViewById(R.id.txt_noHP);
+        tvNoTelp = findViewById(R.id.txt_notelp);
+        tvFacebook = findViewById(R.id.txt_facebook);
+        tvTwitter = findViewById(R.id.txt_twitter);
+        tvStatus = findViewById(R.id.txt_status);
+        bnChat = findViewById(R.id.bn_chat);
+    }
 }

@@ -119,7 +119,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/edt_lowongan_container">
 
                 <EditText
-                    android:id="@+id/edt_jabatan"
+                    android:id="@+id/edt_riwayat_pekerjaan"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Nama Jabatan"
@@ -169,7 +169,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/edt_perusahaan_container">
 
                 <EditText
-                    android:id="@+id/edt_lokasi"
+                    android:id="@+id/edt_riwayat_lokasi"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Lokasi Perusahaan"
@@ -219,7 +219,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/edt_kuota_container">
 
                 <EditText
-                    android:id="@+id/edt_gaji"
+                    android:id="@+id/edt_riwayat_gaji"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Kisaran Gaji (juta)"

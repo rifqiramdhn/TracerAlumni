@@ -1,91 +1,113 @@
 package com.example.traceralumni.Model;
 
-public class RiwayatPekerjaanModel {
-    private String jabatan, bidangKerja, namaPerusahaan, lokasiKerja, thnMulai, thnSelesai, golongan;
-    private int pendapatan;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-    public RiwayatPekerjaanModel(String jabatan, String bidangKerja, String namaPerusahaan, String lokasiKerja, String thnMulai, String thnSelesai, String golongan, int pendapatan) {
-        this.jabatan = jabatan;
-        this.bidangKerja = bidangKerja;
-        this.namaPerusahaan = namaPerusahaan;
-        this.lokasiKerja = lokasiKerja;
-        this.thnMulai = thnMulai;
-        this.thnSelesai = thnSelesai;
-        this.golongan = golongan;
-        this.pendapatan = pendapatan;
+import com.google.gson.annotations.SerializedName;
+
+public class RiwayatPekerjaanModel implements Parcelable{
+    @SerializedName("id_riwayat_pekerjaan")
+    Integer idRiwayat;
+
+    @SerializedName("nim")
+    String nim;
+
+    @SerializedName("nama_riwayat")
+    String pekerjaan;
+
+    @SerializedName("lokasi_riwayat")
+    String lokasi;
+
+    @SerializedName("perusahaan_riwayat")
+    String namaPerusahaan;
+
+    @SerializedName("gaji_riwayat")
+    String gaji;
+
+    @SerializedName("tahun_awal_riwayat")
+    String tahunAwal;
+
+    @SerializedName("tahun_akhir_riwayat")
+    String tahunAkhir;
+
+    protected RiwayatPekerjaanModel(Parcel in) {
+        if (in.readByte() == 0) {
+            idRiwayat = null;
+        } else {
+            idRiwayat = in.readInt();
+        }
+        nim = in.readString();
+        pekerjaan = in.readString();
+        lokasi = in.readString();
+        namaPerusahaan = in.readString();
+        gaji = in.readString();
+        tahunAwal = in.readString();
+        tahunAkhir = in.readString();
     }
 
-    public RiwayatPekerjaanModel(String jabatan, String bidangKerja, String namaPerusahaan, String lokasiKerja, int pendapatan, String thnMulai, String thnSelesai) {
-        this.jabatan = jabatan;
-        this.bidangKerja = bidangKerja;
-        this.namaPerusahaan = namaPerusahaan;
-        this.lokasiKerja = lokasiKerja;
-        this.thnMulai = thnMulai;
-        this.thnSelesai = thnSelesai;
-        this.pendapatan = pendapatan;
+    public static final Parcelable.Creator<RiwayatPekerjaanModel> CREATOR = new Parcelable.Creator<RiwayatPekerjaanModel>() {
+        @Override
+        public RiwayatPekerjaanModel createFromParcel(Parcel in) {
+            return new RiwayatPekerjaanModel(in);
+        }
+
+        @Override
+        public RiwayatPekerjaanModel[] newArray(int size) {
+            return new RiwayatPekerjaanModel[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public String getJabatan() {
-        return jabatan;
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        if (idRiwayat == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(idRiwayat);
+        }
+        parcel.writeString(nim);
+        parcel.writeString(pekerjaan);
+        parcel.writeString(lokasi);
+        parcel.writeString(namaPerusahaan);
+        parcel.writeString(gaji);
+        parcel.writeString(tahunAwal);
+        parcel.writeString(tahunAkhir);
     }
 
-    public void setJabatan(String jabatan) {
-        this.jabatan = jabatan;
+    public Integer getIdRiwayat() {
+        return idRiwayat;
     }
 
-    public String getBidangKerja() {
-        return bidangKerja;
+    public String getNim() {
+        return nim;
     }
 
-    public void setBidangKerja(String bidangKerja) {
-        this.bidangKerja = bidangKerja;
+    public String getPekerjaan() {
+        return pekerjaan;
+    }
+
+    public String getLokasi() {
+        return lokasi;
     }
 
     public String getNamaPerusahaan() {
         return namaPerusahaan;
     }
 
-    public void setNamaPerusahaan(String namaPerusahaan) {
-        this.namaPerusahaan = namaPerusahaan;
+    public String getGaji() {
+        return gaji;
     }
 
-    public String getLokasiKerja() {
-        return lokasiKerja;
+    public String getTahunAwal() {
+        return tahunAwal;
     }
 
-    public void setLokasiKerja(String lokasiKerja) {
-        this.lokasiKerja = lokasiKerja;
-    }
-
-    public String getThnMulai() {
-        return thnMulai;
-    }
-
-    public void setThnMulai(String thnMulai) {
-        this.thnMulai = thnMulai;
-    }
-
-    public String getThnSelesai() {
-        return thnSelesai;
-    }
-
-    public void setThnSelesai(String thnSelesai) {
-        this.thnSelesai = thnSelesai;
-    }
-
-    public String getGolongan() {
-        return golongan;
-    }
-
-    public void setGolongan(String golongan) {
-        this.golongan = golongan;
-    }
-
-    public int getPendapatan() {
-        return pendapatan;
-    }
-
-    public void setPendapatan(int pendapatan) {
-        this.pendapatan = pendapatan;
+    public String getTahunAkhir() {
+        return tahunAkhir;
     }
 }

@@ -2,8 +2,10 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_riwayat_container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/tv_jabatan"
@@ -12,26 +14,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="Manager"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_bidang_kerja"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:text="Akuntansi"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_jabatan"
-        app:layout_constraintStart_toEndOf="@+id/tv_jabatan"
-        app:layout_constraintTop_toTopOf="@+id/tv_jabatan" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Manager" />
 
     <ImageView
         android:id="@+id/img_bangunnan"
@@ -40,10 +28,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
+        android:tint="@color/colorIconBiru"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_jabatan"
-        app:srcCompat="@drawable/ic_business"
-        android:tint="@color/colorIconBiru"/>
+        app:srcCompat="@drawable/ic_business" />
 
     <TextView
         android:id="@+id/tv_nama_perusahaan"
@@ -51,13 +39,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:text="PT. Tembaga Pura"
         android:textColor="@android:color/black"
         android:textSize="14sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@+id/img_bangunnan"
         app:layout_constraintStart_toEndOf="@+id/img_bangunnan"
-        app:layout_constraintTop_toTopOf="@+id/img_bangunnan" />
+        app:layout_constraintTop_toTopOf="@+id/img_bangunnan"
+        tools:text="PT. Tembaga Pura" />
 
     <ImageView
         android:id="@+id/img_lokasi"
@@ -66,10 +54,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
+        android:tint="@color/colorIconBiru"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_bangunnan"
-        app:srcCompat="@drawable/ic_location_on"
-        android:tint="@color/colorIconBiru"/>
+        app:srcCompat="@drawable/ic_location_on" />
 
     <TextView
         android:id="@+id/tv_lokasi_perusahaan"
@@ -77,13 +65,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:text="Palembang, Indonesia"
         android:textColor="@android:color/black"
         android:textSize="14sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@+id/img_lokasi"
         app:layout_constraintStart_toEndOf="@+id/img_lokasi"
-        app:layout_constraintTop_toTopOf="@+id/img_lokasi" />
+        app:layout_constraintTop_toTopOf="@+id/img_lokasi"
+        tools:text="Palembang, Indonesia" />
 
     <ImageView
         android:id="@+id/img_gaji"
@@ -93,11 +81,11 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
+        android:tint="@color/colorIconBiru"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_lokasi"
-        app:srcCompat="@drawable/ic_attach_money"
-        android:tint="@color/colorIconBiru"/>
+        app:srcCompat="@drawable/ic_attach_money" />
 
     <TextView
         android:id="@+id/tv_pendapatan"
@@ -105,55 +93,26 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:text="Rp 5.000.000 / bulan"
         android:textColor="@android:color/black"
         android:textSize="14sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@+id/img_gaji"
         app:layout_constraintStart_toEndOf="@+id/img_gaji"
-        app:layout_constraintTop_toTopOf="@+id/img_gaji" />
+        app:layout_constraintTop_toTopOf="@+id/img_gaji"
+        tools:text="Rp 5.000.000 / bulan" />
 
     <TextView
-        android:id="@+id/tv_tahun_masuk"
+        android:id="@+id/tv_tahun_riwayat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
-        android:text="2011"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintEnd_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
-        android:text="-"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_bidang_kerja"
-        app:layout_constraintEnd_toStartOf="@+id/tv_tahun_selesai"
-        app:layout_constraintTop_toTopOf="@+id/tv_bidang_kerja" />
-
-    <TextView
-        android:id="@+id/tv_tahun_selesai"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="sekarang"
         android:textColor="@android:color/darker_gray"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="sekarang" />
 
 </android.support.constraint.ConstraintLayout>
