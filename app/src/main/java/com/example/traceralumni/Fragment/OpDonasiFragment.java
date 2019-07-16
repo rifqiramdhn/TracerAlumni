@@ -52,6 +52,7 @@ public class OpDonasiFragment extends Fragment {
 
     EditText edt_donasi_cari;
 
+    String jumlahRequest = "0";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,33 +81,41 @@ public class OpDonasiFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        donasiRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-                if (dy > 0) {
-                    //scrolling up
-                    tv_permintaan_donasi.setVisibility(View.GONE);
-                } else {
-                    //scrolling down
-                    tv_permintaan_donasi.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
+        getRequestDonasi();
         getAllDonasi();
+    }
+
+    private void getRequestDonasi() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        Call<String> call = jsonPlaceHolderApi.getCountPermintaanDonasi();
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (!response.isSuccessful()) {
+                    return;
+                }
+
+                jumlahRequest = response.body();
+                if (!jumlahRequest.equals("0")) {
+                    tv_permintaan_donasi.setText(jumlahRequest + " Permintaan Donasi");
+                    tv_permintaan_donasi.setVisibility(View.VISIBLE);
+                } else {
+                    tv_permintaan_donasi.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void getAllDonasi() {

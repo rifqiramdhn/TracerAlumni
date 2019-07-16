@@ -72,14 +72,6 @@ public class TambahLowonganActivity extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(TambahLowonganActivity.this, LanjutanTambahLowonganActivity.class);
-                i.putExtra("judulLowongan", edt_judulLowongan.getText().toString().trim());
-                i.putExtra("jabatan", edt_jabatan.getText().toString().trim());
-                i.putExtra("namaPerusahaan", edt_namaPerusahaan.getText().toString().trim());
-                i.putExtra("alamat", edt_alamatPerusahaan.getText().toString().trim());
-                i.putExtra("kuota", edt_kuota.getText().toString().trim());
-                i.putExtra("gaji", edt_gaji.getText().toString().trim());
-
                 if (edt_judulLowongan.getText().toString().equalsIgnoreCase("")){
                     edt_judulLowongan.setError("Harap isi judul lowongan");
                 } else if (edt_jabatan.getText().toString().equalsIgnoreCase("")){
@@ -93,6 +85,13 @@ public class TambahLowonganActivity extends AppCompatActivity {
                 } else if (edt_gaji.getText().toString().equalsIgnoreCase("")){
                     edt_gaji.setError("Harap isi gaji");
                 } else {
+                    Intent i = new Intent(TambahLowonganActivity.this, LanjutanTambahLowonganActivity.class);
+                    i.putExtra("judulLowongan", edt_judulLowongan.getText().toString().trim());
+                    i.putExtra("jabatan", edt_jabatan.getText().toString().trim());
+                    i.putExtra("namaPerusahaan", edt_namaPerusahaan.getText().toString().trim());
+                    i.putExtra("alamat", edt_alamatPerusahaan.getText().toString().trim());
+                    i.putExtra("kuota", edt_kuota.getText().toString().trim());
+                    i.putExtra("gaji", edt_gaji.getText().toString().trim());
                     startActivity(i);
                 }
             }

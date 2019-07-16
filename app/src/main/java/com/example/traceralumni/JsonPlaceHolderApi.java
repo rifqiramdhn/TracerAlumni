@@ -126,4 +126,16 @@ public interface JsonPlaceHolderApi {
     @POST("post_get_donasi_data.php")
     Call<DonasiModel> getDonasi(@Field("idDaftarDonasi") Integer idDaftarDonasi);
 
+    @FormUrlEncoded
+    @POST("delete_lowongan_pekerjaan.php")
+    Call<Void> deleteLowongan(@Field("idLowongan") Integer integer);
+
+    @FormUrlEncoded
+    @POST("post_change_password.php")
+    Call<Void> changePassword(@Field("nim") String nim,
+                              @Field("oldpass") String oldpass,
+                              @Field("newpass") String newpass);
+
+    @GET("get_count_permintaan_donasi.php")
+    Call<String> getCountPermintaanDonasi();
 }

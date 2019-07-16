@@ -48,7 +48,6 @@ public class NominalDonasiActivity extends AppCompatActivity {
         builder = new AlertDialog.Builder(this);
         initView();
         getData();
-        Toast.makeText(this, "" + idDonasi, Toast.LENGTH_SHORT).show();
     }
 
     private void initView() {
@@ -150,7 +149,6 @@ public class NominalDonasiActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (!edt_lainnya.getText().toString().equals("")) {
-//                    totalBantuan = Integer.valueOf(edt_lainnya.getText().toString().trim());
                     totalBantuan = Double.parseDouble(edt_lainnya.getText().toString().trim());
                 }
 
@@ -187,10 +185,8 @@ public class NominalDonasiActivity extends AppCompatActivity {
                 if (!response.isSuccessful()) {
                     return;
                 }
-
-                Toast.makeText(NominalDonasiActivity.this, "Menunggu Konfirmasi Operator", Toast.LENGTH_SHORT).show();
-
                 onBackPressed();
+                Toast.makeText(NominalDonasiActivity.this, "Menunggu Konfirmasi Operator", Toast.LENGTH_SHORT).show();
             }
 
             @Override

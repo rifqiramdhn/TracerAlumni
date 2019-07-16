@@ -47,17 +47,6 @@ public class ChatFragment extends Fragment {
 
         chatModels = new ArrayList<>();
         chatModels.add(new ChatModel("Budi Fauzan", "Halo"));
-        chatModels.add(new ChatModel("Rizaldy Firman T.", "Apasi"));
-        chatModels.add(new ChatModel("Rifqi Imam", "WTF"));
-        chatModels.add(new ChatModel("Budi Fauzan", "Halo"));
-        chatModels.add(new ChatModel("Rizaldy Firman T.", "Apasi"));
-        chatModels.add(new ChatModel("Rifqi Imam", "WTF"));
-        chatModels.add(new ChatModel("Budi Fauzan", "Halo"));
-        chatModels.add(new ChatModel("Rizaldy Firman T.", "Apasi"));
-        chatModels.add(new ChatModel("Rifqi Imam", "WTF"));
-        chatModels.add(new ChatModel("Budi Fauzan", "Halo"));
-        chatModels.add(new ChatModel("Rizaldy Firman T.", "Apasi"));
-        chatModels.add(new ChatModel("Rifqi Imam", "WTF"));
 
         chatRecycler = rootView.findViewById(R.id.rv_fragment_chat);
 
