@@ -100,7 +100,6 @@ public class DonasiActivity extends AppCompatActivity {
 
         donasiRecycler = findViewById(R.id.rv_activity_donasi);
         arrayDonasi = new ArrayList<>();
-        //Mengatur LayoutManager dari Recycler daftar
         donasiRecycler.setLayoutManager(new LinearLayoutManager(DonasiActivity.this, LinearLayoutManager.VERTICAL, false));
         donasiAdapter = new DonasiAdapter(DonasiActivity.this, arrayDonasi);
         donasiRecycler.setAdapter(donasiAdapter);

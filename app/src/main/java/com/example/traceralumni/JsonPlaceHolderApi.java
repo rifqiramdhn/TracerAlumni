@@ -8,6 +8,7 @@ import com.example.traceralumni.Model.PermintaanDonasiModel;
 import com.example.traceralumni.Model.PermintaanLowonganModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -149,4 +150,9 @@ public interface JsonPlaceHolderApi {
     @GET("get_count_permintaan_donasi.php")
     Call<String> getCountPermintaanDonasi();
 
+    @GET("get_all_donatur.php")
+    Call<ArrayList<PermintaanDonasiModel>> getAllDonatur(@Query("id_opendonasi") Integer id_opendonasi);
+
+    @GET("get_jumlah_duit.php")
+    Call<PermintaanDonasiModel> getJumlahDuit(@Query("id_opendonasi") Integer id_opendonasi);
 }

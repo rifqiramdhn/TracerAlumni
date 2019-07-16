@@ -29,6 +29,10 @@ public class PermintaanDonasiModel implements Parcelable {
     @SerializedName("nama_kegiatan")
     String namaDonasi;
 
+    String status_data;
+
+    Double total;
+
     protected PermintaanDonasiModel(Parcel in) {
         if (in.readByte() == 0) {
             idDonatur = null;
@@ -120,5 +124,13 @@ public class PermintaanDonasiModel implements Parcelable {
 
     public String getNamaDonasi() {
         return namaDonasi;
+    }
+
+    public String getStatus_data() {
+        return status_data;
+    }
+
+    public Double getTotal() {
+        return total;
     }
 }
