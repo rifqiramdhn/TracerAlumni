@@ -1,5 +1,6 @@
 package com.example.traceralumni.Activity;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -30,12 +31,10 @@ import com.example.traceralumni.R;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,14 +45,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.example.traceralumni.Activity.LocationPickerActivity.KODE_POS_EXTRA_KEY;
 import static com.example.traceralumni.Activity.LocationPickerActivity.LOKASI_EXTRA_KEY;
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
 
 public class SuntingProfilActivity extends AppCompatActivity {
 
     ConstraintLayout cl_iconBack, cl_iconConfirm;
     ImageView img_iconBack, img_iconConfirm, img_foto_profil, img_edit_foto_profil;
     TextView tv_titleBar;
-    Calendar myCalendar;
-    DatePickerDialog.OnDateSetListener tanggalLahir, tanggalYudisium;
+    DatePickerDialog picker;
     EditText edt_email, edt_tempat_lahir, edt_tanggal_lahir, edt_alamat, edt_kode_pos, edt_angkatan,
             edt_tahun_lulus, edt_tanggal_yudisium, edt_negara, edt_no_hp, edt_no_telp, edt_facebook,
             edt_twitter;
@@ -84,11 +83,10 @@ public class SuntingProfilActivity extends AppCompatActivity {
             }
         });
 
-        myCalendar = Calendar.getInstance();
+//        myCalendar = Calendar.getInstance();
 
         datePickerGetDate(edt_tanggal_lahir);
         datePickerGetDate(edt_tanggal_yudisium);
-        datePickerSetDate();
 
         img_edit_foto_profil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +115,9 @@ public class SuntingProfilActivity extends AppCompatActivity {
             edt_kode_pos.setText(data.getStringExtra(KODE_POS_EXTRA_KEY));
         }
     }
+
+
+
 
     private void setIcon() {
         cl_iconBack = findViewById(R.id.cl_icon1);
@@ -226,52 +227,22 @@ public class SuntingProfilActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if (editText == edt_tanggal_lahir) {
-                    new DatePickerDialog(SuntingProfilActivity.this, tanggalLahir, myCalendar
-                            .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                            myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-                } else {
-                    new DatePickerDialog(SuntingProfilActivity.this, tanggalYudisium, myCalendar
-                            .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                            myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-                }
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                picker = new DatePickerDialog(SuntingProfilActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                editText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            }
+                        }, year, month, day);
+                picker.show();
 
             }
         });
-    }
-
-    private void datePickerSetDate() {
-        tanggalLahir = new DatePickerDialog.OnDateSetListener() {
-
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel(edt_tanggal_lahir);
-            }
-
-        };
-        tanggalYudisium = new DatePickerDialog.OnDateSetListener() {
-
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel(edt_tanggal_yudisium);
-            }
-
-        };
-
-    }
-
-    private void updateLabel(EditText editText) {
-        String myFormat = "dd/MM/YYYY"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-        editText.setText(sdf.format(myCalendar.getTime()));
     }
 
     private void customSpinner() {
@@ -354,8 +325,10 @@ public class SuntingProfilActivity extends AppCompatActivity {
             }
         });
         Toast.makeText(SuntingProfilActivity.this, "Data telah diubah", Toast.LENGTH_SHORT).show();
-        onBackPressed();
-
+        Intent intent = new Intent(SuntingProfilActivity.this, MainActivity.class);
+        intent.putExtra("index_opened_tab_key", 4);
+        intent.putExtra("sunting_profil",true);
+        startActivity(intent);
     }
 
     private void showSimpanPerubahanDialog() {
