@@ -12,10 +12,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.PermintaanLowonganModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 
 public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLowonganAdapter.ViewHolder> {
     private Context context;
@@ -40,6 +49,11 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
     public void onBindViewHolder(final PermintaanLowonganAdapter.ViewHolder holder, final int position) {
 
         final PermintaanLowonganModel permintaanLowonganModel = permintaanLowonganModels.get(position);
+        holder.namaPelowong.setText(permintaanLowonganModel.getNama());
+        holder.namaPerusahaan.setText(permintaanLowonganModel.getNamaLowongan());
+        holder.namaPerusahaan.setText(permintaanLowonganModel.getNamaPerusahaan());
+        holder.lokasiPerusahaan.setText(permintaanLowonganModel.getAlamatPerusahaan());
+        holder.gaji.setText(permintaanLowonganModel.getKisaranGaji());
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,13 +63,13 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
         holder.clKonfirmasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showKonfirmasiDialog();
+                showKonfirmasiDialog(position);
             }
         });
         holder.clTolak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showTolakDialog();
+                showTolakDialog(position);
             }
         });
     }
@@ -69,7 +83,7 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView namaPelowong, jabatan, namaPerusahaan, lokasiPerusahaan, gaji, tanggal;
+        private TextView namaPelowong, namaLowongan, namaPerusahaan, lokasiPerusahaan, gaji, tanggal;
 
         private ImageView foto;
 
@@ -78,7 +92,7 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
         public ViewHolder(View itemView) {
             super(itemView);
             namaPelowong = itemView.findViewById(R.id.tv_card_permintaan_lowongan_nama_pelowong);
-            jabatan = itemView.findViewById(R.id.tv_card_permintaan_lowongan_jabatan);
+            namaLowongan = itemView.findViewById(R.id.tv_card_permintaan_lowongan_jabatan);
             namaPerusahaan = itemView.findViewById(R.id.tv_card_permintaan_lowongan_nama_perusahaan);
             lokasiPerusahaan = itemView.findViewById(R.id.tv_card_permintaan_lowongan_lokasi_perusahaan);
             gaji = itemView.findViewById(R.id.tv_card_permintaan_lowongan_gaji);
@@ -90,49 +104,35 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
         }
     }
 
-    private void showKonfirmasiDialog() {
-
+    private void showKonfirmasiDialog(final int position) {
         builder.setMessage("Konfirmasi permintaan lowongan?");
-
         builder.setTitle("Konfirmasi");
-
         builder.setCancelable(false);
-
         builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(context, "Permintaan lowongan telah dikonfirmasi!", Toast.LENGTH_SHORT).show();
+                confirmLowongan(position, permintaanLowonganModels.get(position).getIdLowongan(), "y");
             }
         });
-
         builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 dialog.cancel();
             }
         });
-
         AlertDialog alertDialog = builder.create();
-
         alertDialog.show();
     }
 
-    private void showTolakDialog() {
+    private void showTolakDialog(final int position) {
         builder.setMessage("Tolak permintaan lowongan?");
-
         builder.setTitle("Tolak");
-
         builder.setCancelable(false);
-
         builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-                Toast.makeText(context, "Permintaan lowongan telah ditolak!", Toast.LENGTH_SHORT).show();
+                confirmLowongan(position, permintaanLowonganModels.get(position).getIdLowongan(), "n");
             }
         });
 
@@ -140,13 +140,42 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 dialog.cancel();
             }
         });
 
         AlertDialog alertDialog = builder.create();
-
         alertDialog.show();
+    }
+
+    private void confirmLowongan(final int position, int idLowongan, final String confirm){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        Call<Void> call = jsonPlaceHolderApi.confirmLowongan(idLowongan, confirm);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(!response.isSuccessful()){
+                    return;
+                }
+                if (confirm.equals("y")){
+                    Toast.makeText(context, "Permintaan lowongan telah diterima", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Permintaan lowongan telah ditolak", Toast.LENGTH_SHORT).show();
+                }
+
+                permintaanLowonganModels.remove(position);
+                notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
