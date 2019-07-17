@@ -34,10 +34,11 @@ public class DaftarModel implements Parcelable {
     private String jenis_user;
     private String status_data;
 
-    private Date tanggal_yudisium;
-    private Date tanggal_lahir;
+    private String tanggal_yudisium;
+    private String tanggal_lahir;
 
     private String jumlah;
+
 
     protected DaftarModel(Parcel in) {
         username = in.readString();
@@ -66,6 +67,9 @@ public class DaftarModel implements Parcelable {
         status_alumni = in.readString();
         jenis_user = in.readString();
         status_data = in.readString();
+        tanggal_yudisium = in.readString();
+        tanggal_lahir = in.readString();
+        jumlah = in.readString();
     }
 
     public static final Creator<DaftarModel> CREATOR = new Creator<DaftarModel>() {
@@ -79,6 +83,44 @@ public class DaftarModel implements Parcelable {
             return new DaftarModel[size];
         }
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(username);
+        dest.writeString(email);
+        dest.writeString(nim);
+        dest.writeString(nama);
+        dest.writeString(jenjang);
+        dest.writeString(jurusan);
+        dest.writeString(prodi);
+        dest.writeString(angkatan);
+        dest.writeString(tahun_lulus);
+        dest.writeString(kewarganegaraan);
+        dest.writeString(alamat);
+        dest.writeString(kode_pos);
+        dest.writeString(nama_negara);
+        dest.writeString(nama_provinsi);
+        dest.writeString(nama_kota);
+        dest.writeString(nomor_telepon);
+        dest.writeString(nomor_hp);
+        dest.writeString(jenis_kelamin);
+        dest.writeString(tempat_lahir);
+        dest.writeString(facebook);
+        dest.writeString(twitter);
+        dest.writeString(foto);
+        dest.writeString(status_bekerja);
+        dest.writeString(status_alumni);
+        dest.writeString(jenis_user);
+        dest.writeString(status_data);
+        dest.writeString(tanggal_yudisium);
+        dest.writeString(tanggal_lahir);
+        dest.writeString(jumlah);
+    }
 
     public String getUsername() {
         return username;
@@ -184,11 +226,11 @@ public class DaftarModel implements Parcelable {
         return status_data;
     }
 
-    public Date getTanggal_yudisium() {
+    public String getTanggal_yudisium() {
         return tanggal_yudisium;
     }
 
-    public Date getTanggal_lahir() {
+    public String getTanggal_lahir() {
         return tanggal_lahir;
     }
 
@@ -196,38 +238,7 @@ public class DaftarModel implements Parcelable {
         return jumlah;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(username);
-        dest.writeString(email);
-        dest.writeString(nim);
-        dest.writeString(nama);
-        dest.writeString(jenjang);
-        dest.writeString(jurusan);
-        dest.writeString(prodi);
-        dest.writeString(angkatan);
-        dest.writeString(tahun_lulus);
-        dest.writeString(kewarganegaraan);
-        dest.writeString(alamat);
-        dest.writeString(kode_pos);
-        dest.writeString(nama_negara);
-        dest.writeString(nama_provinsi);
-        dest.writeString(nama_kota);
-        dest.writeString(nomor_telepon);
-        dest.writeString(nomor_hp);
-        dest.writeString(jenis_kelamin);
-        dest.writeString(tempat_lahir);
-        dest.writeString(facebook);
-        dest.writeString(twitter);
-        dest.writeString(foto);
-        dest.writeString(status_bekerja);
-        dest.writeString(status_alumni);
-        dest.writeString(jenis_user);
-        dest.writeString(status_data);
+    public static Creator<DaftarModel> getCREATOR() {
+        return CREATOR;
     }
 }

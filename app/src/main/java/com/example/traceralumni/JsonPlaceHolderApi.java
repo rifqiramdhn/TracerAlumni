@@ -9,6 +9,7 @@ import com.example.traceralumni.Model.PermintaanLowonganModel;
 import com.example.traceralumni.Model.RiwayatPekerjaanModel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;

@@ -82,11 +82,11 @@ public class DetailProfilActivity extends AppCompatActivity {
             tvProdi.setText(daftarModel.getProdi());
             tvAngkatan.setText(daftarModel.getAngkatan());
             tvThnLulus.setText(daftarModel.getTahun_lulus());
-//        tvTglYudisium.setText(daftarModel.getTanggal_yudisium());
+            tvTglYudisium.setText(daftarModel.getTanggal_yudisium());
             tvKwn.setText(daftarModel.getKewarganegaraan());
             tvNegara.setText(daftarModel.getNama_negara());
             tvEmail.setText(daftarModel.getEmail());
-            tvTTL.setText(daftarModel.getTempat_lahir());
+            tvTTL.setText(daftarModel.getTempat_lahir().concat(", ").concat(daftarModel.getTanggal_lahir()));
             tvAlamat.setText(daftarModel.getAlamat());
             tvKodePos.setText(daftarModel.getKode_pos());
             tvNoHp.setText(daftarModel.getNomor_hp());
@@ -153,11 +153,11 @@ public class DetailProfilActivity extends AppCompatActivity {
                 tvProdi.setText(daftarModel.getProdi());
                 tvAngkatan.setText(daftarModel.getAngkatan());
                 tvThnLulus.setText(daftarModel.getTahun_lulus());
-//        tvTglYudisium.setText(daftarModel.getTanggal_yudisium());
+                tvTglYudisium.setText(daftarModel.getTanggal_yudisium());
                 tvKwn.setText(daftarModel.getKewarganegaraan());
                 tvNegara.setText(daftarModel.getNama_negara());
                 tvEmail.setText(daftarModel.getEmail());
-                tvTTL.setText(daftarModel.getTempat_lahir());
+                tvTTL.setText(daftarModel.getTempat_lahir().concat(", ").concat(daftarModel.getTanggal_lahir()));
                 tvAlamat.setText(daftarModel.getAlamat());
                 tvKodePos.setText(daftarModel.getKode_pos());
                 tvNoHp.setText(daftarModel.getNomor_hp());

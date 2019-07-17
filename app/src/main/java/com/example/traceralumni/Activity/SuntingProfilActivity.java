@@ -1,6 +1,5 @@
 package com.example.traceralumni.Activity;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -45,7 +44,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.example.traceralumni.Activity.LocationPickerActivity.KODE_POS_EXTRA_KEY;
 import static com.example.traceralumni.Activity.LocationPickerActivity.LOKASI_EXTRA_KEY;
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
-import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
 
 public class SuntingProfilActivity extends AppCompatActivity {
 
@@ -83,8 +81,6 @@ public class SuntingProfilActivity extends AppCompatActivity {
             }
         });
 
-//        myCalendar = Calendar.getInstance();
-
         datePickerGetDate(edt_tanggal_lahir);
         datePickerGetDate(edt_tanggal_yudisium);
 
@@ -104,7 +100,6 @@ public class SuntingProfilActivity extends AppCompatActivity {
                     final Uri imageUri = data.getData();
                     final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                     final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-//                    image_view.setImageBitmap(selectedImage);
                     uploadPhoto(selectedImage);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -115,8 +110,6 @@ public class SuntingProfilActivity extends AppCompatActivity {
             edt_kode_pos.setText(data.getStringExtra(KODE_POS_EXTRA_KEY));
         }
     }
-
-
 
 
     private void setIcon() {
@@ -175,7 +168,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
         edt_tempat_lahir = findViewById(R.id.edt_sunting_profil_tempat_lahir);
         edt_tempat_lahir.setText(daftarModel.getTempat_lahir());
         edt_tanggal_lahir = findViewById(R.id.edt_sunting_profil_tanggal_lahir);
-//        edt_tanggal_lahir.setText(DATA_USER.getTanggal_lahir().toString());
+        edt_tanggal_lahir.setText(daftarModel.getTanggal_lahir());
         edt_alamat = findViewById(R.id.edt_sunting_profil_alamat);
         edt_alamat.setText(daftarModel.getAlamat());
         edt_kode_pos = findViewById(R.id.edt_sunting_profil_kode_pos);
@@ -185,7 +178,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
         edt_tahun_lulus = findViewById(R.id.edt_sunting_profil_tahun_lulus);
         edt_tahun_lulus.setText(daftarModel.getTahun_lulus());
         edt_tanggal_yudisium = findViewById(R.id.edt_sunting_profil_tanggal_yudisium);
-//        edt_tanggal_yudisium.setText(DATA_USER.getTanggal_yudisium().toString());
+        edt_tanggal_yudisium.setText(daftarModel.getTanggal_yudisium());
         spn_kewarganegaraaan = findViewById(R.id.spn_sunting_profil_kewarganegaraan);
         edt_negara = findViewById(R.id.edt_sunting_profil_negara);
         edt_negara.setText(daftarModel.getNama_negara());
@@ -208,8 +201,6 @@ public class SuntingProfilActivity extends AppCompatActivity {
     }
 
     private void uploadPhoto(Bitmap selectedImage) {
-        //bla bla bla upload ke database
-        //kalau berhasil maka
         setPhotoFromDatabase(selectedImage);
     }
 
@@ -231,16 +222,14 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 int day = cldr.get(Calendar.DAY_OF_MONTH);
                 int month = cldr.get(Calendar.MONTH);
                 int year = cldr.get(Calendar.YEAR);
-                // date picker dialog
                 picker = new DatePickerDialog(SuntingProfilActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                editText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                editText.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
                             }
                         }, year, month, day);
                 picker.show();
-
             }
         });
     }
@@ -259,8 +248,6 @@ public class SuntingProfilActivity extends AppCompatActivity {
             @Override
             public boolean isEnabled(int position) {
                 if (position == 0) {
-                    // Disable the first item from Spinner
-                    // First item will be use for hint
                     return false;
                 } else {
                     return true;
@@ -298,6 +285,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
 
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
+
         Call<Void> call = jsonPlaceHolderApi.suntingProfil(
                 daftarModel.getNim(),
                 edt_email.getText().toString(),
@@ -327,7 +315,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
         Toast.makeText(SuntingProfilActivity.this, "Data telah diubah", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(SuntingProfilActivity.this, MainActivity.class);
         intent.putExtra("index_opened_tab_key", 4);
-        intent.putExtra("sunting_profil",true);
+        intent.putExtra("sunting_profil", true);
         startActivity(intent);
     }
 
