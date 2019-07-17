@@ -3,17 +3,21 @@ package com.example.traceralumni.Activity;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -24,10 +28,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DaftarModel;
+import com.example.traceralumni.Model.PathModel;
 import com.example.traceralumni.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -35,6 +45,10 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,11 +58,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.example.traceralumni.Activity.LocationPickerActivity.KODE_POS_EXTRA_KEY;
 import static com.example.traceralumni.Activity.LocationPickerActivity.LOKASI_EXTRA_KEY;
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+import static com.example.traceralumni.Activity.MainActivity.NIM;
 
 public class SuntingProfilActivity extends AppCompatActivity {
 
     ConstraintLayout cl_iconBack, cl_iconConfirm;
-    ImageView img_iconBack, img_iconConfirm, img_foto_profil, img_edit_foto_profil;
+    ImageView img_iconBack, img_iconConfirm;
     TextView tv_titleBar;
     DatePickerDialog picker;
     EditText edt_email, edt_tempat_lahir, edt_tanggal_lahir, edt_alamat, edt_kode_pos, edt_angkatan,
@@ -56,9 +71,13 @@ public class SuntingProfilActivity extends AppCompatActivity {
             edt_twitter;
     Spinner spn_kewarganegaraaan;
     DaftarModel daftarModel;
+    CircleImageView img_foto_profil, img_edit_foto_profil;
 
     static final int PICK_PHOTO_REQUEST = 1;
     static final int PICK_ADDRESS_REQUEST = 2;
+
+    String oldPath = "";
+    String newPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,21 +115,14 @@ public class SuntingProfilActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == PICK_PHOTO_REQUEST) {
             if (resultCode == RESULT_OK) {
-                try {
-                    final Uri imageUri = data.getData();
-                    final InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                    uploadPhoto(selectedImage);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                Uri imageUri = data.getData();
+                uploadPhoto(imageUri);
             }
         } else if (requestCode == PICK_ADDRESS_REQUEST) {
             edt_alamat.setText(data.getStringExtra(LOKASI_EXTRA_KEY));
             edt_kode_pos.setText(data.getStringExtra(KODE_POS_EXTRA_KEY));
         }
     }
-
 
     private void setIcon() {
         cl_iconBack = findViewById(R.id.cl_icon1);
@@ -192,6 +204,13 @@ public class SuntingProfilActivity extends AppCompatActivity {
         edt_twitter.setText(daftarModel.getTwitter());
         img_foto_profil = findViewById(R.id.img_sunting_profil_foto);
         img_edit_foto_profil = findViewById(R.id.img_sunting_profil_edit_foto);
+
+        oldPath = daftarModel.getFoto();
+        if (!oldPath.equals("")){
+            Glide.with(SuntingProfilActivity.this)
+                    .load(BASE_URL + oldPath)
+                    .into(img_foto_profil);
+        }
     }
 
     private void getPhotoFromGallery() {
@@ -200,12 +219,70 @@ public class SuntingProfilActivity extends AppCompatActivity {
         startActivityForResult(intent, PICK_PHOTO_REQUEST);
     }
 
-    private void uploadPhoto(Bitmap selectedImage) {
-        setPhotoFromDatabase(selectedImage);
+    private void uploadPhoto(Uri fileUri) {
+        File file = new File(getRealPathFromURI(fileUri));
+        RequestBody requestBody = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)), file);
+        MultipartBody.Part kirim = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        final JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        Call<PathModel> call = jsonPlaceHolderApi.uploadPhoto(kirim);
+        call.enqueue(new Callback<PathModel>() {
+            @Override
+            public void onResponse(Call<PathModel> call, Response<PathModel> response) {
+                if (!response.isSuccessful()){
+                    return;
+                }
+
+                PathModel pathModel = response.body();
+                if (!pathModel.getPath().equals("invalid")){
+                    newPath = pathModel.getPath();
+                    addPhotoPathToDatabase(jsonPlaceHolderApi);
+                    oldPath = pathModel.getPath();
+                    Glide.with(SuntingProfilActivity.this)
+                            .load(BASE_URL + pathModel.getPath())
+                            .into(img_foto_profil);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PathModel> call, Throwable t) {
+                Toast.makeText(SuntingProfilActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    private void setPhotoFromDatabase(Bitmap photo) {
-        img_foto_profil.setImageBitmap(photo);
+    private void addPhotoPathToDatabase(JsonPlaceHolderApi jsonPlaceHolderApi){
+        Call<Void> call = jsonPlaceHolderApi.updatePhotoPath(NIM, oldPath, newPath);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()){
+                    return;
+                }
+                Toast.makeText(SuntingProfilActivity.this, "uploaded", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(SuntingProfilActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private String getRealPathFromURI(Uri contentUri) {
+        String[] proj = {MediaStore.Images.Media.DATA};
+        CursorLoader loader = new CursorLoader(this, contentUri, proj, null, null, null);
+        Cursor cursor = loader.loadInBackground();
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String result = cursor.getString(column_index);
+        cursor.close();
+        return result;
     }
 
     private void moveToLocationPickerActivity() {
