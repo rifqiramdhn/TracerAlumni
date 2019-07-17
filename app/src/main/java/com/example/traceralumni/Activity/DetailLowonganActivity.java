@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,8 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.LowonganModel;
 import com.example.traceralumni.R;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +33,7 @@ import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB_KE
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
+import static com.example.traceralumni.Activity.MainActivity.NIM;
 
 public class DetailLowonganActivity extends AppCompatActivity {
     Button btn_profil, btn_hapus;
@@ -38,8 +43,11 @@ public class DetailLowonganActivity extends AppCompatActivity {
     private TextView tvNamaLowongan, tvNamaPerusahaan, tvLokasi, tvKisaranGaji, tvProfil
             , tvSyarat, tvKuota, tvJabatan, tvWeb, tvEmail, tvTelepon, tvHubungi;
     Integer idLowongan;
-
+    String username;
+    String namaPelowong = "";
     AlertDialog.Builder builder;
+    LowonganModel lowonganModel;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,14 +58,14 @@ public class DetailLowonganActivity extends AppCompatActivity {
 
         initView();
         getData();
-
+        getNama();
     }
 
     private void getData(){
         Intent intent = getIntent();
-        LowonganModel lowonganModel = intent.getParcelableExtra("object_lowongan");
+        lowonganModel = intent.getParcelableExtra("object_lowongan");
 
-        if(lowonganModel != null){
+        if(lowonganModel != null) {
             tvNamaLowongan.setText(lowonganModel.getNama_lowongan());
             tvNamaPerusahaan.setText(lowonganModel.getNama_perusahaan());
             tvLokasi.setText(lowonganModel.getAlamat_perusahaan());
@@ -69,6 +77,7 @@ public class DetailLowonganActivity extends AppCompatActivity {
             tvEmail.setText(lowonganModel.getEmail());
             tvTelepon.setText(lowonganModel.getNo_telp());
             tvHubungi.setText(lowonganModel.getCp());
+
             idLowongan = lowonganModel.getIdLowongan();
         }
     }
@@ -80,6 +89,7 @@ public class DetailLowonganActivity extends AppCompatActivity {
         img_iconHapus = findViewById(R.id.img_icon4);
         tvNavBar = findViewById(R.id.tv_navbar_top);
         clBtnHubungi = findViewById(R.id.cl_btn_hubungi_lowongan);
+        tvProfil = findViewById(R.id.tv_profil);
         tvNamaLowongan = findViewById(R.id.tv_nama_lowongan);
         tvNamaPerusahaan = findViewById(R.id.tv_nama_perusahaan);
         tvLokasi = findViewById(R.id.tv_lokasi_perusahaan);
@@ -173,5 +183,47 @@ public class DetailLowonganActivity extends AppCompatActivity {
                 Toast.makeText(DetailLowonganActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void getNama() {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<DaftarModel> call = jsonPlaceHolderApi.getUserData(lowonganModel.getUsername());
+        call.enqueue(new Callback<DaftarModel>() {
+            @Override
+            public void onResponse(Call<DaftarModel> call, Response<DaftarModel> response) {
+                if (!response.isSuccessful()) {
+                    return;
+                }
+                final DaftarModel daftarModel = response.body();
+                if(daftarModel.getStatus_data().equalsIgnoreCase("n")){
+                    tvProfil.setText("Admin");
+                    btn_profil.setVisibility(View.GONE);
+                } else {
+                    tvProfil.setText(daftarModel.getNama());
+                    btn_profil.setVisibility(View.VISIBLE);
+                    btn_profil.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(DetailLowonganActivity.this, DetailProfilActivity.class);
+                            i.putExtra("daftarModel", daftarModel);
+                            startActivity(i);
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DaftarModel> call, Throwable t) {
+                Toast.makeText(DetailLowonganActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }

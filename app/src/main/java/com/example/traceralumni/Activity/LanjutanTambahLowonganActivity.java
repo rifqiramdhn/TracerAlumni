@@ -126,11 +126,9 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
                 cp = edt_cp.getText().toString().trim();
 
                 if(JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
-                    status = "BelumValid";
-                    saveData(daftarModel.getNim(), judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, status);
+                    saveData(daftarModel.getNim(), judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "BelumValid");
                 } else {
-                    status = "Valid";
-                    saveData("Admin", judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, status);
+                    saveData("Admin", judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "Valid");
                 }
             }
         });

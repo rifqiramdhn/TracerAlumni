@@ -50,7 +50,7 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
 
         final PermintaanLowonganModel permintaanLowonganModel = permintaanLowonganModels.get(position);
         holder.namaPelowong.setText(permintaanLowonganModel.getNama());
-        holder.namaPerusahaan.setText(permintaanLowonganModel.getNamaLowongan());
+        holder.namaLowongan.setText(permintaanLowonganModel.getNamaLowongan());
         holder.namaPerusahaan.setText(permintaanLowonganModel.getNamaPerusahaan());
         holder.lokasiPerusahaan.setText(permintaanLowonganModel.getAlamatPerusahaan());
         holder.gaji.setText(permintaanLowonganModel.getKisaranGaji());

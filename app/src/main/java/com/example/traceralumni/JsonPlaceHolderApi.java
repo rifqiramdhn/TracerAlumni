@@ -153,6 +153,9 @@ public interface JsonPlaceHolderApi {
     @GET("get_count_permintaan_donasi.php")
     Call<String> getCountPermintaanDonasi();
 
+    @GET("get_count_permintaan_lowongan.php")
+    Call<String> getCountPermintaanLowongan();
+
     @GET("get_all_donatur.php")
     Call<ArrayList<PermintaanDonasiModel>> getAllDonatur(@Query("id_opendonasi") Integer id_opendonasi);
 
@@ -177,4 +180,5 @@ public interface JsonPlaceHolderApi {
     @FormUrlEncoded
     @POST("delete_riwayat_pekerjaan.php")
     Call<Void> deleteRiwayat(@Field("idRiwayat") Integer idRiwayat);
+
 }
