@@ -42,7 +42,8 @@ public interface JsonPlaceHolderApi {
     Call<Void> createInfo(@Field("idInfo") Integer integer,
                           @Field("judul") String judul,
                           @Field("keterangan") String keterangan,
-                          @Field("link") String link);
+                          @Field("link") String link,
+                          @Field("tanggal_info") String tanggal_info);
 
     @FormUrlEncoded
     @POST("create_donasi.php")

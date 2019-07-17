@@ -69,7 +69,7 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
             final InfoModel infoModel = list.getInfoModel();
             viewHolder.i_isi.setText(infoModel.getKeterangan());
             viewHolder.i_judul.setText(infoModel.getJudul());
-            viewHolder.i_tanggal.setText("" + infoModel.getTanggal());
+            viewHolder.i_tanggal.setText("" + infoModel.getTanggal_info());
             viewHolder.container_info.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

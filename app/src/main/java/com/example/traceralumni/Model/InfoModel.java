@@ -21,7 +21,8 @@ public class InfoModel implements Parcelable {
     @SerializedName("link")
     private String link;
 
-    private Date tanggal;
+    private String tanggal_info;
+
 
     protected InfoModel(Parcel in) {
         if (in.readByte() == 0) {
@@ -32,6 +33,7 @@ public class InfoModel implements Parcelable {
         judul = in.readString();
         keterangan = in.readString();
         link = in.readString();
+        tanggal_info = in.readString();
     }
 
     public static final Creator<InfoModel> CREATOR = new Creator<InfoModel>() {
@@ -52,16 +54,17 @@ public class InfoModel implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
+    public void writeToParcel(Parcel dest, int flags) {
         if (idInfo == null) {
-            parcel.writeByte((byte) 0);
+            dest.writeByte((byte) 0);
         } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(idInfo);
+            dest.writeByte((byte) 1);
+            dest.writeInt(idInfo);
         }
-        parcel.writeString(judul);
-        parcel.writeString(keterangan);
-        parcel.writeString(link);
+        dest.writeString(judul);
+        dest.writeString(keterangan);
+        dest.writeString(link);
+        dest.writeString(tanggal_info);
     }
 
     public Integer getIdInfo() {
@@ -80,7 +83,11 @@ public class InfoModel implements Parcelable {
         return link;
     }
 
-    public Date getTanggal() {
-        return tanggal;
+    public String getTanggal_info() {
+        return tanggal_info;
+    }
+
+    public static Creator<InfoModel> getCREATOR() {
+        return CREATOR;
     }
 }

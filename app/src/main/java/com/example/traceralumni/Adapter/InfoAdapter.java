@@ -53,7 +53,7 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> im
         final InfoModel infoModel = infoModels.get(position);
         holder.judul.setText(infoModel.getJudul());
         holder.isi.setText(infoModel.getKeterangan());
-//        holder.tanggal.setText(infoModel.getTanggal().toString());
+        holder.tanggal.setText(infoModel.getTanggal_info());
 
         if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)) {
             holder.cl_card.setOnClickListener(new View.OnClickListener() {

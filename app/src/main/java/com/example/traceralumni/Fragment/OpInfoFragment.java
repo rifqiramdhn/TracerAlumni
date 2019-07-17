@@ -71,7 +71,7 @@ public class OpInfoFragment extends Fragment {
         getAllInfo();
     }
 
-    private void getAllInfo(){
+    private void getAllInfo() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -83,13 +83,13 @@ public class OpInfoFragment extends Fragment {
         call.enqueue(new Callback<ArrayList<InfoModel>>() {
             @Override
             public void onResponse(Call<ArrayList<InfoModel>> call, Response<ArrayList<InfoModel>> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
 
                 arrayInfo.clear();
-                ArrayList<InfoModel> donasiResponse = response.body();
-                arrayInfo.addAll(donasiResponse);
+                ArrayList<InfoModel> infoResponse = response.body();
+                arrayInfo.addAll(infoResponse);
 
                 final InfoAdapter infoAdapterNew = new InfoAdapter(getActivity(), arrayInfo);
                 infoRecycler.setAdapter(infoAdapterNew);
@@ -104,7 +104,7 @@ public class OpInfoFragment extends Fragment {
         });
     }
 
-    private void setSearch (final InfoAdapter infoAdapter){
+    private void setSearch(final InfoAdapter infoAdapter) {
         edt_cari_judul.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

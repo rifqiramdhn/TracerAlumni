@@ -2,6 +2,7 @@ package com.example.traceralumni.Activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ParseException;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -20,6 +21,9 @@ import android.widget.Toast;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.InfoModel;
 import com.example.traceralumni.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,7 +45,7 @@ public class OpDetailInfoActivity extends AppCompatActivity {
     AlertDialog.Builder builder;
 
     Integer idInfo;
-    String judul, isi, link;
+    String judul, isi, link, tanggal_info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +67,21 @@ public class OpDetailInfoActivity extends AppCompatActivity {
                 judul = edt_judul.getText().toString().trim();
                 isi = edt_isi.getText().toString().trim();
                 link = edt_url.getText().toString().trim();
-
-                saveData(idInfo, judul, isi, link);
+                getTanggalHariIni();
+                saveData(idInfo,judul,isi,link,tanggal_info);
             }
         });
 
+    }
+
+    private void getTanggalHariIni() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = new Date();
+            tanggal_info = dateFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     private void hapusInfo() {
@@ -91,7 +105,7 @@ public class OpDetailInfoActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void deleteInfoID(Integer idInfo){
+    private void deleteInfoID(Integer idInfo) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -103,7 +117,7 @@ public class OpDetailInfoActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
                 Intent i = new Intent(OpDetailInfoActivity.this, MainActivity.class);
@@ -159,7 +173,7 @@ public class OpDetailInfoActivity extends AppCompatActivity {
     private void getData() {
         Intent intent = getIntent();
         InfoModel infoModel = intent.getParcelableExtra("object_info");
-        if (infoModel != null){
+        if (infoModel != null) {
             edt_judul.setText(infoModel.getJudul());
             edt_isi.setText(infoModel.getKeterangan());
             edt_url.setText(infoModel.getLink());
@@ -168,7 +182,7 @@ public class OpDetailInfoActivity extends AppCompatActivity {
 
     }
 
-    private void saveData(Integer idInfo, String judul, String keterangan, String link){
+    private void saveData(Integer idInfo, String judul, String keterangan, String link, String tanggal_info) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -176,11 +190,11 @@ public class OpDetailInfoActivity extends AppCompatActivity {
 
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
-        Call<Void> call = jsonPlaceHolderApi.createInfo(idInfo, judul, keterangan, link);
+        Call<Void> call = jsonPlaceHolderApi.createInfo(idInfo, judul, keterangan, link, tanggal_info);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
 
