@@ -4,19 +4,25 @@ import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.Model.InfoModel;
 import com.example.traceralumni.Model.LowonganModel;
+import com.example.traceralumni.Model.PathModel;
 import com.example.traceralumni.Model.PermintaanDonasiModel;
 import com.example.traceralumni.Model.PermintaanLowonganModel;
 import com.example.traceralumni.Model.RiwayatPekerjaanModel;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface JsonPlaceHolderApi {
@@ -184,4 +190,13 @@ public interface JsonPlaceHolderApi {
     @POST("delete_riwayat_pekerjaan.php")
     Call<Void> deleteRiwayat(@Field("idRiwayat") Integer idRiwayat);
 
+    @Multipart
+    @POST("upload_photo.php")
+    Call<PathModel> uploadPhoto(@Part MultipartBody.Part photo);
+
+    @FormUrlEncoded
+    @POST("create_photo_path.php")
+    Call<Void> updatePhotoPath(@Field("nim") String nim,
+                               @Field("oldpath") String oldpath,
+                               @Field("newpath") String newpath);
 }
