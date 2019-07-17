@@ -58,9 +58,11 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
         btn_list_donatur.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(OpDetailDonasiActivity.this, OpListDonaturActivity.class);
-                i.putExtra("id_donasi", donasiModel.getIdDonasi());
-                startActivity(i);
+                if (donasiModel != null) {
+                    Intent i = new Intent(OpDetailDonasiActivity.this, OpListDonaturActivity.class);
+                    i.putExtra("id_donasi", donasiModel.getIdDonasi());
+                    startActivity(i);
+                }
             }
         });
 
@@ -68,14 +70,23 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
         btn_simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                totalAnggaran = Integer.valueOf(edt_donasi.getText().toString().trim());
-                namaKegiatan = edt_judul.getText().toString().trim();
-                noTelepon = edt_noTelp.getText().toString().trim();
-                deskripsi = edt_deskripsi.getText().toString().trim();
-                getTanggalHariIni();
-                saveData(idDonasi, namaKegiatan, deskripsi, noTelepon, totalAnggaran, tanggal_opendonasi);
-
-                onBackPressed();
+                if (edt_judul.getText().toString().equalsIgnoreCase("")) {
+                    edt_judul.setError("Wajib diisi!");
+                } else if (edt_donasi.getText().toString().equalsIgnoreCase("")) {
+                    edt_donasi.setError("Wajib diisi!");
+                } else if (edt_deskripsi.getText().toString().equalsIgnoreCase("")) {
+                    edt_deskripsi.setError("Wajib diisi!");
+                } else if (edt_noTelp.getText().toString().equalsIgnoreCase("")) {
+                    edt_noTelp.setError("Wajib diisi!");
+                } else {
+                    totalAnggaran = Integer.valueOf(edt_donasi.getText().toString().trim());
+                    namaKegiatan = edt_judul.getText().toString().trim();
+                    noTelepon = edt_noTelp.getText().toString().trim();
+                    deskripsi = edt_deskripsi.getText().toString().trim();
+                    getTanggalHariIni();
+                    saveData(idDonasi, namaKegiatan, deskripsi, noTelepon, totalAnggaran, tanggal_opendonasi);
+                    onBackPressed();
+                }
             }
         });
     }
@@ -205,9 +216,7 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
                 if (!response.isSuccessful()) {
                     return;
                 }
-
                 Toast.makeText(OpDetailDonasiActivity.this, "Data tersimpan", Toast.LENGTH_SHORT).show();
-
                 onBackPressed();
             }
 

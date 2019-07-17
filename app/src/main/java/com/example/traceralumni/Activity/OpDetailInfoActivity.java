@@ -68,7 +68,15 @@ public class OpDetailInfoActivity extends AppCompatActivity {
                 isi = edt_isi.getText().toString().trim();
                 link = edt_url.getText().toString().trim();
                 getTanggalHariIni();
-                saveData(idInfo,judul,isi,link,tanggal_info);
+                if (edt_judul.getText().toString().equalsIgnoreCase("")) {
+                    edt_judul.setError("Wajib diisi!");
+                } else if (edt_isi.getText().toString().equalsIgnoreCase("")) {
+                    edt_isi.setError("Wajib diisi!");
+                } else if (edt_url.getText().toString().equalsIgnoreCase("")) {
+                    edt_url.setError("Wajib diisi!");
+                } else {
+                    saveData(idInfo, judul, isi, link, tanggal_info);
+                }
             }
         });
 
