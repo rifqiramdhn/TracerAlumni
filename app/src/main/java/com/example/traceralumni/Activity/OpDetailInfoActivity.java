@@ -166,7 +166,6 @@ public class OpDetailInfoActivity extends AppCompatActivity {
             idInfo = infoModel.getIdInfo();
         }
 
-        Toast.makeText(this, "id : " + idInfo, Toast.LENGTH_SHORT).show();
     }
 
     private void saveData(Integer idInfo, String judul, String keterangan, String link){
