@@ -2,6 +2,7 @@ package com.example.traceralumni.Activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ParseException;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -18,6 +19,9 @@ import com.example.traceralumni.Fragment.LowonganFragment;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,7 +44,7 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
     private TextView tv_navbar;
     private String status;
     Integer idLowongan, kuota;
-    String username, judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, gaji, syarat, website, email, notelp, cp;
+    String username, judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, gaji, syarat, website, email, notelp, cp, tanggal_lowongan;
     EditText edt_syarat, edt_website, edt_email, edt_notelp, edt_cp;
 
     AlertDialog.Builder builder;
@@ -111,6 +115,16 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
         edt_cp = findViewById(R.id.edt_kontak);
     }
 
+    private void getTanggalLowongan() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = new Date();
+            tanggal_lowongan = dateFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void showKonfirmasiTambah() {
         builder.setMessage("Apakah yakin anda akan menambahkan lowongan ini?" + "\nAnda tidak bisa mengedit lowongan lagi.");
         builder.setTitle("Konfirmasi Tambah Lowongan");
@@ -124,11 +138,12 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
                 email = edt_email.getText().toString().trim();
                 notelp = edt_notelp.getText().toString().trim();
                 cp = edt_cp.getText().toString().trim();
+                getTanggalLowongan();
 
                 if(JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
-                    saveData(daftarModel.getNim(), judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "BelumValid");
+                    saveData(daftarModel.getNim(), judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "BelumValid",tanggal_lowongan);
                 } else {
-                    saveData("Admin", judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "Valid");
+                    saveData("Admin", judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "Valid",tanggal_lowongan);
                 }
             }
         });
@@ -144,14 +159,14 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void saveData(String username, String judulLowongan, String jabatan, String namaPerusahaan, String alamat, Integer kuota, String gaji, String syarat, String website, String email, String notelp, String cp, String status) {
+    private void saveData(String username, String judulLowongan, String jabatan, String namaPerusahaan, String alamat, Integer kuota, String gaji, String syarat, String website, String email, String notelp, String cp, String status, String tglLowongan) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<Void> call = jsonPlaceHolderApi.createLowongan(username, judulLowongan, jabatan, namaPerusahaan, alamat, kuota, gaji, syarat, website, email, notelp, cp, status);
+        Call<Void> call = jsonPlaceHolderApi.createLowongan(username, judulLowongan, jabatan, namaPerusahaan, alamat, kuota, gaji, syarat, website, email, notelp, cp, status, tglLowongan);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

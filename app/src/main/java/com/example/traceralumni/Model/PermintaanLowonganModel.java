@@ -9,25 +9,27 @@ import java.util.Date;
 
 public class PermintaanLowonganModel implements Parcelable {
     @SerializedName("id_lowongan")
-    Integer idLowongan;
+    private Integer idLowongan;
 
     @SerializedName("username")
-    String username;
+    private String username;
 
     @SerializedName("nama")
-    String nama;
+    private String nama;
 
     @SerializedName("nama_lowongan")
-    String namaLowongan;
+    private String namaLowongan;
 
     @SerializedName("nama_perusahaan")
-    String namaPerusahaan;
+    private String namaPerusahaan;
 
     @SerializedName("alamat_perusahaan")
-    String alamatPerusahaan;
+    private String alamatPerusahaan;
 
     @SerializedName("kisaran_gaji")
-    String kisaranGaji;
+    private String kisaranGaji;
+
+    private String tanggal_lowongan;
 
     protected PermintaanLowonganModel(Parcel in){
         if (in.readByte() == 0){
@@ -40,6 +42,7 @@ public class PermintaanLowonganModel implements Parcelable {
         namaPerusahaan = in.readString();
         alamatPerusahaan = in.readString();
         kisaranGaji = in.readString();
+        tanggal_lowongan = in.readString();
     }
 
     public static final Creator<PermintaanLowonganModel> CREATOR = new Creator<PermintaanLowonganModel>() {
@@ -73,6 +76,7 @@ public class PermintaanLowonganModel implements Parcelable {
         parcel.writeString(namaPerusahaan);
         parcel.writeString(alamatPerusahaan);
         parcel.writeString(kisaranGaji);
+        parcel.writeString(tanggal_lowongan);
     }
 
     public Integer getIdLowongan() {
@@ -97,6 +101,10 @@ public class PermintaanLowonganModel implements Parcelable {
 
     public String getKisaranGaji() {
         return kisaranGaji;
+    }
+
+    public String getTanggal_lowongan() {
+        return tanggal_lowongan;
     }
 
     public String getUsername() {
