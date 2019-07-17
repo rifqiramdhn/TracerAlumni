@@ -90,7 +90,8 @@ public interface JsonPlaceHolderApi {
                               @Field("email") String email,
                               @Field("noTelp") String noTelp,
                               @Field("cp") String cp,
-                              @Field("status") String status);
+                              @Field("status") String status,
+                              @Field("tanggal_lowongan") String tanggal);
 
     @FormUrlEncoded
     @POST("post_get_user_data.php")

@@ -51,6 +51,8 @@ public class LowonganModel implements Parcelable {
     @SerializedName("logo_perusahaan")
     private String url_logo;
 
+    private String tanggal_lowongan;
+
     protected LowonganModel(Parcel in) {
         if (in.readByte() == 0) {
             idLowongan = null;
@@ -75,6 +77,7 @@ public class LowonganModel implements Parcelable {
         cp = in.readString();
         status_lowongan = in.readString();
         url_logo = in.readString();
+        tanggal_lowongan = in.readString();
     }
 
     public static final Creator<LowonganModel> CREATOR = new Creator<LowonganModel>() {
@@ -121,6 +124,7 @@ public class LowonganModel implements Parcelable {
         parcel.writeString(cp);
         parcel.writeString(status_lowongan);
         parcel.writeString(url_logo);
+        parcel.writeString(tanggal_lowongan);
     }
 
     public Integer getIdLowongan() {
@@ -173,6 +177,10 @@ public class LowonganModel implements Parcelable {
 
     public String getCp() {
         return cp;
+    }
+
+    public String getTanggal_lowongan() {
+        return tanggal_lowongan;
     }
 
     public String getStatus_lowongan() {

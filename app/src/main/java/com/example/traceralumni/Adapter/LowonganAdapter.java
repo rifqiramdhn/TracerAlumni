@@ -44,6 +44,7 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
         holder.txtPerusahaan.setText(list.getNama_perusahaan());
         holder.txtLokasi.setText(list.getAlamat_perusahaan());
         holder.txtKisaranGaji.setText("~Rp "+list.getKisaran_gaji());
+        holder.txtTanggal.setText(list.getTanggal_lowongan());
 
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +62,7 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
     }
 
     public class ListLowonganHolder extends RecyclerView.ViewHolder{
-        private TextView txtTitle, txtPerusahaan, txtLokasi, txtKisaranGaji;
+        private TextView txtTitle, txtPerusahaan, txtLokasi, txtKisaranGaji, txtTanggal;
         private ConstraintLayout container;
 
         public ListLowonganHolder(View itemView){
@@ -71,6 +72,7 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
             txtPerusahaan = itemView.findViewById(R.id.tv_nama_perusahaan);
             txtLokasi = itemView.findViewById(R.id.tv_lokasi_perusahaan);
             txtKisaranGaji = itemView.findViewById(R.id.tv_kisaran_gaji);
+            txtTanggal = itemView.findViewById(R.id.tv_tanggal_lowongan);
             container = itemView.findViewById(R.id.card_daftar_lowongan);
         }
 

@@ -54,6 +54,7 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
         holder.namaPerusahaan.setText(permintaanLowonganModel.getNamaPerusahaan());
         holder.lokasiPerusahaan.setText(permintaanLowonganModel.getAlamatPerusahaan());
         holder.gaji.setText(permintaanLowonganModel.getKisaranGaji());
+        holder.tanggal.setText(permintaanLowonganModel.getTanggal_lowongan());
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
