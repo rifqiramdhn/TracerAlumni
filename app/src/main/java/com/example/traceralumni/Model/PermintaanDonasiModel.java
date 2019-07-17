@@ -5,33 +5,34 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 public class PermintaanDonasiModel implements Parcelable {
     @SerializedName("id_daftardonatur")
-    Integer idDonatur;
+    private Integer idDonatur;
 
     @SerializedName("id_opendonasi")
-    Integer idDonasi;
+    private Integer idDonasi;
 
     @SerializedName("nim")
-    String nim;
+    private String nim;
 
     @SerializedName("status")
-    String status;
+    private String status;
 
     @SerializedName("nama")
-    String namaDonatur;
+    private String namaDonatur;
 
     @SerializedName("bantuan")
-    Double bantuan;
+    private Double bantuan;
 
     @SerializedName("nama_kegiatan")
-    String namaDonasi;
+    private String namaDonasi;
 
-    String status_data;
+    private String status_data;
 
-    Double total;
+    private String tanggal_daftar_donatur;
+
+    private Double total;
+
 
     protected PermintaanDonasiModel(Parcel in) {
         if (in.readByte() == 0) {
@@ -53,6 +54,52 @@ public class PermintaanDonasiModel implements Parcelable {
             bantuan = in.readDouble();
         }
         namaDonasi = in.readString();
+        status_data = in.readString();
+        tanggal_daftar_donatur = in.readString();
+        if (in.readByte() == 0) {
+            total = null;
+        } else {
+            total = in.readDouble();
+        }
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (idDonatur == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(idDonatur);
+        }
+        if (idDonasi == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(idDonasi);
+        }
+        dest.writeString(nim);
+        dest.writeString(status);
+        dest.writeString(namaDonatur);
+        if (bantuan == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(bantuan);
+        }
+        dest.writeString(namaDonasi);
+        dest.writeString(status_data);
+        dest.writeString(tanggal_daftar_donatur);
+        if (total == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(total);
+        }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<PermintaanDonasiModel> CREATOR = new Creator<PermintaanDonasiModel>() {
@@ -66,37 +113,6 @@ public class PermintaanDonasiModel implements Parcelable {
             return new PermintaanDonasiModel[size];
         }
     };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        if (idDonatur == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(idDonatur);
-        }
-        if (idDonasi == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(idDonasi);
-        }
-        parcel.writeString(nim);
-        parcel.writeString(status);
-        parcel.writeString(namaDonatur);
-        if (bantuan == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeDouble(bantuan);
-        }
-        parcel.writeString(namaDonasi);
-    }
 
     public Integer getIdDonatur() {
         return idDonatur;
@@ -130,7 +146,15 @@ public class PermintaanDonasiModel implements Parcelable {
         return status_data;
     }
 
+    public String getTanggal_daftar_donatur() {
+        return tanggal_daftar_donatur;
+    }
+
     public Double getTotal() {
         return total;
+    }
+
+    public static Creator<PermintaanDonasiModel> getCREATOR() {
+        return CREATOR;
     }
 }

@@ -2,6 +2,7 @@ package com.example.traceralumni.Activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ParseException;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -13,13 +14,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.traceralumni.Adapter.ListDonaturAdapter;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.Model.PermintaanDonasiModel;
 import com.example.traceralumni.R;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,7 +41,7 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
     AlertDialog.Builder builder;
     DonasiModel donasiModel;
     Integer idDonasi, totalAnggaran;
-    String namaKegiatan, noTelepon, deskripsi;
+    String namaKegiatan, noTelepon, deskripsi, tanggal_opendonasi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,6 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
         builder = new AlertDialog.Builder(this);
         initView();
         getData();
-        getJumlahDuit();
 
         btn_list_donatur = findViewById(R.id.btn_list_donatur);
         btn_list_donatur.setOnClickListener(new View.OnClickListener() {
@@ -72,8 +72,8 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
                 namaKegiatan = edt_judul.getText().toString().trim();
                 noTelepon = edt_noTelp.getText().toString().trim();
                 deskripsi = edt_deskripsi.getText().toString().trim();
-
-                saveData(idDonasi, namaKegiatan, deskripsi, noTelepon, totalAnggaran);
+                getTanggalHariIni();
+                saveData(idDonasi, namaKegiatan, deskripsi, noTelepon, totalAnggaran, tanggal_opendonasi);
 
                 onBackPressed();
             }
@@ -176,10 +176,21 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
             edt_deskripsi.setText(donasiModel.getKeterangan());
             edt_noTelp.setText(donasiModel.getContactPerson());
             idDonasi = donasiModel.getIdDonasi();
+            getJumlahDuit();
         }
     }
 
-    private void saveData(Integer idDonasi, String namaKegiatan, String keterangan, String noTelepon, Integer totalAnggaran) {
+    private void getTanggalHariIni() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = new Date();
+            tanggal_opendonasi = dateFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveData(Integer idDonasi, String namaKegiatan, String keterangan, String noTelepon, Integer totalAnggaran, String tanggal_donasi) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -187,7 +198,7 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
 
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
-        Call<Void> call = jsonPlaceHolderApi.createDonasi(idDonasi, namaKegiatan, noTelepon, keterangan, totalAnggaran);
+        Call<Void> call = jsonPlaceHolderApi.createDonasi(idDonasi, namaKegiatan, noTelepon, keterangan, totalAnggaran, tanggal_donasi);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

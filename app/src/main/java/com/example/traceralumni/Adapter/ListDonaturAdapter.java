@@ -36,6 +36,7 @@ public class ListDonaturAdapter extends RecyclerView.Adapter<ListDonaturAdapter.
         final PermintaanDonasiModel permintaanDonasiModel = permintaanDonasiModels.get(i);
         holder.namaDonatur.setText(permintaanDonasiModel.getNamaDonatur());
         holder.totalDonasi.setText("Jumlah Donasi : Rp " + String.format("%.0f", permintaanDonasiModel.getBantuan()));
+        holder.tanggal.setText(permintaanDonasiModel.getTanggal_daftar_donatur());
         holder.viewProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,13 +53,14 @@ public class ListDonaturAdapter extends RecyclerView.Adapter<ListDonaturAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView namaDonatur, totalDonasi, viewProfil;
+        private TextView namaDonatur, totalDonasi, viewProfil, tanggal;
 
         public ViewHolder(View itemView) {
             super(itemView);
             namaDonatur = itemView.findViewById(R.id.tv_nama_donatur);
             totalDonasi = itemView.findViewById(R.id.tv_jumlah_donasi);
             viewProfil = itemView.findViewById(R.id.tv_profil);
+            tanggal = itemView.findViewById(R.id.tv_card_list_donatur_tanggal);
         }
     }
 }

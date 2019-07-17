@@ -53,6 +53,7 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
         holder.namaDonatur.setText(permintaanDonasiModel.getNamaDonatur());
         holder.namaKegiatan.setText(permintaanDonasiModel.getNamaDonasi());
         holder.totalDonasi.setText("Jumlah Donasi : Rp " + String.format("%.0f", permintaanDonasiModel.getBantuan()));
+        holder.tanggalDonasi.setText(permintaanDonasiModel.getTanggal_daftar_donatur());
 
         holder.clDetailDonasi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +108,7 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
             clProfilDonatur = itemView.findViewById(R.id.cl_card_permintaan_donasi_profil_donatur);
             clKonfirmasi = itemView.findViewById(R.id.cl_card_permintaan_donasi_ok);
             clTolak = itemView.findViewById(R.id.cl_card_permintaan_donasi_no);
+            tanggalDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_tanggal);
         }
     }
 

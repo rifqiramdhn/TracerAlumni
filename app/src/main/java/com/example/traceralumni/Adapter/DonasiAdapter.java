@@ -53,12 +53,19 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
         //Mengisi item dari holder menjadi item dari objek lainnyaModel
         holder.namaKegiatan.setText(donasiModel.getNamaKegiatan());
         holder.totalBiaya.setText("Rp" + donasiModel.getTotalAnggaran());
-//        holder.tanggalDonasi.setText(donasiModel.getTanggal().toString());
+        holder.tanggalDonasi.setText(donasiModel.getTanggal_opendonasi());
+        if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
+            holder.tulisanDonasi.setVisibility(View.VISIBLE);
+            holder.tanggalDonasi.setVisibility(View.INVISIBLE);
+        } else {
+            holder.tulisanDonasi.setVisibility(View.INVISIBLE);
+            holder.tanggalDonasi.setVisibility(View.VISIBLE);
+        }
 
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (JENIS_USER.equals(JENIS_USER_OPERATOR)){
+                if (JENIS_USER.equals(JENIS_USER_OPERATOR)) {
                     Intent intent = new Intent(context, OpDetailDonasiActivity.class);
                     intent.putExtra("object_donasi", donasiModels.get(position));
                     context.startActivity(intent);

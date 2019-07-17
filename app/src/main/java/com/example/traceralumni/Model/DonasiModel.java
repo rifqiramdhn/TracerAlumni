@@ -36,6 +36,8 @@ public class DonasiModel implements Parcelable {
     @SerializedName("total_anggaran")
     private Integer totalAnggaran;
 
+    private String tanggal_opendonasi;
+
     protected DonasiModel(Parcel in) {
         if (in.readByte() == 0) {
             donasiMasuk = null;
@@ -62,6 +64,46 @@ public class DonasiModel implements Parcelable {
         } else {
             totalAnggaran = in.readInt();
         }
+        tanggal_opendonasi = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (donasiMasuk == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(donasiMasuk);
+        }
+        if (idDonasi == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(idDonasi);
+        }
+        dest.writeString(namaKegiatan);
+        dest.writeString(file);
+        if (noRekening == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(noRekening);
+        }
+        dest.writeString(keterangan);
+        dest.writeString(lokasi);
+        dest.writeString(contactPerson);
+        if (totalAnggaran == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(totalAnggaran);
+        }
+        dest.writeString(tanggal_opendonasi);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<DonasiModel> CREATOR = new Creator<DonasiModel>() {
@@ -75,44 +117,6 @@ public class DonasiModel implements Parcelable {
             return new DonasiModel[size];
         }
     };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        if (donasiMasuk == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(donasiMasuk);
-        }
-        if (idDonasi == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(idDonasi);
-        }
-        parcel.writeString(namaKegiatan);
-        parcel.writeString(file);
-        if (noRekening == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(noRekening);
-        }
-        parcel.writeString(keterangan);
-        parcel.writeString(lokasi);
-        parcel.writeString(contactPerson);
-        if (totalAnggaran == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(totalAnggaran);
-        }
-    }
 
     public Integer getDonasiMasuk() {
         return donasiMasuk;
@@ -148,5 +152,13 @@ public class DonasiModel implements Parcelable {
 
     public Integer getTotalAnggaran() {
         return totalAnggaran;
+    }
+
+    public String getTanggal_opendonasi() {
+        return tanggal_opendonasi;
+    }
+
+    public static Creator<DonasiModel> getCREATOR() {
+        return CREATOR;
     }
 }

@@ -95,6 +95,9 @@ public class DetailProfilActivity extends AppCompatActivity {
             tvTwitter.setText(daftarModel.getTwitter());
             tvStatus.setText(daftarModel.getStatus_bekerja());
             getRiwayatPekerjaan(daftarModel.getNim());
+        } else {
+            getDataFromNIM(intent.getStringExtra("nim"));
+            getRiwayatPekerjaan(intent.getStringExtra("nim"));
         }
     }
 
@@ -127,48 +130,48 @@ public class DetailProfilActivity extends AppCompatActivity {
         });
     }
 
-//    private void getDataFromNIM(String nim) {
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(BASE_URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-//
-//        Call<DaftarModel> call = jsonPlaceHolderApi.getUserData(nim);
-//        call.enqueue(new Callback<DaftarModel>() {
-//            @Override
-//            public void onResponse(Call<DaftarModel> call, Response<DaftarModel> response) {
-//                if (!response.isSuccessful()) {
-//                    return;
-//                }
-//
-//                DaftarModel daftarModel = response.body();
-//
-//                tvNama.setText(daftarModel.getNama());
-//                tvProdi.setText(daftarModel.getProdi());
-//                tvAngkatan.setText(daftarModel.getAngkatan());
-//                tvThnLulus.setText(daftarModel.getTahun_lulus());
-//                tvTglYudisium.setText(daftarModel.getTanggal_yudisium());
-//                tvKwn.setText(daftarModel.getKewarganegaraan());
-//                tvNegara.setText(daftarModel.getNama_negara());
-//                tvEmail.setText(daftarModel.getEmail());
-//                tvTTL.setText(daftarModel.getTempat_lahir().concat(", ").concat(daftarModel.getTanggal_lahir()));
-//                tvAlamat.setText(daftarModel.getAlamat());
-//                tvKodePos.setText(daftarModel.getKode_pos());
-//                tvNoHp.setText(daftarModel.getNomor_hp());
-//                tvNoTelp.setText(daftarModel.getNomor_telepon());
-//                tvFacebook.setText(daftarModel.getFacebook());
-//                tvTwitter.setText(daftarModel.getTwitter());
-//                tvStatus.setText(daftarModel.getStatus_bekerja());
-//            }
-//
-//            @Override
-//            public void onFailure(Call<DaftarModel> call, Throwable t) {
-//                Toast.makeText(DetailProfilActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
+    private void getDataFromNIM(String nim) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<DaftarModel> call = jsonPlaceHolderApi.getUserData(nim);
+        call.enqueue(new Callback<DaftarModel>() {
+            @Override
+            public void onResponse(Call<DaftarModel> call, Response<DaftarModel> response) {
+                if (!response.isSuccessful()) {
+                    return;
+                }
+
+                DaftarModel daftarModel = response.body();
+
+                tvNama.setText(daftarModel.getNama());
+                tvProdi.setText(daftarModel.getProdi());
+                tvAngkatan.setText(daftarModel.getAngkatan());
+                tvThnLulus.setText(daftarModel.getTahun_lulus());
+                tvTglYudisium.setText(daftarModel.getTanggal_yudisium());
+                tvKwn.setText(daftarModel.getKewarganegaraan());
+                tvNegara.setText(daftarModel.getNama_negara());
+                tvEmail.setText(daftarModel.getEmail());
+                tvTTL.setText(daftarModel.getTempat_lahir().concat(", ").concat(daftarModel.getTanggal_lahir()));
+                tvAlamat.setText(daftarModel.getAlamat());
+                tvKodePos.setText(daftarModel.getKode_pos());
+                tvNoHp.setText(daftarModel.getNomor_hp());
+                tvNoTelp.setText(daftarModel.getNomor_telepon());
+                tvFacebook.setText(daftarModel.getFacebook());
+                tvTwitter.setText(daftarModel.getTwitter());
+                tvStatus.setText(daftarModel.getStatus_bekerja());
+            }
+
+            @Override
+            public void onFailure(Call<DaftarModel> call, Throwable t) {
+                Toast.makeText(DetailProfilActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     private void initView() {
         riwayatRecycler = findViewById(R.id.rv_riwayat_pekerjaan);

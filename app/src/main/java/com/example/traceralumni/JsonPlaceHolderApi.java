@@ -51,7 +51,8 @@ public interface JsonPlaceHolderApi {
                             @Field("namaKegiatan") String namaKegiatan,
                             @Field("noTelepon") String noTelepon,
                             @Field("keterangan") String keterangan,
-                            @Field("totalAnggaran") Integer totalAnggaran);
+                            @Field("totalAnggaran") Integer totalAnggaran,
+                            @Field("tanggal_opendonasi") String tanggal_opendonasi);
 
     @FormUrlEncoded
     @POST("delete_info.php")
@@ -119,7 +120,8 @@ public interface JsonPlaceHolderApi {
     @POST("create_permintaan_donasi.php")
     Call<Void> createPermintaanDonasi(@Field("idDonasi") Integer integer,
                                       @Field("nim") String nim,
-                                      @Field("totalBantuan") Double totalBantuan);
+                                      @Field("totalBantuan") Double totalBantuan,
+                                      @Field("tanggal_daftar_donatur") String tanggal_daftar_donatur);
 
     @GET("get_all_permintaan_donasi.php")
     Call<ArrayList<PermintaanDonasiModel>> getPerDonasi();

@@ -30,7 +30,6 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
     private Context context;
     private ArrayList<BerandaModel> berandaModels;
 
-    //cardnya belum selesai
 
     public BerandaAdapter(Context context, ArrayList<BerandaModel> data) {
         this.context = context;
