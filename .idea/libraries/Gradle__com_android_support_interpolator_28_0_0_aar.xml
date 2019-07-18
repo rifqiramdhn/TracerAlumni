@@ -2,17 +2,23 @@
   <library name="Gradle: com.android.support:interpolator:28.0.0@aar">
     <CLASSES>
 <<<<<<< Updated upstream
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> master
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9582e7d6b2828ecb5e59ed761ef523ec/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9582e7d6b2828ecb5e59ed761ef523ec/jars/classes.jar!/" />
 =======
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1ef1e760e8fedaf2e4ca74ce504a5f61/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1ef1e760e8fedaf2e4ca74ce504a5f61/res" />
 >>>>>>> Stashed changes
+<<<<<<< HEAD
 =======
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/296e815b0c5ad597e414aaaa6c93379a/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/296e815b0c5ad597e414aaaa6c93379a/res" />
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
     </CLASSES>
     <JAVADOC />
     <SOURCES />

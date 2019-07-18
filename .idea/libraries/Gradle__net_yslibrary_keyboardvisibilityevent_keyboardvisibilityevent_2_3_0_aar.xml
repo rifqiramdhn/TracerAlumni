@@ -2,17 +2,23 @@
   <library name="Gradle: net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.3.0@aar">
     <CLASSES>
 <<<<<<< Updated upstream
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> master
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c49bd80213eb5695f54f07141aa71a78/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c49bd80213eb5695f54f07141aa71a78/jars/classes.jar!/" />
 =======
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bcd15b726d6bd118e45c8eff3f9ddb8b/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bcd15b726d6bd118e45c8eff3f9ddb8b/jars/classes.jar!/" />
 >>>>>>> Stashed changes
+<<<<<<< HEAD
 =======
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1af57c1331f3587cdde75687d1c8449c/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1af57c1331f3587cdde75687d1c8449c/jars/classes.jar!/" />
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
     </CLASSES>
     <JAVADOC />
     <SOURCES>

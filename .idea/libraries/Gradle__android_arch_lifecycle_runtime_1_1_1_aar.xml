@@ -2,17 +2,23 @@
   <library name="Gradle: android.arch.lifecycle:runtime:1.1.1@aar">
     <CLASSES>
 <<<<<<< Updated upstream
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> master
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/01d915ff8fe08e25ac52304ad5a00bbc/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/01d915ff8fe08e25ac52304ad5a00bbc/jars/classes.jar!/" />
 =======
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/73066fab3404b934e869e0b2163a4acc/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/73066fab3404b934e869e0b2163a4acc/jars/classes.jar!/" />
 >>>>>>> Stashed changes
+<<<<<<< HEAD
 =======
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/edb9d9859b036d1313962d5961150e94/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/edb9d9859b036d1313962d5961150e94/jars/classes.jar!/" />
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
     </CLASSES>
     <JAVADOC />
     <SOURCES>

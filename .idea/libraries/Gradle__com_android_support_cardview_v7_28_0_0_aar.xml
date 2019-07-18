@@ -2,17 +2,23 @@
   <library name="Gradle: com.android.support:cardview-v7:28.0.0@aar">
     <CLASSES>
 <<<<<<< Updated upstream
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> master
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e800c1103ffe5b8c62cc4e0a269629ca/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e800c1103ffe5b8c62cc4e0a269629ca/res" />
 =======
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0b4dea29f04be5315f53eb20caa58bba/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0b4dea29f04be5315f53eb20caa58bba/res" />
 >>>>>>> Stashed changes
+<<<<<<< HEAD
 =======
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/62963de124d36309e74cf65c13613652/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/62963de124d36309e74cf65c13613652/jars/classes.jar!/" />
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
     </CLASSES>
     <JAVADOC />
     <SOURCES />

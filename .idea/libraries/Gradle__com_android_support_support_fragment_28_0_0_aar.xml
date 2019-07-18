@@ -2,7 +2,10 @@
   <library name="Gradle: com.android.support:support-fragment:28.0.0@aar">
     <ANNOTATIONS>
 <<<<<<< Updated upstream
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> master
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/359397234a3e1f8836bcd9996aa42e8e/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
@@ -15,6 +18,7 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1624ccfa8e350041d011d2a63447a46d/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1624ccfa8e350041d011d2a63447a46d/res" />
 >>>>>>> Stashed changes
+<<<<<<< HEAD
 =======
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/698bdccd876c622e6836045574814566/annotations.zip!/" />
     </ANNOTATIONS>
@@ -22,6 +26,8 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/698bdccd876c622e6836045574814566/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/698bdccd876c622e6836045574814566/jars/classes.jar!/" />
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
     </CLASSES>
     <JAVADOC />
     <SOURCES />
