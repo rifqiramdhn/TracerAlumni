@@ -1,11 +1,13 @@
 package com.example.traceralumni.Adapter;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +32,6 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
     private Context context;
     private ArrayList<BerandaModel> berandaModels;
 
-
     public BerandaAdapter(Context context, ArrayList<BerandaModel> data) {
         this.context = context;
         this.berandaModels = data;
@@ -41,66 +42,114 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
         View view = layoutInflater.inflate(R.layout.card_beranda, viewGroup, false);
-        return new ViewHolder(view);
+        return new BerandaAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull BerandaAdapter.ViewHolder holder, int i) {
         BerandaModel list = berandaModels.get(i);
-        if (list.getJenis_data().equals("data_donasi")) {
-            DonasiModel donasiModel = list.getDonasiModel();
-            viewHolder.d_namaKegiatan.setText(donasiModel.getNamaKegiatan());
-//            viewHolder.d_tanggalDonasi.setText("" + donasiModel.getTanggal());
-            viewHolder.d_totalBiaya.setText(donasiModel.getTotalAnggaran());
-            viewHolder.container_donasi.setOnClickListener(new View.OnClickListener() {
+        Log.e("aldy", "jenis data : " + list.getJenis_data());
+        if (list.getJenis_data().equals("donasi")) {
+            Integer idDonasi = list.getId_opendonasi();
+            String namaKegiatan = list.getNama_kegiatan_d();
+            String file = list.getFile_d();
+            Integer noRekening = list.getNo_rekening_d();
+            String keterangan = list.getKeterangan_d();
+            String lokasi = list.getLokasi_d();
+            String contactPerson = list.getContact_person_d();
+            Double totalAnggaran = list.getTotal_anggaran_d();
+            String tanggalDonasi = list.getTanggal_beranda();
+
+            final DonasiModel donasiModel = new DonasiModel(idDonasi, namaKegiatan, file, noRekening, keterangan, lokasi, contactPerson, totalAnggaran, tanggalDonasi);
+
+            holder.d_namaKegiatan.setText(donasiModel.getNamaKegiatan());
+            holder.d_tanggalDonasi.setText("" + donasiModel.getTanggal_opendonasi());
+            holder.d_totalBiaya.setText("Rp " + String.format("%.0f", donasiModel.getTotalAnggaran()));
+
+            holder.container_donasi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, DetailDonasiActivity.class);
+                    intent.putExtra("object_donasi", donasiModel);
                     context.startActivity(intent);
                 }
             });
 
             //visibility
-            viewHolder.container_lowongan.setVisibility(View.GONE);
-            viewHolder.container_info.setVisibility(View.GONE);
-            viewHolder.container_donasi.setVisibility(View.VISIBLE);
-        } else if (list.getJenis_data().equals("data_info")) {
-            final InfoModel infoModel = list.getInfoModel();
-            viewHolder.i_isi.setText(infoModel.getKeterangan());
-            viewHolder.i_judul.setText(infoModel.getJudul());
-            viewHolder.i_tanggal.setText("" + infoModel.getTanggal_info());
-            viewHolder.container_info.setOnClickListener(new View.OnClickListener() {
+            holder.container_lowongan.setVisibility(View.GONE);
+            holder.container_info.setVisibility(View.GONE);
+            holder.container_donasi.setVisibility(View.VISIBLE);
+        } else if (list.getJenis_data().equals("info")) {
+
+            Integer idInfo = list.getId_info();
+            String judul = list.getJudul_i();
+            String keterangan = list.getKeterangan_i();
+            String link = list.getLink_i();
+            String tanggalInfo = list.getTanggal_beranda();
+
+            final InfoModel infoModel = new InfoModel(idInfo, judul, keterangan, link, tanggalInfo);
+            holder.i_isi.setText(infoModel.getKeterangan());
+            holder.i_judul.setText(infoModel.getJudul());
+            holder.container_info.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     String url = infoModel.getLink();
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(url));
-                    context.startActivity(intent);
+                    try {
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(url));
+                        context.startActivity(i);
+                    } catch (ActivityNotFoundException e){
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        String urlNew = "http://" + url;
+                        i.setData(Uri.parse(urlNew));
+                        context.startActivity(i);
+                    }
                 }
             });
 
             //visibility
-            viewHolder.container_lowongan.setVisibility(View.GONE);
-            viewHolder.container_info.setVisibility(View.VISIBLE);
-            viewHolder.container_donasi.setVisibility(View.GONE);
+            holder.container_lowongan.setVisibility(View.GONE);
+            holder.container_info.setVisibility(View.VISIBLE);
+            holder.container_donasi.setVisibility(View.GONE);
         } else {
-            LowonganModel lowonganModel = list.getLowonganModel();
-            viewHolder.l_txtKisaranGaji.setText(lowonganModel.getKisaran_gaji());
-            viewHolder.l_txtLokasi.setText(lowonganModel.getAlamat_perusahaan());
-            viewHolder.l_txtPerusahaan.setText(lowonganModel.getNama_perusahaan());
-            viewHolder.l_txtTitle.setText(lowonganModel.getNama_lowongan());
-            viewHolder.container_lowongan.setOnClickListener(new View.OnClickListener() {
+
+            Integer idLowongan = list.getId_lowongan();
+            String username = list.getUsername_l();
+            String namaLowongan = list.getNama_lowongan_l();
+            String namaPer = list.getNama_perusahaan_l();
+            String alamatPer = list.getAlamat_perusahaan_l();
+            String kisaranGaji = list.getKisaran_gaji_l();
+            String syaratPekerjaan = list.getSyarat_pekerjaan_l();
+            Integer kuota = list.getPelamar_yang_dibutuhkan_l();
+            String jabatan = list.getLowongan_jabatan_l();
+            String website = list.getWebsite_perusahaan_l();
+            String email = list.getEmail_perusahaan_l();
+            String noTelp = list.getNo_telp_perusahaan_l();
+            String cp = list.getContact_person_l();
+            String statusLowongan = list.getStatus_l();
+            String urlLogo = list.getLogo_perusahaan_l();
+            String tanggalLowongan = list.getTanggal_beranda();
+
+            final LowonganModel lowonganModel = new LowonganModel(idLowongan, username, namaLowongan, namaPer, alamatPer, kisaranGaji, syaratPekerjaan, kuota, jabatan, website, email, noTelp, cp, statusLowongan, urlLogo, tanggalLowongan);
+
+            holder.l_txtKisaranGaji.setText(lowonganModel.getKisaran_gaji());
+            holder.l_txtLokasi.setText(lowonganModel.getAlamat_perusahaan());
+            holder.l_txtPerusahaan.setText(lowonganModel.getNama_perusahaan());
+            holder.l_txtTitle.setText(lowonganModel.getNama_lowongan());
+
+            holder.container_lowongan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, DetailLowonganActivity.class);
+                    intent.putExtra("object_lowongan", lowonganModel);
                     context.startActivity(intent);
                 }
             });
 
             //visibility
-            viewHolder.container_lowongan.setVisibility(View.VISIBLE);
-            viewHolder.container_info.setVisibility(View.GONE);
-            viewHolder.container_donasi.setVisibility(View.GONE);
+            holder.container_lowongan.setVisibility(View.VISIBLE);
+            holder.container_info.setVisibility(View.GONE);
+            holder.container_donasi.setVisibility(View.GONE);
         }
     }
 
@@ -118,7 +167,7 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
         private ImageView i_iv_link;
 
         //untuk lowongan
-        private TextView l_txtTitle, l_txtPerusahaan, l_txtLokasi, l_txtKisaranGaji;
+        private TextView l_txtTitle, l_txtPerusahaan, l_txtLokasi, l_txtKisaranGaji, l_tanggal;
 
         //Deklarasi ConstraintLayout container
         private ConstraintLayout container_donasi, container_info, container_lowongan;
@@ -130,40 +179,28 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
             d_totalBiaya = itemView.findViewById(R.id.tv_card_donasi_jumlah_donasi);
             d_tanggalDonasi = itemView.findViewById(R.id.tv_card_donasi_tanggal);
             d_tulisanDonasi = itemView.findViewById(R.id.tv_card_donasi_tulisan_donasi);
+            d_tanggalDonasi.setVisibility(View.INVISIBLE);
 
             //buat diklik
             container_donasi = itemView.findViewById(R.id.card_beranda_donasi);
-
-            if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
-                d_tulisanDonasi.setVisibility(View.VISIBLE);
-                d_tanggalDonasi.setVisibility(View.INVISIBLE);
-            } else {
-                d_tulisanDonasi.setVisibility(View.INVISIBLE);
-                d_tanggalDonasi.setVisibility(View.VISIBLE);
-            }
 
             //untuk info
             i_judul = itemView.findViewById(R.id.tv_card_info_judul);
             i_isi = itemView.findViewById(R.id.tv_card_info_isi);
             i_tanggal = itemView.findViewById(R.id.tv_card_info_tanggal);
             i_iv_link = itemView.findViewById(R.id.img_card_info_link);
+            i_tanggal.setVisibility(View.GONE);
 
             //buat diklik
             container_info = itemView.findViewById(R.id.card_beranda_info);
-
-            if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
-                i_iv_link.setVisibility(View.VISIBLE);
-                i_tanggal.setVisibility(View.GONE);
-            } else {
-                i_iv_link.setVisibility(View.GONE);
-                i_tanggal.setVisibility(View.VISIBLE);
-            }
 
             //untuk lowongan
             l_txtTitle = itemView.findViewById(R.id.tv_nama_lowongan);
             l_txtPerusahaan = itemView.findViewById(R.id.tv_nama_perusahaan);
             l_txtLokasi = itemView.findViewById(R.id.tv_lokasi_perusahaan);
             l_txtKisaranGaji = itemView.findViewById(R.id.tv_kisaran_gaji);
+            l_tanggal = itemView.findViewById(R.id.tv_tanggal_lowongan);
+            l_tanggal.setVisibility(View.GONE);
 
             //buat diklik
             container_lowongan = itemView.findViewById(R.id.card_beranda_lowongan);

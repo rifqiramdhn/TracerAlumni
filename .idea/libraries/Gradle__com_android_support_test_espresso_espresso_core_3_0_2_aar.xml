@@ -1,13 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.android.support.test.espresso:espresso-core:3.0.2@aar">
     <CLASSES>
-<<<<<<< Updated upstream
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2b7320914fc5c652d1235b8f8f9c273c/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2b7320914fc5c652d1235b8f8f9c273c/jars/classes.jar!/" />
-=======
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/34efb61b974c555a792136b7649b169d/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/34efb61b974c555a792136b7649b169d/jars/classes.jar!/" />
->>>>>>> Stashed changes
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -23,6 +23,13 @@ public class InfoModel implements Parcelable {
 
     private String tanggal_info;
 
+    public InfoModel(Integer idInfo, String judul, String keterangan, String link, String tanggal_info) {
+        this.idInfo = idInfo;
+        this.judul = judul;
+        this.keterangan = keterangan;
+        this.link = link;
+        this.tanggal_info = tanggal_info;
+    }
 
     protected InfoModel(Parcel in) {
         if (in.readByte() == 0) {

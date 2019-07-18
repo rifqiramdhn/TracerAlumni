@@ -53,6 +53,25 @@ public class LowonganModel implements Parcelable {
 
     private String tanggal_lowongan;
 
+    public LowonganModel(Integer idLowongan, String username, String nama_lowongan, String nama_perusahaan, String alamat_perusahaan, String kisaran_gaji, String syarat_pekerjaan, Integer kuota, String jabatan, String website, String email, String no_telp, String cp, String status_lowongan, String url_logo, String tanggal_lowongan) {
+        this.idLowongan = idLowongan;
+        this.username = username;
+        this.nama_lowongan = nama_lowongan;
+        this.nama_perusahaan = nama_perusahaan;
+        this.alamat_perusahaan = alamat_perusahaan;
+        this.kisaran_gaji = kisaran_gaji;
+        this.syarat_pekerjaan = syarat_pekerjaan;
+        this.kuota = kuota;
+        this.jabatan = jabatan;
+        this.website = website;
+        this.email = email;
+        this.no_telp = no_telp;
+        this.cp = cp;
+        this.status_lowongan = status_lowongan;
+        this.url_logo = url_logo;
+        this.tanggal_lowongan = tanggal_lowongan;
+    }
+
     protected LowonganModel(Parcel in) {
         if (in.readByte() == 0) {
             idLowongan = null;

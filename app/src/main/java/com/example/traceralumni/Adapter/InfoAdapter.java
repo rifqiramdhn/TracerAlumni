@@ -55,6 +55,8 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> im
         holder.isi.setText(infoModel.getKeterangan());
         holder.tanggal.setText(infoModel.getTanggal_info());
 
+        Log.e("aldy", "jalan please " + infoModel.getJudul());
+
         if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)) {
             holder.cl_card.setOnClickListener(new View.OnClickListener() {
                 @Override

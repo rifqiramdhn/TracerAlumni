@@ -1,5 +1,6 @@
 package com.example.traceralumni;
 
+import com.example.traceralumni.Model.BerandaModel;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.Model.InfoModel;
@@ -199,4 +200,7 @@ public interface JsonPlaceHolderApi {
     Call<Void> updatePhotoPath(@Field("nim") String nim,
                                @Field("oldpath") String oldpath,
                                @Field("newpath") String newpath);
+
+    @GET("get_all_beranda.php")
+    Call<ArrayList<BerandaModel>> getAllBeranda();
 }
