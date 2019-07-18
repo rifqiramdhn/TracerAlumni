@@ -68,7 +68,7 @@ public class LowonganModel implements Parcelable {
         this.no_telp = no_telp;
         this.cp = cp;
         this.status_lowongan = status_lowongan;
-        this.url_logo = url_logo;
+        this.logo_perusahaan = url_logo;
         this.tanggal_lowongan = tanggal_lowongan;
     }
 

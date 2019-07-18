@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.Model.PermintaanDonasiModel;
@@ -67,6 +68,9 @@ public class DetailDonasiActivity extends AppCompatActivity {
             tv_keterangan.setText(donasiModel.getKeterangan());
             tv_namaKegiatan.setText(donasiModel.getNamaKegiatan());
             tv_totalBiaya.setText("Rp " + String.format("%.0f", donasiModel.getTotalAnggaran()));
+            Glide.with(DetailDonasiActivity.this)
+                    .load(BASE_URL + donasiModel.getFile())
+                    .into(foto);
         } else {
             getDataFromID(intent.getIntExtra("id_donasi", -1));
         }

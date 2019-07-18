@@ -58,8 +58,9 @@ public interface JsonPlaceHolderApi {
                             @Field("namaKegiatan") String namaKegiatan,
                             @Field("noTelepon") String noTelepon,
                             @Field("keterangan") String keterangan,
-                            @Field("totalAnggaran") Integer totalAnggaran,
-                            @Field("tanggal_opendonasi") String tanggal_opendonasi);
+                            @Field("totalAnggaran") Double totalAnggaran,
+                            @Field("tanggal_opendonasi") String tanggal_opendonasi,
+                            @Field("file") String file);
 
     @FormUrlEncoded
     @POST("delete_info.php")
@@ -99,7 +100,8 @@ public interface JsonPlaceHolderApi {
                               @Field("noTelp") String noTelp,
                               @Field("cp") String cp,
                               @Field("status") String status,
-                              @Field("tanggal_lowongan") String tanggal);
+                              @Field("tanggal_lowongan") String tanggal,
+                              @Field("logo") String logo);
 
     @FormUrlEncoded
     @POST("post_get_user_data.php")

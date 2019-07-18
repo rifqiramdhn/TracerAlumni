@@ -52,7 +52,7 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
 
         //Mengisi item dari holder menjadi item dari objek lainnyaModel
         holder.namaKegiatan.setText(donasiModel.getNamaKegiatan());
-        holder.totalBiaya.setText("Rp" + donasiModel.getTotalAnggaran());
+        holder.totalBiaya.setText("Rp " + String.format("%.0f", donasiModel.getTotalAnggaran()));
         holder.tanggalDonasi.setText(donasiModel.getTanggal_opendonasi());
         if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
             holder.tulisanDonasi.setVisibility(View.VISIBLE);
