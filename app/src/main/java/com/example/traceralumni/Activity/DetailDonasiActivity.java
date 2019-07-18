@@ -63,10 +63,10 @@ public class DetailDonasiActivity extends AppCompatActivity {
         if (donasiModel != null) {
             mIdDonasi = donasiModel.getIdDonasi();
 
-            tv_jumlahDonasi.setText("" + donasiModel.getDonasiMasuk());
+//            tv_jumlahDonasi.setText("" + donasiModel.getDonasiMasuk());
             tv_keterangan.setText(donasiModel.getKeterangan());
             tv_namaKegiatan.setText(donasiModel.getNamaKegiatan());
-            tv_totalBiaya.setText("" + donasiModel.getTotalAnggaran());
+            tv_totalBiaya.setText("Rp " + String.format("%.0f", donasiModel.getTotalAnggaran()));
         } else {
             getDataFromID(intent.getIntExtra("id_donasi", -1));
         }
@@ -91,7 +91,7 @@ public class DetailDonasiActivity extends AppCompatActivity {
                     DonasiModel donasiModelNew = response.body();
                     mIdDonasi = donasiModelNew.getIdDonasi();
 
-                    tv_jumlahDonasi.setText("" + donasiModelNew.getDonasiMasuk());
+//                    tv_jumlahDonasi.setText("" + donasiModelNew.getDonasiMasuk());
                     tv_keterangan.setText(donasiModelNew.getKeterangan());
                     tv_namaKegiatan.setText(donasiModelNew.getNamaKegiatan());
                     tv_totalBiaya.setText("" + donasiModelNew.getTotalAnggaran());

@@ -9,9 +9,6 @@ import java.util.Date;
 
 public class DonasiModel implements Parcelable {
 
-    @SerializedName("donasi_masuk")
-    private Integer donasiMasuk;
-
     @SerializedName("id_opendonasi")
     private Integer idDonasi;
 
@@ -34,16 +31,23 @@ public class DonasiModel implements Parcelable {
     private String contactPerson;
 
     @SerializedName("total_anggaran")
-    private Integer totalAnggaran;
+    private Double totalAnggaran;
 
     private String tanggal_opendonasi;
 
+    public DonasiModel( Integer idDonasi, String namaKegiatan, String file, Integer noRekening, String keterangan, String lokasi, String contactPerson, Double totalAnggaran, String tanggal_opendonasi) {
+        this.idDonasi = idDonasi;
+        this.namaKegiatan = namaKegiatan;
+        this.file = file;
+        this.noRekening = noRekening;
+        this.keterangan = keterangan;
+        this.lokasi = lokasi;
+        this.contactPerson = contactPerson;
+        this.totalAnggaran = totalAnggaran;
+        this.tanggal_opendonasi = tanggal_opendonasi;
+    }
+
     protected DonasiModel(Parcel in) {
-        if (in.readByte() == 0) {
-            donasiMasuk = null;
-        } else {
-            donasiMasuk = in.readInt();
-        }
         if (in.readByte() == 0) {
             idDonasi = null;
         } else {
@@ -62,19 +66,13 @@ public class DonasiModel implements Parcelable {
         if (in.readByte() == 0) {
             totalAnggaran = null;
         } else {
-            totalAnggaran = in.readInt();
+            totalAnggaran = in.readDouble();
         }
         tanggal_opendonasi = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        if (donasiMasuk == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(donasiMasuk);
-        }
         if (idDonasi == null) {
             dest.writeByte((byte) 0);
         } else {
@@ -96,7 +94,7 @@ public class DonasiModel implements Parcelable {
             dest.writeByte((byte) 0);
         } else {
             dest.writeByte((byte) 1);
-            dest.writeInt(totalAnggaran);
+            dest.writeDouble(totalAnggaran);
         }
         dest.writeString(tanggal_opendonasi);
     }
@@ -117,10 +115,6 @@ public class DonasiModel implements Parcelable {
             return new DonasiModel[size];
         }
     };
-
-    public Integer getDonasiMasuk() {
-        return donasiMasuk;
-    }
 
     public Integer getIdDonasi() {
         return idDonasi;
@@ -150,15 +144,11 @@ public class DonasiModel implements Parcelable {
         return contactPerson;
     }
 
-    public Integer getTotalAnggaran() {
+    public Double getTotalAnggaran() {
         return totalAnggaran;
     }
 
     public String getTanggal_opendonasi() {
         return tanggal_opendonasi;
-    }
-
-    public static Creator<DonasiModel> getCREATOR() {
-        return CREATOR;
     }
 }

@@ -1,7 +1,6 @@
 package com.example.traceralumni;
 
-import android.content.Intent;
-
+import com.example.traceralumni.Model.BerandaModel;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.Model.InfoModel;
@@ -100,8 +99,7 @@ public interface JsonPlaceHolderApi {
                               @Field("noTelp") String noTelp,
                               @Field("cp") String cp,
                               @Field("status") String status,
-                              @Field("tanggal_lowongan") String tanggal,
-                              @Field("logo_perusahaan") String logo);
+                              @Field("tanggal_lowongan") String tanggal);
 
     @FormUrlEncoded
     @POST("post_get_user_data.php")
@@ -203,9 +201,6 @@ public interface JsonPlaceHolderApi {
                                @Field("oldpath") String oldpath,
                                @Field("newpath") String newpath);
 
-    @FormUrlEncoded
-    @POST("create_logo_perusahaan.php")
-    Call<Void> uploadLogoPerusahaan(@Field("nim") String nim,
-                                    @Field("oldpath") String oldpath,
-                                    @Field("newpath") String newpath);
+    @GET("get_all_beranda.php")
+    Call<ArrayList<BerandaModel>> getAllBeranda();
 }
