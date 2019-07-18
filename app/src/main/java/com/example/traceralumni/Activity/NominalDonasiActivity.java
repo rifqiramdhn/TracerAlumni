@@ -45,6 +45,8 @@ public class NominalDonasiActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nominal_donasi);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         builder = new AlertDialog.Builder(this);
         initView();
         getData();

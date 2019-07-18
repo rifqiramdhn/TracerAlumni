@@ -38,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         edtUsername = findViewById(R.id.edt_login_username);
         edtPassword = findViewById(R.id.edt_login_password);
 

@@ -3,6 +3,7 @@ package com.example.traceralumni.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,13 +54,14 @@ public class ListDonaturAdapter extends RecyclerView.Adapter<ListDonaturAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView namaDonatur, totalDonasi, viewProfil, tanggal;
+        private TextView namaDonatur, totalDonasi, tanggal;
+        private ConstraintLayout viewProfil;
 
         public ViewHolder(View itemView) {
             super(itemView);
             namaDonatur = itemView.findViewById(R.id.tv_nama_donatur);
             totalDonasi = itemView.findViewById(R.id.tv_jumlah_donasi);
-            viewProfil = itemView.findViewById(R.id.tv_profil);
+            viewProfil = itemView.findViewById(R.id.cl_view_profil_donatur);
             tanggal = itemView.findViewById(R.id.tv_card_list_donatur_tanggal);
         }
     }

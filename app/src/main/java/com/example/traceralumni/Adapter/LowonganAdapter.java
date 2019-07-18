@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 
 public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLowonganHolder> implements Filterable {
     Context context;
@@ -29,7 +31,7 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
     private ArrayList<LowonganModel> listLowonganFull;
     String oldPath = "";
 
-    public LowonganAdapter(Context context, ArrayList<LowonganModel> listLowongan){
+    public LowonganAdapter(Context context, ArrayList<LowonganModel> listLowongan) {
         this.context = context;
         this.listLowongan = listLowongan;
         listLowonganFull = new ArrayList<>(listLowongan);
@@ -49,7 +51,7 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
         holder.txtTitle.setText(list.getNama_lowongan());
         holder.txtPerusahaan.setText(list.getNama_perusahaan());
         holder.txtLokasi.setText(list.getAlamat_perusahaan());
-        holder.txtKisaranGaji.setText("~Rp "+list.getKisaran_gaji());
+        holder.txtKisaranGaji.setText("~Rp " + list.getKisaran_gaji());
         holder.txtTanggal.setText(list.getTanggal_lowongan());
         oldPath = list.getLogo_perusahaan();
         Glide.with(context)
@@ -70,14 +72,14 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
         return listLowongan.size();
     }
 
-    public class ListLowonganHolder extends RecyclerView.ViewHolder{
-        private TextView txtTitle, txtPerusahaan, txtLokasi, txtKisaranGaji, txtTanggal;
+    public class ListLowonganHolder extends RecyclerView.ViewHolder {
+        private TextView txtTitle, txtPerusahaan, txtLokasi, txtKisaranGaji, txtTanggal, txtDetail;
         private ConstraintLayout container;
         private CircleImageView foto;
 
-        public ListLowonganHolder(View itemView){
+        public ListLowonganHolder(View itemView) {
             super(itemView);
-
+            txtDetail = itemView.findViewById(R.id.txt_detail);
             txtTitle = itemView.findViewById(R.id.tv_nama_lowongan);
             txtPerusahaan = itemView.findViewById(R.id.tv_nama_perusahaan);
             txtLokasi = itemView.findViewById(R.id.tv_lokasi_perusahaan);
@@ -85,6 +87,13 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
             txtTanggal = itemView.findViewById(R.id.tv_tanggal_lowongan);
             foto = itemView.findViewById(R.id.iv_tambah_lowongan_logo);
             container = itemView.findViewById(R.id.card_daftar_lowongan);
+            if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
+                txtTanggal.setVisibility(View.INVISIBLE);
+                txtDetail.setVisibility(View.VISIBLE);
+            } else {
+                txtTanggal.setVisibility(View.VISIBLE);
+                txtDetail.setVisibility(View.INVISIBLE);
+            }
         }
 
     }

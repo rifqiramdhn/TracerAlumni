@@ -52,7 +52,6 @@ public class DetailDonasiActivity extends AppCompatActivity {
 
         initView();
         getData();
-        getJumlahDuit();
 
         setDonasiButton();
     }
@@ -73,8 +72,10 @@ public class DetailDonasiActivity extends AppCompatActivity {
             Glide.with(DetailDonasiActivity.this)
                     .load(BASE_URL + donasiModel.getFile())
                     .into(foto);
+            getJumlahDuit(donasiModel.getIdDonasi());
         } else {
             getDataFromID(intent.getIntExtra("id_donasi", -1));
+            getJumlahDuit(intent.getIntExtra("id_donasi", -1));
         }
     }
 
@@ -100,7 +101,7 @@ public class DetailDonasiActivity extends AppCompatActivity {
 //                    tv_jumlahDonasi.setText("" + donasiModelNew.getDonasiMasuk());
                     tv_keterangan.setText(donasiModelNew.getKeterangan());
                     tv_namaKegiatan.setText(donasiModelNew.getNamaKegiatan());
-                    tv_totalBiaya.setText("" + donasiModelNew.getTotalAnggaran());
+                    tv_totalBiaya.setText("Rp " + String.format("%.0f", donasiModelNew.getTotalAnggaran()));
                     tv_kontak.setText("Hubungi\n" + donasiModelNew.getContactPerson());
                     kontak = donasiModelNew.getContactPerson();
                     Glide.with(DetailDonasiActivity.this)
@@ -199,15 +200,14 @@ public class DetailDonasiActivity extends AppCompatActivity {
         }
     }
 
-    private void getJumlahDuit() {
+    private void getJumlahDuit(Integer idDonasi) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<PermintaanDonasiModel> call = jsonPlaceHolderApi.getJumlahDuit(donasiModel.getIdDonasi());
+        Call<PermintaanDonasiModel> call = jsonPlaceHolderApi.getJumlahDuit(idDonasi);
         call.enqueue(new Callback<PermintaanDonasiModel>() {
             @Override
             public void onResponse(Call<PermintaanDonasiModel> call, Response<PermintaanDonasiModel> response) {

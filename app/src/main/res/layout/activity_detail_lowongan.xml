@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    tools:context=".Activity.DetailLowonganActivity">
 
     <include
         android:id="@+id/include_detail_lowongan"
+        layout="@layout/navigation_bar_top"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/nav_bar_height"
-        layout="@layout/navigation_bar_top" />
+        android:layout_height="@dimen/nav_bar_height" />
 
     <ScrollView
         android:id="@+id/sv_lowongan"
@@ -48,12 +48,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="24dp"
-                tools:text="Staff Administrasi HRD"
                 android:textColor="@android:color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_activity_detail_lowongan_logo" />
+                app:layout_constraintTop_toBottomOf="@+id/iv_activity_detail_lowongan_logo"
+                tools:text="Staff Administrasi HRD" />
 
             <TextView
                 android:id="@+id/tv_nama_perusahaan"
@@ -62,12 +62,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="5dp"
-                tools:text="PT. Bank Muamalat"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_nama_lowongan" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_nama_lowongan"
+                tools:text="PT. Bank Muamalat" />
 
             <ImageView
                 android:id="@+id/img_lokasi"
@@ -88,12 +88,12 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="5dp"
-                tools:text="Kota Malang, Indonesia"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:layout_constraintStart_toEndOf="@+id/img_lokasi"
-                app:layout_constraintTop_toBottomOf="@+id/tv_nama_perusahaan" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_nama_perusahaan"
+                tools:text="Kota Malang, Indonesia" />
 
             <ImageView
                 android:id="@+id/img_gaji"
@@ -113,13 +113,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                tools:text="~Rp 5.000.000"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_lokasi_perusahaan"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_lokasi_perusahaan" />
+                app:layout_constraintTop_toTopOf="@+id/tv_lokasi_perusahaan"
+                tools:text="~Rp 5.000.000" />
 
             <ImageView
                 android:id="@+id/img_profil"
@@ -138,13 +138,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                tools:text="Paidi Sugiono"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/img_profil"
                 app:layout_constraintStart_toEndOf="@+id/img_profil"
-                app:layout_constraintTop_toTopOf="@+id/img_profil" />
+                app:layout_constraintTop_toTopOf="@+id/img_profil"
+                tools:text="Paidi Sugiono" />
 
             <Button
                 android:id="@+id/btn_lihat_profil"
@@ -155,9 +155,9 @@
                 android:text="Lihat Profil"
                 android:textColor="@color/white"
                 android:textSize="12sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/tv_profil"
-                app:layout_constraintTop_toBottomOf="@+id/tv_profil"
-                android:visibility="gone"/>
+                app:layout_constraintTop_toBottomOf="@+id/tv_profil" />
 
             <ImageView
                 android:id="@+id/img_syarat"
@@ -191,13 +191,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                tools:text="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt."
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_syarat"
-                app:layout_constraintTop_toBottomOf="@+id/tv_judul_syarat" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_judul_syarat"
+                tools:text="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt." />
 
             <ImageView
                 android:id="@+id/img_kuota"
@@ -229,12 +229,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                tools:text="6 Orang"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_kuota"
-                app:layout_constraintTop_toBottomOf="@+id/tv_judul_kuota" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_judul_kuota"
+                tools:text="6 Orang" />
 
             <ImageView
                 android:id="@+id/img_jabatan"
@@ -266,12 +266,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                tools:text="Staff Administrasi"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_jabatan"
-                app:layout_constraintTop_toBottomOf="@+id/tv_judul_jabatan" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_judul_jabatan"
+                tools:text="Staff Administrasi" />
 
             <ImageView
                 android:id="@+id/img_web"
@@ -303,12 +303,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                tools:text="www.muamalat.com"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_web"
-                app:layout_constraintTop_toBottomOf="@+id/tv_judul_web" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_judul_web"
+                tools:text="www.muamalat.com" />
 
             <ImageView
                 android:id="@+id/img_email"
@@ -340,12 +340,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                tools:text="muamalat@gmail.com"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_email"
-                app:layout_constraintTop_toBottomOf="@+id/tv_judul_email" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_judul_email"
+                tools:text="muamalat@gmail.com" />
 
             <ImageView
                 android:id="@+id/img_telp"
@@ -377,12 +377,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                tools:text="(021) 782172"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_telpon"
-                app:layout_constraintTop_toBottomOf="@+id/tv_judul_telpon" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_judul_telpon"
+                tools:text="(021) 782172" />
 
             <ImageView
                 android:id="@+id/img_hubungi"
@@ -415,13 +415,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
-                tools:text="+62 81 728 827 129"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_telpon"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_hubungi" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_judul_hubungi"
+                tools:text="+62 81 728 827 129" />
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/cl_btn_hubungi_lowongan"

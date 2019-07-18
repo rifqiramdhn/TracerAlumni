@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".Activity.DetailProfilActivity">
 
     <ScrollView
         android:id="@+id/sv_detail_profil"
@@ -26,12 +27,12 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
-                android:src="@color/colorIconBiru"
                 android:layout_marginRight="8dp"
+                android:src="@color/colorIconBiru"
+                app:layout_constraintBottom_toTopOf="@+id/txt_judul_nama"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/txt_judul_nama"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/txt_judul_nama"
@@ -40,12 +41,12 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="32dp"
-                tools:text="Nama"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_activity_detail_profil_foto" />
+                app:layout_constraintTop_toBottomOf="@+id/iv_activity_detail_profil_foto"
+                tools:text="Nama" />
 
             <TextView
                 android:id="@+id/txt_nama"
@@ -56,13 +57,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                tools:text="Imam Al-Mukarom"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_nama" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_judul_nama"
+                tools:text="Imam Al-Mukarom" />
 
             <TextView
                 android:id="@+id/txt_judul_prodi"
@@ -87,13 +88,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                tools:text="Administrasi Bisnis"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_prodi" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_judul_prodi"
+                tools:text="Administrasi Bisnis" />
 
             <TextView
                 android:id="@+id/txt_judul_angkatan"
@@ -118,13 +119,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                tools:text="2018"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_angkatan" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_judul_angkatan"
+                tools:text="2018" />
 
             <TextView
                 android:id="@+id/txt_judul_thnLulus"
@@ -149,13 +150,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                tools:text="2022"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_thnLulus" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_judul_thnLulus"
+                tools:text="2022" />
 
             <TextView
                 android:id="@+id/txt_judul_tglYudisium"
@@ -180,13 +181,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                tools:text="12-10-2022"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_tglYudisium" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_judul_tglYudisium"
+                tools:text="12-10-2022" />
 
             <TextView
                 android:id="@+id/txt_judul_kewarganegaraan"
@@ -211,13 +212,13 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                tools:text="WNA"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_kewarganegaraan" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_judul_kewarganegaraan"
+                tools:text="WNA" />
 
             <TextView
                 android:id="@+id/txt_judul_wargaNegara"
@@ -242,13 +243,13 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                tools:text="Nigeria"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_wargaNegara" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_judul_wargaNegara"
+                tools:text="Nigeria" />
 
             <TextView
                 android:id="@+id/tv_judul_email"
@@ -273,13 +274,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                tools:text="imammukarom@gmail.com"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_judul_email" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_judul_email"
+                tools:text="imammukarom@gmail.com" />
 
             <TextView
                 android:id="@+id/txt_judul_ttl"
@@ -304,13 +305,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                tools:text="Jakarta, 12 Juni 1978"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_ttl" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_judul_ttl"
+                tools:text="Jakarta, 12 Juni 1978" />
 
             <TextView
                 android:id="@+id/txt_judul_alamat"
@@ -335,13 +336,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                tools:text="Jalan Veteran No.3 Lowokwaru Ketwanggede Malang"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_alamat" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_judul_alamat"
+                tools:text="Jalan Veteran No.3 Lowokwaru Ketwanggede Malang" />
 
             <TextView
                 android:id="@+id/txt_judul_kodePos"
@@ -366,13 +367,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                tools:text="65123"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_kodePos" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_judul_kodePos"
+                tools:text="65123" />
 
             <TextView
                 android:id="@+id/txt_judul_noHP"
@@ -407,14 +408,14 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                tools:text="0888888884828"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@+id/img_hp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img_hp"
-                app:layout_constraintTop_toTopOf="@+id/img_hp" />
+                app:layout_constraintTop_toTopOf="@+id/img_hp"
+                tools:text="0888888884828" />
 
             <TextView
                 android:id="@+id/txt_judul_notelp"
@@ -447,13 +448,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                tools:text="(021) 712399"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@+id/img_telp"
                 app:layout_constraintStart_toEndOf="@+id/img_telp"
-                app:layout_constraintTop_toTopOf="@+id/img_telp" />
+                app:layout_constraintTop_toTopOf="@+id/img_telp"
+                tools:text="(021) 712399" />
 
             <TextView
                 android:id="@+id/txt_judul_facebook"
@@ -488,14 +489,14 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                tools:text="https://www.facebook.com/imam"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@+id/img_facebook"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img_facebook"
-                app:layout_constraintTop_toTopOf="@+id/img_facebook" />
+                app:layout_constraintTop_toTopOf="@+id/img_facebook"
+                tools:text="https://www.facebook.com/imam" />
 
             <TextView
                 android:id="@+id/txt_judul_twitter"
@@ -530,14 +531,14 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                tools:text="https://www.twitter.com/imam"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@+id/img_twitter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img_twitter"
-                app:layout_constraintTop_toTopOf="@+id/img_twitter" />
+                app:layout_constraintTop_toTopOf="@+id/img_twitter"
+                tools:text="https://www.twitter.com/imam" />
 
             <TextView
                 android:id="@+id/txt_judul_status"
@@ -562,13 +563,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                tools:text="Aktif"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_status" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_judul_status"
+                tools:text="Aktif" />
 
             <TextView
                 android:id="@+id/txt_judul_riwayat"

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    tools:context=".Activity.PimDaftarAlumniActivity">
 
     <include
         android:id="@+id/include_daftar_alumni"
@@ -52,10 +53,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:listitem="@layout/card_daftar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cl_activity_pim_daftar_search">
+        app:layout_constraintTop_toBottomOf="@id/cl_activity_pim_daftar_search"
+        tools:listitem="@layout/card_daftar">
 
     </android.support.v7.widget.RecyclerView>
 </android.support.constraint.ConstraintLayout>
