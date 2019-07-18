@@ -13,6 +13,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.traceralumni.Activity.DetailProfilActivity;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Fragment.DaftarFragment.TEXT_SEARCH_DAFTAR_USE_ANGKATAN;
 import static com.example.traceralumni.Fragment.DaftarFragment.TEXT_SEARCH_DAFTAR_USE_NAMA;
 import static com.example.traceralumni.Fragment.DaftarFragment.SPINNER_SEARCH_DAFTAR_USE_PRODI;
@@ -30,6 +32,7 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
     private Context context;
     private ArrayList<DaftarModel> daftarModels;
     private ArrayList<DaftarModel> daftarModelsFull;
+    String oldPath = "";
 
     public DaftarAdapter(Context context, ArrayList<DaftarModel> data) {
         this.context = context;
@@ -56,7 +59,13 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
 
         holder.angkatan.setText(daftarModel.getAngkatan());
 
-        holder.foto.setImageResource(R.color.colorIconBiru);
+        oldPath = daftarModel.getFoto();
+        Log.e("tes123", oldPath);
+        if (!oldPath.equals("")){
+            Glide.with(context)
+                    .load(BASE_URL + oldPath)
+                    .into(holder.foto);
+        }
 
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override

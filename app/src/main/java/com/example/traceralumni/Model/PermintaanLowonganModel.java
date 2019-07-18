@@ -29,6 +29,9 @@ public class PermintaanLowonganModel implements Parcelable {
     @SerializedName("kisaran_gaji")
     private String kisaranGaji;
 
+    @SerializedName("logo_perusahaan")
+    private String logoPerusahaan;
+
     private String tanggal_lowongan;
 
     protected PermintaanLowonganModel(Parcel in){
@@ -43,6 +46,7 @@ public class PermintaanLowonganModel implements Parcelable {
         alamatPerusahaan = in.readString();
         kisaranGaji = in.readString();
         tanggal_lowongan = in.readString();
+        logoPerusahaan = in.readString();
     }
 
     public static final Creator<PermintaanLowonganModel> CREATOR = new Creator<PermintaanLowonganModel>() {
@@ -77,6 +81,7 @@ public class PermintaanLowonganModel implements Parcelable {
         parcel.writeString(alamatPerusahaan);
         parcel.writeString(kisaranGaji);
         parcel.writeString(tanggal_lowongan);
+        parcel.writeString(logoPerusahaan);
     }
 
     public Integer getIdLowongan() {
@@ -105,6 +110,10 @@ public class PermintaanLowonganModel implements Parcelable {
 
     public String getTanggal_lowongan() {
         return tanggal_lowongan;
+    }
+
+    public String getLogoPerusahaan() {
+        return logoPerusahaan;
     }
 
     public String getUsername() {

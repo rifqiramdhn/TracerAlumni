@@ -1,10 +1,14 @@
 package com.example.traceralumni.Activity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,24 +18,35 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.traceralumni.Adapter.RiwayatPekerjaanAdapter;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DaftarModel;
+import com.example.traceralumni.Model.PathModel;
 import com.example.traceralumni.Model.RiwayatPekerjaanModel;
 import com.example.traceralumni.R;
 
+import java.io.File;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.example.traceralumni.Activity.LocationPickerActivity.KODE_POS_EXTRA_KEY;
+import static com.example.traceralumni.Activity.LocationPickerActivity.LOKASI_EXTRA_KEY;
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
+import static com.example.traceralumni.Activity.MainActivity.NIM;
+import static com.example.traceralumni.Activity.TambahLowonganActivity.PICK_PHOTO_REQUEST;
 
 public class DetailProfilActivity extends AppCompatActivity {
     RecyclerView riwayatRecycler;
@@ -40,6 +55,10 @@ public class DetailProfilActivity extends AppCompatActivity {
     BottomNavigationView bnChat;
     DaftarModel daftarModel;
     TextView tvNama, tvProdi, tvAngkatan, tvThnLulus, tvTglYudisium, tvKwn, tvNegara, tvEmail, tvTTL, tvAlamat, tvKodePos, tvNoHp, tvNoTelp, tvFacebook, tvTwitter, tvStatus;
+
+    CircleImageView img_detail_profil;
+
+    String oldPath = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,7 +84,6 @@ public class DetailProfilActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.ic_chat) {
-                    //tempat intent untuk pindah ke chat
                 }
                 return true;
             }
@@ -94,6 +112,10 @@ public class DetailProfilActivity extends AppCompatActivity {
             tvFacebook.setText(daftarModel.getFacebook());
             tvTwitter.setText(daftarModel.getTwitter());
             tvStatus.setText(daftarModel.getStatus_bekerja());
+            oldPath = daftarModel.getFoto();
+            Glide.with(DetailProfilActivity.this)
+                    .load(BASE_URL + oldPath)
+                    .into(img_detail_profil);
             getRiwayatPekerjaan(daftarModel.getNim());
         } else {
             getDataFromNIM(intent.getStringExtra("nim"));
@@ -147,7 +169,6 @@ public class DetailProfilActivity extends AppCompatActivity {
                 }
 
                 DaftarModel daftarModel = response.body();
-
                 tvNama.setText(daftarModel.getNama());
                 tvProdi.setText(daftarModel.getProdi());
                 tvAngkatan.setText(daftarModel.getAngkatan());
@@ -164,6 +185,13 @@ public class DetailProfilActivity extends AppCompatActivity {
                 tvFacebook.setText(daftarModel.getFacebook());
                 tvTwitter.setText(daftarModel.getTwitter());
                 tvStatus.setText(daftarModel.getStatus_bekerja());
+                oldPath = daftarModel.getFoto();
+                if (!oldPath.equals("")){
+                    Glide.with(DetailProfilActivity.this)
+                            .load(BASE_URL + oldPath)
+                            .into(img_detail_profil);
+                }
+
             }
 
             @Override
@@ -175,6 +203,7 @@ public class DetailProfilActivity extends AppCompatActivity {
 
     private void initView() {
         riwayatRecycler = findViewById(R.id.rv_riwayat_pekerjaan);
+        img_detail_profil = findViewById(R.id.iv_activity_detail_profil_foto);
         tvNama = findViewById(R.id.txt_nama);
         tvProdi = findViewById(R.id.txt_prodi);
         tvAngkatan = findViewById(R.id.txt_angkatan);

@@ -12,16 +12,22 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.traceralumni.Activity.DetailLowonganActivity;
 import com.example.traceralumni.Model.LowonganModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+
 public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLowonganHolder> implements Filterable {
     Context context;
     private ArrayList<LowonganModel> listLowongan;
     private ArrayList<LowonganModel> listLowonganFull;
+    String oldPath = "";
 
     public LowonganAdapter(Context context, ArrayList<LowonganModel> listLowongan){
         this.context = context;
@@ -45,7 +51,10 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
         holder.txtLokasi.setText(list.getAlamat_perusahaan());
         holder.txtKisaranGaji.setText("~Rp "+list.getKisaran_gaji());
         holder.txtTanggal.setText(list.getTanggal_lowongan());
-
+        oldPath = list.getLogo_perusahaan();
+        Glide.with(context)
+                .load(BASE_URL + oldPath)
+                .into(holder.foto);
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +73,7 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
     public class ListLowonganHolder extends RecyclerView.ViewHolder{
         private TextView txtTitle, txtPerusahaan, txtLokasi, txtKisaranGaji, txtTanggal;
         private ConstraintLayout container;
+        private CircleImageView foto;
 
         public ListLowonganHolder(View itemView){
             super(itemView);
@@ -73,6 +83,7 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
             txtLokasi = itemView.findViewById(R.id.tv_lokasi_perusahaan);
             txtKisaranGaji = itemView.findViewById(R.id.tv_kisaran_gaji);
             txtTanggal = itemView.findViewById(R.id.tv_tanggal_lowongan);
+            foto = itemView.findViewById(R.id.iv_tambah_lowongan_logo);
             container = itemView.findViewById(R.id.card_daftar_lowongan);
         }
 

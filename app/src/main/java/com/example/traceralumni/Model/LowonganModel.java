@@ -49,7 +49,7 @@ public class LowonganModel implements Parcelable {
     private String status_lowongan;
 
     @SerializedName("logo_perusahaan")
-    private String url_logo;
+    private String logo_perusahaan;
 
     private String tanggal_lowongan;
 
@@ -76,7 +76,7 @@ public class LowonganModel implements Parcelable {
         no_telp = in.readString();
         cp = in.readString();
         status_lowongan = in.readString();
-        url_logo = in.readString();
+        logo_perusahaan = in.readString();
         tanggal_lowongan = in.readString();
     }
 
@@ -123,7 +123,7 @@ public class LowonganModel implements Parcelable {
         parcel.writeString(no_telp);
         parcel.writeString(cp);
         parcel.writeString(status_lowongan);
-        parcel.writeString(url_logo);
+        parcel.writeString(logo_perusahaan);
         parcel.writeString(tanggal_lowongan);
     }
 
@@ -187,7 +187,7 @@ public class LowonganModel implements Parcelable {
         return status_lowongan;
     }
 
-    public String getUrl_logo() {
-        return url_logo;
+    public String getLogo_perusahaan() {
+        return logo_perusahaan;
     }
 }

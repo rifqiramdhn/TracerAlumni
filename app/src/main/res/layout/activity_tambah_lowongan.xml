@@ -66,8 +66,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_tambah_lowongan_logo"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="24dp"
@@ -77,6 +77,14 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_edit_lowongan_logo"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@id/iv_tambah_lowongan_logo"
+                app:layout_constraintEnd_toEndOf="@+id/iv_tambah_lowongan_logo" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/edt_lowongan_container"

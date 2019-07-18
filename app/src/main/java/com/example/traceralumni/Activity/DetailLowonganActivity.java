@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.LowonganModel;
@@ -21,6 +22,7 @@ import com.example.traceralumni.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,12 +41,13 @@ public class DetailLowonganActivity extends AppCompatActivity {
     Button btn_profil, btn_hapus;
     ConstraintLayout clBtnHubungi, cl_iconBack, cl_iconHapus;
     ImageView img_iconBack, img_iconHapus;
+    CircleImageView img_logo_perusahaan;
     TextView tvNavBar;
     private TextView tvNamaLowongan, tvNamaPerusahaan, tvLokasi, tvKisaranGaji, tvProfil
             , tvSyarat, tvKuota, tvJabatan, tvWeb, tvEmail, tvTelepon, tvHubungi;
     Integer idLowongan;
     String username;
-    String namaPelowong = "";
+    String oldPath = "";
     AlertDialog.Builder builder;
     LowonganModel lowonganModel;
 
@@ -77,7 +80,10 @@ public class DetailLowonganActivity extends AppCompatActivity {
             tvEmail.setText(lowonganModel.getEmail());
             tvTelepon.setText(lowonganModel.getNo_telp());
             tvHubungi.setText(lowonganModel.getCp());
-
+            oldPath = lowonganModel.getLogo_perusahaan();
+            Glide.with(DetailLowonganActivity.this)
+                    .load(BASE_URL + oldPath)
+                    .into(img_logo_perusahaan);
             idLowongan = lowonganModel.getIdLowongan();
         }
     }
@@ -87,6 +93,7 @@ public class DetailLowonganActivity extends AppCompatActivity {
         cl_iconHapus = findViewById(R.id.cl_icon4);
         img_iconBack = findViewById(R.id.img_icon1);
         img_iconHapus = findViewById(R.id.img_icon4);
+        img_logo_perusahaan = findViewById(R.id.iv_activity_detail_lowongan_logo);
         tvNavBar = findViewById(R.id.tv_navbar_top);
         clBtnHubungi = findViewById(R.id.cl_btn_hubungi_lowongan);
         tvProfil = findViewById(R.id.tv_profil);

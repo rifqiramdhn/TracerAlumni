@@ -12,12 +12,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.PermintaanLowonganModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,6 +32,7 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
     private Context context;
     private ArrayList<PermintaanLowonganModel> permintaanLowonganModels;
     AlertDialog.Builder builder;
+    String oldPath = "";
 
     public PermintaanLowonganAdapter(Context context, ArrayList<PermintaanLowonganModel> data) {
         this.context = context;
@@ -55,6 +58,10 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
         holder.lokasiPerusahaan.setText(permintaanLowonganModel.getAlamatPerusahaan());
         holder.gaji.setText(permintaanLowonganModel.getKisaranGaji());
         holder.tanggal.setText(permintaanLowonganModel.getTanggal_lowongan());
+        oldPath = permintaanLowonganModel.getLogoPerusahaan();
+        Glide.with(context)
+                .load(BASE_URL + oldPath)
+                .into(holder.foto);
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +93,7 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
 
         private TextView namaPelowong, namaLowongan, namaPerusahaan, lokasiPerusahaan, gaji, tanggal;
 
-        private ImageView foto;
+        private CircleImageView foto;
 
         private ConstraintLayout container, clKonfirmasi, clTolak;
 

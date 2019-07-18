@@ -43,8 +43,8 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
     private ImageView img_icon_back, img_icon_ok;
     private TextView tv_navbar;
     private String status;
-    Integer idLowongan, kuota;
-    String username, judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, gaji, syarat, website, email, notelp, cp, tanggal_lowongan;
+    Integer kuota;
+    String judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, gaji, syarat, website, email, notelp, cp, tanggal_lowongan, logo;
     EditText edt_syarat, edt_website, edt_email, edt_notelp, edt_cp;
 
     AlertDialog.Builder builder;
@@ -99,6 +99,8 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
         alamatPerusahaan = i.getStringExtra("alamat");
         kuota = Integer.valueOf(i.getStringExtra("kuota"));
         gaji = i.getStringExtra("gaji");
+        logo = i.getStringExtra("logo");
+        
     }
 
     private void initView() {
@@ -141,9 +143,9 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
                 getTanggalLowongan();
 
                 if(JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
-                    saveData(daftarModel.getNim(), judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "BelumValid",tanggal_lowongan);
+                    saveData(daftarModel.getNim(), judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "BelumValid",tanggal_lowongan, logo);
                 } else {
-                    saveData("Admin", judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "Valid",tanggal_lowongan);
+                    saveData("Admin", judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "Valid",tanggal_lowongan, logo);
                 }
             }
         });
@@ -159,14 +161,14 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void saveData(String username, String judulLowongan, String jabatan, String namaPerusahaan, String alamat, Integer kuota, String gaji, String syarat, String website, String email, String notelp, String cp, String status, String tglLowongan) {
+    private void saveData(String username, String judulLowongan, String jabatan, String namaPerusahaan, String alamat, Integer kuota, String gaji, String syarat, String website, String email, String notelp, String cp, String status, String tglLowongan, String logo) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<Void> call = jsonPlaceHolderApi.createLowongan(username, judulLowongan, jabatan, namaPerusahaan, alamat, kuota, gaji, syarat, website, email, notelp, cp, status, tglLowongan);
+        Call<Void> call = jsonPlaceHolderApi.createLowongan(username, judulLowongan, jabatan, namaPerusahaan, alamat, kuota, gaji, syarat, website, email, notelp, cp, status, tglLowongan, logo);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

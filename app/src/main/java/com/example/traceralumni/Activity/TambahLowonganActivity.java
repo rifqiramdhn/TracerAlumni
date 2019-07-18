@@ -1,34 +1,64 @@
 package com.example.traceralumni.Activity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Model.LowonganModel;
+import com.example.traceralumni.Model.PathModel;
 import com.example.traceralumni.R;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+import static com.example.traceralumni.Activity.MainActivity.NIM;
 import static com.example.traceralumni.Activity.SuntingProfilActivity.PICK_PHOTO_REQUEST;
 
 public class TambahLowonganActivity extends AppCompatActivity {
 
     private ConstraintLayout cl_icon_back;
-    private ImageView img_icon_back, img_logo;
+    private ImageView img_icon_back;
     private TextView tv_navbar;
     private Button btn_next;
+    LowonganModel lowonganModel;
 
     EditText edt_judulLowongan, edt_jabatan, edt_namaPerusahaan, edt_alamatPerusahaan, edt_kuota, edt_gaji;
+
+    CircleImageView img_logo_lowongan, img_edit_logo_lowongan;
+
+    static final int PICK_PHOTO_REQUEST = 1;
+
+    String oldPath = "";
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -37,9 +67,10 @@ public class TambahLowonganActivity extends AppCompatActivity {
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
+
         initView();
 
-        img_logo.setOnClickListener(new View.OnClickListener() {
+        img_edit_logo_lowongan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getPhotoFromGallery();
@@ -81,6 +112,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
                     i.putExtra("alamat", edt_alamatPerusahaan.getText().toString().trim());
                     i.putExtra("kuota", edt_kuota.getText().toString().trim());
                     i.putExtra("gaji", edt_gaji.getText().toString().trim());
+                    i.putExtra("logo", oldPath.trim());
                     startActivity(i);
                 }
             }
@@ -97,35 +129,63 @@ public class TambahLowonganActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == PICK_PHOTO_REQUEST) {
             if (resultCode == RESULT_OK) {
-                try {
-                    final Uri imageUri = data.getData();
-                    final InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-//                    image_view.setImageBitmap(selectedImage);
-                    uploadPhoto(selectedImage);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                Uri imageUri = data.getData();
+                uploadPhoto(imageUri);
             }
         }
     }
 
-    private void uploadPhoto(Bitmap selectedImage) {
-        //bla bla bla upload ke database
-        //kalau berhasil maka
-        setPhotoFromDatabase(selectedImage);
+    private void uploadPhoto(Uri fileUri) {
+        File file = new File(getRealPathFromURI(fileUri));
+        RequestBody requestBody = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)), file);
+        MultipartBody.Part kirim = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        final JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        Call<PathModel> call = jsonPlaceHolderApi.uploadPhoto(kirim);
+        call.enqueue(new Callback<PathModel>() {
+            @Override
+            public void onResponse(Call<PathModel> call, Response<PathModel> response) {
+                if (!response.isSuccessful()){
+                    return;
+                }
+                PathModel pathModel = response.body();
+                if (!pathModel.getPath().equals("invalid")){
+                    oldPath = pathModel.getPath();
+                    Glide.with(TambahLowonganActivity.this)
+                            .load(BASE_URL + pathModel.getPath())
+                            .into(img_logo_lowongan);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PathModel> call, Throwable t) {
+                Toast.makeText(TambahLowonganActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    private void setPhotoFromDatabase(Bitmap photo) {
-        img_logo.setImageBitmap(photo);
+    private String getRealPathFromURI(Uri contentUri){
+        String[] proj = {MediaStore.Images.Media.DATA};
+        CursorLoader loader = new CursorLoader(this, contentUri, proj, null, null, null);
+        Cursor cursor = loader.loadInBackground();
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String result = cursor.getString(column_index);
+        cursor.close();
+        return result;
     }
 
     private void initView() {
         cl_icon_back = findViewById(R.id.cl_icon1);
         img_icon_back = findViewById(R.id.img_icon1);
         tv_navbar = findViewById(R.id.tv_navbar_top);
-        img_logo = findViewById(R.id.iv_tambah_lowongan_logo);
-
+        img_logo_lowongan = findViewById(R.id.iv_tambah_lowongan_logo);
+        img_edit_logo_lowongan = findViewById(R.id.iv_edit_lowongan_logo);
         btn_next = findViewById(R.id.btn_next);
         edt_judulLowongan = findViewById(R.id.edt_lowongan);
         edt_jabatan = findViewById(R.id.edt_riwayat_pekerjaan);
@@ -133,5 +193,6 @@ public class TambahLowonganActivity extends AppCompatActivity {
         edt_alamatPerusahaan = findViewById(R.id.edt_riwayat_lokasi);
         edt_kuota = findViewById(R.id.edt_kuota);
         edt_gaji = findViewById(R.id.edt_riwayat_gaji);
+
     }
 }
