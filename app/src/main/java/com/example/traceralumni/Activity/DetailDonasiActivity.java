@@ -36,12 +36,12 @@ public class DetailDonasiActivity extends AppCompatActivity {
 
     ConstraintLayout cl_back, cl_kontak;
     ImageView imgBack, foto;
-    TextView tv_titleNavBar, tv_namaKegiatan, tv_totalBiaya, tv_keterangan, tv_totalDonasi, tv_jumlahDonasi;
+    TextView tv_titleNavBar, tv_namaKegiatan, tv_totalBiaya, tv_keterangan, tv_totalDonasi, tv_jumlahDonasi, tv_kontak;
     Button btn_donasi;
     DonasiModel donasiModel;
     Intent intent;
-
     Integer mIdDonasi;
+    String kontak;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +68,8 @@ public class DetailDonasiActivity extends AppCompatActivity {
             tv_keterangan.setText(donasiModel.getKeterangan());
             tv_namaKegiatan.setText(donasiModel.getNamaKegiatan());
             tv_totalBiaya.setText("Rp " + String.format("%.0f", donasiModel.getTotalAnggaran()));
+            tv_kontak.setText("Hubungi\n" + donasiModel.getContactPerson());
+            kontak = donasiModel.getContactPerson();
             Glide.with(DetailDonasiActivity.this)
                     .load(BASE_URL + donasiModel.getFile())
                     .into(foto);
@@ -99,6 +101,11 @@ public class DetailDonasiActivity extends AppCompatActivity {
                     tv_keterangan.setText(donasiModelNew.getKeterangan());
                     tv_namaKegiatan.setText(donasiModelNew.getNamaKegiatan());
                     tv_totalBiaya.setText("" + donasiModelNew.getTotalAnggaran());
+                    tv_kontak.setText("Hubungi\n" + donasiModelNew.getContactPerson());
+                    kontak = donasiModelNew.getContactPerson();
+                    Glide.with(DetailDonasiActivity.this)
+                            .load(BASE_URL + donasiModelNew.getFile())
+                            .into(foto);
                 }
 
                 @Override
@@ -136,14 +143,14 @@ public class DetailDonasiActivity extends AppCompatActivity {
         tv_keterangan = findViewById(R.id.tv_detail_donasi_keterangan);
         tv_totalDonasi = findViewById(R.id.tv_detail_donasi_total_donasi_masuk);
         tv_jumlahDonasi = findViewById(R.id.tv_detail_donasi_jumlah_donasi_masuk);
+        tv_kontak = findViewById(R.id.tv_detail_donasi_kontak);
         btn_donasi = findViewById(R.id.btn_detail_donasi_donasi);
         cl_kontak = findViewById(R.id.cl_detail_donasi_kontak);
         cl_kontak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:0377778888"));
-
+                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                callIntent.setData(Uri.parse("tel:" + kontak));
                 if (ActivityCompat.checkSelfPermission(DetailDonasiActivity.this,
                         Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     return;
