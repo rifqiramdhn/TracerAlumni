@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.traceralumni.Activity.DetailDonasiActivity;
 import com.example.traceralumni.Activity.DetailLowonganActivity;
 import com.example.traceralumni.Model.BerandaModel;
@@ -24,6 +25,9 @@ import com.example.traceralumni.R;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 
@@ -129,6 +133,7 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
             String statusLowongan = list.getStatus_l();
             String urlLogo = list.getLogo_perusahaan_l();
             String tanggalLowongan = list.getTanggal_beranda();
+            String logoPath = list.getLogo_perusahaan_l();
 
             final LowonganModel lowonganModel = new LowonganModel(idLowongan, username, namaLowongan, namaPer, alamatPer, kisaranGaji, syaratPekerjaan, kuota, jabatan, website, email, noTelp, cp, statusLowongan, urlLogo, tanggalLowongan);
 
@@ -136,6 +141,9 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
             holder.l_txtLokasi.setText(lowonganModel.getAlamat_perusahaan());
             holder.l_txtPerusahaan.setText(lowonganModel.getNama_perusahaan());
             holder.l_txtTitle.setText(lowonganModel.getNama_lowongan());
+            Glide.with(context)
+                    .load(BASE_URL + logoPath)
+                    .into(holder.l_logo);
 
             holder.container_lowongan.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -168,6 +176,7 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
 
         //untuk lowongan
         private TextView l_txtTitle, l_txtPerusahaan, l_txtLokasi, l_txtKisaranGaji, l_tanggal;
+        private CircleImageView l_logo;
 
         //Deklarasi ConstraintLayout container
         private ConstraintLayout container_donasi, container_info, container_lowongan;
@@ -200,6 +209,7 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
             l_txtLokasi = itemView.findViewById(R.id.tv_lokasi_perusahaan);
             l_txtKisaranGaji = itemView.findViewById(R.id.tv_kisaran_gaji);
             l_tanggal = itemView.findViewById(R.id.tv_tanggal_lowongan);
+            l_logo = itemView.findViewById(R.id.iv_tambah_lowongan_logo);
             l_tanggal.setVisibility(View.GONE);
 
             //buat diklik
