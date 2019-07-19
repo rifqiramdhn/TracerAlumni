@@ -99,10 +99,6 @@ public class MainActivity extends AppCompatActivity {
 
         loadData();
 
-//        if (STATE_USER_LOGGED == 0){
-//            moveActivityToLogin();
-//        }
-
         getDataUser();
     }
 
@@ -131,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
     private void loadData() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREFS, MODE_PRIVATE);
         STATE_USER_LOGGED = sharedPreferences.getInt(STATE_USER_LOGGED_PREF, 0);
-        Log.e("aldy", "state user logged : " + STATE_USER_LOGGED);
         if (STATE_USER_LOGGED != 0) {
             JENIS_USER = sharedPreferences.getString(JENIS_USER_PREF, "");
             if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
@@ -140,6 +135,14 @@ public class MainActivity extends AppCompatActivity {
         } else {
             moveActivityToLogin();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        if (STATE_USER_LOGGED == 0){
+            moveActivityToLogin();
+        }
+        super.onResume();
     }
 
     public void getDataUser() {
@@ -684,6 +687,7 @@ public class MainActivity extends AppCompatActivity {
 
                 editor.putInt(STATE_USER_LOGGED_PREF, 0);
                 editor.apply();
+                STATE_USER_LOGGED = 0;
 
                 Intent intent = new Intent(context, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);

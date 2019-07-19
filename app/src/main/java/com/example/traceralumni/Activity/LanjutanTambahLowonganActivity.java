@@ -2,10 +2,14 @@ package com.example.traceralumni.Activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.ParseException;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -15,14 +19,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.traceralumni.Fragment.LowonganFragment;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DaftarModel;
+import com.example.traceralumni.Model.PathModel;
 import com.example.traceralumni.R;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import id.zelory.compressor.Compressor;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,6 +61,10 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
 
     AlertDialog.Builder builder;
     DaftarModel daftarModel;
+
+    Uri uriTerima;
+    String photoPath;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,7 +116,7 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
         kuota = Integer.valueOf(i.getStringExtra("kuota"));
         gaji = i.getStringExtra("gaji");
         logo = i.getStringExtra("logo");
-        
+        uriTerima = Uri.parse(i.getStringExtra("uri"));
     }
 
     private void initView() {
@@ -141,12 +157,12 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
                 notelp = edt_notelp.getText().toString().trim();
                 cp = edt_cp.getText().toString().trim();
                 getTanggalLowongan();
-
-                if(JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
-                    saveData(daftarModel.getNim(), judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "BelumValid",tanggal_lowongan, logo);
-                } else {
-                    saveData("Admin", judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "Valid",tanggal_lowongan, logo);
-                }
+                uploadPhoto(uriTerima);
+//                if(JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
+//                    saveData(daftarModel.getNim(), judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "BelumValid",tanggal_lowongan, logo);
+//                } else {
+//                    saveData("Admin", judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "Valid",tanggal_lowongan, logo);
+//                }
             }
         });
 
@@ -221,5 +237,61 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void uploadPhoto(Uri fileUri) {
+        File file = new File(getRealPathFromURI(fileUri));
+        File compressedFile = new File(getRealPathFromURI(fileUri));
+        try {
+            compressedFile = new Compressor(this).compressToFile(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)), compressedFile);
+        MultipartBody.Part kirim = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        final JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        Call<PathModel> call = jsonPlaceHolderApi.uploadPhoto(kirim);
+        call.enqueue(new Callback<PathModel>() {
+            @Override
+            public void onResponse(Call<PathModel> call, Response<PathModel> response) {
+                if (!response.isSuccessful()){
+                    return;
+                }
+                PathModel pathModel = response.body();
+                if (!pathModel.getPath().equals("invalid")){
+                    photoPath = pathModel.getPath();
+                    if(JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
+                        saveData(daftarModel.getNim(), judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "BelumValid",tanggal_lowongan, photoPath);
+                    } else {
+                        saveData("Admin", judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "Valid",tanggal_lowongan, photoPath);
+                    }
+                } else {
+                    Toast.makeText(LanjutanTambahLowonganActivity.this, "Gagal Upload", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PathModel> call, Throwable t) {
+                Toast.makeText(LanjutanTambahLowonganActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private String getRealPathFromURI(Uri contentUri){
+        String[] proj = {MediaStore.Images.Media.DATA};
+        CursorLoader loader = new CursorLoader(this, contentUri, proj, null, null, null);
+        Cursor cursor = loader.loadInBackground();
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String result = cursor.getString(column_index);
+        cursor.close();
+        return result;
     }
 }

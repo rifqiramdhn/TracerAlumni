@@ -61,6 +61,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
     static final int PICK_PHOTO_REQUEST = 1;
 
     String oldPath = "";
+    Uri uriKirim;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -115,6 +116,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
                     i.putExtra("kuota", edt_kuota.getText().toString().trim());
                     i.putExtra("gaji", edt_gaji.getText().toString().trim());
                     i.putExtra("logo", oldPath.trim());
+                    i.putExtra("uri", uriKirim.toString());
                     startActivity(i);
                 }
             }
@@ -132,7 +134,11 @@ public class TambahLowonganActivity extends AppCompatActivity {
         if (requestCode == PICK_PHOTO_REQUEST) {
             if (resultCode == RESULT_OK) {
                 Uri imageUri = data.getData();
-                uploadPhoto(imageUri);
+                uriKirim = imageUri;
+                Glide.with(this)
+                        .load(new File (getRealPathFromURI(imageUri)))
+                        .into(img_logo_lowongan);
+//                uploadPhoto(imageUri);
             }
         }
     }

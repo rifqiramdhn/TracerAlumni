@@ -60,7 +60,6 @@ public class AlamatAsynctaskLoader extends AsyncTaskLoader<String> {
     @Nullable
     @Override
     public String loadInBackground() {
-        Log.e("aldy", "loadInbackground jalan");
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         try {
             List<Address> addresses = geocoder.getFromLocation(lat, lng, 1);
