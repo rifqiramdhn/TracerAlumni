@@ -3,6 +3,7 @@ package com.example.traceralumni.Adapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.constraint.ConstraintLayout;
@@ -20,6 +21,7 @@ import com.example.traceralumni.Activity.ChangePasswordActivity;
 import com.example.traceralumni.Activity.DonasiActivity;
 import com.example.traceralumni.Activity.KartuAlumniActivity;
 import com.example.traceralumni.Activity.LoginActivity;
+import com.example.traceralumni.Activity.MainActivity;
 import com.example.traceralumni.Activity.RiwayatPekerjaanActivity;
 import com.example.traceralumni.Activity.SuntingProfilActivity;
 import com.example.traceralumni.JsonPlaceHolderApi;
@@ -35,8 +37,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static android.content.Context.MODE_PRIVATE;
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
+import static com.example.traceralumni.Activity.MainActivity.SHARE_PREFS;
+import static com.example.traceralumni.Activity.MainActivity.STATE_USER_LOGGED_PREF;
 
 public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHolder> {
 
@@ -56,8 +61,6 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        //Inflate layout card_lainnya
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_lainnya, parent, false);
         builder = new AlertDialog.Builder(context);
         return new ViewHolder(itemView);
@@ -65,15 +68,9 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-
-        //Instansiasi objek lainnyaModel yang isinya sama dengan lainnyaModels pada index position
         final LainnyaModel lainnyaModel = lainnyaModels.get(position);
-
-        //Mengisi item dari holder menjadi item dari objek lainnyaModel
         holder.item.setText(lainnyaModel.getItem());
-
         holder.icon.setImageResource(lainnyaModel.getIconResId());
-
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,7 +107,7 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                         context.startActivity(tentang);
                         break;
                     case 9:
-                        showKeluarDialog();
+                        MainActivity.showKeluarDialog(context);
                         break;
                 }
             }
@@ -125,19 +122,12 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-
-        //Mengembalikan ukuran dari ArrayList lainnyaModels
         return lainnyaModels.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
-        //Deklarasi TextView item
         private TextView item;
-
         private ImageView icon;
-
-        //Deklarasi ConstraintLayout container
         private ConstraintLayout container;
 
         public ViewHolder(View itemView) {
@@ -148,71 +138,28 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
         }
     }
 
-    private void showKeluarDialog() {
-
-        builder.setMessage("Apakah anda yakin ingin keluar?");
-
-        builder.setTitle("Keluar");
-
-        builder.setCancelable(false);
-
-        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                Intent intent = new Intent(context, LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                context.startActivity(intent);
-            }
-        });
-
-        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                dialog.cancel();
-            }
-        });
-
-        AlertDialog alertDialog = builder.create();
-
-        alertDialog.show();
-    }
-
     private void showHapusSemuaChatDialog() {
         builder.setMessage("Apakah anda yakin ingin menghapus semua chat?");
-
         builder.setTitle("Hapus Semua Chat");
-
         builder.setCancelable(false);
-
         builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 Toast.makeText(context, "Semua chat telah dihapus", Toast.LENGTH_SHORT).show();
             }
         });
-
         builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 dialog.cancel();
             }
         });
-
         AlertDialog alertDialog = builder.create();
-
         alertDialog.show();
     }
 
     public void getData(final int index) {
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -243,8 +190,5 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                 Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
-
-
 }

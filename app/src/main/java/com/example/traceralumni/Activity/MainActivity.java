@@ -1,5 +1,7 @@
 package com.example.traceralumni.Activity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +14,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,6 +25,7 @@ import com.example.traceralumni.Adapter.OpFragPagerAdapter;
 import com.example.traceralumni.Adapter.PimFragPagerAdapter;
 import com.example.traceralumni.Fragment.LainnyaFragment;
 import com.example.traceralumni.Fragment.OpDonasiFragment;
+import com.example.traceralumni.Fragment.OpLowonganFragment;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;
@@ -127,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadData() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREFS, MODE_PRIVATE);
         STATE_USER_LOGGED = sharedPreferences.getInt(STATE_USER_LOGGED_PREF, 0);
+        Log.e("aldy", "state user logged : " + STATE_USER_LOGGED);
         if (STATE_USER_LOGGED != 0) {
             JENIS_USER = sharedPreferences.getString(JENIS_USER_PREF, "");
             if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
@@ -507,7 +512,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (iconNumber) {
                     case 4:
                         //icon logout
-                        showKeluarDialog();
+                        showKeluarDialog(this);
                         break;
                     default:
                         break;
@@ -527,7 +532,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 4:
                         //icon logout
-                        showKeluarDialog();
+                        showKeluarDialog(this);
                         break;
                     default:
                         break;
@@ -547,7 +552,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 4:
                         //icon logout
-                        showKeluarDialog();
+                        showKeluarDialog(this);
                         break;
                     default:
                         break;
@@ -567,7 +572,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 4:
                         //icon logout
-                        showKeluarDialog();
+                        showKeluarDialog(this);
                         break;
                     default:
                         break;
@@ -597,12 +602,13 @@ public class MainActivity extends AppCompatActivity {
                             tv_permintaan_lowongan.setVisibility(View.GONE);
                         } else {
                             cl_search_lowongan.setVisibility(View.GONE);
-                            tv_permintaan_lowongan.setVisibility(View.VISIBLE);
+                            if (!OpLowonganFragment.permintaanLowongan0())
+                                tv_permintaan_lowongan.setVisibility(View.VISIBLE);
                         }
                         break;
                     case 4:
                         //icon logout
-                        showKeluarDialog();
+                        showKeluarDialog(this);
                         break;
                     default:
                         break;
@@ -627,7 +633,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 4:
                         //icon logout
-                        showKeluarDialog();
+                        showKeluarDialog(this);
                         break;
                     default:
                         break;
@@ -656,7 +662,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 4:
                         //icon logout
-                        showKeluarDialog();
+                        showKeluarDialog(this);
                         break;
                     default:
                         break;
@@ -667,23 +673,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showKeluarDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-
+    public static void showKeluarDialog(final Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("Apakah anda yakin ingin keluar?");
-
         builder.setTitle("Keluar");
-
         builder.setCancelable(false);
-
         builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                SharedPreferences sharedPreferences = context.getSharedPreferences(SHARE_PREFS, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                editor.putInt(STATE_USER_LOGGED_PREF, 0);
+                editor.apply();
+
+                Intent intent = new Intent(context, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                MainActivity.this.startActivity(intent);
+                context.startActivity(intent);
             }
         });
 
@@ -691,13 +698,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 dialog.cancel();
             }
         });
-
         AlertDialog alertDialog = builder.create();
-
         alertDialog.show();
     }
 
