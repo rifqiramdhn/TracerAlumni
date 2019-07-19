@@ -52,7 +52,6 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull BerandaAdapter.ViewHolder holder, int i) {
         BerandaModel list = berandaModels.get(i);
-        Log.e("aldy", "jenis data : " + list.getJenis_data());
         if (list.getJenis_data().equals("donasi")) {
             Integer idDonasi = list.getId_opendonasi();
             String namaKegiatan = list.getNama_kegiatan_d();

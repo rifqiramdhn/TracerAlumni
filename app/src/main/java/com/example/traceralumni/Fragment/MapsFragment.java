@@ -125,21 +125,17 @@ public class MapsFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public Loader<String> onCreateLoader(int i, @Nullable Bundle bundle) {
         double lat, lng;
-        Log.e("aldy", "oncreateloader jalan");
         if (bundle != null){
             lat = bundle.getDouble("lat");
             lng = bundle.getDouble("lng");
-            Log.e("aldy", "lat : " + lat + "long : " + lng);
             return new AlamatAsynctaskLoader(getActivity(), lat, lng);
         } else {
-            Log.e("aldy", "bundle null");
             return null;
         }
     }
 
     @Override
     public void onLoadFinished(@NonNull Loader<String> loader, String s) {
-        Log.e("aldy", "onloadfinished jalan - lokasi : " + s);
         markerOptions.title(s);
         LOKASI_EXTRA = s;
         Marker marker = mMap.addMarker(markerOptions);

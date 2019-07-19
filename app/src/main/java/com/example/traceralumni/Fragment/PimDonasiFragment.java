@@ -71,7 +71,6 @@ public class PimDonasiFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Log.e("aldy", "onViewCreated jalan");
         super.onViewCreated(view, savedInstanceState);
         getAllDonasi();
     }

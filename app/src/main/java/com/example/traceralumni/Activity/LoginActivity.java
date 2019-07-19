@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -27,6 +28,7 @@ import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_PREF;
 import static com.example.traceralumni.Activity.MainActivity.NIM_PREF;
 import static com.example.traceralumni.Activity.MainActivity.SHARE_PREFS;
+import static com.example.traceralumni.Activity.MainActivity.STATE_USER_LOGGED;
 import static com.example.traceralumni.Activity.MainActivity.STATE_USER_LOGGED_PREF;
 
 public class LoginActivity extends AppCompatActivity {
@@ -63,6 +65,11 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     private void login() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -83,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (daftarModel.getStatus_data().equals("y")) {
                     saveData(daftarModel);
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
             }
