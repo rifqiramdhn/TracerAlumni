@@ -6,20 +6,23 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Activity.OpListDonaturActivity"></activity>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Activity.LupaPasswordActivity"></activity>
+        <activity android:name=".Activity.OpListDonaturActivity" />
         <activity android:name=".Activity.OpPermintaanLowonganActivity" />
-        <activity android:name=".Activity.KartuAlumniActivity" android:theme="@style/KartuAlumni"></activity>
+        <activity
+            android:name=".Activity.KartuAlumniActivity"
+            android:theme="@style/KartuAlumni" />
         <activity android:name=".Activity.OpPermintaanDonasiActivity" />
         <activity android:name=".Activity.LocationPickerActivity" />
         <activity android:name=".Activity.NominalDonasiActivity" />
@@ -45,6 +48,7 @@
         <activity android:name=".Activity.OpDetailInfoActivity" />
         <activity android:name=".Activity.OpDetailDonasiActivity" />
         <activity android:name=".Activity.PimDaftarAlumniActivity" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />

@@ -38,6 +38,7 @@ public class DaftarModel implements Parcelable {
     private String tanggal_lahir;
 
     private String jumlah;
+    private String password;
 
 
     protected DaftarModel(Parcel in) {
@@ -70,6 +71,7 @@ public class DaftarModel implements Parcelable {
         tanggal_yudisium = in.readString();
         tanggal_lahir = in.readString();
         jumlah = in.readString();
+        password = in.readString();
     }
 
     public static final Creator<DaftarModel> CREATOR = new Creator<DaftarModel>() {
@@ -120,6 +122,7 @@ public class DaftarModel implements Parcelable {
         dest.writeString(tanggal_yudisium);
         dest.writeString(tanggal_lahir);
         dest.writeString(jumlah);
+        dest.writeString(password);
     }
 
     public String getUsername() {
@@ -236,6 +239,10 @@ public class DaftarModel implements Parcelable {
 
     public String getJumlah() {
         return jumlah;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public static Creator<DaftarModel> getCREATOR() {

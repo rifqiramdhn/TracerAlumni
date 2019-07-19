@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String JENIS_USER_PIMPINAN = "pimpinan";
     public static final String JENIS_USER_OPERATOR = "operator";
 
-    public static final String BASE_URL = "http://10.22.248.215/tracer/";
+    public static final String BASE_URL = "http://10.22.248.139/tracer/";
 
     public static final String INDEX_OPENED_TAB_KEY = "index_opened_tab_key";
 
@@ -683,7 +683,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                MainActivity.this.startActivity(intent);
+                startActivity(intent);
             }
         });
 

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -32,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     FrameLayout frameLayout;
     boolean doubleBackToExitPressedOnce = false;
     EditText edtUsername, edtPassword;
+    ConstraintLayout cl_lupa_password;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,9 +52,18 @@ public class LoginActivity extends AppCompatActivity {
                 login();
             }
         });
+
+        cl_lupa_password = findViewById(R.id.cl_lupa_password);
+        cl_lupa_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, LupaPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    private void login(){
+    private void login() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -64,12 +75,12 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<DaftarModel>() {
             @Override
             public void onResponse(Call<DaftarModel> call, Response<DaftarModel> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
 
                 DaftarModel daftarModel = response.body();
-                if (daftarModel.getStatus_data().equals("y")){
+                if (daftarModel.getStatus_data().equals("y")) {
                     saveData(daftarModel);
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
@@ -83,14 +94,14 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void saveData(DaftarModel daftarModel){
+    private void saveData(DaftarModel daftarModel) {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putString(JENIS_USER_PREF, daftarModel.getJenis_user());
         editor.putInt(STATE_USER_LOGGED_PREF, 1);
 
-        if (daftarModel.getJenis_user().equals(JENIS_USER_ALUMNI)){
+        if (daftarModel.getJenis_user().equals(JENIS_USER_ALUMNI)) {
             editor.putString(NIM_PREF, daftarModel.getNim());
         }
 
