@@ -49,12 +49,13 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/robotobold"
-        android:text="37 Permintaan Konfirmasi Lowongan"
         android:textColor="@color/colorIconBiru"
         android:textSize="14sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/rv_fragment_op_lowongan"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cl_fragment_op_lowongan_search" />
+        app:layout_constraintTop_toBottomOf="@+id/cl_fragment_op_lowongan_search"
+        tools:text="37 Permintaan Konfirmasi Lowongan" />
 
 
     <android.support.v7.widget.RecyclerView

@@ -45,16 +45,16 @@ public class LainnyaFragment extends Fragment {
 
     private void setRecyclerView() {
         lainnyaModels = new ArrayList<>();
-        lainnyaModels.add(new LainnyaModel("Kartu Alumni", R.mipmap.ic_launcher_round));
-        lainnyaModels.add(new LainnyaModel("Donasi", R.mipmap.ic_launcher_round));
-        lainnyaModels.add(new LainnyaModel("Legalisir Ijazah", R.mipmap.ic_launcher_round));
-        lainnyaModels.add(new LainnyaModel("Tracer Studi", R.mipmap.ic_launcher_round));
-        lainnyaModels.add(new LainnyaModel("Sunting Profil", R.mipmap.ic_launcher_round));
-        lainnyaModels.add(new LainnyaModel("Riwayat Pekerjaaan", R.mipmap.ic_launcher_round));
-        lainnyaModels.add(new LainnyaModel("Ganti Kata Sandi", R.mipmap.ic_launcher_round));
-        lainnyaModels.add(new LainnyaModel("Hapus Semua Chat", R.mipmap.ic_launcher_round));
-        lainnyaModels.add(new LainnyaModel("Tentang", R.mipmap.ic_launcher_round));
-        lainnyaModels.add(new LainnyaModel("Keluar", R.mipmap.ic_launcher_round));
+        lainnyaModels.add(new LainnyaModel("Kartu Alumni", R.drawable.ic_kartu_alumni));
+        lainnyaModels.add(new LainnyaModel("Donasi", R.drawable.ic_attach_money));
+        lainnyaModels.add(new LainnyaModel("Legalisir Ijazah", R.drawable.ic_ijazah));
+        lainnyaModels.add(new LainnyaModel("Tracer Studi", R.drawable.ic_tracer_study));
+        lainnyaModels.add(new LainnyaModel("Sunting Profil", R.drawable.ic_person));
+        lainnyaModels.add(new LainnyaModel("Riwayat Pekerjaaan", R.drawable.ic_riwayat_pekerjaan));
+        lainnyaModels.add(new LainnyaModel("Ganti Kata Sandi", R.drawable.ic_ganti_password));
+        lainnyaModels.add(new LainnyaModel("Hapus Semua Chat", R.drawable.ic_delete_chat));
+        lainnyaModels.add(new LainnyaModel("Tentang", R.drawable.ic_about));
+        lainnyaModels.add(new LainnyaModel("Keluar", R.drawable.ic_power_settings_new));
 
         pengaturanRecycler = rootView.findViewById(R.id.pengaturan_recycler_view);
 

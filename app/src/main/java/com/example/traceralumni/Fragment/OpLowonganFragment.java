@@ -54,19 +54,15 @@ public class OpLowonganFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootview = inflater.inflate(R.layout.fragment_op_lowongan,  container,false);
         edt_lowongan_cari = rootview.findViewById(R.id.edt_fragment_op_lowongan_search);
-//        tv_permintaan.setText();
         tv_permintaan = rootview.findViewById(R.id.tv_permintaan_lowongan);
 
         arrayLowongan = new ArrayList<>();
-
         lowonganRecycler = rootview.findViewById(R.id.rv_fragment_op_lowongan);
-
         lowonganRecycler.setLayoutManager(new LinearLayoutManager(rootview.getContext(), LinearLayoutManager.VERTICAL, false));
         lowonganAdapter = new LowonganAdapter(rootview.getContext(), arrayLowongan);
         lowonganRecycler.setAdapter(lowonganAdapter);
@@ -86,30 +82,19 @@ public class OpLowonganFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
+    public static boolean permintaanLowongan0(){
+        if (jumlahRequestLowongan.equals("0")){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     @Override
     public void onResume() {
         super.onResume();
         getRequestLowongan();
         getAllLowongan();
-        lowonganRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-                if (dy > 0){
-                    //scrolling up
-                    tv_permintaan.setVisibility(View.GONE);
-                } else {
-                    //scrolling down
-                    tv_permintaan.setVisibility(View.VISIBLE);
-                }
-            }
-        });
     }
 
     private void setSearch(final LowonganAdapter lowonganAdapter){

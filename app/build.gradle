@@ -43,7 +43,12 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+<<<<<<< HEAD
     implementation files('C:/AndroidStudioProjects/TracerAlumni/libs/activation.jar')
     implementation files('C:/AndroidStudioProjects/TracerAlumni/libs/additionnal.jar')
     implementation files('C:/AndroidStudioProjects/TracerAlumni/libs/mail.jar')
+=======
+
+    implementation 'id.zelory:compressor:2.1.0'
+>>>>>>> master
 }

@@ -39,6 +39,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,6 +47,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import id.zelory.compressor.Compressor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -221,7 +223,15 @@ public class SuntingProfilActivity extends AppCompatActivity {
 
     private void uploadPhoto(Uri fileUri) {
         File file = new File(getRealPathFromURI(fileUri));
-        RequestBody requestBody = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)), file);
+
+        File compressedFile = new File(getRealPathFromURI(fileUri));
+        try {
+            compressedFile = new Compressor(this).compressToFile(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)), compressedFile);
         MultipartBody.Part kirim = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -264,7 +274,6 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 if (!response.isSuccessful()){
                     return;
                 }
-                Toast.makeText(SuntingProfilActivity.this, "uploaded", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -361,8 +370,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 .build();
 
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-
+        
         Call<Void> call = jsonPlaceHolderApi.suntingProfil(
                 daftarModel.getNim(),
                 edt_email.getText().toString(),
@@ -382,6 +390,11 @@ public class SuntingProfilActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()){
+                    return;
+                }
+                onBackPressed();
+                Toast.makeText(SuntingProfilActivity.this, "Data telah diubah", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -389,22 +402,13 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 Toast.makeText(SuntingProfilActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-        Toast.makeText(SuntingProfilActivity.this, "Data telah diubah", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(SuntingProfilActivity.this, MainActivity.class);
-        intent.putExtra("index_opened_tab_key", 4);
-        intent.putExtra("sunting_profil", true);
-        startActivity(intent);
     }
 
     private void showSimpanPerubahanDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(SuntingProfilActivity.this);
-
         builder.setMessage("Simpan perubahan?");
-
         builder.setTitle("Sunting Profil");
-
         builder.setCancelable(false);
-
         builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
 
             @Override
@@ -412,7 +416,6 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 suntingProfil();
             }
         });
-
         builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
 
             @Override
@@ -420,9 +423,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 dialog.cancel();
             }
         });
-
         AlertDialog alertDialog = builder.create();
-
         alertDialog.show();
     }
 
