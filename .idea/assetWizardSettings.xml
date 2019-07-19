@@ -28,8 +28,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_add" />
-                            <entry key="sourceFile" value="C:\Users\DBSS014" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_about" />
+                            <entry key="sourceFile" value="D:\Folder PKL\TracerAlumni\app\src\main\res\drawable\ic_about.svg" />
                           </map>
                         </option>
                       </PersistentState>
