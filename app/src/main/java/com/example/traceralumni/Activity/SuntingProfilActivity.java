@@ -160,6 +160,8 @@ public class SuntingProfilActivity extends AppCompatActivity {
                     edt_negara.setError("Wajib diisi!");
                 } else if (edt_no_hp.getText().toString().equalsIgnoreCase("")) {
                     edt_no_hp.setError("Wajib diisi!");
+                } else if (edt_no_hp.getText().length() < 10) {
+                    edt_no_hp.setError("No HP. tidak valid!");
                 } else {
                     showSimpanPerubahanDialog();
                 }
@@ -208,7 +210,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
         img_edit_foto_profil = findViewById(R.id.img_sunting_profil_edit_foto);
 
         oldPath = daftarModel.getFoto();
-        if (!oldPath.equals("")){
+        if (!oldPath.equals("")) {
             Glide.with(SuntingProfilActivity.this)
                     .load(BASE_URL + oldPath)
                     .into(img_foto_profil);
@@ -244,12 +246,12 @@ public class SuntingProfilActivity extends AppCompatActivity {
         call.enqueue(new Callback<PathModel>() {
             @Override
             public void onResponse(Call<PathModel> call, Response<PathModel> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
 
                 PathModel pathModel = response.body();
-                if (!pathModel.getPath().equals("invalid")){
+                if (!pathModel.getPath().equals("invalid")) {
                     newPath = pathModel.getPath();
                     addPhotoPathToDatabase(jsonPlaceHolderApi);
                     oldPath = pathModel.getPath();
@@ -266,12 +268,12 @@ public class SuntingProfilActivity extends AppCompatActivity {
         });
     }
 
-    private void addPhotoPathToDatabase(JsonPlaceHolderApi jsonPlaceHolderApi){
+    private void addPhotoPathToDatabase(JsonPlaceHolderApi jsonPlaceHolderApi) {
         Call<Void> call = jsonPlaceHolderApi.updatePhotoPath(NIM, oldPath, newPath);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
             }
@@ -370,7 +372,14 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 .build();
 
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        
+        String telepon;
+        if (edt_no_hp.getText().toString().charAt(0) == '0') {
+            telepon = "+62" + edt_no_hp.getText().toString().substring(1);
+        } else if (edt_no_hp.getText().toString().charAt(0) != '+') {
+            telepon = "+" + edt_no_hp.getText();
+        } else {
+            telepon = edt_no_hp.getText().toString();
+        }
         Call<Void> call = jsonPlaceHolderApi.suntingProfil(
                 daftarModel.getNim(),
                 edt_email.getText().toString(),
@@ -383,14 +392,14 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 edt_tanggal_yudisium.getText().toString(),
                 spn_kewarganegaraaan.getSelectedItem().toString(),
                 edt_negara.getText().toString(),
-                edt_no_hp.getText().toString(),
+                telepon,
                 edt_no_telp.getText().toString(),
                 edt_facebook.getText().toString(),
                 edt_twitter.getText().toString());
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
                 onBackPressed();

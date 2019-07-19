@@ -12,7 +12,9 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/bn_chat"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="-52dp">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/cl_body_detail_profil"
@@ -402,17 +404,14 @@
 
             <TextView
                 android:id="@+id/txt_noHP"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@+id/img_hp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img_hp"
                 app:layout_constraintTop_toTopOf="@+id/img_hp"
                 tools:text="0888888884828" />
@@ -599,6 +598,28 @@
                 tools:listitem="@layout/card_riwayat_pekerjaan">
 
             </android.support.v7.widget.RecyclerView>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/cl_detail_profil_wa"
+                android:layout_width="@dimen/icon_btn_width"
+                android:layout_height="@dimen/icon_btn_height"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/card_rounded_edges"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_noHP"
+                app:layout_constraintStart_toEndOf="@+id/txt_noHP"
+                app:layout_constraintTop_toTopOf="@+id/txt_noHP">
+
+                <ImageView
+                    android:id="@+id/iv_detail_profil_wa"
+                    android:layout_width="@dimen/icon_width"
+                    android:layout_height="@dimen/icon_height"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_whatsapp" />
+            </android.support.constraint.ConstraintLayout>
 
         </android.support.constraint.ConstraintLayout>
 

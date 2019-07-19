@@ -93,6 +93,8 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
                     edt_deskripsi.setError("Wajib diisi!");
                 } else if (edt_noTelp.getText().toString().equalsIgnoreCase("")) {
                     edt_noTelp.setError("Wajib diisi!");
+                } else if (edt_noTelp.getText().length() < 9) {
+                    edt_noTelp.setError("No telepon tidak valid!");
                 } else if (tvFile.getText().toString().equalsIgnoreCase(".jpg")) {
                     Toast.makeText(OpDetailDonasiActivity.this, "Anda belum memilih foto!", Toast.LENGTH_SHORT).show();
                 } else {
@@ -101,7 +103,15 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
                     noTelepon = edt_noTelp.getText().toString().trim();
                     deskripsi = edt_deskripsi.getText().toString().trim();
                     getTanggalHariIni();
-                    saveData(idDonasi, namaKegiatan, deskripsi, noTelepon, totalAnggaran, tanggal_opendonasi, oldPath);
+                    String telepon;
+                    if (noTelepon.charAt(0) == '0') {
+                        telepon = "+62" + noTelepon.substring(1);
+                    } else if (noTelepon.charAt(0) != '+') {
+                        telepon = "+" + noTelepon;
+                    } else {
+                        telepon = noTelepon;
+                    }
+                    saveData(idDonasi, namaKegiatan, deskripsi, telepon, totalAnggaran, tanggal_opendonasi, oldPath);
                     onBackPressed();
                 }
             }
@@ -213,6 +223,7 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
             edt_noTelp.setText(donasiModel.getContactPerson());
             tvFile.setText(donasiModel.getFile().substring(8));
             idDonasi = donasiModel.getIdDonasi();
+            oldPath = donasiModel.getFile();
             getJumlahDuit();
         }
     }

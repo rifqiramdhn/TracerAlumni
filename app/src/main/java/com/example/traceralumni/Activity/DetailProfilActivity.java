@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AppCompatActivity;
@@ -57,6 +58,7 @@ public class DetailProfilActivity extends AppCompatActivity {
     TextView tvNama, tvProdi, tvAngkatan, tvThnLulus, tvTglYudisium, tvKwn, tvNegara, tvEmail, tvTTL, tvAlamat, tvKodePos, tvNoHp, tvNoTelp, tvFacebook, tvTwitter, tvStatus;
 
     CircleImageView img_detail_profil;
+    ConstraintLayout cl_wa;
 
     String oldPath = "";
 
@@ -117,6 +119,15 @@ public class DetailProfilActivity extends AppCompatActivity {
                     .load(BASE_URL + oldPath)
                     .into(img_detail_profil);
             getRiwayatPekerjaan(daftarModel.getNim());
+            cl_wa.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    String urlNew = "http://wa.me/" + daftarModel.getNomor_hp().substring(1);
+                    i.setData(Uri.parse(urlNew));
+                    startActivity(i);
+                }
+            });
         } else {
             getDataFromNIM(intent.getStringExtra("nim"));
             getRiwayatPekerjaan(intent.getStringExtra("nim"));
@@ -168,7 +179,7 @@ public class DetailProfilActivity extends AppCompatActivity {
                     return;
                 }
 
-                DaftarModel daftarModel = response.body();
+                final DaftarModel daftarModel = response.body();
                 tvNama.setText(daftarModel.getNama());
                 tvProdi.setText(daftarModel.getProdi());
                 tvAngkatan.setText(daftarModel.getAngkatan());
@@ -186,11 +197,20 @@ public class DetailProfilActivity extends AppCompatActivity {
                 tvTwitter.setText(daftarModel.getTwitter());
                 tvStatus.setText(daftarModel.getStatus_bekerja());
                 oldPath = daftarModel.getFoto();
-                if (!oldPath.equals("")){
+                if (!oldPath.equals("")) {
                     Glide.with(DetailProfilActivity.this)
                             .load(BASE_URL + oldPath)
                             .into(img_detail_profil);
                 }
+                cl_wa.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        String urlNew = "http://wa.me/" + daftarModel.getNomor_hp().substring(1);
+                        i.setData(Uri.parse(urlNew));
+                        startActivity(i);
+                    }
+                });
 
             }
 
@@ -221,5 +241,6 @@ public class DetailProfilActivity extends AppCompatActivity {
         tvTwitter = findViewById(R.id.txt_twitter);
         tvStatus = findViewById(R.id.txt_status);
         bnChat = findViewById(R.id.bn_chat);
+        cl_wa = findViewById(R.id.cl_detail_profil_wa);
     }
 }
