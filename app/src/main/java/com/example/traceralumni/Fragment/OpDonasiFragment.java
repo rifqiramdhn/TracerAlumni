@@ -144,12 +144,12 @@ public class OpDonasiFragment extends Fragment {
 
                 arrayDonasi.clear();
                 ArrayList<DonasiModel> donasiResponse = response.body();
-                arrayDonasi.addAll(donasiResponse);
-
-                final DonasiAdapter donasiAdapterNew = new DonasiAdapter(getActivity(), arrayDonasi);
-                donasiRecycler.setAdapter(donasiAdapterNew);
-
-                setSearch(donasiAdapterNew);
+                if (donasiResponse.get(0).getStatus_data().equals("y")){
+                    arrayDonasi.addAll(donasiResponse);
+                    final DonasiAdapter donasiAdapterNew = new DonasiAdapter(getActivity(), arrayDonasi);
+                    donasiRecycler.setAdapter(donasiAdapterNew);
+                    setSearch(donasiAdapterNew);
+                }
             }
 
             @Override

@@ -89,12 +89,12 @@ public class OpInfoFragment extends Fragment {
 
                 arrayInfo.clear();
                 ArrayList<InfoModel> infoResponse = response.body();
-                arrayInfo.addAll(infoResponse);
-
-                final InfoAdapter infoAdapterNew = new InfoAdapter(getActivity(), arrayInfo);
-                infoRecycler.setAdapter(infoAdapterNew);
-
-                setSearch(infoAdapterNew);
+                if (infoResponse.get(0).getStatus_data().equals("y")){
+                    arrayInfo.addAll(infoResponse);
+                    final InfoAdapter infoAdapterNew = new InfoAdapter(getActivity(), arrayInfo);
+                    infoRecycler.setAdapter(infoAdapterNew);
+                    setSearch(infoAdapterNew);
+                }
             }
 
             @Override

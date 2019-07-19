@@ -22,6 +22,7 @@ public class InfoModel implements Parcelable {
     private String link;
 
     private String tanggal_info;
+    private String status_data;
 
     public InfoModel(Integer idInfo, String judul, String keterangan, String link, String tanggal_info) {
         this.idInfo = idInfo;
@@ -41,6 +42,7 @@ public class InfoModel implements Parcelable {
         keterangan = in.readString();
         link = in.readString();
         tanggal_info = in.readString();
+        status_data = in.readString();
     }
 
     public static final Creator<InfoModel> CREATOR = new Creator<InfoModel>() {
@@ -72,6 +74,11 @@ public class InfoModel implements Parcelable {
         dest.writeString(keterangan);
         dest.writeString(link);
         dest.writeString(tanggal_info);
+        dest.writeString(status_data);
+    }
+
+    public String getStatus_data() {
+        return status_data;
     }
 
     public Integer getIdInfo() {
@@ -92,9 +99,5 @@ public class InfoModel implements Parcelable {
 
     public String getTanggal_info() {
         return tanggal_info;
-    }
-
-    public static Creator<InfoModel> getCREATOR() {
-        return CREATOR;
     }
 }

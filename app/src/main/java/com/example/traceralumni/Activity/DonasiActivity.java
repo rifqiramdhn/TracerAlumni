@@ -79,12 +79,14 @@ public class DonasiActivity extends AppCompatActivity {
 
                 arrayDonasi.clear();
                 ArrayList<DonasiModel> donasiModels = response.body();
-                arrayDonasi.addAll(donasiModels);
+                if (donasiModels.get(0).getStatus_data().equals("y")){
+                    arrayDonasi.addAll(donasiModels);
 
-                final DonasiAdapter donasiAdapterNew = new DonasiAdapter(DonasiActivity.this, arrayDonasi);
-                donasiRecycler.setAdapter(donasiAdapterNew);
+                    final DonasiAdapter donasiAdapterNew = new DonasiAdapter(DonasiActivity.this, arrayDonasi);
+                    donasiRecycler.setAdapter(donasiAdapterNew);
 
-                setSearch(donasiAdapterNew);
+                    setSearch(donasiAdapterNew);
+                }
             }
 
             @Override

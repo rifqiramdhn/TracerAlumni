@@ -86,9 +86,10 @@ public class OpPermintaanLowonganActivity extends AppCompatActivity {
 
                 permintaanLowonganModels.clear();
                 ArrayList<PermintaanLowonganModel> perLowonganModels = response.body();
-                permintaanLowonganModels.addAll(perLowonganModels);
-
-                permintaanLowonganAdapter.notifyDataSetChanged();
+                if (perLowonganModels.get(0).getStatus_data().equals("y")){
+                    permintaanLowonganModels.addAll(perLowonganModels);
+                    permintaanLowonganAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override

@@ -105,12 +105,12 @@ public class DaftarFragment extends Fragment {
 
                 daftarModels.clear();
                 ArrayList<DaftarModel> daftarModelsResponse = response.body();
-                daftarModels.addAll(daftarModelsResponse);
-
-                final DaftarAdapter daftarAdapterNew = new DaftarAdapter(getActivity(), daftarModels);
-                daftarRecycler.setAdapter(daftarAdapterNew);
-
-                setSearch(daftarAdapterNew);
+                if (daftarModelsResponse.get(0).getStatus_data().equals("y")){
+                    daftarModels.addAll(daftarModelsResponse);
+                    final DaftarAdapter daftarAdapterNew = new DaftarAdapter(getActivity(), daftarModels);
+                    daftarRecycler.setAdapter(daftarAdapterNew);
+                    setSearch(daftarAdapterNew);
+                }
             }
 
             @Override

@@ -30,6 +30,8 @@ public class RiwayatPekerjaanModel implements Parcelable{
     @SerializedName("tahun_akhir_riwayat")
     String tahunAkhir;
 
+    String status_data;
+
     protected RiwayatPekerjaanModel(Parcel in) {
         if (in.readByte() == 0) {
             idRiwayat = null;
@@ -43,6 +45,7 @@ public class RiwayatPekerjaanModel implements Parcelable{
         gaji = in.readString();
         tahunAwal = in.readString();
         tahunAkhir = in.readString();
+        status_data = in.readString();
     }
 
     public static final Parcelable.Creator<RiwayatPekerjaanModel> CREATOR = new Parcelable.Creator<RiwayatPekerjaanModel>() {
@@ -77,6 +80,11 @@ public class RiwayatPekerjaanModel implements Parcelable{
         parcel.writeString(gaji);
         parcel.writeString(tahunAwal);
         parcel.writeString(tahunAkhir);
+        parcel.writeString(status_data);
+    }
+
+    public String getStatus_data() {
+        return status_data;
     }
 
     public Integer getIdRiwayat() {

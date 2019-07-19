@@ -93,11 +93,13 @@ public class BerandaFragment extends Fragment {
 
                 arrayBeranda.clear();
                 ArrayList<BerandaModel> berandaResponse = response.body();
-                arrayBeranda.addAll(berandaResponse);
-                sortArrayList();
+                if (berandaResponse.get(0).getStatus_data().equals("y")){
+                    arrayBeranda.addAll(berandaResponse);
+                    sortArrayList();
 
-                BerandaAdapter berandaAdapter = new BerandaAdapter(rootView.getContext(), arrayBeranda);
-                berandaRecycler.setAdapter(berandaAdapter);
+                    BerandaAdapter berandaAdapter = new BerandaAdapter(rootView.getContext(), arrayBeranda);
+                    berandaRecycler.setAdapter(berandaAdapter);
+                }
             }
 
             @Override

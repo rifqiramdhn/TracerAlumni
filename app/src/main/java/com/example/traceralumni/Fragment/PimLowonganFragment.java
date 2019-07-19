@@ -95,12 +95,12 @@ public class PimLowonganFragment extends Fragment {
 
                arrayLowongan.clear();
                ArrayList<LowonganModel> lowonganResponse = response.body();
-               arrayLowongan.addAll(lowonganResponse);
-
-               final LowonganAdapter lowonganAdapterNew = new LowonganAdapter(getActivity(), arrayLowongan);
-               lowonganRecycler.setAdapter(lowonganAdapterNew);
-
-               setSearch(lowonganAdapterNew);
+               if (lowonganResponse.get(0).getStatus_data().equals("y")){
+                   arrayLowongan.addAll(lowonganResponse);
+                   final LowonganAdapter lowonganAdapterNew = new LowonganAdapter(getActivity(), arrayLowongan);
+                   lowonganRecycler.setAdapter(lowonganAdapterNew);
+                   setSearch(lowonganAdapterNew);
+               }
            }
 
            @Override

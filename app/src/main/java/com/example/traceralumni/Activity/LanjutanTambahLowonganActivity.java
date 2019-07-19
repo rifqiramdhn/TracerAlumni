@@ -103,6 +103,8 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
                     edt_notelp.setError("Harap isi nomor telepon");
                 } else if (edt_cp.getText().toString().equalsIgnoreCase("")){
                     edt_cp.setError("Harap isi kontak yang dapat dihubungi");
+                } else if (edt_cp.getText().length() < 10){
+                    edt_cp.setError("Nomor kontak tidak valid");
                 } else {
                     showKonfirmasiTambah();
                 }
@@ -155,14 +157,18 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
                 website = edt_website.getText().toString().trim();
                 email = edt_email.getText().toString().trim();
                 notelp = edt_notelp.getText().toString().trim();
-                cp = edt_cp.getText().toString().trim();
+//                cp = edt_cp.getText().toString().trim();
+
+                if (edt_cp.getText().toString().charAt(0) == '0') {
+                    cp = "+62" + edt_cp.getText().toString().substring(1, edt_cp.getText().length());
+                } else if (edt_cp.getText().toString().charAt(0) != '+') {
+                    cp = "+" + edt_cp.getText();
+                } else {
+                    cp = edt_cp.getText().toString();
+                }
+
                 getTanggalLowongan();
                 uploadPhoto(uriTerima);
-//                if(JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
-//                    saveData(daftarModel.getNim(), judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "BelumValid",tanggal_lowongan, logo);
-//                } else {
-//                    saveData("Admin", judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "Valid",tanggal_lowongan, logo);
-//                }
             }
         });
 

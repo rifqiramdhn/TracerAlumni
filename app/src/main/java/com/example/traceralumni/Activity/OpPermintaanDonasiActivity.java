@@ -88,9 +88,10 @@ public class OpPermintaanDonasiActivity extends AppCompatActivity {
 
                 perDonasiModels.clear();
                 ArrayList<PermintaanDonasiModel> permintaanDonasiModels = response.body();
-                perDonasiModels.addAll(permintaanDonasiModels);
-
-                perDonasiAdapter.notifyDataSetChanged();
+                if (permintaanDonasiModels.get(0).getStatus_data().equals("y")){
+                    perDonasiModels.addAll(permintaanDonasiModels);
+                    perDonasiAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override

@@ -33,6 +33,7 @@ public class PermintaanLowonganModel implements Parcelable {
     private String logoPerusahaan;
 
     private String tanggal_lowongan;
+    private String status_data;
 
     protected PermintaanLowonganModel(Parcel in){
         if (in.readByte() == 0){
@@ -47,6 +48,7 @@ public class PermintaanLowonganModel implements Parcelable {
         kisaranGaji = in.readString();
         tanggal_lowongan = in.readString();
         logoPerusahaan = in.readString();
+        status_data = in.readString();
     }
 
     public static final Creator<PermintaanLowonganModel> CREATOR = new Creator<PermintaanLowonganModel>() {
@@ -82,6 +84,11 @@ public class PermintaanLowonganModel implements Parcelable {
         parcel.writeString(kisaranGaji);
         parcel.writeString(tanggal_lowongan);
         parcel.writeString(logoPerusahaan);
+        parcel.writeString(status_data);
+    }
+
+    public String getStatus_data() {
+        return status_data;
     }
 
     public Integer getIdLowongan() {

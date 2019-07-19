@@ -88,12 +88,12 @@ public class PimInfoFragment extends Fragment {
 
                 arrayInfo.clear();
                 ArrayList<InfoModel> donasiResponse = response.body();
-                arrayInfo.addAll(donasiResponse);
-
-                final InfoAdapter infoAdapterNew = new InfoAdapter(getActivity(), arrayInfo);
-                infoRecycler.setAdapter(infoAdapterNew);
-
-                setSearch(infoAdapterNew);
+                if (donasiResponse.get(0).getStatus_data().equals("y")){
+                    arrayInfo.addAll(donasiResponse);
+                    final InfoAdapter infoAdapterNew = new InfoAdapter(getActivity(), arrayInfo);
+                    infoRecycler.setAdapter(infoAdapterNew);
+                    setSearch(infoAdapterNew);
+                }
             }
 
             @Override

@@ -40,7 +40,6 @@ public class DaftarModel implements Parcelable {
     private String jumlah;
     private String password;
 
-
     protected DaftarModel(Parcel in) {
         username = in.readString();
         email = in.readString();

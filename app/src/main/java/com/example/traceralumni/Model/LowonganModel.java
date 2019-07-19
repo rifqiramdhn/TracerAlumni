@@ -52,6 +52,7 @@ public class LowonganModel implements Parcelable {
     private String logo_perusahaan;
 
     private String tanggal_lowongan;
+    private String status_data;
 
     public LowonganModel(Integer idLowongan, String username, String nama_lowongan, String nama_perusahaan, String alamat_perusahaan, String kisaran_gaji, String syarat_pekerjaan, Integer kuota, String jabatan, String website, String email, String no_telp, String cp, String status_lowongan, String url_logo, String tanggal_lowongan) {
         this.idLowongan = idLowongan;
@@ -97,6 +98,7 @@ public class LowonganModel implements Parcelable {
         status_lowongan = in.readString();
         logo_perusahaan = in.readString();
         tanggal_lowongan = in.readString();
+        status_data = in.readString();
     }
 
     public static final Creator<LowonganModel> CREATOR = new Creator<LowonganModel>() {
@@ -144,6 +146,11 @@ public class LowonganModel implements Parcelable {
         parcel.writeString(status_lowongan);
         parcel.writeString(logo_perusahaan);
         parcel.writeString(tanggal_lowongan);
+        parcel.writeString(status_data);
+    }
+
+    public String getStatus_data() {
+        return status_data;
     }
 
     public Integer getIdLowongan() {

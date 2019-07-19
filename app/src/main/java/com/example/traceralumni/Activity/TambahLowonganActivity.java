@@ -95,7 +95,9 @@ public class TambahLowonganActivity extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (edt_judulLowongan.getText().toString().equalsIgnoreCase("")){
+                if (uriKirim == null){
+                    Toast.makeText(TambahLowonganActivity.this, "Foto belum terpilih", Toast.LENGTH_SHORT).show();
+                } else if (edt_judulLowongan.getText().toString().equalsIgnoreCase("")){
                     edt_judulLowongan.setError("Harap isi judul lowongan");
                 } else if (edt_jabatan.getText().toString().equalsIgnoreCase("")){
                     edt_jabatan.setError("Harap isi jabatan");

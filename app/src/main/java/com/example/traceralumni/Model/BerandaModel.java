@@ -4,10 +4,6 @@ public class BerandaModel {
     private String jenis_data;
     private String tanggal_beranda;
 
-    private DonasiModel donasiModel;
-    private InfoModel infoModel;
-    private LowonganModel lowonganModel;
-
     private Integer id_info;
     private String judul_i;
     private String keterangan_i;
@@ -35,6 +31,12 @@ public class BerandaModel {
     private String nama_lowongan_l;
     private String status_l;
     private String logo_perusahaan_l;
+
+    private String status_data;
+
+    public String getStatus_data() {
+        return status_data;
+    }
 
     public String getJenis_data() {
         return jenis_data;

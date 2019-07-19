@@ -152,8 +152,11 @@ public class DetailProfilActivity extends AppCompatActivity {
 
                 riwayatModel.clear();
                 ArrayList<RiwayatPekerjaanModel> riwayatPekerjaanModels = response.body();
-                riwayatModel.addAll(riwayatPekerjaanModels);
+                if (riwayatPekerjaanModels.get(0).getStatus_data().equals("y")) {
+                    riwayatModel.addAll(riwayatPekerjaanModels);
+                    Toast.makeText(DetailProfilActivity.this, "mantap", Toast.LENGTH_SHORT).show();
                 riwayatAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override

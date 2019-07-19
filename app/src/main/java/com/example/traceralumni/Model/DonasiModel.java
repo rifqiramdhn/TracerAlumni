@@ -35,6 +35,8 @@ public class DonasiModel implements Parcelable {
 
     private String tanggal_opendonasi;
 
+    private String status_data;
+
     public DonasiModel( Integer idDonasi, String namaKegiatan, String file, Integer noRekening, String keterangan, String lokasi, String contactPerson, Double totalAnggaran, String tanggal_opendonasi) {
         this.idDonasi = idDonasi;
         this.namaKegiatan = namaKegiatan;
@@ -69,6 +71,7 @@ public class DonasiModel implements Parcelable {
             totalAnggaran = in.readDouble();
         }
         tanggal_opendonasi = in.readString();
+        status_data = in.readString();
     }
 
     @Override
@@ -97,6 +100,7 @@ public class DonasiModel implements Parcelable {
             dest.writeDouble(totalAnggaran);
         }
         dest.writeString(tanggal_opendonasi);
+        dest.writeString(status_data);
     }
 
     @Override
@@ -115,6 +119,10 @@ public class DonasiModel implements Parcelable {
             return new DonasiModel[size];
         }
     };
+
+    public String getStatus_data() {
+        return status_data;
+    }
 
     public Integer getIdDonasi() {
         return idDonasi;
