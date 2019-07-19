@@ -424,9 +424,6 @@ public class MainActivity extends AppCompatActivity {
                 tabLayout.getTabAt(tab_number).select();
                 INDEX_OPENED_TAB = tab_number;
             }
-            if (i.getBooleanExtra("sunting_profil", false)) {
-                new LainnyaAdapter(CONTEXT).getData(4);
-            }
         }
     }
 

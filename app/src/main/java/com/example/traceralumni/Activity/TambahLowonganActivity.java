@@ -27,10 +27,12 @@ import com.example.traceralumni.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import id.zelory.compressor.Compressor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -137,7 +139,14 @@ public class TambahLowonganActivity extends AppCompatActivity {
 
     private void uploadPhoto(Uri fileUri) {
         File file = new File(getRealPathFromURI(fileUri));
-        RequestBody requestBody = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)), file);
+        File compressedFile = new File(getRealPathFromURI(fileUri));
+        try {
+            compressedFile = new Compressor(this).compressToFile(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)), compressedFile);
         MultipartBody.Part kirim = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
 
         Retrofit retrofit = new Retrofit.Builder()
