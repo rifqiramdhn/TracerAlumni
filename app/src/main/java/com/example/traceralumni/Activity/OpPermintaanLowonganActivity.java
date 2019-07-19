@@ -1,6 +1,5 @@
 package com.example.traceralumni.Activity;
 
-import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,7 +16,6 @@ import com.example.traceralumni.Model.PermintaanLowonganModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,8 +24,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
-import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
-import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB_KEY;
 
 public class OpPermintaanLowonganActivity extends AppCompatActivity {
 
@@ -46,7 +42,7 @@ public class OpPermintaanLowonganActivity extends AppCompatActivity {
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
-        setIcon();
+        initView();
 
         permintaanLowonganModels = new ArrayList<>();
 
@@ -58,19 +54,13 @@ public class OpPermintaanLowonganActivity extends AppCompatActivity {
         getAllPermintaanLowongan();
     }
 
-    private void setIcon() {
+    private void initView() {
         cl_back = findViewById(R.id.cl_icon1);
-
         imgBack = findViewById(R.id.img_icon1);
-
         tv_titleNavBar = findViewById(R.id.tv_navbar_top);
-
         tv_titleNavBar.setText("PERMINTAAN LOWONGAN");
-
         imgBack.setImageResource(R.drawable.ic_arrow_back);
-
         cl_back.setVisibility(View.VISIBLE);
-
         cl_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -95,8 +95,6 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         editor.apply();
-
-//        Toast.makeText(this, "jenis user : " + daftarModel.getJenis_user() + "\nnim user : " + daftarModel.getNim(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
