@@ -76,9 +76,12 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
             public void onClick(View v) {
                 switch (position) {
                     case 0:
-                        getData(0);
+                        Toast.makeText(context, lainnyaModel.getItem(), Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
+                        getData(1);
+                        break;
+                    case 2:
                         Intent donasi = new Intent(context, DonasiActivity.class);
                         context.startActivity(donasi);
                         break;
@@ -176,7 +179,7 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                 }
                 daftarModel = response.body();
                 Intent intent;
-                if (index == 0) {
+                if (index == 1) {
                     intent = new Intent(context, KartuAlumniActivity.class);
                 } else {
                     intent = new Intent(context, SuntingProfilActivity.class);
