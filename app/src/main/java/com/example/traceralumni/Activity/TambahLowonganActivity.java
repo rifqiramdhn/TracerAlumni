@@ -140,50 +140,8 @@ public class TambahLowonganActivity extends AppCompatActivity {
                 Glide.with(this)
                         .load(new File (getRealPathFromURI(imageUri)))
                         .into(img_logo_lowongan);
-//                uploadPhoto(imageUri);
             }
         }
-    }
-
-    private void uploadPhoto(Uri fileUri) {
-        File file = new File(getRealPathFromURI(fileUri));
-        File compressedFile = new File(getRealPathFromURI(fileUri));
-        try {
-            compressedFile = new Compressor(this).compressToFile(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        RequestBody requestBody = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)), compressedFile);
-        MultipartBody.Part kirim = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        final JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<PathModel> call = jsonPlaceHolderApi.uploadPhoto(kirim);
-        call.enqueue(new Callback<PathModel>() {
-            @Override
-            public void onResponse(Call<PathModel> call, Response<PathModel> response) {
-                if (!response.isSuccessful()){
-                    return;
-                }
-                PathModel pathModel = response.body();
-                if (!pathModel.getPath().equals("invalid")){
-                    oldPath = pathModel.getPath();
-                    Glide.with(TambahLowonganActivity.this)
-                            .load(BASE_URL + pathModel.getPath())
-                            .into(img_logo_lowongan);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<PathModel> call, Throwable t) {
-                Toast.makeText(TambahLowonganActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private String getRealPathFromURI(Uri contentUri){

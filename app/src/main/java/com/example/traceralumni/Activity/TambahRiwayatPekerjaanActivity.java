@@ -51,6 +51,8 @@ public class TambahRiwayatPekerjaanActivity extends AppCompatActivity {
     String tanggal_sekarang;
     Integer tahun_sekarang;
 
+    int CAN_CLICK_BUTTON_SAVE = 0; //0 bisa diklik, 1 tidak bisa diklik
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,6 +124,7 @@ public class TambahRiwayatPekerjaanActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (!response.isSuccessful()) {
+                    CAN_CLICK_BUTTON_SAVE = 0;
                     return;
                 }
 
@@ -131,6 +134,7 @@ public class TambahRiwayatPekerjaanActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                CAN_CLICK_BUTTON_SAVE = 0;
                 Toast.makeText(TambahRiwayatPekerjaanActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -150,7 +154,10 @@ public class TambahRiwayatPekerjaanActivity extends AppCompatActivity {
         } else if (edtGaji.getText().toString().equals("")) {
             edtGaji.setError("Wajib diisi");
         } else {
-            submitData();
+            if (CAN_CLICK_BUTTON_SAVE == 0){
+                CAN_CLICK_BUTTON_SAVE = 1;
+                submitData();
+            }
         }
     }
 

@@ -56,7 +56,7 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
         holder.namaLowongan.setText(permintaanLowonganModel.getNamaLowongan());
         holder.namaPerusahaan.setText(permintaanLowonganModel.getNamaPerusahaan());
         holder.lokasiPerusahaan.setText(permintaanLowonganModel.getAlamatPerusahaan());
-        holder.gaji.setText(permintaanLowonganModel.getKisaranGaji());
+        holder.gaji.setText("Rp~ " + permintaanLowonganModel.getKisaranGaji() + " juta");
         holder.tanggal.setText(permintaanLowonganModel.getTanggal_lowongan());
         oldPath = permintaanLowonganModel.getLogoPerusahaan();
         Glide.with(context)

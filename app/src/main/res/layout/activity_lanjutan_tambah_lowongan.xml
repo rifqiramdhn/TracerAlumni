@@ -48,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Syarat Pekerjaan"
-                    android:inputType="textMultiLine|text"
+                    android:inputType="textMultiLine|text|textCapSentences"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 

@@ -58,12 +58,11 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
     Integer kuota;
     String judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, gaji, syarat, website, email, notelp, cp, tanggal_lowongan, logo;
     EditText edt_syarat, edt_website, edt_email, edt_notelp, edt_cp;
-
     AlertDialog.Builder builder;
-    DaftarModel daftarModel;
-
     Uri uriTerima;
     String photoPath;
+
+    int CAN_CLICK_BUTTON_SAVE = 0; //0 bisa diklik, 1 tidak bisa diklik
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,7 +72,6 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         builder = new AlertDialog.Builder(this);
 
-        getData();
         initView();
 
         img_icon_back.setImageResource(R.drawable.ic_arrow_back);
@@ -157,7 +155,6 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
                 website = edt_website.getText().toString().trim();
                 email = edt_email.getText().toString().trim();
                 notelp = edt_notelp.getText().toString().trim();
-//                cp = edt_cp.getText().toString().trim();
 
                 if (edt_cp.getText().toString().charAt(0) == '0') {
                     cp = "+62" + edt_cp.getText().toString().substring(1, edt_cp.getText().length());
@@ -167,8 +164,11 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
                     cp = edt_cp.getText().toString();
                 }
 
-                getTanggalLowongan();
-                uploadPhoto(uriTerima);
+                if (CAN_CLICK_BUTTON_SAVE == 0){
+                    CAN_CLICK_BUTTON_SAVE = 1;
+                    getTanggalLowongan();
+                    uploadPhoto(uriTerima);
+                }
             }
         });
 
@@ -195,6 +195,7 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (!response.isSuccessful()) {
+                    CAN_CLICK_BUTTON_SAVE = 0;
                     return;
                 }
 
@@ -213,36 +214,10 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                CAN_CLICK_BUTTON_SAVE = 0;
                 Toast.makeText(LanjutanTambahLowonganActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void getData() {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<DaftarModel> call = jsonPlaceHolderApi.getUserData(NIM);
-        call.enqueue(new Callback<DaftarModel>() {
-            @Override
-            public void onResponse(Call<DaftarModel> call, Response<DaftarModel> response) {
-                if (!response.isSuccessful()) {
-                    return;
-                }
-                daftarModel = response.body();
-            }
-
-            @Override
-            public void onFailure(Call<DaftarModel> call, Throwable t) {
-                Toast.makeText(LanjutanTambahLowonganActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
     private void uploadPhoto(Uri fileUri) {
@@ -268,23 +243,26 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<PathModel> call, Response<PathModel> response) {
                 if (!response.isSuccessful()){
+                    CAN_CLICK_BUTTON_SAVE = 0;
                     return;
                 }
                 PathModel pathModel = response.body();
                 if (!pathModel.getPath().equals("invalid")){
                     photoPath = pathModel.getPath();
                     if(JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
-                        saveData(daftarModel.getNim(), judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "BelumValid",tanggal_lowongan, photoPath);
+                        saveData(NIM, judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "BelumValid",tanggal_lowongan, photoPath);
                     } else {
                         saveData("Admin", judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "Valid",tanggal_lowongan, photoPath);
                     }
                 } else {
-                    Toast.makeText(LanjutanTambahLowonganActivity.this, "Gagal Upload", Toast.LENGTH_SHORT).show();
+                    CAN_CLICK_BUTTON_SAVE = 0;
+                    Toast.makeText(LanjutanTambahLowonganActivity.this, "Gagal Upload Photo", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<PathModel> call, Throwable t) {
+                CAN_CLICK_BUTTON_SAVE = 0;
                 Toast.makeText(LanjutanTambahLowonganActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

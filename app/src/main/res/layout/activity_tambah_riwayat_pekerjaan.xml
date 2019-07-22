@@ -47,7 +47,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Pekerjaan"
-                    android:inputType="text"
+                    android:inputType="text|textCapWords"
                     android:textSize="16sp" />
 
             </android.support.design.widget.TextInputLayout>
@@ -71,7 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Nama Perusahaan"
-                    android:inputType="text"
+                    android:inputType="text|textCapWords"
                     android:textSize="16sp" />
 
             </android.support.design.widget.TextInputLayout>
@@ -95,7 +95,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Lokasi Tempat Kerja"
-                    android:inputType="text"
+                    android:inputType="text|textCapWords"
                     android:textSize="16sp" />
 
             </android.support.design.widget.TextInputLayout>
@@ -196,7 +196,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Pendapatan per Bulan (Juta)"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:textSize="16sp" />
 
             </android.support.design.widget.TextInputLayout>

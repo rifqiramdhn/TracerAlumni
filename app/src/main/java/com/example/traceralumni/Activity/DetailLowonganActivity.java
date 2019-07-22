@@ -76,7 +76,7 @@ public class DetailLowonganActivity extends AppCompatActivity {
             tvNamaLowongan.setText(lowonganModel.getNama_lowongan());
             tvNamaPerusahaan.setText(lowonganModel.getNama_perusahaan());
             tvLokasi.setText(lowonganModel.getAlamat_perusahaan());
-            tvKisaranGaji.setText("~Rp " + lowonganModel.getKisaran_gaji());
+            tvKisaranGaji.setText("~Rp " + lowonganModel.getKisaran_gaji() + " juta");
             tvSyarat.setText(lowonganModel.getSyarat_pekerjaan());
             tvKuota.setText(lowonganModel.getKuota() + " orang");
             tvJabatan.setText(lowonganModel.getJabatan());

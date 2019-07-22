@@ -106,7 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Nama Lowongan"
-                    android:inputType="textMultiLine|text"
+                    android:inputType="textMultiLine|text|textCapWords"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -132,7 +132,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Nama Jabatan"
-                    android:inputType="textMultiLine|text"
+                    android:inputType="textMultiLine|text|textCapWords"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -157,7 +157,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Nama Perusahaan"
-                    android:inputType="textMultiLine|text"
+                    android:inputType="textMultiLine|text|textCapWords"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -182,7 +182,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Lokasi Perusahaan"
-                    android:inputType="textMultiLine|text"
+                    android:inputType="textMultiLine|text|textCapWords"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
