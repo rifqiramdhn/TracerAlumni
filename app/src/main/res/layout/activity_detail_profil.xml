@@ -31,41 +31,28 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:src="@color/colorIconBiru"
-                app:layout_constraintBottom_toTopOf="@+id/txt_judul_nama"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txt_judul_nama"
+                android:id="@+id/txt_nama"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
-                android:layout_marginTop="32dp"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_activity_detail_profil_foto"
-                tools:text="Nama" />
-
-            <TextView
-                android:id="@+id/txt_nama"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
+                android:inputType="textCapWords"
+                android:textAllCaps="false"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_nama"
-                tools:text="Imam Al-Mukarom" />
+                app:layout_constraintTop_toBottomOf="@+id/iv_activity_detail_profil_foto"
+                tools:text="imam al-mukarom" />
 
             <TextView
                 android:id="@+id/txt_judul_prodi"
@@ -589,6 +576,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="32dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"

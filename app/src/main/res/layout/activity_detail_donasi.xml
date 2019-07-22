@@ -127,11 +127,9 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
                 android:text="Total Donasi yang Masuk"
                 android:textColor="@android:color/black"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toTopOf="@+id/tv_detail_donasi_jumlah_donasi_masuk"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cl_detail_donasi_kontak" />
@@ -145,13 +143,16 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
                 android:text="Rp 0"
                 android:textColor="@android:color/black"
                 android:textSize="32sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_detail_donasi_total_donasi_masuk" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail_donasi_total_donasi_masuk"
+                app:layout_constraintVertical_bias="0.0" />
 
             <Button
                 android:id="@+id/btn_detail_donasi_donasi"
