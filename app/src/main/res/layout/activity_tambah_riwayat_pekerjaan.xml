@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     tools:context=".Activity.TambahRiwayatPekerjaanActivity">
 
     <include
@@ -18,6 +19,7 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/include_tambah_riwayat_pekerjaan">
 
@@ -98,53 +100,82 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/edt_thnMasuk_container"
+            <TextView
+                android:id="@+id/tv_judul_thnMasuk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="24dp"
+                android:text="Tahun Masuk"
+                android:textColor="@color/colorIconBiru"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_lokasi_container" />
+
+            <Spinner
+                android:id="@+id/spn_tahun_masuk"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_garing"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edt_lokasi_container">
+                app:layout_constraintTop_toBottomOf="@+id/tv_judul_thnMasuk"
+                tools:listitem="@layout/card_spinner">
 
-                <EditText
-                    android:id="@+id/edt_riwayat_thn_awal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Tahun Masuk Kerja"
-                    android:inputType="text"
-                    android:textSize="16sp" />
+            </Spinner>
 
-            </android.support.design.widget.TextInputLayout>
+            <TextView
+                android:id="@+id/tv_garing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:text="-"
+                android:textColor="@color/black"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/spn_tahun_masuk"
+                app:layout_constraintEnd_toStartOf="@+id/spn_tahun_keluar"
+                app:layout_constraintStart_toEndOf="@+id/spn_tahun_masuk"
+                app:layout_constraintTop_toTopOf="@+id/spn_tahun_masuk" />
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/edt_thnSelesai_container"
+            <TextView
+                android:id="@+id/tv_judul_thnKeluar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:text="Tahun Keluar"
+                android:textColor="@color/colorIconBiru"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@+id/spn_tahun_keluar"
+                app:layout_constraintTop_toBottomOf="@+id/edt_lokasi_container" />
+
+            <Spinner
+                android:id="@+id/spn_tahun_keluar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edt_thnMasuk_container">
+                app:layout_constraintStart_toEndOf="@+id/tv_garing"
+                app:layout_constraintTop_toBottomOf="@+id/tv_judul_thnKeluar"
+                tools:listitem="@layout/card_spinner">
 
-                <EditText
-                    android:id="@+id/edt_riwayat_thn_akhir"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Tahun Selesai Kerja"
-                    android:inputType="text"
-                    android:textSize="16sp" />
+            </Spinner>
 
-            </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/edt_gaji_container"
@@ -158,13 +189,13 @@
                 android:textColorHint="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edt_thnSelesai_container">
+                app:layout_constraintTop_toBottomOf="@+id/spn_tahun_keluar">
 
                 <EditText
                     android:id="@+id/edt_riwayat_gaji"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Pendapatan per Bulan"
+                    android:hint="Pendapatan per Bulan (Juta)"
                     android:inputType="text"
                     android:textSize="16sp" />
 
