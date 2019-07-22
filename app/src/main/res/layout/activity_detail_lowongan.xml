@@ -429,7 +429,7 @@
                 android:layout_height="@dimen/icon_btn_height"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:background="@drawable/card_sharp_edges"
+                android:background="@drawable/card_rounded_edges"
                 app:layout_constraintBottom_toBottomOf="@+id/txt_hubungi"
                 app:layout_constraintStart_toEndOf="@+id/txt_hubungi"
                 app:layout_constraintTop_toTopOf="@+id/txt_judul_hubungi">

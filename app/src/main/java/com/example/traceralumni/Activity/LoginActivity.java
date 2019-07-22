@@ -30,6 +30,7 @@ import static com.example.traceralumni.Activity.MainActivity.NIM_PREF;
 import static com.example.traceralumni.Activity.MainActivity.SHARE_PREFS;
 import static com.example.traceralumni.Activity.MainActivity.STATE_USER_LOGGED;
 import static com.example.traceralumni.Activity.MainActivity.STATE_USER_LOGGED_PREF;
+import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class LoginActivity extends AppCompatActivity {
     FrameLayout frameLayout;
@@ -92,12 +93,16 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
+                } else {
+                    Toast.makeText(LoginActivity.this, "Username dan Password tidak cocok", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<DaftarModel> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(LoginActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

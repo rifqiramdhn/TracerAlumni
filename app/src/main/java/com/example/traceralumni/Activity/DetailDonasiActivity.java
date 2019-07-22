@@ -31,6 +31,7 @@ import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_PIMPINAN;
+import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class DetailDonasiActivity extends AppCompatActivity {
 
@@ -111,7 +112,9 @@ public class DetailDonasiActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<DonasiModel> call, Throwable t) {
-                    Toast.makeText(DetailDonasiActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    if (t.getMessage().contains("Failed to connect")) {
+                        Toast.makeText(DetailDonasiActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
@@ -224,7 +227,9 @@ public class DetailDonasiActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<PermintaanDonasiModel> call, Throwable t) {
-                Toast.makeText(DetailDonasiActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(DetailDonasiActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

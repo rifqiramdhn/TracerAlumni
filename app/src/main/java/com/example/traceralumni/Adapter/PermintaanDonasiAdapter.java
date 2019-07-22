@@ -27,6 +27,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
+
 public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDonasiAdapter.ViewHolder> {
     private Context context;
     private ArrayList<PermintaanDonasiModel> permintaanDonasiModels;
@@ -182,7 +184,9 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(context, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

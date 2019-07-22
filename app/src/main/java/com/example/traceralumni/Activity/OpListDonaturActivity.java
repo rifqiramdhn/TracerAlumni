@@ -24,6 +24,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class OpListDonaturActivity extends AppCompatActivity {
     ConstraintLayout cl_iconBack;
@@ -92,7 +93,9 @@ public class OpListDonaturActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ArrayList<PermintaanDonasiModel>> call, Throwable t) {
-                Toast.makeText(OpListDonaturActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(OpListDonaturActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

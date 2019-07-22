@@ -42,6 +42,7 @@ import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
 import static com.example.traceralumni.Activity.MainActivity.SHARE_PREFS;
 import static com.example.traceralumni.Activity.MainActivity.STATE_USER_LOGGED_PREF;
+import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHolder> {
 
@@ -190,7 +191,9 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
 
             @Override
             public void onFailure(Call<DaftarModel> call, Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(context, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

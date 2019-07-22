@@ -49,6 +49,7 @@ import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_PIMPINAN;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
+import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class LanjutanTambahLowonganActivity extends AppCompatActivity {
     private ConstraintLayout cl_icon_back, cl_icon_ok;
@@ -215,7 +216,9 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 CAN_CLICK_BUTTON_SAVE = 0;
-                Toast.makeText(LanjutanTambahLowonganActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(LanjutanTambahLowonganActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -263,7 +266,9 @@ public class LanjutanTambahLowonganActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<PathModel> call, Throwable t) {
                 CAN_CLICK_BUTTON_SAVE = 0;
-                Toast.makeText(LanjutanTambahLowonganActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(LanjutanTambahLowonganActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

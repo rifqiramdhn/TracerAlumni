@@ -28,6 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
+import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class NominalDonasiActivity extends AppCompatActivity {
     ConstraintLayout cl_iconBack, cl_iconConfirm;
@@ -211,7 +212,9 @@ public class NominalDonasiActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 CAN_CLICK_BUTTON_SAVE = 0;
-                Toast.makeText(NominalDonasiActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(NominalDonasiActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

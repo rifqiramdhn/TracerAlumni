@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.LowonganModel;
+import com.example.traceralumni.Model.PermintaanLowonganModel;
 import com.example.traceralumni.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -40,6 +41,7 @@ import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
+import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class DetailLowonganActivity extends AppCompatActivity {
     Button btn_profil, btn_hapus;
@@ -47,8 +49,7 @@ public class DetailLowonganActivity extends AppCompatActivity {
     ImageView img_iconBack, img_iconHapus;
     CircleImageView img_logo_perusahaan;
     TextView tvNavBar;
-    private TextView tvNamaLowongan, tvNamaPerusahaan, tvLokasi, tvKisaranGaji, tvProfil
-            , tvSyarat, tvKuota, tvJabatan, tvWeb, tvEmail, tvTelepon, tvHubungi;
+    private TextView tvNamaLowongan, tvNamaPerusahaan, tvLokasi, tvKisaranGaji, tvProfil, tvSyarat, tvKuota, tvJabatan, tvWeb, tvEmail, tvTelepon, tvHubungi;
     Integer idLowongan;
     String username;
     String oldPath = "";
@@ -65,14 +66,14 @@ public class DetailLowonganActivity extends AppCompatActivity {
 
         initView();
         getData();
-        getNama();
+
     }
 
-    private void getData(){
+    private void getData() {
         Intent intent = getIntent();
         lowonganModel = intent.getParcelableExtra("object_lowongan");
 
-        if(lowonganModel != null) {
+        if (lowonganModel != null) {
             tvNamaLowongan.setText(lowonganModel.getNama_lowongan());
             tvNamaPerusahaan.setText(lowonganModel.getNama_perusahaan());
             tvLokasi.setText(lowonganModel.getAlamat_perusahaan());
@@ -89,10 +90,14 @@ public class DetailLowonganActivity extends AppCompatActivity {
                     .load(BASE_URL + oldPath)
                     .into(img_logo_perusahaan);
             idLowongan = lowonganModel.getIdLowongan();
+            getNama();
+        } else if (intent.getIntExtra("object_permintaan_lowongan", -1) != -1) {
+            cl_iconHapus.setVisibility(View.GONE);
+            getLowonganFromId(intent.getIntExtra("object_permintaan_lowongan", -1));
         }
     }
 
-    private void initView(){
+    private void initView() {
         cl_iconBack = findViewById(R.id.cl_icon1);
         cl_iconHapus = findViewById(R.id.cl_icon4);
         img_iconBack = findViewById(R.id.img_icon1);
@@ -127,7 +132,7 @@ public class DetailLowonganActivity extends AppCompatActivity {
             }
         });
 
-        if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)){
+        if (JENIS_USER.equalsIgnoreCase(JENIS_USER_OPERATOR)) {
             cl_iconHapus.setVisibility(View.VISIBLE);
             cl_iconHapus.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -154,7 +159,7 @@ public class DetailLowonganActivity extends AppCompatActivity {
 
     }
 
-    private void showKonfirmasiHapus(){
+    private void showKonfirmasiHapus() {
         builder.setMessage("Apakah anda yakin ingin menghapus lowongan pekerjaan?")
                 .setTitle("Hapus Lowongan")
                 .setCancelable(false)
@@ -175,7 +180,7 @@ public class DetailLowonganActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void deleteLowongan(Integer idLowongan){
+    private void deleteLowongan(Integer idLowongan) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -187,7 +192,7 @@ public class DetailLowonganActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
                 Intent i = new Intent(DetailLowonganActivity.this, MainActivity.class);
@@ -197,7 +202,9 @@ public class DetailLowonganActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(DetailLowonganActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(DetailLowonganActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -219,7 +226,7 @@ public class DetailLowonganActivity extends AppCompatActivity {
                     return;
                 }
                 final DaftarModel daftarModel = response.body();
-                if(daftarModel.getStatus_data().equalsIgnoreCase("n")){
+                if (daftarModel.getStatus_data().equalsIgnoreCase("n")) {
                     tvProfil.setText("Admin");
                     btn_profil.setVisibility(View.GONE);
                 } else {
@@ -238,9 +245,55 @@ public class DetailLowonganActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<DaftarModel> call, Throwable t) {
-                Toast.makeText(DetailLowonganActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(DetailLowonganActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
+    }
+
+    private void getLowonganFromId(Integer id_lowongan) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        Call<LowonganModel> call = jsonPlaceHolderApi.getLowonganFromId(id_lowongan);
+        call.enqueue(new Callback<LowonganModel>() {
+            @Override
+            public void onResponse(Call<LowonganModel> call, Response<LowonganModel> response) {
+                if (!response.isSuccessful()) {
+                    return;
+                }
+                lowonganModel = response.body();
+                tvNamaLowongan.setText(lowonganModel.getNama_lowongan());
+                tvNamaPerusahaan.setText(lowonganModel.getNama_perusahaan());
+                tvLokasi.setText(lowonganModel.getAlamat_perusahaan());
+                tvKisaranGaji.setText("~Rp " + lowonganModel.getKisaran_gaji() + " juta");
+                tvSyarat.setText(lowonganModel.getSyarat_pekerjaan());
+                tvKuota.setText(lowonganModel.getKuota() + " orang");
+                tvJabatan.setText(lowonganModel.getJabatan());
+                tvWeb.setText(lowonganModel.getWebsite());
+                tvEmail.setText(lowonganModel.getEmail());
+                tvTelepon.setText(lowonganModel.getNo_telp());
+                tvHubungi.setText(lowonganModel.getCp());
+                oldPath = lowonganModel.getLogo_perusahaan();
+                Glide.with(DetailLowonganActivity.this)
+                        .load(BASE_URL + oldPath)
+                        .into(img_logo_perusahaan);
+                idLowongan = lowonganModel.getIdLowongan();
+                getNama();
+
+            }
+
+            @Override
+            public void onFailure(Call<LowonganModel> call, Throwable t) {
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(DetailLowonganActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

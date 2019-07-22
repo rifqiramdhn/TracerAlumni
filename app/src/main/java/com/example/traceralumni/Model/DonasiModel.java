@@ -18,14 +18,8 @@ public class DonasiModel implements Parcelable {
     @SerializedName("file")
     private String file;
 
-    @SerializedName("no_rekening")
-    private Integer noRekening;
-
     @SerializedName("keterangan")
     private String keterangan;
-
-    @SerializedName("lokasi")
-    private String lokasi;
 
     @SerializedName("contact_person")
     private String contactPerson;
@@ -37,13 +31,11 @@ public class DonasiModel implements Parcelable {
 
     private String status_data;
 
-    public DonasiModel( Integer idDonasi, String namaKegiatan, String file, Integer noRekening, String keterangan, String lokasi, String contactPerson, Double totalAnggaran, String tanggal_opendonasi) {
+    public DonasiModel(Integer idDonasi, String namaKegiatan, String file, String keterangan, String contactPerson, Double totalAnggaran, String tanggal_opendonasi) {
         this.idDonasi = idDonasi;
         this.namaKegiatan = namaKegiatan;
         this.file = file;
-        this.noRekening = noRekening;
         this.keterangan = keterangan;
-        this.lokasi = lokasi;
         this.contactPerson = contactPerson;
         this.totalAnggaran = totalAnggaran;
         this.tanggal_opendonasi = tanggal_opendonasi;
@@ -57,13 +49,7 @@ public class DonasiModel implements Parcelable {
         }
         namaKegiatan = in.readString();
         file = in.readString();
-        if (in.readByte() == 0) {
-            noRekening = null;
-        } else {
-            noRekening = in.readInt();
-        }
         keterangan = in.readString();
-        lokasi = in.readString();
         contactPerson = in.readString();
         if (in.readByte() == 0) {
             totalAnggaran = null;
@@ -84,14 +70,7 @@ public class DonasiModel implements Parcelable {
         }
         dest.writeString(namaKegiatan);
         dest.writeString(file);
-        if (noRekening == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(noRekening);
-        }
         dest.writeString(keterangan);
-        dest.writeString(lokasi);
         dest.writeString(contactPerson);
         if (totalAnggaran == null) {
             dest.writeByte((byte) 0);
@@ -136,16 +115,8 @@ public class DonasiModel implements Parcelable {
         return file;
     }
 
-    public Integer getNoRekening() {
-        return noRekening;
-    }
-
     public String getKeterangan() {
         return keterangan;
-    }
-
-    public String getLokasi() {
-        return lokasi;
     }
 
     public String getContactPerson() {

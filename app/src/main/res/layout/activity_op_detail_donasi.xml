@@ -130,6 +130,7 @@
                 android:textColor="@android:color/darker_gray"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/btn_upload"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edt_notelp_container" />
 
@@ -141,7 +142,9 @@
                 android:layout_marginRight="16dp"
                 android:background="@drawable/background_button_upload"
                 android:fontFamily="@font/robotobold"
-                android:text="UPLOAD"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="pilih foto"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_file"
