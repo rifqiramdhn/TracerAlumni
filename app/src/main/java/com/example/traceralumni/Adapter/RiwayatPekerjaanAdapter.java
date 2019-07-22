@@ -42,7 +42,7 @@ public class RiwayatPekerjaanAdapter extends RecyclerView.Adapter<RiwayatPekerja
         holder.tvJabatan.setText(list.getPekerjaan());
         holder.tvNmPerusahaan.setText(list.getNamaPerusahaan());
         holder.tvLokPerusahaan.setText(list.getLokasi());
-        holder.tvPendapatan.setText("Rp. "+list.getGaji()+" / bulan");
+        holder.tvPendapatan.setText("Rp. "+list.getGaji()+" juta / bulan");
         holder.tvThn.setText(list.getTahunAwal() + " - " + list.getTahunAkhir());
         holder.clContainer.setOnClickListener(new View.OnClickListener() {
             @Override
