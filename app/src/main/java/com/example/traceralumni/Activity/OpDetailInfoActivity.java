@@ -4,13 +4,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ParseException;
 import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.Selection;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,8 +29,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
-import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
-import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB_KEY;
 
 public class OpDetailInfoActivity extends AppCompatActivity {
     TextView tvNavBar;
@@ -46,6 +41,8 @@ public class OpDetailInfoActivity extends AppCompatActivity {
 
     Integer idInfo;
     String judul, isi, link, tanggal_info;
+
+    int CAN_CLICK_BUTTON_SAVE = 0; //0 bisa diklik, 1 tidak bisa diklik
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +72,10 @@ public class OpDetailInfoActivity extends AppCompatActivity {
                 } else if (edt_url.getText().toString().equalsIgnoreCase("")) {
                     edt_url.setError("Wajib diisi!");
                 } else {
-                    saveData(idInfo, judul, isi, link, tanggal_info);
+                    if (CAN_CLICK_BUTTON_SAVE == 0) {
+                        CAN_CLICK_BUTTON_SAVE = 1;
+                        saveData(idInfo, judul, isi, link, tanggal_info);
+                    }
                 }
             }
         });
@@ -186,8 +186,9 @@ public class OpDetailInfoActivity extends AppCompatActivity {
             edt_isi.setText(infoModel.getKeterangan());
             edt_url.setText(infoModel.getLink());
             idInfo = infoModel.getIdInfo();
+        } else {
+            cl_iconHapus.setVisibility(View.GONE);
         }
-
     }
 
     private void saveData(Integer idInfo, String judul, String keterangan, String link, String tanggal_info) {
@@ -203,16 +204,17 @@ public class OpDetailInfoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (!response.isSuccessful()) {
+                    CAN_CLICK_BUTTON_SAVE = 0;
                     return;
                 }
-
+                CAN_CLICK_BUTTON_SAVE = 0;
                 Toast.makeText(OpDetailInfoActivity.this, "Data tersimpan", Toast.LENGTH_SHORT).show();
-
                 onBackPressed();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                CAN_CLICK_BUTTON_SAVE = 0;
                 Toast.makeText(OpDetailInfoActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

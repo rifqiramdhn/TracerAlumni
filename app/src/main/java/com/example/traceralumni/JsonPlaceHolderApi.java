@@ -97,7 +97,7 @@ public interface JsonPlaceHolderApi {
                               @Field("syarat") String syaratPekerjaan,
                               @Field("website") String website,
                               @Field("email") String email,
-                              @Field("noTelp") String noTelp,
+                              @Field("notelp") String noTelp,
                               @Field("cp") String cp,
                               @Field("status") String status,
                               @Field("tanggal_lowongan") String tanggal,

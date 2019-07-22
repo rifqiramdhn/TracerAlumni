@@ -100,8 +100,10 @@ public class RiwayatPekerjaanActivity extends AppCompatActivity {
 
                 riwayatModels.clear();
                 ArrayList<RiwayatPekerjaanModel> riwayatPekerjaanModels = response.body();
-                riwayatModels.addAll(riwayatPekerjaanModels);
-                riwayatAdapter.notifyDataSetChanged();
+                if (riwayatPekerjaanModels.get(0).getStatus_data().equals("y")){
+                    riwayatModels.addAll(riwayatPekerjaanModels);
+                    riwayatAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override

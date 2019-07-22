@@ -51,7 +51,7 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
         holder.txtTitle.setText(list.getNama_lowongan());
         holder.txtPerusahaan.setText(list.getNama_perusahaan());
         holder.txtLokasi.setText(list.getAlamat_perusahaan());
-        holder.txtKisaranGaji.setText("~Rp " + list.getKisaran_gaji());
+        holder.txtKisaranGaji.setText("~Rp " + list.getKisaran_gaji() + " juta");
         holder.txtTanggal.setText(list.getTanggal_lowongan());
         oldPath = list.getLogo_perusahaan();
         Glide.with(context)

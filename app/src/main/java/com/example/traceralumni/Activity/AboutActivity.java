@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.example.traceralumni.R;
 
 public class AboutActivity extends AppCompatActivity {
-    TextView tvNavBar;
+    TextView tvNavBar, tvChangeLog, tvVersion;
     ConstraintLayout cl_iconBack;
     ImageView img_iconBack;
 
@@ -34,5 +34,14 @@ public class AboutActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        tvChangeLog = findViewById(R.id.tv_changelog);
+        tvVersion = findViewById(R.id.tv_current_version);
+
+        String currentVersion = "v1.0";
+        String changeLog = "v1.0 26 Juli 2019\n" + "- Aplikasi rilis";
+
+        tvVersion.setText(currentVersion);
+        tvChangeLog.setText(changeLog);
     }
 }

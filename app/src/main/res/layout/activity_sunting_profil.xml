@@ -91,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Tempat Lahir"
-                    android:inputType="text"
+                    android:inputType="text|textCapWords"
                     android:textColor="#2699FB"
                     android:textSize="16sp" />
             </android.support.design.widget.TextInputLayout>
@@ -151,7 +151,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Kode Pos"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:textColor="#2699FB"
                     android:textSize="16sp" />
             </android.support.design.widget.TextInputLayout>
@@ -240,7 +240,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Negara"
-                    android:inputType="text"
+                    android:inputType="text|textCapSentences"
                     android:textColor="#2699FB"
                     android:textSize="16sp" />
             </android.support.design.widget.TextInputLayout>

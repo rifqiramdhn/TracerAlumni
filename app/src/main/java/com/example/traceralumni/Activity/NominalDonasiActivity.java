@@ -41,6 +41,8 @@ public class NominalDonasiActivity extends AppCompatActivity {
     Double totalBantuan;
     String nim, tanggal_daftar_donatur;
 
+    int CAN_CLICK_BUTTON_SAVE = 0; //0 bisa diklik, 1 tidak bisa diklik
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -156,8 +158,11 @@ public class NominalDonasiActivity extends AppCompatActivity {
                 if (edt_lainnya.getText().toString().equals("") && rdGroup.getCheckedRadioButtonId() == -1) {
                     Toast.makeText(NominalDonasiActivity.this, "Nominal belum ditentukan", Toast.LENGTH_SHORT).show();
                 } else {
-                    getTanggalHariIni();
-                    saveData(totalBantuan, tanggal_daftar_donatur);
+                    if (CAN_CLICK_BUTTON_SAVE == 0){
+                        CAN_CLICK_BUTTON_SAVE = 1;
+                        getTanggalHariIni();
+                        saveData(totalBantuan, tanggal_daftar_donatur);
+                    }
                 }
             }
         });
@@ -195,14 +200,17 @@ public class NominalDonasiActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (!response.isSuccessful()) {
+                    CAN_CLICK_BUTTON_SAVE = 0;
                     return;
                 }
+                CAN_CLICK_BUTTON_SAVE = 0;
                 onBackPressed();
                 Toast.makeText(NominalDonasiActivity.this, "Menunggu Konfirmasi Operator", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                CAN_CLICK_BUTTON_SAVE = 0;
                 Toast.makeText(NominalDonasiActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

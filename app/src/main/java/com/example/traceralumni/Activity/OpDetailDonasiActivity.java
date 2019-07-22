@@ -57,6 +57,9 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
     Integer idDonasi;
     Double totalAnggaran;
     String namaKegiatan, noTelepon, deskripsi, tanggal_opendonasi, oldPath;
+    Uri mImageUri;
+
+    int CAN_CLICK_BUTTON_SAVE = 0; //0 bisa diklik, 1 tidak bisa diklik
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +72,6 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
         initView();
         getData();
 
-        btn_list_donatur = findViewById(R.id.btn_list_donatur);
         btn_list_donatur.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,7 +113,11 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
                     } else {
                         telepon = noTelepon;
                     }
-                    saveData(idDonasi, namaKegiatan, deskripsi, telepon, totalAnggaran, tanggal_opendonasi, oldPath);
+
+                    if (CAN_CLICK_BUTTON_SAVE == 0) {
+                        CAN_CLICK_BUTTON_SAVE = 1;
+                        saveData(idDonasi, namaKegiatan, deskripsi, telepon, totalAnggaran, tanggal_opendonasi, oldPath);
+                    }
                     onBackPressed();
                 }
             }
@@ -126,6 +132,8 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        btn_list_donatur = findViewById(R.id.btn_list_donatur);
+
         tvNavBar = findViewById(R.id.tv_navbar_top);
         tvNavBar.setText("DETAIL DONASI");
 
@@ -225,6 +233,9 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
             idDonasi = donasiModel.getIdDonasi();
             oldPath = donasiModel.getFile();
             getJumlahDuit();
+        } else {
+            cl_iconHapus.setVisibility(View.GONE);
+            btn_list_donatur.setVisibility(View.GONE);
         }
     }
 
@@ -251,14 +262,16 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (!response.isSuccessful()) {
+                    CAN_CLICK_BUTTON_SAVE = 0;
                     return;
                 }
-                Toast.makeText(OpDetailDonasiActivity.this, "Data tersimpan", Toast.LENGTH_SHORT).show();
+                uploadPhoto(mImageUri);
                 onBackPressed();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                CAN_CLICK_BUTTON_SAVE = 0;
                 Toast.makeText(OpDetailDonasiActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -306,7 +319,7 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 Uri imageUri = data.getData();
-                uploadPhoto(imageUri);
+                mImageUri = imageUri;
                 tvFile.setText(new File(getRealPathFromURI(imageUri)).getName());
             }
         }
@@ -335,16 +348,23 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<PathModel> call, Response<PathModel> response) {
                 if (!response.isSuccessful()) {
+                    CAN_CLICK_BUTTON_SAVE = 0;
                     return;
                 }
                 PathModel pathModel = response.body();
                 if (!pathModel.getPath().equals("invalid")) {
                     oldPath = pathModel.getPath();
+                    CAN_CLICK_BUTTON_SAVE = 0;
+                    Toast.makeText(OpDetailDonasiActivity.this, "Data tersimpan", Toast.LENGTH_SHORT).show();
+                } else {
+                    CAN_CLICK_BUTTON_SAVE = 0;
+                    Toast.makeText(OpDetailDonasiActivity.this, "Gagal Upload Photo", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<PathModel> call, Throwable t) {
+                CAN_CLICK_BUTTON_SAVE = 0;
                 Toast.makeText(OpDetailDonasiActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
