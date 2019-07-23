@@ -50,7 +50,8 @@ public class TambahRiwayatPekerjaanActivity extends AppCompatActivity {
 
     Integer idRiwayat;
     String tanggal_sekarang;
-    Integer tahun_sekarang, ambilTahunMasuk;
+    Integer tahun_sekarang;
+//    Integer ambilTahunMasuk;
 
     int CAN_CLICK_BUTTON_SAVE = 0; //0 bisa diklik, 1 tidak bisa diklik
 
@@ -159,7 +160,7 @@ public class TambahRiwayatPekerjaanActivity extends AppCompatActivity {
         } else if (edtGaji.getText().toString().equals("")) {
             edtGaji.setError("Wajib diisi");
         } else {
-            if (CAN_CLICK_BUTTON_SAVE == 0){
+            if (CAN_CLICK_BUTTON_SAVE == 0) {
                 CAN_CLICK_BUTTON_SAVE = 1;
                 submitData();
             }
@@ -213,19 +214,21 @@ public class TambahRiwayatPekerjaanActivity extends AppCompatActivity {
         try {
             Date date = new Date();
             tanggal_sekarang = dateFormat.format(date);
-            tahun_sekarang = Integer.valueOf(""+tanggal_sekarang.substring(0, 4));
+            tahun_sekarang = Integer.valueOf("" + tanggal_sekarang.substring(0, 4));
         } catch (ParseException e) {
             e.printStackTrace();
         }
     }
 
-    private void customSpinner(){
+    private void customSpinner() {
+
         final List<String> tahunMasuk = new ArrayList<>();
+
         tahunMasuk.add("Tahun Masuk");
-        for (int i = 1; i < 50; i++){
-            Integer tahun = tahun_sekarang;
+        Integer tahun = tahun_sekarang;
+        for (int i = 0; i < tahun_sekarang - 1959; i++) {
             tahunMasuk.add(tahun.toString());
-            tahun_sekarang--;
+            tahun--;
         }
 
         final ArrayAdapter<String> spinnerArrayAdapterTahunMasuk = new ArrayAdapter<String>(
@@ -250,25 +253,26 @@ public class TambahRiwayatPekerjaanActivity extends AppCompatActivity {
         spinnerArrayAdapterTahunMasuk.setDropDownViewResource(R.layout.card_spinner);
         spnTahunMasuk.setAdapter(spinnerArrayAdapterTahunMasuk);
 
+
         final List<String> tahunKeluar = new ArrayList<>();
         tahunKeluar.add("Tahun Keluar");
 
         spnTahunMasuk.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (spnTahunMasuk.getSelectedItem().toString().equalsIgnoreCase("Tahun Masuk")){
+                if (spnTahunMasuk.getSelectedItem().toString().equalsIgnoreCase("Tahun Masuk")) {
                     tahunKeluar.clear();
                     tahunKeluar.add("Tahun Keluar");
                     tvTahunMasuk.setVisibility(View.INVISIBLE);
                 } else {
                     tahunKeluar.clear();
                     tahunKeluar.add("Tahun Keluar");
-                    ambilTahunMasuk = Integer.valueOf(spnTahunMasuk.getSelectedItem().toString());
-                    for (int i = 1; i < 50; i++){
-                        Integer tahun = ambilTahunMasuk;
+                    Integer.valueOf(spnTahunMasuk.getSelectedItem().toString());
+                    Integer tahun = tahun_sekarang;
+                    tahunKeluar.add("Sekarang");
+                    for (int i = -1; i < tahun_sekarang - Integer.valueOf(spnTahunMasuk.getSelectedItem().toString()); i++) {
                         tahunKeluar.add(tahun.toString());
-                        ambilTahunMasuk++;
-                        Log.e("cok2", ""+tahunKeluar);
+                        tahun--;
                     }
                     tvTahunMasuk.setVisibility(View.VISIBLE);
                 }
@@ -305,7 +309,7 @@ public class TambahRiwayatPekerjaanActivity extends AppCompatActivity {
         spnTahunKeluar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (spnTahunKeluar.getSelectedItem().toString().equalsIgnoreCase("Tahun Keluar")){
+                if (spnTahunKeluar.getSelectedItem().toString().equalsIgnoreCase("Tahun Keluar")) {
                     tvTahunKeluar.setVisibility(View.INVISIBLE);
                 } else {
                     tvTahunKeluar.setVisibility(View.VISIBLE);
@@ -318,19 +322,28 @@ public class TambahRiwayatPekerjaanActivity extends AppCompatActivity {
             }
         });
 
-        if (getIntent().getParcelableExtra("object_riwayat") != null){
+        if (getIntent().getParcelableExtra("object_riwayat") != null) {
             RiwayatPekerjaanModel riwayatPekerjaanModel = getIntent().getParcelableExtra("object_riwayat");
-            for (int i = 0; i < tahunMasuk.size(); i++){
-                if (tahunMasuk.get(i).equalsIgnoreCase(riwayatPekerjaanModel.getTahunAwal())){
+            for (int i = 0; i < tahunMasuk.size(); i++) {
+                if (tahunMasuk.get(i).equalsIgnoreCase(riwayatPekerjaanModel.getTahunAwal())) {
                     spnTahunMasuk.setSelection(i);
+                    Integer integer = tahun_sekarang;
+                    tahunKeluar.clear();
+                    tahunKeluar.add("Sekarang");
+                    for (int a = -1; a < tahun_sekarang - Integer.valueOf(spnTahunMasuk.getSelectedItem().toString()); a++) {
+                        tahunKeluar.add(integer.toString());
+                        integer--;
+                    }
+                    for (int b = 0; b < tahunKeluar.size(); b++) {
+                        if (tahunKeluar.get(b).equalsIgnoreCase(riwayatPekerjaanModel.getTahunAkhir())) {
+                            spnTahunKeluar.setSelection(b);
+                        }
+                    }
                 }
             }
 
-            for (int i = 0; i < tahunKeluar.size(); i++){
-                if (tahunKeluar.get(i).equalsIgnoreCase(riwayatPekerjaanModel.getTahunAkhir())){
-                    spnTahunKeluar.setSelection(i);
-                }
-            }
         }
+
     }
+
 }
