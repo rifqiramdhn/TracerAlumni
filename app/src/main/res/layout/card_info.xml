@@ -36,7 +36,7 @@
         android:textColor="@android:color/black"
         android:textSize="16sp"
         app:fontFamily="@font/robotoregular"
-        app:layout_constraintBottom_toTopOf="@+id/v_card_info"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/img_card_info_link"
         app:layout_constraintStart_toStartOf="@+id/tv_card_info_judul"
         app:layout_constraintTop_toBottomOf="@+id/tv_card_info_judul"

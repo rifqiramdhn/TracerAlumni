@@ -185,7 +185,7 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
             d_totalBiaya = itemView.findViewById(R.id.tv_card_donasi_jumlah_donasi);
             d_tanggalDonasi = itemView.findViewById(R.id.tv_card_donasi_tanggal);
             d_tulisanDonasi = itemView.findViewById(R.id.tv_card_donasi_tulisan_donasi);
-            d_tanggalDonasi.setVisibility(View.INVISIBLE);
+            d_tanggalDonasi.setVisibility(View.GONE);
 
             //buat diklik
             container_donasi = itemView.findViewById(R.id.card_beranda_donasi);

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_donasi_container"
     android:layout_width="match_parent"
-    android:background="?android:attr/selectableItemBackground"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/tv_card_donasi_judul_donasi"
@@ -16,13 +16,11 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="4dp"
         android:text="judul_donasi"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/barrier8"
-        app:layout_constraintEnd_toEndOf="@id/barrier7"
+        app:layout_constraintEnd_toStartOf="@+id/tv_card_donasi_tulisan_donasi"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +28,7 @@
         android:id="@+id/tv_card_donasi_jumlah_donasi"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
         android:textColor="@android:color/black"
@@ -38,21 +36,25 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tv_card_donasi_judul_donasi"
         app:layout_constraintStart_toStartOf="@+id/tv_card_donasi_judul_donasi"
-        app:layout_constraintTop_toBottomOf="@id/barrier8"
+        app:layout_constraintTop_toBottomOf="@id/tv_card_donasi_judul_donasi"
+        app:layout_constraintVertical_bias="0.0"
         tools:text="80.000.000" />
 
     <TextView
         android:id="@+id/tv_card_donasi_tulisan_donasi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
         android:text="DONASI"
         android:textColor="@android:color/holo_green_light"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_card_donasi_jumlah_donasi"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/barrier7"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/tv_card_donasi_judul_donasi" />
 
     <View
         android:layout_width="0dp"
@@ -63,32 +65,18 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-    <android.support.constraint.Barrier
-        android:id="@+id/barrier7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="left"
-        app:constraint_referenced_ids="tv_card_donasi_tanggal"
-        tools:layout_editor_absoluteX="411dp" />
-
-    <android.support.constraint.Barrier
-        android:id="@+id/barrier8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="bottom"
-        app:constraint_referenced_ids="tv_card_donasi_judul_donasi"
-        tools:layout_editor_absoluteY="72dp" />
-
     <TextView
         android:id="@+id/tv_card_donasi_tanggal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:text="12/12/2012"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_card_donasi_jumlah_donasi" />
 
 </android.support.constraint.ConstraintLayout>

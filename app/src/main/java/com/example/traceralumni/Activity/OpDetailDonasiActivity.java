@@ -62,6 +62,7 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
     String telepon;
 
     int CAN_CLICK_BUTTON_SAVE = 0; //0 bisa diklik, 1 tidak bisa diklik
+    int EDIT = 0; //0 berarti tidak mengubah foto, 1 berarti mengubah
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +119,7 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
 
                     if (CAN_CLICK_BUTTON_SAVE == 0) {
                         CAN_CLICK_BUTTON_SAVE = 1;
-                        if (oldPath != null) {
+                        if (oldPath != null && EDIT == 0) {
                             saveData(idDonasi, namaKegiatan, deskripsi, telepon, totalAnggaran, tanggal_opendonasi, oldPath);
                         } else {
                             uploadPhoto(mImageUri);
@@ -274,6 +275,7 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
                     return;
                 }
 //                uploadPhoto(mImageUri);
+                Toast.makeText(OpDetailDonasiActivity.this, "Data tersimpan", Toast.LENGTH_SHORT).show();
                 onBackPressed();
             }
 
@@ -333,6 +335,7 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
                 Uri imageUri = data.getData();
                 mImageUri = imageUri;
                 tvFile.setText(new File(getRealPathFromURI(imageUri)).getName());
+                EDIT = 1;
             }
         }
     }
@@ -368,7 +371,6 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
                     oldPath = pathModel.getPath();
                     saveData(idDonasi, namaKegiatan, deskripsi, telepon, totalAnggaran, tanggal_opendonasi, oldPath);
                     CAN_CLICK_BUTTON_SAVE = 0;
-                    Toast.makeText(OpDetailDonasiActivity.this, "Data tersimpan", Toast.LENGTH_SHORT).show();
                 } else {
                     CAN_CLICK_BUTTON_SAVE = 0;
                     Toast.makeText(OpDetailDonasiActivity.this, "Gagal Upload Photo", Toast.LENGTH_SHORT).show();

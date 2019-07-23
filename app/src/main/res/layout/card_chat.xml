@@ -26,29 +26,28 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:text="TextView"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/card_chat_chat_text_view"
         app:layout_constraintEnd_toStartOf="@+id/card_chat_waktu_text_view"
-        app:layout_constraintStart_toEndOf="@+id/barrier3"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/iv_card_chat_foto"
+        app:layout_constraintTop_toTopOf="@+id/iv_card_chat_foto" />
 
     <TextView
         android:id="@+id/card_chat_chat_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="2dp"
         android:text="TextView"
         android:textColor="@android:color/darker_gray"
         android:textSize="16sp"
         app:fontFamily="@font/robotoregular"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_card_chat_foto"
+        app:layout_constraintEnd_toEndOf="@+id/card_chat_waktu_text_view"
         app:layout_constraintStart_toStartOf="@+id/card_chat_nama_text_view"
         app:layout_constraintTop_toBottomOf="@+id/card_chat_nama_text_view" />
 
@@ -64,28 +63,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/card_chat_nama_text_view" />
 
-    <android.support.constraint.Barrier
-        android:id="@+id/barrier3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="right"
-        app:constraint_referenced_ids="iv_card_chat_foto"
-        tools:layout_editor_absoluteX="411dp" />
-
     <View
+        android:id="@+id/view"
         android:layout_width="0dp"
         android:layout_height="0.5dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <android.support.constraint.Barrier
-        android:id="@+id/barrier5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="bottom"
-        app:constraint_referenced_ids="card_chat_nama_text_view"
-        tools:layout_editor_absoluteY="154dp" />
 
     <android.support.constraint.Barrier
         android:id="@+id/barrier6"

@@ -15,15 +15,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         android:text="Item"
         android:textColor="@android:color/black"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/card_pengaturan_icon_image_view"
         app:layout_constraintStart_toEndOf="@+id/card_pengaturan_icon_image_view"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="@+id/card_pengaturan_icon_image_view" />
 
 
     <ImageView
@@ -34,9 +31,8 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/card_pengaturan_nama_item_text_view"
-        app:layout_constraintEnd_toStartOf="@+id/card_pengaturan_nama_item_text_view"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/card_pengaturan_nama_item_text_view"
+        app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 </android.support.constraint.ConstraintLayout>

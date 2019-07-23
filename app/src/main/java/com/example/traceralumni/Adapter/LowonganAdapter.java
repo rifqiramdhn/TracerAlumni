@@ -88,11 +88,11 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
             foto = itemView.findViewById(R.id.iv_tambah_lowongan_logo);
             container = itemView.findViewById(R.id.card_daftar_lowongan);
             if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
-                txtTanggal.setVisibility(View.INVISIBLE);
+                txtTanggal.setVisibility(View.GONE);
                 txtDetail.setVisibility(View.VISIBLE);
             } else {
                 txtTanggal.setVisibility(View.VISIBLE);
-                txtDetail.setVisibility(View.INVISIBLE);
+                txtDetail.setVisibility(View.GONE);
             }
         }
 

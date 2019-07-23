@@ -7,13 +7,11 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.example.traceralumni.ConnectivityHelper;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;
@@ -29,7 +27,6 @@ import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_PREF;
 import static com.example.traceralumni.Activity.MainActivity.NIM_PREF;
 import static com.example.traceralumni.Activity.MainActivity.SHARE_PREFS;
-import static com.example.traceralumni.Activity.MainActivity.STATE_USER_LOGGED;
 import static com.example.traceralumni.Activity.MainActivity.STATE_USER_LOGGED_PREF;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 

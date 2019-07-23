@@ -1,6 +1,5 @@
 package com.example.traceralumni.Activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,34 +13,20 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.traceralumni.Adapter.LainnyaAdapter;
 import com.example.traceralumni.Adapter.OpFragPagerAdapter;
 import com.example.traceralumni.Adapter.PimFragPagerAdapter;
-import com.example.traceralumni.ConnectivityHelper;
-import com.example.traceralumni.Fragment.LainnyaFragment;
 import com.example.traceralumni.Fragment.OpDonasiFragment;
 import com.example.traceralumni.Fragment.OpLowonganFragment;
-import com.example.traceralumni.JsonPlaceHolderApi;
-import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;
 import com.example.traceralumni.Adapter.AlumniFragPagerAdapter;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-import static com.example.traceralumni.Fragment.LainnyaFragment.CONTEXT;
 
 public class MainActivity extends AppCompatActivity {
     ConstraintLayout cl_icon1, cl_icon2, cl_icon3, cl_icon4;
@@ -56,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String JENIS_USER_PIMPINAN = "pimpinan";
     public static final String JENIS_USER_OPERATOR = "operator";
 
-    public static final String BASE_URL = "http://192.168.0.106/tracer/";
+    public static final String BASE_URL = "http://10.22.253.90/tracer/";
 
     public static final String INDEX_OPENED_TAB_KEY = "index_opened_tab_key";
 
@@ -146,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
         if (STATE_USER_LOGGED == 0){
             moveActivityToLogin();
         }
-        ConnectivityHelper.checkConnection(MainActivity.this);
     }
 
     public void getDataUser() {

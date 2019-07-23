@@ -18,41 +18,43 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_tambah_lowongan_logo"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             android:src="@color/colorIconBiru"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_kisaran_gaji"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/tv_nama_lowongan" />
 
         <TextView
             android:id="@+id/tv_nama_lowongan"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="Staff Administrasi HRD"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/tv_nama_perusahaan"
+            app:layout_constraintEnd_toStartOf="@+id/txt_detail"
             app:layout_constraintStart_toEndOf="@+id/iv_tambah_lowongan_logo"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_nama_perusahaan"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="PT. Bank Muamalat"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/tv_lokasi_perusahaan"
+            app:layout_constraintEnd_toEndOf="@+id/tv_nama_lowongan"
             app:layout_constraintStart_toStartOf="@+id/tv_nama_lowongan"
             app:layout_constraintTop_toBottomOf="@+id/tv_nama_lowongan" />
 
@@ -70,15 +72,16 @@
 
         <TextView
             android:id="@+id/tv_lokasi_perusahaan"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginLeft="4dp"
+            android:layout_marginTop="2dp"
             android:text="Kota Malang, Indonesia"
             android:textColor="@android:color/black"
             android:textSize="14sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/tv_kisaran_gaji"
+            app:layout_constraintEnd_toEndOf="@+id/tv_nama_perusahaan"
             app:layout_constraintStart_toEndOf="@+id/img_lokasi"
             app:layout_constraintTop_toBottomOf="@+id/tv_nama_perusahaan" />
 
@@ -95,24 +98,26 @@
 
         <TextView
             android:id="@+id/tv_kisaran_gaji"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginLeft="4dp"
+            android:layout_marginTop="2dp"
             android:layout_marginBottom="8dp"
             android:text="~Rp 5.000.000"
             android:textColor="@android:color/black"
             android:textSize="14sp"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_lokasi_perusahaan"
             app:layout_constraintStart_toEndOf="@+id/img_gaji"
-            app:layout_constraintTop_toBottomOf="@+id/tv_lokasi_perusahaan" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_lokasi_perusahaan"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/txt_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="8dp"
@@ -120,9 +125,10 @@
             android:textColor="#7F4788"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_kisaran_gaji"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/tv_nama_lowongan" />
 
         <TextView
             android:id="@+id/tv_tanggal_lowongan"
@@ -138,7 +144,7 @@
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_detail" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_kisaran_gaji" />
 
     </android.support.constraint.ConstraintLayout>
 

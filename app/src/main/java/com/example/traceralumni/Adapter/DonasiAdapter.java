@@ -56,9 +56,9 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
         holder.tanggalDonasi.setText(donasiModel.getTanggal_opendonasi());
         if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
             holder.tulisanDonasi.setVisibility(View.VISIBLE);
-            holder.tanggalDonasi.setVisibility(View.INVISIBLE);
+            holder.tanggalDonasi.setVisibility(View.GONE);
         } else {
-            holder.tulisanDonasi.setVisibility(View.INVISIBLE);
+            holder.tulisanDonasi.setVisibility(View.GONE);
             holder.tanggalDonasi.setVisibility(View.VISIBLE);
         }
 
