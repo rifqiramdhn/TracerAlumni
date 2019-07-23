@@ -50,7 +50,7 @@ public class TambahRiwayatPekerjaanActivity extends AppCompatActivity {
 
     Integer idRiwayat;
     String tanggal_sekarang;
-    Integer tahun_sekarang;
+    Integer tahun_sekarang, ambilTahunMasuk;
 
     int CAN_CLICK_BUTTON_SAVE = 0; //0 bisa diklik, 1 tidak bisa diklik
 
@@ -220,20 +220,12 @@ public class TambahRiwayatPekerjaanActivity extends AppCompatActivity {
     }
 
     private void customSpinner(){
-        List<String> tahunMasuk = new ArrayList<>();
+        final List<String> tahunMasuk = new ArrayList<>();
         tahunMasuk.add("Tahun Masuk");
         for (int i = 1; i < 50; i++){
             Integer tahun = tahun_sekarang;
             tahunMasuk.add(tahun.toString());
             tahun_sekarang--;
-        }
-
-        List<String> tahunKeluar = new ArrayList<>();
-        tahunKeluar.add("Tahun Keluar");
-        for (int i = 1; i < 50; i++){
-            Integer tahun = tahun_sekarang + 50;
-            tahunKeluar.add(tahun.toString());
-            tahun_sekarang++;
         }
 
         final ArrayAdapter<String> spinnerArrayAdapterTahunMasuk = new ArrayAdapter<String>(
@@ -255,6 +247,39 @@ public class TambahRiwayatPekerjaanActivity extends AppCompatActivity {
             }
         };
 
+        spinnerArrayAdapterTahunMasuk.setDropDownViewResource(R.layout.card_spinner);
+        spnTahunMasuk.setAdapter(spinnerArrayAdapterTahunMasuk);
+
+        final List<String> tahunKeluar = new ArrayList<>();
+        tahunKeluar.add("Tahun Keluar");
+
+        spnTahunMasuk.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (spnTahunMasuk.getSelectedItem().toString().equalsIgnoreCase("Tahun Masuk")){
+                    tahunKeluar.clear();
+                    tahunKeluar.add("Tahun Keluar");
+                    tvTahunMasuk.setVisibility(View.INVISIBLE);
+                } else {
+                    tahunKeluar.clear();
+                    tahunKeluar.add("Tahun Keluar");
+                    ambilTahunMasuk = Integer.valueOf(spnTahunMasuk.getSelectedItem().toString());
+                    for (int i = 1; i < 50; i++){
+                        Integer tahun = ambilTahunMasuk;
+                        tahunKeluar.add(tahun.toString());
+                        ambilTahunMasuk++;
+                        Log.e("cok2", ""+tahunKeluar);
+                    }
+                    tvTahunMasuk.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         final ArrayAdapter<String> spinnerArrayAdapterTahunKeluar = new ArrayAdapter<String>(
                 TambahRiwayatPekerjaanActivity.this, R.layout.card_spinner, tahunKeluar) {
             @Override
@@ -274,26 +299,8 @@ public class TambahRiwayatPekerjaanActivity extends AppCompatActivity {
             }
         };
 
-        spinnerArrayAdapterTahunMasuk.setDropDownViewResource(R.layout.card_spinner);
         spinnerArrayAdapterTahunKeluar.setDropDownViewResource(R.layout.card_spinner);
-        spnTahunMasuk.setAdapter(spinnerArrayAdapterTahunMasuk);
         spnTahunKeluar.setAdapter(spinnerArrayAdapterTahunKeluar);
-
-        spnTahunMasuk.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (spnTahunMasuk.getSelectedItem().toString().equalsIgnoreCase("Tahun Masuk")){
-                    tvTahunMasuk.setVisibility(View.INVISIBLE);
-                } else {
-                    tvTahunMasuk.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         spnTahunKeluar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
