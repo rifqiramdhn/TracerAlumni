@@ -1,16 +1,21 @@
 package com.example.traceralumni.Activity;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -82,6 +87,9 @@ public class SuntingProfilActivity extends AppCompatActivity {
     String oldPath = "";
     String newPath;
 
+    boolean permissionWrite = false;
+    boolean permissionRead = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,9 +117,27 @@ public class SuntingProfilActivity extends AppCompatActivity {
         img_edit_foto_profil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getPhotoFromGallery();
+                if (ContextCompat.checkSelfPermission(SuntingProfilActivity.this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(SuntingProfilActivity.this,
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                } else {
+                    getPhotoFromGallery();
+                }
             }
         });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    getPhotoFromGallery();
+                }
+                return;
+            }
+        }
     }
 
     @Override
@@ -173,10 +199,8 @@ public class SuntingProfilActivity extends AppCompatActivity {
 
         img_iconBack = findViewById(R.id.img_icon1);
         img_iconBack.setImageResource(R.drawable.ic_arrow_back);
-
         img_iconConfirm = findViewById(R.id.img_icon4);
         img_iconConfirm.setImageResource(R.drawable.ic_check);
-
         tv_titleBar = findViewById(R.id.tv_navbar_top);
         tv_titleBar.setText("SUNTING PROFIL");
     }

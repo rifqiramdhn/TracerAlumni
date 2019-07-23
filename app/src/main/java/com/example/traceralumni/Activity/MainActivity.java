@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String JENIS_USER_PIMPINAN = "pimpinan";
     public static final String JENIS_USER_OPERATOR = "operator";
 
-    public static final String BASE_URL = "http://192.168.0.106/tracer/";
+    public static final String BASE_URL = "http://10.22.253.90/tracer/";
 
     public static final String INDEX_OPENED_TAB_KEY = "index_opened_tab_key";
 
@@ -72,7 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        loadData();
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
@@ -98,8 +100,6 @@ public class MainActivity extends AppCompatActivity {
                 tabLayout.setVisibility(isOpen ? View.GONE : View.VISIBLE);
             }
         });
-
-        loadData();
 
         getDataUser();
     }

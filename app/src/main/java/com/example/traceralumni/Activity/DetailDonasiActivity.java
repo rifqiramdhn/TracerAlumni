@@ -4,8 +4,10 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -48,23 +50,17 @@ public class DetailDonasiActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_donasi);
-
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-
         initView();
         getData();
-
         setDonasiButton();
     }
 
     private void getData() {
-
         Intent intent = getIntent();
         donasiModel = intent.getParcelableExtra("object_donasi");
         if (donasiModel != null) {
             mIdDonasi = donasiModel.getIdDonasi();
-
-//            tv_jumlahDonasi.setText("" + donasiModel.getDonasiMasuk());
             tv_keterangan.setText(donasiModel.getKeterangan());
             tv_namaKegiatan.setText(donasiModel.getNamaKegiatan());
             tv_totalBiaya.setText("Rp " + String.format("%.0f", donasiModel.getTotalAnggaran()));
@@ -99,7 +95,6 @@ public class DetailDonasiActivity extends AppCompatActivity {
                     DonasiModel donasiModelNew = response.body();
                     mIdDonasi = donasiModelNew.getIdDonasi();
 
-//                    tv_jumlahDonasi.setText("" + donasiModelNew.getDonasiMasuk());
                     tv_keterangan.setText(donasiModelNew.getKeterangan());
                     tv_namaKegiatan.setText(donasiModelNew.getNamaKegiatan());
                     tv_totalBiaya.setText("Rp " + String.format("%.0f", donasiModelNew.getTotalAnggaran()));
@@ -121,26 +116,18 @@ public class DetailDonasiActivity extends AppCompatActivity {
     }
 
     private void initView() {
-
         cl_back = findViewById(R.id.cl_icon1);
-
         imgBack = findViewById(R.id.img_icon1);
-
         tv_titleNavBar = findViewById(R.id.tv_navbar_top);
-
         tv_titleNavBar.setText("DETAIL DONASI");
-
         imgBack.setImageResource(R.drawable.ic_arrow_back);
-
         cl_back.setVisibility(View.VISIBLE);
-
         cl_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
             }
         });
-
         foto = findViewById(R.id.iv_detail_donasi_foto);
         tv_namaKegiatan = findViewById(R.id.tv_detail_donasi_judul_donasi);
         tv_totalBiaya = findViewById(R.id.tv_detail_donasi_total_biaya);
@@ -153,13 +140,15 @@ public class DetailDonasiActivity extends AppCompatActivity {
         cl_kontak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                callIntent.setData(Uri.parse("tel:" + kontak));
-                if (ActivityCompat.checkSelfPermission(DetailDonasiActivity.this,
+                if (ContextCompat.checkSelfPermission(DetailDonasiActivity.this,
                         Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
+                    ActivityCompat.requestPermissions(DetailDonasiActivity.this,
+                            new String[]{Manifest.permission.CALL_PHONE}, 1);
+                } else {
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                    callIntent.setData(Uri.parse("tel:" + kontak));
+                    startActivity(callIntent);
                 }
-                startActivity(callIntent);
             }
         });
 
@@ -177,6 +166,22 @@ public class DetailDonasiActivity extends AppCompatActivity {
             btn_donasi.setVisibility(View.GONE);
             tv_totalDonasi.setVisibility(View.VISIBLE);
             tv_jumlahDonasi.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (!kontak.equals("")) {
+                        Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                        callIntent.setData(Uri.parse("tel:" + kontak));
+                        startActivity(callIntent);
+                    }
+                }
+                return;
+            }
         }
     }
 
@@ -232,7 +237,5 @@ public class DetailDonasiActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
-
 }

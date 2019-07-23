@@ -1,14 +1,19 @@
 package com.example.traceralumni.Activity;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Path;
 import android.net.ParseException;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.traceralumni.Fragment.OpDonasiFragment;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.Model.PathModel;
@@ -131,44 +137,53 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
         btn_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getPhotoFromGallery();
+                if (ContextCompat.checkSelfPermission(OpDetailDonasiActivity.this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(OpDetailDonasiActivity.this,
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                } else {
+                    getPhotoFromGallery();
+                }
             }
         });
+    }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    getPhotoFromGallery();
+                }
+                return;
+            }
+        }
     }
 
     private void initView() {
         btn_list_donatur = findViewById(R.id.btn_list_donatur);
-
         tvNavBar = findViewById(R.id.tv_navbar_top);
         tvNavBar.setText("DETAIL DONASI");
-
         img_iconBack = findViewById(R.id.img_icon1);
         img_iconBack.setImageResource(R.drawable.ic_arrow_back);
-
         img_iconHapus = findViewById(R.id.img_icon4);
         img_iconHapus.setImageResource(R.drawable.ic_delete);
-
         cl_iconBack = findViewById(R.id.cl_icon1);
         cl_iconBack.setVisibility(View.VISIBLE);
-
         cl_iconHapus = findViewById(R.id.cl_icon4);
         cl_iconHapus.setVisibility(View.VISIBLE);
-
         cl_iconBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-
         cl_iconHapus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 hapusDonasi();
             }
         });
-
         edt_judul = findViewById(R.id.edt_judul_donasi);
         edt_donasi = findViewById(R.id.edt_total_donasi);
         edt_deskripsi = findViewById(R.id.edt_deskripsi);
@@ -273,7 +288,6 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
                     CAN_CLICK_BUTTON_SAVE = 0;
                     return;
                 }
-//                uploadPhoto(mImageUri);
                 onBackPressed();
             }
 
