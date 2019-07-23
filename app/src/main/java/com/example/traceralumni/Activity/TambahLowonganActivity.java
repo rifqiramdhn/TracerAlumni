@@ -1,14 +1,19 @@
 package com.example.traceralumni.Activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -70,13 +75,18 @@ public class TambahLowonganActivity extends AppCompatActivity {
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
-
         initView();
 
         img_edit_logo_lowongan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getPhotoFromGallery();
+                if (ContextCompat.checkSelfPermission(TambahLowonganActivity.this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(TambahLowonganActivity.this,
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                } else {
+                    getPhotoFromGallery();
+                }
             }
         });
 
@@ -123,6 +133,18 @@ public class TambahLowonganActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    getPhotoFromGallery();
+                }
+                return;
+            }
+        }
     }
 
     private void getPhotoFromGallery() {

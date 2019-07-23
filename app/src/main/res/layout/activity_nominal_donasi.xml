@@ -13,151 +13,167 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/nav_bar_height" />
 
-    <RadioGroup
-        android:id="@+id/rdGroup"
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include_nav_bar_nominal_donasi">
 
-        <RadioButton
-            android:id="@+id/rdBtn_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/robotobold"
-            android:text="Rp 5.000.000,00"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include_nav_bar_nominal_donasi" />
-
-        <RadioButton
-            android:id="@+id/rdBtn_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/robotobold"
-            android:text="Rp 10.000.000,00"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rdBtn_1" />
-
-        <RadioButton
-            android:id="@+id/rdBtn_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/robotobold"
-            android:text="Rp 20.000.000,00"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rdBtn_2" />
-
-        <RadioButton
-            android:id="@+id/rdBtn_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/robotobold"
-            android:text="Rp 50.000.000,00"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rdBtn_3" />
-
-        <RadioButton
-            android:id="@+id/rdBtn_5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/robotobold"
-            android:text="Rp 100.000.000,00"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rdBtn_4" />
-
-        <RadioButton
-            android:id="@+id/rdBtn_6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/robotobold"
-            android:text="Rp 200.000.000,00"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rdBtn_5" />
-
-        <RadioButton
-            android:id="@+id/rdBtn_7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/robotobold"
-            android:text="Rp 500.000.000,00"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rdBtn_6" />
-
-        <RadioButton
-            android:id="@+id/rdBtn_8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/robotobold"
-            android:text="Rp 1.000.000.000,00"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rdBtn_7" />
-
-    </RadioGroup>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/edt_lainnya_container"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:textColorHint="@android:color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rdGroup">
-
-        <EditText
-            android:id="@+id/edt_lainnya"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Lainnya"
-            android:inputType="number"
-            android:textColor="#2699FB"
-            android:textSize="16sp" />
+            android:layout_height="wrap_content">
 
-    </android.support.design.widget.TextInputLayout>
+            <RadioGroup
+                android:id="@+id/rdGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RadioButton
+                    android:id="@+id/rdBtn_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Rp 5.000.000,00"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/include_nav_bar_nominal_donasi" />
+
+                <RadioButton
+                    android:id="@+id/rdBtn_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Rp 10.000.000,00"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rdBtn_1" />
+
+                <RadioButton
+                    android:id="@+id/rdBtn_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Rp 20.000.000,00"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rdBtn_2" />
+
+                <RadioButton
+                    android:id="@+id/rdBtn_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Rp 50.000.000,00"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rdBtn_3" />
+
+                <RadioButton
+                    android:id="@+id/rdBtn_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Rp 100.000.000,00"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rdBtn_4" />
+
+                <RadioButton
+                    android:id="@+id/rdBtn_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Rp 200.000.000,00"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rdBtn_5" />
+
+                <RadioButton
+                    android:id="@+id/rdBtn_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Rp 500.000.000,00"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rdBtn_6" />
+
+                <RadioButton
+                    android:id="@+id/rdBtn_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Rp 1.000.000.000,00"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rdBtn_7" />
+
+            </RadioGroup>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/edt_lainnya_container"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:textColorHint="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rdGroup">
+
+                <EditText
+                    android:id="@+id/edt_lainnya"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Lainnya"
+                    android:inputType="number"
+                    android:textColor="#2699FB"
+                    android:textSize="16sp" />
+
+            </android.support.design.widget.TextInputLayout>
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
 
 </android.support.constraint.ConstraintLayout>
