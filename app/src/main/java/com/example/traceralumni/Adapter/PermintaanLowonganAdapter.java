@@ -2,6 +2,7 @@ package com.example.traceralumni.Adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.traceralumni.Activity.DetailLowonganActivity;
 import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Model.LowonganModel;
 import com.example.traceralumni.Model.PermintaanLowonganModel;
 import com.example.traceralumni.R;
 
@@ -27,6 +30,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLowonganAdapter.ViewHolder> {
     private Context context;
@@ -65,7 +69,9 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Masuk ke detail lowongan", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, DetailLowonganActivity.class);
+                intent.putExtra("object_permintaan_lowongan", permintaanLowonganModel.getIdLowongan());
+                context.startActivity(intent);
             }
         });
         holder.clKonfirmasi.setOnClickListener(new View.OnClickListener() {
@@ -156,7 +162,7 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
         alertDialog.show();
     }
 
-    private void confirmLowongan(final int position, int idLowongan, final String confirm){
+    private void confirmLowongan(final int position, int idLowongan, final String confirm) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -167,10 +173,10 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if(!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
-                if (confirm.equals("y")){
+                if (confirm.equals("y")) {
                     Toast.makeText(context, "Permintaan lowongan telah diterima", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, "Permintaan lowongan telah ditolak", Toast.LENGTH_SHORT).show();
@@ -182,8 +188,12 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(context, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
+
+
 }

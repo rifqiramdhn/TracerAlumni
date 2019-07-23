@@ -56,14 +56,12 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
             Integer idDonasi = list.getId_opendonasi();
             String namaKegiatan = list.getNama_kegiatan_d();
             String file = list.getFile_d();
-            Integer noRekening = list.getNo_rekening_d();
             String keterangan = list.getKeterangan_d();
-            String lokasi = list.getLokasi_d();
             String contactPerson = list.getContact_person_d();
             Double totalAnggaran = list.getTotal_anggaran_d();
             String tanggalDonasi = list.getTanggal_beranda();
 
-            final DonasiModel donasiModel = new DonasiModel(idDonasi, namaKegiatan, file, noRekening, keterangan, lokasi, contactPerson, totalAnggaran, tanggalDonasi);
+            final DonasiModel donasiModel = new DonasiModel(idDonasi, namaKegiatan, file, keterangan, contactPerson, totalAnggaran, tanggalDonasi);
 
             holder.d_namaKegiatan.setText(donasiModel.getNamaKegiatan());
             holder.d_tanggalDonasi.setText("" + donasiModel.getTanggal_opendonasi());
@@ -136,7 +134,7 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
 
             final LowonganModel lowonganModel = new LowonganModel(idLowongan, username, namaLowongan, namaPer, alamatPer, kisaranGaji, syaratPekerjaan, kuota, jabatan, website, email, noTelp, cp, statusLowongan, urlLogo, tanggalLowongan);
 
-            holder.l_txtKisaranGaji.setText(lowonganModel.getKisaran_gaji());
+            holder.l_txtKisaranGaji.setText("~Rp " + lowonganModel.getKisaran_gaji() + " juta");
             holder.l_txtLokasi.setText(lowonganModel.getAlamat_perusahaan());
             holder.l_txtPerusahaan.setText(lowonganModel.getNama_perusahaan());
             holder.l_txtTitle.setText(lowonganModel.getNama_lowongan());

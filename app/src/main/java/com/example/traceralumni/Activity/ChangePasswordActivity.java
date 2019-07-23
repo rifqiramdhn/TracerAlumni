@@ -22,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
+import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class ChangePasswordActivity extends AppCompatActivity {
     TextView tvNavBar;
@@ -45,8 +46,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
             edtOldPass.setError("Wajib diisi");
         } else if (edtNewPass.getText().toString().equals("")) {
             edtNewPass.setError("Wajib diisi");
-        } else if (edtNewPassConfirm.getText().toString().equals("")) {
-            edtNewPassConfirm.setError("Wajib diisi");
+        } else if (edtNewPass.getText().length() < 8) {
+            edtNewPass.setError("Panjang kata sandi minimal 8 karakter");
         } else if (!edtNewPass.getText().toString().equals(edtNewPassConfirm.getText().toString())) {
             edtNewPassConfirm.setError("Konfirmasi kata sandi tidak sesuai");
         } else {
@@ -56,21 +57,27 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     .build();
 
             JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-            Call<Void> call = jsonPlaceHolderApi.changePassword(NIM, edtOldPass.getText().toString(), edtNewPass.getText().toString());
-            call.enqueue(new Callback<Void>() {
+            Call<String> call = jsonPlaceHolderApi.changePassword(NIM, edtOldPass.getText().toString(), edtNewPass.getText().toString());
+            call.enqueue(new Callback<String>() {
                 @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {
+                public void onResponse(Call<String> call, Response<String> response) {
                     if (!response.isSuccessful()) {
                         return;
                     }
-
-                    onBackPressed();
-                    Toast.makeText(ChangePasswordActivity.this, "Password berhasil diperbaharui", Toast.LENGTH_SHORT).show();
+                    String kode = response.body();
+                    if (kode.equals("1")) {
+                        Toast.makeText(ChangePasswordActivity.this, "Password berhasil diperbaharui", Toast.LENGTH_SHORT).show();
+                        onBackPressed();
+                    } else {
+                        Toast.makeText(ChangePasswordActivity.this, "Kata sandi lama anda salah", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
                 @Override
-                public void onFailure(Call<Void> call, Throwable t) {
-                    Toast.makeText(ChangePasswordActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                public void onFailure(Call<String> call, Throwable t) {
+                    if (t.getMessage().contains("Failed to connect")) {
+                        Toast.makeText(ChangePasswordActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }

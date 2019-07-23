@@ -104,8 +104,8 @@
                 android:id="@+id/tv_judul_thnMasuk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="24dp"
                 android:text="Tahun Masuk"
                 android:textColor="@color/colorIconBiru"
@@ -119,13 +119,11 @@
                 android:id="@+id/spn_tahun_masuk"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="2dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 app:layout_constraintEnd_toStartOf="@+id/tv_garing"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_judul_thnMasuk"
                 app:layout_constraintTop_toBottomOf="@+id/tv_judul_thnMasuk"
                 tools:listitem="@layout/card_spinner">
 
@@ -149,29 +147,25 @@
                 android:id="@+id/tv_judul_thnKeluar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginLeft="4dp"
                 android:text="Tahun Keluar"
                 android:textColor="@color/colorIconBiru"
                 android:textSize="12sp"
                 android:textStyle="normal"
                 android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="@+id/spn_tahun_keluar"
-                app:layout_constraintTop_toBottomOf="@+id/edt_lokasi_container" />
+                app:layout_constraintTop_toTopOf="@+id/tv_judul_thnMasuk" />
 
             <Spinner
                 android:id="@+id/spn_tahun_keluar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tv_garing"
-                app:layout_constraintTop_toBottomOf="@+id/tv_judul_thnKeluar"
+                app:layout_constraintTop_toTopOf="@+id/spn_tahun_masuk"
                 tools:listitem="@layout/card_spinner">
 
             </Spinner>

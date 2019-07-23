@@ -31,6 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Multipart;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class LupaPasswordActivity extends AppCompatActivity {
 
@@ -43,6 +44,7 @@ public class LupaPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lupa_password);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         nim = findViewById(R.id.edt_lupa_password_nim);
         back = findViewById(R.id.cl_lupa_password_back);
         lupaPassword = findViewById(R.id.btn_lupa_password_lupa);
@@ -95,7 +97,9 @@ public class LupaPasswordActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<DaftarModel> call, Throwable t) {
-                Toast.makeText(LupaPasswordActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(LupaPasswordActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

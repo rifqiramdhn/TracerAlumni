@@ -47,6 +47,7 @@ import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
+import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 import static com.example.traceralumni.Activity.TambahLowonganActivity.PICK_PHOTO_REQUEST;
 
 public class DetailProfilActivity extends AppCompatActivity {
@@ -154,14 +155,15 @@ public class DetailProfilActivity extends AppCompatActivity {
                 ArrayList<RiwayatPekerjaanModel> riwayatPekerjaanModels = response.body();
                 if (riwayatPekerjaanModels.get(0).getStatus_data().equals("y")) {
                     riwayatModel.addAll(riwayatPekerjaanModels);
-                    Toast.makeText(DetailProfilActivity.this, "mantap", Toast.LENGTH_SHORT).show();
                 riwayatAdapter.notifyDataSetChanged();
                 }
             }
 
             @Override
             public void onFailure(Call<ArrayList<RiwayatPekerjaanModel>> call, Throwable t) {
-                Toast.makeText(DetailProfilActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(DetailProfilActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -219,7 +221,9 @@ public class DetailProfilActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<DaftarModel> call, Throwable t) {
-                Toast.makeText(DetailProfilActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(DetailProfilActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

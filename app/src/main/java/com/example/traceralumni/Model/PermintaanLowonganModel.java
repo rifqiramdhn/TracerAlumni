@@ -87,12 +87,12 @@ public class PermintaanLowonganModel implements Parcelable {
         parcel.writeString(status_data);
     }
 
-    public String getStatus_data() {
-        return status_data;
-    }
-
     public Integer getIdLowongan() {
         return idLowongan;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getNama() {
@@ -115,15 +115,15 @@ public class PermintaanLowonganModel implements Parcelable {
         return kisaranGaji;
     }
 
-    public String getTanggal_lowongan() {
-        return tanggal_lowongan;
-    }
-
     public String getLogoPerusahaan() {
         return logoPerusahaan;
     }
 
-    public String getUsername() {
-        return username;
+    public String getTanggal_lowongan() {
+        return tanggal_lowongan;
+    }
+
+    public String getStatus_data() {
+        return status_data;
     }
 }

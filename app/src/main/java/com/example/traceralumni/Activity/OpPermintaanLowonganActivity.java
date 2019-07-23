@@ -24,6 +24,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class OpPermintaanLowonganActivity extends AppCompatActivity {
 
@@ -94,7 +95,9 @@ public class OpPermintaanLowonganActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ArrayList<PermintaanLowonganModel>> call, Throwable t) {
-                Toast.makeText(OpPermintaanLowonganActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(OpPermintaanLowonganActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

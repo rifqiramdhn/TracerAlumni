@@ -45,6 +45,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
 import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB_KEY;
+import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class OpDetailDonasiActivity extends AppCompatActivity {
     TextView tvNavBar, tvTotalDonasi, tvFile;
@@ -58,6 +59,7 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
     Double totalAnggaran;
     String namaKegiatan, noTelepon, deskripsi, tanggal_opendonasi, oldPath;
     Uri mImageUri;
+    String telepon;
 
     int CAN_CLICK_BUTTON_SAVE = 0; //0 bisa diklik, 1 tidak bisa diklik
 
@@ -105,7 +107,7 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
                     noTelepon = edt_noTelp.getText().toString().trim();
                     deskripsi = edt_deskripsi.getText().toString().trim();
                     getTanggalHariIni();
-                    String telepon;
+
                     if (noTelepon.charAt(0) == '0') {
                         telepon = "+62" + noTelepon.substring(1);
                     } else if (noTelepon.charAt(0) != '+') {
@@ -116,7 +118,11 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
 
                     if (CAN_CLICK_BUTTON_SAVE == 0) {
                         CAN_CLICK_BUTTON_SAVE = 1;
-                        saveData(idDonasi, namaKegiatan, deskripsi, telepon, totalAnggaran, tanggal_opendonasi, oldPath);
+                        if (oldPath != null) {
+                            saveData(idDonasi, namaKegiatan, deskripsi, telepon, totalAnggaran, tanggal_opendonasi, oldPath);
+                        } else {
+                            uploadPhoto(mImageUri);
+                        }
                     }
                     onBackPressed();
                 }
@@ -216,7 +222,9 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(OpDetailDonasiActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(OpDetailDonasiActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -265,14 +273,16 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
                     CAN_CLICK_BUTTON_SAVE = 0;
                     return;
                 }
-                uploadPhoto(mImageUri);
+//                uploadPhoto(mImageUri);
                 onBackPressed();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 CAN_CLICK_BUTTON_SAVE = 0;
-                Toast.makeText(OpDetailDonasiActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(OpDetailDonasiActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -302,7 +312,9 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<PermintaanDonasiModel> call, Throwable t) {
-                Toast.makeText(OpDetailDonasiActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(OpDetailDonasiActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -354,6 +366,7 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
                 PathModel pathModel = response.body();
                 if (!pathModel.getPath().equals("invalid")) {
                     oldPath = pathModel.getPath();
+                    saveData(idDonasi, namaKegiatan, deskripsi, telepon, totalAnggaran, tanggal_opendonasi, oldPath);
                     CAN_CLICK_BUTTON_SAVE = 0;
                     Toast.makeText(OpDetailDonasiActivity.this, "Data tersimpan", Toast.LENGTH_SHORT).show();
                 } else {
@@ -365,7 +378,9 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<PathModel> call, Throwable t) {
                 CAN_CLICK_BUTTON_SAVE = 0;
-                Toast.makeText(OpDetailDonasiActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(OpDetailDonasiActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

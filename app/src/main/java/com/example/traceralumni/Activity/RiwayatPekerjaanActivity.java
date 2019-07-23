@@ -28,6 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
+import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class RiwayatPekerjaanActivity extends AppCompatActivity {
     TextView tvNavBar;
@@ -108,7 +109,9 @@ public class RiwayatPekerjaanActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ArrayList<RiwayatPekerjaanModel>> call, Throwable t) {
-                Toast.makeText(RiwayatPekerjaanActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(RiwayatPekerjaanActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

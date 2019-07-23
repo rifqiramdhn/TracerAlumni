@@ -158,7 +158,7 @@ public interface JsonPlaceHolderApi {
 
     @FormUrlEncoded
     @POST("post_change_password.php")
-    Call<Void> changePassword(@Field("nim") String nim,
+    Call<String> changePassword(@Field("nim") String nim,
                               @Field("oldpass") String oldpass,
                               @Field("newpass") String newpass);
 
@@ -205,4 +205,8 @@ public interface JsonPlaceHolderApi {
 
     @GET("get_all_beranda.php")
     Call<ArrayList<BerandaModel>> getAllBeranda();
+
+    @FormUrlEncoded
+    @POST("post_get_lowongan_from_id.php")
+    Call<LowonganModel> getLowonganFromId(@Field("id_lowongan") Integer id_lowongan);
 }

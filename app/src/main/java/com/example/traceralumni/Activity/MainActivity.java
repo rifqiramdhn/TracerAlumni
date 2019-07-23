@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String JENIS_USER_PIMPINAN = "pimpinan";
     public static final String JENIS_USER_OPERATOR = "operator";
 
-    public static final String BASE_URL = "http://10.22.252.212/tracer/";
+    public static final String BASE_URL = "http://192.168.0.106/tracer/";
 
     public static final String INDEX_OPENED_TAB_KEY = "index_opened_tab_key";
 
@@ -68,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
     public static int INDEX_OPENED_TAB;
     public static int STATE_USER_LOGGED; //0 berarti belum login, 1 berarti sudah login
     public static String NIM;
+
+    public static final String TEXT_NO_INTERNET = "Koneksi internet tidak stabil";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

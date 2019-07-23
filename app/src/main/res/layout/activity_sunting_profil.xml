@@ -39,7 +39,7 @@
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:layout_marginTop="16dp"
-                android:src="@color/colorIconBiru"
+                android:src="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
@@ -49,10 +49,21 @@
                 android:id="@+id/img_sunting_profil_edit_foto"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@color/colorPrimary"
+                android:src="@color/colorIconBiru"
                 app:layout_constraintBottom_toBottomOf="@+id/img_sunting_profil_foto"
                 app:layout_constraintEnd_toEndOf="@+id/img_sunting_profil_foto" />
 
+
+            <ImageView
+                android:id="@+id/img_sunting_profil_edit_foto2"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/img_sunting_profil_edit_foto"
+                app:layout_constraintEnd_toEndOf="@+id/img_sunting_profil_edit_foto"
+                app:layout_constraintStart_toStartOf="@+id/img_sunting_profil_edit_foto"
+                app:layout_constraintTop_toTopOf="@+id/img_sunting_profil_edit_foto"
+                app:srcCompat="@drawable/ic_photo_camera" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/til_sunting_profil_email"

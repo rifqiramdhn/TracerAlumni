@@ -61,6 +61,7 @@ import static com.example.traceralumni.Activity.LocationPickerActivity.KODE_POS_
 import static com.example.traceralumni.Activity.LocationPickerActivity.LOKASI_EXTRA_KEY;
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
+import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class SuntingProfilActivity extends AppCompatActivity {
 
@@ -152,6 +153,8 @@ public class SuntingProfilActivity extends AppCompatActivity {
                     edt_kode_pos.setError("Wajib diisi!");
                 } else if (edt_angkatan.getText().toString().equalsIgnoreCase("")) {
                     edt_angkatan.setError("Wajib diisi!");
+                } else if (Integer.valueOf(edt_angkatan.getText().toString()) > Integer.valueOf(edt_tahun_lulus.getText().toString())) {
+                    edt_angkatan.setError("Tahun angkatan tidak valid!");
                 } else if (edt_tahun_lulus.getText().toString().equalsIgnoreCase("")) {
                     edt_tahun_lulus.setError("Wajib diisi!");
                 } else if (spn_kewarganegaraaan.getSelectedItem().toString().equalsIgnoreCase("Kewarganegaraan")) {
@@ -263,7 +266,9 @@ public class SuntingProfilActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<PathModel> call, Throwable t) {
-                Toast.makeText(SuntingProfilActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(SuntingProfilActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -280,7 +285,9 @@ public class SuntingProfilActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(SuntingProfilActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(SuntingProfilActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -408,7 +415,9 @@ public class SuntingProfilActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(SuntingProfilActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(SuntingProfilActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

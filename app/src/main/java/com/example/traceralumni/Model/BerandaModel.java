@@ -11,9 +11,7 @@ public class BerandaModel {
     private Integer id_opendonasi;
     private String nama_kegiatan_d;
     private String file_d;
-    private Integer no_rekening_d;
     private String keterangan_d;
-    private String lokasi_d;
     private String contact_person_d;
     private Double total_anggaran_d;
     private Integer id_lowongan;
@@ -74,16 +72,8 @@ public class BerandaModel {
         return file_d;
     }
 
-    public Integer getNo_rekening_d() {
-        return no_rekening_d;
-    }
-
     public String getKeterangan_d() {
         return keterangan_d;
-    }
-
-    public String getLokasi_d() {
-        return lokasi_d;
     }
 
     public String getContact_person_d() {
