@@ -8,68 +8,73 @@
     android:layout_marginBottom="4dp"
     android:background="@android:color/white">
 
-    <TextView
-        android:id="@+id/tv_card_donasi_judul_donasi"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="judul_donasi"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tv_card_donasi_tulisan_donasi"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground">
 
-    <TextView
-        android:id="@+id/tv_card_donasi_jumlah_donasi"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="TextView"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tv_card_donasi_judul_donasi"
-        app:layout_constraintStart_toStartOf="@+id/tv_card_donasi_judul_donasi"
-        app:layout_constraintTop_toBottomOf="@id/tv_card_donasi_judul_donasi"
-        app:layout_constraintVertical_bias="0.0"
-        tools:text="80.000.000" />
+        <TextView
+            android:id="@+id/tv_card_donasi_judul_donasi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="judul_donasi"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/tv_card_donasi_tulisan_donasi"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_card_donasi_tulisan_donasi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="8dp"
-        android:text="DONASI"
-        android:textColor="@android:color/holo_green_light"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_card_donasi_jumlah_donasi"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_card_donasi_judul_donasi" />
+        <TextView
+            android:id="@+id/tv_card_donasi_jumlah_donasi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="TextView"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_card_donasi_judul_donasi"
+            app:layout_constraintStart_toStartOf="@+id/tv_card_donasi_judul_donasi"
+            app:layout_constraintTop_toBottomOf="@id/tv_card_donasi_judul_donasi"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="80.000.000" />
+
+        <TextView
+            android:id="@+id/tv_card_donasi_tulisan_donasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="DONASI"
+            android:textColor="@android:color/holo_green_light"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_card_donasi_jumlah_donasi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_card_donasi_judul_donasi" />
 
 
-    <TextView
-        android:id="@+id/tv_card_donasi_tanggal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="8dp"
-        android:text="12/12/2012"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_card_donasi_jumlah_donasi" />
-
+        <TextView
+            android:id="@+id/tv_card_donasi_tanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="12/12/2012"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_card_donasi_jumlah_donasi" />
+    </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

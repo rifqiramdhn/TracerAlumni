@@ -8,105 +8,110 @@
     android:layout_marginBottom="4dp"
     android:background="@color/white">
 
-    <TextView
-        android:id="@+id/tv_jabatan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Manager" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground">
 
-    <ImageView
-        android:id="@+id/img_bangunnan"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:tint="@color/colorIconBiru"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_nama_perusahaan"
-        app:layout_constraintStart_toStartOf="@+id/tv_jabatan"
-        app:layout_constraintTop_toTopOf="@+id/tv_nama_perusahaan"
-        app:srcCompat="@drawable/ic_business" />
+        <TextView
+            android:id="@+id/tv_jabatan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Manager" />
 
-    <TextView
-        android:id="@+id/tv_nama_perusahaan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@android:color/black"
-        android:textSize="14sp"
-        android:textStyle="normal"
-        app:layout_constraintStart_toEndOf="@+id/img_bangunnan"
-        app:layout_constraintTop_toBottomOf="@+id/tv_jabatan"
-        tools:text="PT. Tembaga Pura" />
+        <ImageView
+            android:id="@+id/img_bangunnan"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:tint="@color/colorIconBiru"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_nama_perusahaan"
+            app:layout_constraintStart_toStartOf="@+id/tv_jabatan"
+            app:layout_constraintTop_toTopOf="@+id/tv_nama_perusahaan"
+            app:srcCompat="@drawable/ic_business" />
 
-    <ImageView
-        android:id="@+id/img_lokasi"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:tint="@color/colorIconBiru"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_lokasi_perusahaan"
-        app:layout_constraintStart_toStartOf="@+id/img_bangunnan"
-        app:layout_constraintTop_toTopOf="@+id/tv_lokasi_perusahaan"
-        app:srcCompat="@drawable/ic_location_on" />
+        <TextView
+            android:id="@+id/tv_nama_perusahaan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@+id/img_bangunnan"
+            app:layout_constraintTop_toBottomOf="@+id/tv_jabatan"
+            tools:text="PT. Tembaga Pura" />
 
-    <TextView
-        android:id="@+id/tv_lokasi_perusahaan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="2dp"
-        android:textColor="@android:color/black"
-        android:textSize="14sp"
-        android:textStyle="normal"
-        app:layout_constraintStart_toEndOf="@+id/img_lokasi"
-        app:layout_constraintTop_toBottomOf="@+id/tv_nama_perusahaan"
-        tools:text="Palembang, Indonesia" />
+        <ImageView
+            android:id="@+id/img_lokasi"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:tint="@color/colorIconBiru"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_lokasi_perusahaan"
+            app:layout_constraintStart_toStartOf="@+id/img_bangunnan"
+            app:layout_constraintTop_toTopOf="@+id/tv_lokasi_perusahaan"
+            app:srcCompat="@drawable/ic_location_on" />
 
-    <ImageView
-        android:id="@+id/img_gaji"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:tint="@color/colorIconBiru"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_pendapatan"
-        app:layout_constraintStart_toStartOf="@+id/img_lokasi"
-        app:layout_constraintTop_toTopOf="@+id/tv_pendapatan"
-        app:srcCompat="@drawable/ic_attach_money" />
+        <TextView
+            android:id="@+id/tv_lokasi_perusahaan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="2dp"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@+id/img_lokasi"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nama_perusahaan"
+            tools:text="Palembang, Indonesia" />
 
-    <TextView
-        android:id="@+id/tv_pendapatan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="8dp"
-        android:textColor="@android:color/black"
-        android:textSize="14sp"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img_gaji"
-        app:layout_constraintTop_toBottomOf="@+id/tv_lokasi_perusahaan"
-        tools:text="Rp 5.000.000 / bulan" />
+        <ImageView
+            android:id="@+id/img_gaji"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:tint="@color/colorIconBiru"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_pendapatan"
+            app:layout_constraintStart_toStartOf="@+id/img_lokasi"
+            app:layout_constraintTop_toTopOf="@+id/tv_pendapatan"
+            app:srcCompat="@drawable/ic_attach_money" />
 
-    <TextView
-        android:id="@+id/tv_tahun_riwayat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_jabatan"
-        tools:text="sekarang" />
+        <TextView
+            android:id="@+id/tv_pendapatan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_gaji"
+            app:layout_constraintTop_toBottomOf="@+id/tv_lokasi_perusahaan"
+            tools:text="Rp 5.000.000 / bulan" />
 
+        <TextView
+            android:id="@+id/tv_tahun_riwayat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_jabatan"
+            tools:text="sekarang" />
+    </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
