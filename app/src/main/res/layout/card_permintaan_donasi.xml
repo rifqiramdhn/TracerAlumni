@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginBottom="4dp">
 
     <TextView
         android:id="@+id/tv_card_permintaan_donasi_nama_donatur"
@@ -154,16 +155,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_card_permintaan_donasi_nama_donasi"
         app:layout_constraintEnd_toEndOf="@+id/cl_card_permintaan_donasi_ok"
         app:layout_constraintStart_toStartOf="@+id/cl_card_permintaan_donasi_no" />
-
-    <View
-        android:id="@+id/v_card_permintaan_donasi"
-        android:layout_width="0dp"
-        android:layout_height="0.5dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <View
         android:id="@+id/v_card_permintaan_donasi2"

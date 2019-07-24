@@ -5,7 +5,8 @@
     android:id="@+id/card_donasi_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground">
+    android:layout_marginBottom="4dp"
+    android:background="@android:color/white">
 
     <TextView
         android:id="@+id/tv_card_donasi_judul_donasi"
@@ -55,14 +56,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_card_donasi_jumlah_donasi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_card_donasi_judul_donasi" />
-
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0.5dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 
     <TextView
