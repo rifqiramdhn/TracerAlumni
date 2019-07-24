@@ -87,9 +87,6 @@ public class SuntingProfilActivity extends AppCompatActivity {
     String oldPath = "";
     String newPath;
 
-    boolean permissionWrite = false;
-    boolean permissionRead = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +104,14 @@ public class SuntingProfilActivity extends AppCompatActivity {
         edt_alamat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                moveToLocationPickerActivity();
+                if (ContextCompat.checkSelfPermission(SuntingProfilActivity.this,
+                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(SuntingProfilActivity.this,
+                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                } else {
+                    moveToLocationPickerActivity();
+                }
+
             }
         });
 
@@ -133,7 +137,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
         switch (requestCode) {
             case 1: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    getPhotoFromGallery();
+                    moveToLocationPickerActivity();
                 }
                 return;
             }

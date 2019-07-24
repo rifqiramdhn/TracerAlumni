@@ -506,6 +506,8 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_judul_twitter"
                 app:srcCompat="@drawable/ic_twitter" />
@@ -521,72 +523,10 @@
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
-                app:layout_constraintBottom_toBottomOf="@+id/img_twitter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img_twitter"
                 app:layout_constraintTop_toTopOf="@+id/img_twitter"
                 tools:text="https://www.twitter.com/imam" />
-
-            <TextView
-                android:id="@+id/txt_judul_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="20dp"
-                android:text="Status Bekerja"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/img_twitter" />
-
-            <TextView
-                android:id="@+id/txt_status"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="normal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_status"
-                tools:text="Aktif" />
-
-            <TextView
-                android:id="@+id/txt_judul_riwayat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="20dp"
-                android:text="Riwayat Pekerjaan"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_status" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_riwayat_pekerjaan"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="32dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_judul_riwayat"
-                tools:listitem="@layout/card_riwayat_pekerjaan">
-
-            </android.support.v7.widget.RecyclerView>
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/cl_detail_profil_wa"
