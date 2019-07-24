@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#ffffff</color>
     <color name="colorAccent">#2699FB</color>
     <color name="colorIconBiru">#2699FB</color>
+    <color name="colorIconBiru2">#006cc7</color>
     <color name="colorBackgroundGrey">#DADDE1</color>
     <color name="colorTabSelected">#ffffff</color>
     <color name="colorTabUnselected">#72C9FF</color>
