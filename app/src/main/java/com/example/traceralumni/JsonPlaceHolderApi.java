@@ -75,14 +75,14 @@ public interface JsonPlaceHolderApi {
             @Query("jurusan") String jurusan,
             @Query("prodi") String prodi,
             @Query("angkatan") String angkatan,
-            @Query("lainnya") String lainnya);
+            @Query("jabatan") String jabatan);
 
     @GET("get_data_alumni_count.php")
     Call<DaftarModel> getDataAlumniCount(
             @Query("jurusan") String jurusan,
             @Query("prodi") String prodi,
             @Query("angkatan") String angkatan,
-            @Query("lainnya") String lainnya
+            @Query("jabatan") String jabatan
     );
 
     @FormUrlEncoded
