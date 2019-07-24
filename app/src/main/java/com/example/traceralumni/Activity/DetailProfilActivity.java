@@ -51,12 +51,9 @@ import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 import static com.example.traceralumni.Activity.TambahLowonganActivity.PICK_PHOTO_REQUEST;
 
 public class DetailProfilActivity extends AppCompatActivity {
-    RecyclerView riwayatRecycler;
-    RiwayatPekerjaanAdapter riwayatAdapter;
-    ArrayList<RiwayatPekerjaanModel> riwayatModel;
     BottomNavigationView bnChat;
     DaftarModel daftarModel;
-    TextView tvNama, tvProdi, tvAngkatan, tvThnLulus, tvTglYudisium, tvKwn, tvNegara, tvEmail, tvTTL, tvAlamat, tvKodePos, tvNoHp, tvNoTelp, tvFacebook, tvTwitter, tvStatus;
+    TextView tvNama, tvProdi, tvAngkatan, tvThnLulus, tvTglYudisium, tvKwn, tvNegara, tvEmail, tvTTL, tvAlamat, tvKodePos, tvNoHp, tvNoTelp, tvFacebook, tvTwitter;
 
     CircleImageView img_detail_profil;
     ConstraintLayout cl_wa;
@@ -75,13 +72,6 @@ public class DetailProfilActivity extends AppCompatActivity {
         if (!JENIS_USER.equals(JENIS_USER_ALUMNI)) {
             bnChat.setVisibility(View.GONE);
         }
-
-        riwayatModel = new ArrayList<>();
-        riwayatRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        riwayatAdapter = new RiwayatPekerjaanAdapter(this, riwayatModel);
-        riwayatRecycler.setAdapter(riwayatAdapter);
-
-        riwayatRecycler.setNestedScrollingEnabled(false);
 
         bnChat.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -114,12 +104,10 @@ public class DetailProfilActivity extends AppCompatActivity {
             tvNoTelp.setText(daftarModel.getNomor_telepon());
             tvFacebook.setText(daftarModel.getFacebook());
             tvTwitter.setText(daftarModel.getTwitter());
-            tvStatus.setText(daftarModel.getStatus_bekerja());
             oldPath = daftarModel.getFoto();
             Glide.with(DetailProfilActivity.this)
                     .load(BASE_URL + oldPath)
                     .into(img_detail_profil);
-            getRiwayatPekerjaan(daftarModel.getNim());
             cl_wa.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -131,41 +119,7 @@ public class DetailProfilActivity extends AppCompatActivity {
             });
         } else {
             getDataFromNIM(intent.getStringExtra("nim"));
-            getRiwayatPekerjaan(intent.getStringExtra("nim"));
         }
-    }
-
-    private void getRiwayatPekerjaan(String nim) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<ArrayList<RiwayatPekerjaanModel>> call = jsonPlaceHolderApi.getRiwayat(nim);
-        call.enqueue(new Callback<ArrayList<RiwayatPekerjaanModel>>() {
-            @Override
-            public void onResponse(Call<ArrayList<RiwayatPekerjaanModel>> call, Response<ArrayList<RiwayatPekerjaanModel>> response) {
-                if (!response.isSuccessful()) {
-                    return;
-                }
-
-                riwayatModel.clear();
-                ArrayList<RiwayatPekerjaanModel> riwayatPekerjaanModels = response.body();
-                if (riwayatPekerjaanModels.get(0).getStatus_data().equals("y")) {
-                    riwayatModel.addAll(riwayatPekerjaanModels);
-                riwayatAdapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<RiwayatPekerjaanModel>> call, Throwable t) {
-                if (t.getMessage().contains("Failed to connect")) {
-                    Toast.makeText(DetailProfilActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
     private void getDataFromNIM(String nim) {
@@ -200,7 +154,6 @@ public class DetailProfilActivity extends AppCompatActivity {
                 tvNoTelp.setText(daftarModel.getNomor_telepon());
                 tvFacebook.setText(daftarModel.getFacebook());
                 tvTwitter.setText(daftarModel.getTwitter());
-                tvStatus.setText(daftarModel.getStatus_bekerja());
                 oldPath = daftarModel.getFoto();
                 if (!oldPath.equals("")) {
                     Glide.with(DetailProfilActivity.this)
@@ -229,7 +182,6 @@ public class DetailProfilActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        riwayatRecycler = findViewById(R.id.rv_riwayat_pekerjaan);
         img_detail_profil = findViewById(R.id.iv_activity_detail_profil_foto);
         tvNama = findViewById(R.id.txt_nama);
         tvProdi = findViewById(R.id.txt_prodi);
@@ -246,7 +198,6 @@ public class DetailProfilActivity extends AppCompatActivity {
         tvNoTelp = findViewById(R.id.txt_notelp);
         tvFacebook = findViewById(R.id.txt_facebook);
         tvTwitter = findViewById(R.id.txt_twitter);
-        tvStatus = findViewById(R.id.txt_status);
         bnChat = findViewById(R.id.bn_chat);
         cl_wa = findViewById(R.id.cl_detail_profil_wa);
     }
