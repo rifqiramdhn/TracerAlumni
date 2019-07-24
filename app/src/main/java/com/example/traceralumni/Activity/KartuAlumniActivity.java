@@ -36,7 +36,7 @@ public class KartuAlumniActivity extends AppCompatActivity {
         tvAngkatan = findViewById(R.id.tv_kartu_alumni_angkatan);
         tvNamaAlumni.setText(daftarModel.getNama());
         tvNim.setText(daftarModel.getNim());
-        tvAngkatan.setText(daftarModel.getTahun_lulus());
+        tvAngkatan.setText(daftarModel.getAngkatan());
     }
 
 }
