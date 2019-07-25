@@ -108,7 +108,7 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                         context.startActivity(statusDonasi);
                         break;
                     case 7:
-                        Intent statusLowongan = new Intent(context, StatusPermintaanDonasiActivity.class);
+                        Intent statusLowongan = new Intent(context, StatusPermintaanLowonganActivity.class);
                         context.startActivity(statusLowongan);
                         break;
                     case 8:
