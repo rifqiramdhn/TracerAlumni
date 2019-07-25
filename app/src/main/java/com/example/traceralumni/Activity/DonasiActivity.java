@@ -32,9 +32,6 @@ import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class DonasiActivity extends AppCompatActivity {
-    ConstraintLayout cl_iconBack;
-    ImageView img_iconBack;
-    TextView tv_titleBar;
 
     ConstraintLayout cl_icon_back, cl_icon_search;
     ImageView img_icon_back, img_icon_search;
@@ -62,7 +59,7 @@ public class DonasiActivity extends AppCompatActivity {
         getAllDonasi();
     }
 
-    private void getAllDonasi(){
+    private void getAllDonasi() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -74,13 +71,13 @@ public class DonasiActivity extends AppCompatActivity {
         call.enqueue(new Callback<ArrayList<DonasiModel>>() {
             @Override
             public void onResponse(Call<ArrayList<DonasiModel>> call, Response<ArrayList<DonasiModel>> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
 
                 arrayDonasi.clear();
                 ArrayList<DonasiModel> donasiModels = response.body();
-                if (donasiModels.get(0).getStatus_data().equals("y")){
+                if (donasiModels.get(0).getStatus_data().equals("y")) {
                     arrayDonasi.addAll(donasiModels);
 
                     final DonasiAdapter donasiAdapterNew = new DonasiAdapter(DonasiActivity.this, arrayDonasi);
@@ -99,32 +96,26 @@ public class DonasiActivity extends AppCompatActivity {
         });
     }
 
-    private void initView(){
+    private void initView() {
         donasiRecycler = findViewById(R.id.rv_activity_donasi);
         edt_donasi_cari = findViewById(R.id.edt_donasi_cari);
-        cl_iconBack = findViewById(R.id.cl_icon1);
-        cl_iconBack.setVisibility(View.VISIBLE);
-        img_iconBack = findViewById(R.id.img_icon1);
-        img_iconBack.setImageResource(R.drawable.ic_arrow_back);
-        tv_titleBar = findViewById(R.id.tv_navbar_top);
-        tv_titleBar.setText("DAFTAR DONASI");
         cl_icon_back = findViewById(R.id.cl_icon1);
-        cl_icon_search = findViewById(R.id.cl_icon4);
-        img_icon_back = findViewById(R.id.img_icon1);
-        img_icon_search = findViewById(R.id.img_icon4);
-        tv_navbar = findViewById(R.id.tv_navbar_top);
-        cl_donasi_search = findViewById(R.id.cl_activity_donasi_search);
-        img_icon_back.setImageResource(R.drawable.ic_arrow_back);
-        img_icon_search.setImageResource(R.drawable.ic_search);
-        tv_navbar.setText("OPEN DONASI");
         cl_icon_back.setVisibility(View.VISIBLE);
+        img_icon_back = findViewById(R.id.img_icon1);
+        img_icon_back.setImageResource(R.drawable.ic_arrow_back);
+        cl_icon_search = findViewById(R.id.cl_icon4);
         cl_icon_search.setVisibility(View.VISIBLE);
+        img_icon_search = findViewById(R.id.img_icon4);
+        img_icon_search.setImageResource(R.drawable.ic_search);
+        tv_navbar = findViewById(R.id.tv_navbar_top);
+        tv_navbar.setText("OPEN DONASI");
         cl_icon_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
             }
         });
+        cl_donasi_search = findViewById(R.id.cl_activity_donasi_search);
         cl_icon_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,7 +128,7 @@ public class DonasiActivity extends AppCompatActivity {
         });
     }
 
-    private void setSearch(final DonasiAdapter donasiAdapter){
+    private void setSearch(final DonasiAdapter donasiAdapter) {
         edt_donasi_cari.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

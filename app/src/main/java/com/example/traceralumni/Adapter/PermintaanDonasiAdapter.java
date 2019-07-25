@@ -88,15 +88,17 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
             }
         });
 
-        holder.clContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, DetailDonasiActivity.class);
-                intent.putExtra("id_donasi", permintaanDonasiModel.getIdDonasi());
-                context.startActivity(intent);
-            }
-        });
-        if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
+
+        if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
+            holder.clContainer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, DetailDonasiActivity.class);
+                    intent.putExtra("id_donasi", permintaanDonasiModel.getIdDonasi());
+                    intent.putExtra("statusDonasi", true);
+                    context.startActivity(intent);
+                }
+            });
             if (permintaanDonasiModel.getStatus().equalsIgnoreCase("VALID")) {
                 holder.tulisanDonasi.setText("DITERIMA");
             } else if (permintaanDonasiModel.getStatus().equalsIgnoreCase("BELUMVALID")) {
@@ -105,7 +107,6 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
                 holder.tulisanDonasi.setText("DITOLAK");
             }
         }
-
     }
 
     @Override
