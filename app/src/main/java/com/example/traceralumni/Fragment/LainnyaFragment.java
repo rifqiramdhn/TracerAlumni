@@ -54,6 +54,7 @@ public class LainnyaFragment extends Fragment {
         lainnyaModels.add(new LainnyaModel("Ganti Kata Sandi", R.drawable.ic_ganti_password));
         lainnyaModels.add(new LainnyaModel("Hapus Semua Chat", R.drawable.ic_delete_chat));
         lainnyaModels.add(new LainnyaModel("Tentang", R.drawable.ic_about));
+        lainnyaModels.add(new LainnyaModel("Hubungi Kami", R.drawable.ic_bantuan));
         lainnyaModels.add(new LainnyaModel("Keluar", R.drawable.ic_power_settings_new));
 
         pengaturanRecycler = rootView.findViewById(R.id.pengaturan_recycler_view);

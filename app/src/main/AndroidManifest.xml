@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.LupaPasswordActivity"></activity>
+        <activity android:name=".Activity.BantuanActivity"></activity>
+        <activity android:name=".Activity.LupaPasswordActivity" />
         <activity android:name=".Activity.OpListDonaturActivity" />
         <activity android:name=".Activity.OpPermintaanLowonganActivity" />
         <activity

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.traceralumni.Activity.AboutActivity;
+import com.example.traceralumni.Activity.BantuanActivity;
 import com.example.traceralumni.Activity.ChangePasswordActivity;
 import com.example.traceralumni.Activity.DonasiActivity;
 import com.example.traceralumni.Activity.KartuAlumniActivity;
@@ -111,6 +112,10 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                         context.startActivity(tentang);
                         break;
                     case 9:
+                        Intent bantuan = new Intent(context, BantuanActivity.class);
+                        context.startActivity(bantuan);
+                        break;
+                    case 10:
                         MainActivity.showKeluarDialog(context);
                         break;
                 }
