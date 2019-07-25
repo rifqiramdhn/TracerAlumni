@@ -15,4 +15,6 @@
 
     <dimen name="custom_tab_icon_width">28dp</dimen>
     <dimen name="custom_tab_icon_heigth">28dp</dimen>
+
+    <dimen name="margin_card">8dp</dimen>
 </resources>
