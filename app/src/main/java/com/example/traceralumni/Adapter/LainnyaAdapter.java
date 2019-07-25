@@ -101,21 +101,29 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                         context.startActivity(riwayat);
                         break;
                     case 6:
+                        Intent permintaanDonasi = new Intent(context, RiwayatPekerjaanActivity.class);
+                        context.startActivity(permintaanDonasi);
+                        break;
+                    case 7:
+                        Intent permintaanLowongan = new Intent(context, RiwayatPekerjaanActivity.class);
+                        context.startActivity(permintaanLowongan);
+                        break;
+                    case 8:
                         Intent gantiPass = new Intent(context, ChangePasswordActivity.class);
                         context.startActivity(gantiPass);
                         break;
-                    case 7:
+                    case 9:
                         showHapusSemuaChatDialog();
                         break;
-                    case 8:
+                    case 10:
                         Intent tentang = new Intent(context, AboutActivity.class);
                         context.startActivity(tentang);
                         break;
-                    case 9:
+                    case 11:
                         Intent bantuan = new Intent(context, BantuanActivity.class);
                         context.startActivity(bantuan);
                         break;
-                    case 10:
+                    case 12:
                         MainActivity.showKeluarDialog(context);
                         break;
                 }
