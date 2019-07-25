@@ -151,8 +151,12 @@ public class DetailDonasiActivity extends AppCompatActivity {
                 }
             }
         });
-
-        if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
+        if (getIntent().getBooleanExtra("statusDonasi", false)) {
+            btn_donasi.setVisibility(View.GONE);
+            btn_donasi.setText("donasi");
+            tv_totalDonasi.setVisibility(View.GONE);
+            tv_jumlahDonasi.setVisibility(View.INVISIBLE);
+        } else if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
             btn_donasi.setVisibility(View.VISIBLE);
             btn_donasi.setText("donasi");
             tv_totalDonasi.setVisibility(View.GONE);
