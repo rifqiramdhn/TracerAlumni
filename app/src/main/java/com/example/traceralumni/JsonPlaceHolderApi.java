@@ -159,8 +159,8 @@ public interface JsonPlaceHolderApi {
     @FormUrlEncoded
     @POST("post_change_password.php")
     Call<String> changePassword(@Field("nim") String nim,
-                              @Field("oldpass") String oldpass,
-                              @Field("newpass") String newpass);
+                                @Field("oldpass") String oldpass,
+                                @Field("newpass") String newpass);
 
     @GET("get_count_permintaan_donasi.php")
     Call<String> getCountPermintaanDonasi();
@@ -213,4 +213,8 @@ public interface JsonPlaceHolderApi {
     @FormUrlEncoded
     @POST("get_permintaan_lowongan_per_alumni.php")
     Call<ArrayList<LowonganModel>> getStatusLowongan(@Field("nim") String nim);
+
+    @FormUrlEncoded
+    @POST("get_permintaan_donasi_per_alumni.php")
+    Call<ArrayList<PermintaanDonasiModel>> getStatusPermintaanDonasi(@Field("nim") String nim);
 }

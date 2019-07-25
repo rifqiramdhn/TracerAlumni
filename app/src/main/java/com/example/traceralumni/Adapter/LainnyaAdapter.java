@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -103,12 +104,12 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                         context.startActivity(riwayat);
                         break;
                     case 6:
-                        Intent statusdonasi = new Intent(context, StatusPermintaanDonasiActivity.class);
-                        context.startActivity(statusdonasi);
+                        Intent statusDonasi = new Intent(context, StatusPermintaanDonasiActivity.class);
+                        context.startActivity(statusDonasi);
                         break;
                     case 7:
-                        Intent statuslowongan = new Intent(context, StatusPermintaanLowonganActivity.class);
-                        context.startActivity(statuslowongan);
+                        Intent statusLowongan = new Intent(context, StatusPermintaanDonasiActivity.class);
+                        context.startActivity(statusLowongan);
                         break;
                     case 8:
                         Intent gantiPass = new Intent(context, ChangePasswordActivity.class);
