@@ -209,4 +209,8 @@ public interface JsonPlaceHolderApi {
     @FormUrlEncoded
     @POST("post_get_lowongan_from_id.php")
     Call<LowonganModel> getLowonganFromId(@Field("id_lowongan") Integer id_lowongan);
+
+    @FormUrlEncoded
+    @POST("get_permintaan_lowongan_per_alumni.php")
+    Call<ArrayList<LowonganModel>> getStatusLowongan(@Field("nim") String nim);
 }

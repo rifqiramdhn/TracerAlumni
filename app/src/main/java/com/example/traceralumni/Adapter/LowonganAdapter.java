@@ -22,8 +22,10 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
+import static com.example.traceralumni.Activity.StatusPermintaanLowonganActivity.BUKA_STATUS_LOWONGAN;
 
 public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLowonganHolder> implements Filterable {
     Context context;
@@ -54,6 +56,17 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
         holder.txtKisaranGaji.setText("~Rp " + list.getKisaran_gaji() + " juta");
         holder.txtTanggal.setText(list.getTanggal_lowongan());
         oldPath = list.getLogo_perusahaan();
+
+        if (BUKA_STATUS_LOWONGAN){
+            if (list.getStatus_lowongan().equals("Valid")){
+                holder.txtDetail.setText("DITERIMA");
+            } else if (list.getStatus_lowongan().equals("BelumValid")){
+                holder.txtDetail.setText("MENUNGGU");
+            } else {
+                holder.txtDetail.setText("DITOLAK");
+            }
+        }
+
         Glide.with(context)
                 .load(BASE_URL + oldPath)
                 .into(holder.foto);

@@ -24,6 +24,8 @@ import com.example.traceralumni.Activity.KartuAlumniActivity;
 import com.example.traceralumni.Activity.LoginActivity;
 import com.example.traceralumni.Activity.MainActivity;
 import com.example.traceralumni.Activity.RiwayatPekerjaanActivity;
+import com.example.traceralumni.Activity.StatusPermintaanDonasiActivity;
+import com.example.traceralumni.Activity.StatusPermintaanLowonganActivity;
 import com.example.traceralumni.Activity.SuntingProfilActivity;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DaftarModel;
@@ -101,12 +103,12 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                         context.startActivity(riwayat);
                         break;
                     case 6:
-                        Intent permintaanDonasi = new Intent(context, RiwayatPekerjaanActivity.class);
-                        context.startActivity(permintaanDonasi);
+                        Intent statusdonasi = new Intent(context, StatusPermintaanDonasiActivity.class);
+                        context.startActivity(statusdonasi);
                         break;
                     case 7:
-                        Intent permintaanLowongan = new Intent(context, RiwayatPekerjaanActivity.class);
-                        context.startActivity(permintaanLowongan);
+                        Intent statuslowongan = new Intent(context, StatusPermintaanLowonganActivity.class);
+                        context.startActivity(statuslowongan);
                         break;
                     case 8:
                         Intent gantiPass = new Intent(context, ChangePasswordActivity.class);
@@ -192,13 +194,17 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                     return;
                 }
                 daftarModel = response.body();
-                Intent intent;
-                if (index == 1) {
-                    intent = new Intent(context, KartuAlumniActivity.class);
-                } else {
-                    intent = new Intent(context, SuntingProfilActivity.class);
+                Intent intent = null;
+                switch (index) {
+                    case 1:
+                        intent = new Intent(context, KartuAlumniActivity.class);
+                        intent.putExtra("daftarModel", daftarModel);
+                        break;
+                    case 4:
+                        intent = new Intent(context, SuntingProfilActivity.class);
+                        intent.putExtra("daftarModel", daftarModel);
+                        break;
                 }
-                intent.putExtra("daftarModel", daftarModel);
                 context.startActivity(intent);
             }
 
