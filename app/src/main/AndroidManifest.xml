@@ -45,7 +45,6 @@
         <activity android:name=".Activity.DetailDonasiActivity" />
         <activity android:name=".Activity.DetailProfilActivity" />
         <activity android:name=".Activity.TambahLowonganActivity" />
-        <activity android:name=".Activity.LanjutanTambahLowonganActivity" />
         <activity android:name=".Activity.RiwayatPekerjaanActivity" />
         <activity android:name=".Activity.TambahRiwayatPekerjaanActivity" />
         <activity android:name=".Activity.OpDetailInfoActivity" />

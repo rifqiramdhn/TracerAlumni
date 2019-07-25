@@ -51,8 +51,8 @@ public class LainnyaFragment extends Fragment {
         lainnyaModels.add(new LainnyaModel("Tracer Studi", R.drawable.ic_tracer_study));
         lainnyaModels.add(new LainnyaModel("Sunting Profil", R.drawable.ic_person));
         lainnyaModels.add(new LainnyaModel("Riwayat Pekerjaaan", R.drawable.ic_riwayat_pekerjaan));
-        lainnyaModels.add(new LainnyaModel("Status Permintaan Donasi", R.drawable.ic_riwayat_pekerjaan));
-        lainnyaModels.add(new LainnyaModel("Status Permintaan Lowongan", R.drawable.ic_riwayat_pekerjaan));
+        lainnyaModels.add(new LainnyaModel("Status Permintaan Donasi", R.drawable.ic_wallet));
+        lainnyaModels.add(new LainnyaModel("Status Permintaan Lowongan", R.drawable.ic_lowongan));
         lainnyaModels.add(new LainnyaModel("Ganti Kata Sandi", R.drawable.ic_ganti_password));
         lainnyaModels.add(new LainnyaModel("Hapus Semua Chat", R.drawable.ic_delete_chat));
         lainnyaModels.add(new LainnyaModel("Tentang", R.drawable.ic_about));

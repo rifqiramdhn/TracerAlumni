@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.traceralumni.Activity.DetailLowonganActivity;
+import com.example.traceralumni.Activity.TambahLowonganActivity;
 import com.example.traceralumni.Model.LowonganModel;
 import com.example.traceralumni.R;
 
@@ -49,7 +50,7 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
 
     @Override
     public void onBindViewHolder(@NonNull final ListLowonganHolder holder, final int position) {
-        LowonganModel list = listLowongan.get(position);
+        final LowonganModel list = listLowongan.get(position);
         holder.txtTitle.setText(list.getNama_lowongan());
         holder.txtPerusahaan.setText(list.getNama_perusahaan());
         holder.txtLokasi.setText(list.getAlamat_perusahaan());
@@ -57,10 +58,10 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
         holder.txtTanggal.setText(list.getTanggal_lowongan());
         oldPath = list.getLogo_perusahaan();
 
-        if (BUKA_STATUS_LOWONGAN){
-            if (list.getStatus_lowongan().equals("Valid")){
+        if (BUKA_STATUS_LOWONGAN) {
+            if (list.getStatus_lowongan().equals("Valid")) {
                 holder.txtDetail.setText("DITERIMA");
-            } else if (list.getStatus_lowongan().equals("BelumValid")){
+            } else if (list.getStatus_lowongan().equals("BelumValid")) {
                 holder.txtDetail.setText("MENUNGGU");
             } else {
                 holder.txtDetail.setText("DITOLAK");
@@ -74,7 +75,10 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, DetailLowonganActivity.class);
-                i.putExtra("object_lowongan", listLowongan.get(position));
+                i.putExtra("object_lowongan", list);
+                if (BUKA_STATUS_LOWONGAN){
+                    i.putExtra("status", list.getStatus_lowongan());
+                }
                 context.startActivity(i);
             }
         });

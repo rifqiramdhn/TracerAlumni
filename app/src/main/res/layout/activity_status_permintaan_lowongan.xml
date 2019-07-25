@@ -24,6 +24,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include_status_loker"
         tools:listitem="@layout/card_lowongan">
-        
+
     </android.support.v7.widget.RecyclerView>
 </android.support.constraint.ConstraintLayout>

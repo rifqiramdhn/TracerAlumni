@@ -1,11 +1,13 @@
 package com.example.traceralumni.Activity;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ParseException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -15,6 +17,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -35,6 +38,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import id.zelory.compressor.Compressor;
@@ -48,25 +53,33 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
+import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB_KEY;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
+import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 import static com.example.traceralumni.Activity.SuntingProfilActivity.PICK_PHOTO_REQUEST;
 
 public class TambahLowonganActivity extends AppCompatActivity {
 
-    private ConstraintLayout cl_icon_back;
-    private ImageView img_icon_back;
+    private ConstraintLayout cl_icon_back, cl_icon_ok;
+    private ImageView img_icon_back, img_icon_ok;
     private TextView tv_navbar;
-    private Button btn_next;
     LowonganModel lowonganModel;
 
-    EditText edt_judulLowongan, edt_jabatan, edt_namaPerusahaan, edt_alamatPerusahaan, edt_kuota, edt_gaji;
+    Integer kuota;
+    String judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, gaji, syarat, website, email, notelp, cp, tanggal_lowongan, logo;
+    EditText edt_syarat, edt_website, edt_email, edt_notelp, edt_cp, edt_judulLowongan, edt_jabatan, edt_namaPerusahaan, edt_alamatPerusahaan, edt_kuota, edt_gaji;
+    AlertDialog.Builder builder;
+    String photoPath;
+    Uri uriKirim;
 
     CircleImageView img_logo_lowongan, img_edit_logo_lowongan;
 
-    static final int PICK_PHOTO_REQUEST = 1;
+    int CAN_CLICK_BUTTON_SAVE = 0; //0 bisa diklik, 1 tidak bisa diklik
 
-    String oldPath = "";
-    Uri uriKirim;
+    static final int PICK_PHOTO_REQUEST = 1;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -74,9 +87,9 @@ public class TambahLowonganActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tambah_lowongan);
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-
+        builder = new AlertDialog.Builder(this);
         initView();
-
+        getDataFromIntent();
         img_edit_logo_lowongan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,11 +103,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
             }
         });
 
-        img_icon_back.setImageResource(R.drawable.ic_arrow_back);
 
-        tv_navbar.setText("TAMBAH LOWONGAN");
-
-        cl_icon_back.setVisibility(View.VISIBLE);
         cl_icon_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,7 +111,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
             }
         });
 
-        btn_next.setOnClickListener(new View.OnClickListener() {
+        cl_icon_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (uriKirim == null){
@@ -119,17 +128,20 @@ public class TambahLowonganActivity extends AppCompatActivity {
                     edt_kuota.setError("Harap isi kuota");
                 } else if (edt_gaji.getText().toString().equalsIgnoreCase("")){
                     edt_gaji.setError("Harap isi gaji");
+                } else if (edt_syarat.getText().toString().equalsIgnoreCase("")){
+                    edt_syarat.setError("Harap isi syarat pekerjaan");
+                } else if (edt_website.getText().toString().equalsIgnoreCase("")){
+                    edt_website.setError("Harap isi website");
+                } else if (edt_email.getText().toString().equalsIgnoreCase("")){
+                    edt_email.setError("Harap isi email");
+                } else if (edt_notelp.getText().toString().equalsIgnoreCase("")){
+                    edt_notelp.setError("Harap isi nomor telepon");
+                } else if (edt_cp.getText().toString().equalsIgnoreCase("")){
+                    edt_cp.setError("Harap isi kontak yang dapat dihubungi");
+                } else if (edt_cp.getText().length() < 10){
+                    edt_cp.setError("Nomor kontak tidak valid");
                 } else {
-                    Intent i = new Intent(TambahLowonganActivity.this, LanjutanTambahLowonganActivity.class);
-                    i.putExtra("judulLowongan", edt_judulLowongan.getText().toString().trim());
-                    i.putExtra("jabatan", edt_jabatan.getText().toString().trim());
-                    i.putExtra("namaPerusahaan", edt_namaPerusahaan.getText().toString().trim());
-                    i.putExtra("alamat", edt_alamatPerusahaan.getText().toString().trim());
-                    i.putExtra("kuota", edt_kuota.getText().toString().trim());
-                    i.putExtra("gaji", edt_gaji.getText().toString().trim());
-                    i.putExtra("logo", oldPath.trim());
-                    i.putExtra("uri", uriKirim.toString());
-                    startActivity(i);
+                    showKonfirmasiTambah();
                 }
             }
         });
@@ -144,6 +156,25 @@ public class TambahLowonganActivity extends AppCompatActivity {
                 }
                 return;
             }
+        }
+    }
+
+    private void getDataFromIntent(){
+        lowonganModel = getIntent().getParcelableExtra("object_lowongan");
+        if (lowonganModel != null){
+            Glide.with(this)
+                    .load(lowonganModel.getLogo_perusahaan())
+                    .into(img_logo_lowongan);
+            edt_judulLowongan.setText(lowonganModel.getNama_lowongan());
+            edt_jabatan.setText(lowonganModel.getJabatan());
+            edt_namaPerusahaan.setText(lowonganModel.getNama_perusahaan());
+            edt_alamatPerusahaan.setText(lowonganModel.getAlamat_perusahaan());
+            edt_gaji.setText(lowonganModel.getKisaran_gaji());
+            edt_syarat.setText(lowonganModel.getSyarat_pekerjaan());
+            edt_website.setText(lowonganModel.getWebsite());
+            edt_email.setText(lowonganModel.getEmail());
+            edt_notelp.setText(lowonganModel.getNo_telp());
+            edt_cp.setText(lowonganModel.getCp());
         }
     }
 
@@ -177,13 +208,155 @@ public class TambahLowonganActivity extends AppCompatActivity {
         return result;
     }
 
+    private void showKonfirmasiTambah() {
+        builder.setMessage("Apakah yakin anda akan menambahkan lowongan ini?" + "\nAnda tidak bisa mengedit lowongan lagi.");
+        builder.setTitle("Konfirmasi Tambah Lowongan");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                judulLowongan = edt_judulLowongan.getText().toString().trim();
+                jabatan = edt_jabatan.getText().toString().trim();
+                namaPerusahaan = edt_namaPerusahaan.getText().toString().trim();
+                alamatPerusahaan = edt_alamatPerusahaan.getText().toString().trim();
+                gaji = edt_gaji.getText().toString().trim();
+                syarat = edt_syarat.getText().toString().trim();
+                website = edt_website.getText().toString().trim();
+                email = edt_email.getText().toString().trim();
+                notelp = edt_notelp.getText().toString().trim();
+
+                if (edt_cp.getText().toString().charAt(0) == '0') {
+                    cp = "+62" + edt_cp.getText().toString().substring(1, edt_cp.getText().length());
+                } else if (edt_cp.getText().toString().charAt(0) != '+') {
+                    cp = "+" + edt_cp.getText();
+                } else {
+                    cp = edt_cp.getText().toString();
+                }
+
+                if (CAN_CLICK_BUTTON_SAVE == 0){
+                    CAN_CLICK_BUTTON_SAVE = 1;
+                    getTanggalLowongan();
+                    uploadPhoto(uriKirim);
+                }
+            }
+        });
+
+        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void saveData(String username, String judulLowongan, String jabatan, String namaPerusahaan, String alamat, Integer kuota, String gaji, String syarat, String website, String email, String notelp, String cp, String status, String tglLowongan, String logo) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        Call<Void> call = jsonPlaceHolderApi.createLowongan(username, judulLowongan, jabatan, namaPerusahaan, alamat, kuota, gaji, syarat, website, email, notelp, cp, status, tglLowongan, logo);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()) {
+                    CAN_CLICK_BUTTON_SAVE = 0;
+                    return;
+                }
+
+                if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
+                    Toast.makeText(TambahLowonganActivity.this, "Tunggu konfirmasi dari operator", Toast.LENGTH_SHORT).show();
+                    Intent a = new Intent(TambahLowonganActivity.this, MainActivity.class);
+                    a.putExtra(INDEX_OPENED_TAB_KEY, INDEX_OPENED_TAB);
+                    startActivity(a);
+                } else {
+                    Toast.makeText(TambahLowonganActivity.this, "Lowongan Berhasil Ditambahkan", Toast.LENGTH_SHORT).show();
+                    Intent a = new Intent(TambahLowonganActivity.this, MainActivity.class);
+                    a.putExtra(INDEX_OPENED_TAB_KEY, INDEX_OPENED_TAB);
+                    startActivity(a);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                CAN_CLICK_BUTTON_SAVE = 0;
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(TambahLowonganActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void uploadPhoto(Uri fileUri) {
+        File file = new File(getRealPathFromURI(fileUri));
+        File compressedFile = new File(getRealPathFromURI(fileUri));
+        try {
+            compressedFile = new Compressor(this).compressToFile(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)), compressedFile);
+        MultipartBody.Part kirim = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        final JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        Call<PathModel> call = jsonPlaceHolderApi.uploadPhoto(kirim);
+        call.enqueue(new Callback<PathModel>() {
+            @Override
+            public void onResponse(Call<PathModel> call, Response<PathModel> response) {
+                if (!response.isSuccessful()){
+                    CAN_CLICK_BUTTON_SAVE = 0;
+                    return;
+                }
+                PathModel pathModel = response.body();
+                if (!pathModel.getPath().equals("invalid")){
+                    photoPath = pathModel.getPath();
+                    if(JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
+                        saveData(NIM, judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "BelumValid",tanggal_lowongan, photoPath);
+                    } else {
+                        saveData("Admin", judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "Valid",tanggal_lowongan, photoPath);
+                    }
+                } else {
+                    CAN_CLICK_BUTTON_SAVE = 0;
+                    Toast.makeText(TambahLowonganActivity.this, "Gagal Upload Photo", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PathModel> call, Throwable t) {
+                CAN_CLICK_BUTTON_SAVE = 0;
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(TambahLowonganActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void getTanggalLowongan() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = new Date();
+            tanggal_lowongan = dateFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void initView() {
         cl_icon_back = findViewById(R.id.cl_icon1);
         img_icon_back = findViewById(R.id.img_icon1);
         tv_navbar = findViewById(R.id.tv_navbar_top);
         img_logo_lowongan = findViewById(R.id.iv_tambah_lowongan_logo);
         img_edit_logo_lowongan = findViewById(R.id.iv_edit_lowongan_logo);
-        btn_next = findViewById(R.id.btn_next);
         edt_judulLowongan = findViewById(R.id.edt_lowongan);
         edt_jabatan = findViewById(R.id.edt_riwayat_pekerjaan);
         edt_namaPerusahaan = findViewById(R.id.edt_perusahaan);
@@ -191,5 +364,20 @@ public class TambahLowonganActivity extends AppCompatActivity {
         edt_kuota = findViewById(R.id.edt_kuota);
         edt_gaji = findViewById(R.id.edt_riwayat_gaji);
 
+        cl_icon_ok = findViewById(R.id.cl_icon4);
+        img_icon_ok = findViewById(R.id.img_icon4);
+        tv_navbar = findViewById(R.id.tv_navbar_top);
+
+        edt_syarat = findViewById(R.id.edt_syarat);
+        edt_website = findViewById(R.id.edt_web);
+        edt_email = findViewById(R.id.edt_email);
+        edt_notelp = findViewById(R.id.edt_notelp);
+        edt_cp = findViewById(R.id.edt_kontak);
+
+        img_icon_ok.setImageResource(R.drawable.ic_check);
+        cl_icon_ok.setVisibility(View.VISIBLE);
+        img_icon_back.setImageResource(R.drawable.ic_arrow_back);
+        tv_navbar.setText("TAMBAH LOWONGAN");
+        cl_icon_back.setVisibility(View.VISIBLE);
     }
 }

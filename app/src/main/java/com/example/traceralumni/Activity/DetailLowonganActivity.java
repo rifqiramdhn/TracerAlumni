@@ -42,11 +42,12 @@ import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
+import static com.example.traceralumni.Activity.StatusPermintaanLowonganActivity.BUKA_STATUS_LOWONGAN;
 
 public class DetailLowonganActivity extends AppCompatActivity {
     Button btn_profil, btn_hapus;
-    ConstraintLayout clBtnHubungi, cl_iconBack, cl_iconHapus;
-    ImageView img_iconBack, img_iconHapus;
+    ConstraintLayout clBtnHubungi, cl_iconBack, cl_iconHapus, cl_iconEdit;
+    ImageView img_iconBack, img_iconHapus, img_iconEdit;
     CircleImageView img_logo_perusahaan;
     TextView tvNavBar;
     private TextView tvNamaLowongan, tvNamaPerusahaan, tvLokasi, tvKisaranGaji, tvProfil, tvSyarat, tvKuota, tvJabatan, tvWeb, tvEmail, tvTelepon, tvHubungi;
@@ -72,6 +73,16 @@ public class DetailLowonganActivity extends AppCompatActivity {
     private void getData() {
         Intent intent = getIntent();
         lowonganModel = intent.getParcelableExtra("object_lowongan");
+
+        if (BUKA_STATUS_LOWONGAN){
+            cl_iconEdit.setVisibility(View.VISIBLE);
+            cl_iconHapus.setVisibility(View.VISIBLE);
+        }
+
+        if (intent.getStringExtra("status") != null && intent.getStringExtra("status").equals("Valid")){
+            cl_iconEdit.setVisibility(View.GONE);
+            cl_iconHapus.setVisibility(View.GONE);
+        }
 
         if (lowonganModel != null) {
             tvNamaLowongan.setText(lowonganModel.getNama_lowongan());
@@ -102,6 +113,7 @@ public class DetailLowonganActivity extends AppCompatActivity {
         cl_iconHapus = findViewById(R.id.cl_icon4);
         img_iconBack = findViewById(R.id.img_icon1);
         img_iconHapus = findViewById(R.id.img_icon4);
+        img_iconEdit = findViewById(R.id.img_icon3);
         img_logo_perusahaan = findViewById(R.id.iv_activity_detail_lowongan_logo);
         tvNavBar = findViewById(R.id.tv_navbar_top);
         clBtnHubungi = findViewById(R.id.cl_btn_hubungi_lowongan);
@@ -123,6 +135,7 @@ public class DetailLowonganActivity extends AppCompatActivity {
         tvNavBar.setText("DETAIL LOWONGAN");
         img_iconBack.setImageResource(R.drawable.ic_arrow_back);
         img_iconHapus.setImageResource(R.drawable.ic_delete);
+        img_iconEdit.setImageResource(R.drawable.ic_edit);
         cl_iconBack.setVisibility(View.VISIBLE);
 
         cl_iconBack.setOnClickListener(new View.OnClickListener() {
@@ -157,6 +170,32 @@ public class DetailLowonganActivity extends AppCompatActivity {
             }
         });
 
+        cl_iconEdit = findViewById(R.id.cl_icon3);
+        cl_iconEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editPermintaanLowongan();
+            }
+        });
+        cl_iconHapus = findViewById(R.id.cl_icon4);
+        cl_iconHapus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hapusPermintaanLowongan();
+            }
+        });
+    }
+
+    private void hapusPermintaanLowongan(){
+        Toast.makeText(this, "hapus lowongan", Toast.LENGTH_SHORT).show();
+    }
+
+    private void editPermintaanLowongan(){
+        Toast.makeText(this, "edit lowongan", Toast.LENGTH_SHORT).show();
+//        if (lowonganModel != null){
+//            Intent intent = new Intent(DetailLowonganActivity.this, TambahLowonganActivity.class);
+//            intent.putExtra("object_lowongan")
+//        }
     }
 
     private void showKonfirmasiHapus() {
