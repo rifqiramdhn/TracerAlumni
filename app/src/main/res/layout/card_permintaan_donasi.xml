@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/margin_card"
@@ -8,173 +9,202 @@
     android:layout_marginBottom="@dimen/margin_card"
     android:background="@color/white">
 
-    <TextView
-        android:id="@+id/tv_card_permintaan_donasi_nama_donatur"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Paidi Sugiono"
-        android:textColor="@color/colorIconBiru2"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/cl_card_permintaan_donasi_no"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_card_permintaan_donasi_jumlah"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Rp200.000.000"
-        android:textColor="@android:color/black"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_card_permintaan_donasi_nama_donatur"
-        app:layout_constraintStart_toStartOf="@+id/tv_card_permintaan_donasi_nama_donatur"
-        app:layout_constraintTop_toBottomOf="@+id/tv_card_permintaan_donasi_nama_donatur" />
-
-    <TextView
-        android:id="@+id/tv_card_permintaan_donasi_nama_donasi"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="Pembangunan Kantin"
-        android:textColor="@android:color/black"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_card_permintaan_donasi_jumlah"
-        app:layout_constraintStart_toStartOf="@+id/tv_card_permintaan_donasi_jumlah"
-        app:layout_constraintTop_toBottomOf="@+id/tv_card_permintaan_donasi_jumlah" />
-
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/cl_card_permintaan_donasi_ok"
-        android:layout_width="@dimen/icon_btn_width"
-        android:layout_height="@dimen/icon_btn_height"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_card_permintaan_donasi_nama_donatur"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_card_permintaan_donasi_nama_donatur">
-
-        <ImageView
-            android:id="@+id/iv_card_permintaan_donasi_ok"
-            android:layout_width="@dimen/icon_width"
-            android:layout_height="@dimen/icon_height"
-            android:tint="@android:color/holo_green_dark"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_check" />
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/cl_card_permintaan_donasi_no"
-        android:layout_width="@dimen/icon_btn_width"
-        android:layout_height="@dimen/icon_btn_height"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:layout_constraintBottom_toBottomOf="@+id/cl_card_permintaan_donasi_ok"
-        app:layout_constraintEnd_toStartOf="@+id/cl_card_permintaan_donasi_ok"
-        app:layout_constraintTop_toTopOf="@+id/cl_card_permintaan_donasi_ok">
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="@dimen/icon_width"
-            android:layout_height="@dimen/icon_height"
-            android:tint="@android:color/holo_red_dark"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_clear" />
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/cl_card_permintaan_donasi_detail_donasi"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cl_card_permintaan_donasi_profil_donatur"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_card_permintaan_donasi_nama_donasi">
+        android:id="@+id/cl_card_permintaan_donasi_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground">
 
         <TextView
-            android:id="@+id/tv_card_permintaan_detail_donasi"
+            android:id="@+id/tv_card_permintaan_donasi_tulisan_donasi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:text="DETAIL DONASI"
-            android:textColor="@color/colorIconBiru"
-            android:textSize="10sp"
+            android:text="DONASI"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_card_permintaan_donasi_jumlah"
             app:layout_constraintTop_toTopOf="parent" />
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/cl_card_permintaan_donasi_profil_donatur"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cl_card_permintaan_donasi_detail_donasi"
-        app:layout_constraintTop_toTopOf="@+id/cl_card_permintaan_donasi_detail_donasi">
 
         <TextView
-            android:id="@+id/tv_card_permintaan_donasi_profil_donatur"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_card_permintaan_donasi_nama_donatur"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="PROFIL DONATUR"
-            android:textColor="@color/colorIconBiru"
-            android:textSize="10sp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="Paidi Sugiono"
+            android:textColor="@color/colorIconBiru2"
+            android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cl_card_permintaan_donasi_no"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_card_permintaan_donasi_jumlah"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Rp200.000.000"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_card_permintaan_donasi_nama_donatur"
+            app:layout_constraintStart_toStartOf="@+id/tv_card_permintaan_donasi_nama_donatur"
+            app:layout_constraintTop_toBottomOf="@+id/tv_card_permintaan_donasi_nama_donatur" />
+
+        <TextView
+            android:id="@+id/tv_card_permintaan_donasi_nama_donasi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="8dp"
+            android:text="Pembangunan Kantin"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_card_permintaan_donasi_jumlah"
+            app:layout_constraintStart_toStartOf="@+id/tv_card_permintaan_donasi_jumlah"
+            app:layout_constraintTop_toBottomOf="@+id/tv_card_permintaan_donasi_jumlah"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_card_permintaan_donasi_ok"
+            android:layout_width="@dimen/icon_btn_width"
+            android:layout_height="@dimen/icon_btn_height"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:background="?android:attr/selectableItemBackground"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_card_permintaan_donasi_nama_donatur"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_card_permintaan_donasi_nama_donatur">
+
+            <ImageView
+                android:id="@+id/iv_card_permintaan_donasi_ok"
+                android:layout_width="@dimen/icon_width"
+                android:layout_height="@dimen/icon_height"
+                android:tint="@android:color/holo_green_dark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_check" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_card_permintaan_donasi_no"
+            android:layout_width="@dimen/icon_btn_width"
+            android:layout_height="@dimen/icon_btn_height"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            app:layout_constraintBottom_toBottomOf="@+id/cl_card_permintaan_donasi_ok"
+            app:layout_constraintEnd_toStartOf="@+id/cl_card_permintaan_donasi_ok"
+            app:layout_constraintTop_toTopOf="@+id/cl_card_permintaan_donasi_ok">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="@dimen/icon_width"
+                android:layout_height="@dimen/icon_height"
+                android:tint="@android:color/holo_red_dark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_clear" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_card_permintaan_donasi_detail_donasi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cl_card_permintaan_donasi_profil_donatur"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_card_permintaan_donasi_nama_donasi">
+
+            <TextView
+                android:id="@+id/tv_card_permintaan_detail_donasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="DETAIL DONASI"
+                android:textColor="@color/colorIconBiru"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_card_permintaan_donasi_profil_donatur"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cl_card_permintaan_donasi_detail_donasi"
+            app:layout_constraintTop_toTopOf="@+id/cl_card_permintaan_donasi_detail_donasi">
+
+            <TextView
+                android:id="@+id/tv_card_permintaan_donasi_profil_donatur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="PROFIL DONATUR"
+                android:textColor="@color/colorIconBiru"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_card_permintaan_donasi_tanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12/12/2012"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_card_permintaan_donasi_nama_donasi"
+            app:layout_constraintEnd_toEndOf="@+id/cl_card_permintaan_donasi_ok"
+            app:layout_constraintStart_toStartOf="@+id/cl_card_permintaan_donasi_no" />
+
+        <View
+            android:id="@+id/v_card_permintaan_donasi2"
+            android:layout_width="0.5dp"
+            android:layout_height="0dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/cl_card_permintaan_donasi_profil_donatur"
+            app:layout_constraintStart_toEndOf="@id/cl_card_permintaan_donasi_detail_donasi"
+            app:layout_constraintTop_toTopOf="@id/cl_card_permintaan_donasi_detail_donasi" />
+
+        <View
+            android:id="@+id/v_card_permintaan_donasi3"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/cl_card_permintaan_donasi_profil_donatur" />
     </android.support.constraint.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/tv_card_permintaan_donasi_tanggal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="12/12/2012"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_card_permintaan_donasi_nama_donasi"
-        app:layout_constraintEnd_toEndOf="@+id/cl_card_permintaan_donasi_ok"
-        app:layout_constraintStart_toStartOf="@+id/cl_card_permintaan_donasi_no" />
-
-    <View
-        android:id="@+id/v_card_permintaan_donasi2"
-        android:layout_width="0.5dp"
-        android:layout_height="0dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/cl_card_permintaan_donasi_profil_donatur"
-        app:layout_constraintStart_toEndOf="@id/cl_card_permintaan_donasi_detail_donasi"
-        app:layout_constraintTop_toTopOf="@id/cl_card_permintaan_donasi_detail_donasi" />
-
-    <View
-        android:id="@+id/v_card_permintaan_donasi3"
-        android:layout_width="0dp"
-        android:layout_height="0.5dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/cl_card_permintaan_donasi_profil_donatur" />
 
 </android.support.constraint.ConstraintLayout>

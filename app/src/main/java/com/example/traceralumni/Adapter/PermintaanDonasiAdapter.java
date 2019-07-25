@@ -27,6 +27,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDonasiAdapter.ViewHolder> {
@@ -85,6 +87,25 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
                 showTolakDialog(position);
             }
         });
+
+        holder.clContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailDonasiActivity.class);
+                intent.putExtra("id_donasi", permintaanDonasiModel.getIdDonasi());
+                context.startActivity(intent);
+            }
+        });
+        if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
+            if (permintaanDonasiModel.getStatus().equalsIgnoreCase("VALID")) {
+                holder.tulisanDonasi.setText("DITERIMA");
+            } else if (permintaanDonasiModel.getStatus().equalsIgnoreCase("BELUMVALID")) {
+                holder.tulisanDonasi.setText("MENUNGGU");
+            } else {
+                holder.tulisanDonasi.setText("DITOLAK");
+            }
+        }
+
     }
 
     @Override
@@ -96,9 +117,10 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView namaDonatur, namaKegiatan, totalDonasi, tanggalDonasi;
+        private TextView namaDonatur, namaKegiatan, totalDonasi, tanggalDonasi, tulisanDonasi;
 
-        private ConstraintLayout clDetailDonasi, clProfilDonatur, clKonfirmasi, clTolak;
+        private ConstraintLayout clDetailDonasi, clProfilDonatur, clKonfirmasi, clTolak, clContainer;
+        private View vVertical, vHorizontal;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -111,6 +133,30 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
             clKonfirmasi = itemView.findViewById(R.id.cl_card_permintaan_donasi_ok);
             clTolak = itemView.findViewById(R.id.cl_card_permintaan_donasi_no);
             tanggalDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_tanggal);
+            vVertical = itemView.findViewById(R.id.v_card_permintaan_donasi2);
+            vHorizontal = itemView.findViewById(R.id.v_card_permintaan_donasi3);
+            tulisanDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_tulisan_donasi);
+            clContainer = itemView.findViewById(R.id.cl_card_permintaan_donasi_container);
+
+            if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
+                clDetailDonasi.setVisibility(View.GONE);
+                clProfilDonatur.setVisibility(View.GONE);
+                clKonfirmasi.setVisibility(View.INVISIBLE);
+                clTolak.setVisibility(View.INVISIBLE);
+                vVertical.setVisibility(View.GONE);
+                vHorizontal.setVisibility(View.GONE);
+                tulisanDonasi.setVisibility(View.VISIBLE);
+                tanggalDonasi.setVisibility(View.GONE);
+            } else {
+                clDetailDonasi.setVisibility(View.VISIBLE);
+                clProfilDonatur.setVisibility(View.VISIBLE);
+                clKonfirmasi.setVisibility(View.VISIBLE);
+                clTolak.setVisibility(View.VISIBLE);
+                vVertical.setVisibility(View.VISIBLE);
+                vHorizontal.setVisibility(View.VISIBLE);
+                tulisanDonasi.setVisibility(View.GONE);
+                tanggalDonasi.setVisibility(View.VISIBLE);
+            }
         }
     }
 
