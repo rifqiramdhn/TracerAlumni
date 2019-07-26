@@ -57,6 +57,8 @@ public class DetailLowonganActivity extends AppCompatActivity {
     AlertDialog.Builder builder;
     LowonganModel lowonganModel;
 
+    int CAN_CLICK_BUTTON_SAVE = 0; //0 bisa diklik, 1 tidak bisa diklik
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +79,10 @@ public class DetailLowonganActivity extends AppCompatActivity {
         if (BUKA_STATUS_LOWONGAN){
             cl_iconEdit.setVisibility(View.VISIBLE);
             cl_iconHapus.setVisibility(View.VISIBLE);
+        }
+
+        if (intent.getStringExtra("status") != null && intent.getStringExtra("status").equals("TidakValid")){
+            cl_iconEdit.setVisibility(View.GONE);
         }
 
         if (intent.getStringExtra("status") != null && intent.getStringExtra("status").equals("Valid")){
@@ -181,21 +187,16 @@ public class DetailLowonganActivity extends AppCompatActivity {
         cl_iconHapus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                hapusPermintaanLowongan();
+                showKonfirmasiHapus();
             }
         });
     }
 
-    private void hapusPermintaanLowongan(){
-        Toast.makeText(this, "hapus lowongan", Toast.LENGTH_SHORT).show();
-    }
-
     private void editPermintaanLowongan(){
+        Intent intent = new Intent(DetailLowonganActivity.this, TambahLowonganActivity.class);
+        intent.putExtra("object_lowongan", lowonganModel);
+        startActivity(intent);
         Toast.makeText(this, "edit lowongan", Toast.LENGTH_SHORT).show();
-//        if (lowonganModel != null){
-//            Intent intent = new Intent(DetailLowonganActivity.this, TambahLowonganActivity.class);
-//            intent.putExtra("object_lowongan")
-//        }
     }
 
     private void showKonfirmasiHapus() {
@@ -234,9 +235,7 @@ public class DetailLowonganActivity extends AppCompatActivity {
                 if (!response.isSuccessful()) {
                     return;
                 }
-                Intent i = new Intent(DetailLowonganActivity.this, MainActivity.class);
-                i.putExtra(INDEX_OPENED_TAB_KEY, INDEX_OPENED_TAB);
-                startActivity(i);
+                onBackPressed();
             }
 
             @Override

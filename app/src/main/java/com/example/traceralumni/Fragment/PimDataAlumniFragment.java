@@ -49,6 +49,8 @@ public class PimDataAlumniFragment extends Fragment {
     ArrayList<DaftarModel> daftarModels;
     ProgressBar progressBar;
 
+    int CAN_CLICK_BUTTON_SAVE = 0; //0 bisa diklik, 1 tidak bisa diklik
+
     public PimDataAlumniFragment() {
         // Required empty public constructor
     }
@@ -68,7 +70,10 @@ public class PimDataAlumniFragment extends Fragment {
         btn_lihatDaftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getDataAlumniDaftar();
+                if (CAN_CLICK_BUTTON_SAVE == 0){
+                    CAN_CLICK_BUTTON_SAVE = 1;
+                    getDataAlumniDaftar();
+                }
             }
         });
 
@@ -313,8 +318,10 @@ public class PimDataAlumniFragment extends Fragment {
             @Override
             public void onResponse(Call<ArrayList<DaftarModel>> call, Response<ArrayList<DaftarModel>> response) {
                 if (!response.isSuccessful()) {
+                    CAN_CLICK_BUTTON_SAVE = 0;
                     return;
                 }
+                CAN_CLICK_BUTTON_SAVE = 0;
                 daftarModels.clear();
                 ArrayList<DaftarModel> daftarModelsResponse = response.body();
                 daftarModels.addAll(daftarModelsResponse);
@@ -325,6 +332,7 @@ public class PimDataAlumniFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ArrayList<DaftarModel>> call, Throwable t) {
+                CAN_CLICK_BUTTON_SAVE = 0;
                 if (t.getMessage().contains("Failed to connect")) {
                     Toast.makeText(getContext(), TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
                 }

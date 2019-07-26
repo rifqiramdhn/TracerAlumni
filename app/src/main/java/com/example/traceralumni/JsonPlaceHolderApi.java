@@ -217,4 +217,22 @@ public interface JsonPlaceHolderApi {
     @FormUrlEncoded
     @POST("get_permintaan_donasi_per_alumni.php")
     Call<ArrayList<PermintaanDonasiModel>> getStatusPermintaanDonasi(@Field("nim") String nim);
+
+    @FormUrlEncoded
+    @POST("post_change_permintaan_lowongan.php")
+    Call<Void> updateLowongan(@Field("idLowongan") Integer idLowongan,
+                              @Field("judulLowongan") String judulLowongan,
+                              @Field("jabatan") String jabatan,
+                              @Field("namaPerusahaan") String namaPerusahaan,
+                              @Field("alamatPerusahaan") String alamat,
+                              @Field("kuota") Integer kuota,
+                              @Field("gaji") String gaji,
+                              @Field("syarat") String syaratPekerjaan,
+                              @Field("website") String website,
+                              @Field("email") String email,
+                              @Field("notelp") String noTelp,
+                              @Field("cp") String cp,
+                              @Field("status") String status,
+                              @Field("tanggal_lowongan") String tanggal,
+                              @Field("logo_perusahaan") String logo);
 }
