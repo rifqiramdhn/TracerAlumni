@@ -27,13 +27,15 @@ public class OpFragPagerAdapter extends FragmentPagerAdapter {
                 return new OpLowonganFragment();
             case 1:
                 return new OpInfoFragment();
+            case 2:
+                return new OpDonasiFragment();
         }
-        return new OpDonasiFragment();
+        return new DaftarFragment();
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 
     @Nullable
