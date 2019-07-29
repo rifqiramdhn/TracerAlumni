@@ -22,11 +22,18 @@ import com.example.traceralumni.Adapter.OpFragPagerAdapter;
 import com.example.traceralumni.Adapter.PimFragPagerAdapter;
 import com.example.traceralumni.Fragment.OpDonasiFragment;
 import com.example.traceralumni.Fragment.OpLowonganFragment;
+import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.R;
 import com.example.traceralumni.Adapter.AlumniFragPagerAdapter;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     ConstraintLayout cl_icon1, cl_icon2, cl_icon3, cl_icon4;
@@ -695,7 +702,39 @@ public class MainActivity extends AppCompatActivity {
     public void showTambahAlumniDialog(final Context context){
         Toast.makeText(context, "Tambah Alumni ah", Toast.LENGTH_SHORT).show();
         //fungsi tambah alumni
+        String nim = "";
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        Call<String> call = jsonPlaceHolderApi.createAlumni(nim);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (!response.isSuccessful()){
+                    return;
+                }
+
+                String hasil = response.body();
+                if (hasil.equals("0")){
+                    //kalau nim ada
+                } else {
+                    //kalau nim gaada (sukses)
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(MainActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
+
+
 
     public static void showKeluarDialog(final Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);

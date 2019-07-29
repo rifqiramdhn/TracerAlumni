@@ -235,4 +235,8 @@ public interface JsonPlaceHolderApi {
                               @Field("status") String status,
                               @Field("tanggal_lowongan") String tanggal,
                               @Field("logo_perusahaan") String logo);
+
+    @FormUrlEncoded
+    @POST("create_alumni.php")
+    Call<String> createAlumni(@Field("nim") String nim);
 }
