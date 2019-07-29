@@ -45,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     TextView tv_titleNavBar;
+    View tambahDialogView;
+    EditText nimTambahAlumni;
+    AlertDialog dialog;
+
     boolean doubleBackToExitPressedOnce = false;
 
     public static String JENIS_USER = "";
@@ -52,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String JENIS_USER_PIMPINAN = "pimpinan";
     public static final String JENIS_USER_OPERATOR = "operator";
 
-//    public static final String BASE_URL = "http://psik.feb.ub.ac.id/apptracer/";
+    //    public static final String BASE_URL = "http://psik.feb.ub.ac.id/apptracer/";
     public static final String BASE_URL = "http://10.22.255.18/tracer/";
 
     public static final String INDEX_OPENED_TAB_KEY = "index_opened_tab_key";
@@ -684,7 +688,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (iconNumber) {
                     case 3:
                         //icon tambah alumni
-                        showTambahAlumniDialog(this);
+                        showTambahDialog();
                         break;
                     case 4:
                         //icon search
@@ -702,43 +706,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
-    public void showTambahAlumniDialog(final Context context){
-        Toast.makeText(context, "Tambah Alumni ah", Toast.LENGTH_SHORT).show();
-        //fungsi tambah alumni
-        String nim = "";
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<String> call = jsonPlaceHolderApi.createAlumni(nim);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if (!response.isSuccessful()){
-                    return;
-                }
-
-                String hasil = response.body();
-                if (hasil.equals("0")){
-                    //kalau nim ada
-                } else {
-                    //kalau nim gaada (sukses)
-                }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                if (t.getMessage().contains("Failed to connect")) {
-                    Toast.makeText(MainActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-
 
     public static void showKeluarDialog(final Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -774,11 +741,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showTambahDialog() {
-        View tambahDialogView = getLayoutInflater().inflate(R.layout.dialog_tambah_alumni, null);
+        tambahDialogView = getLayoutInflater().inflate(R.layout.dialog_tambah_alumni, null);
+        nimTambahAlumni = tambahDialogView.findViewById(R.id.edt_dialog_tambah_alumni_nim);
 
-        final EditText nimTambahAlumni = tambahDialogView.findViewById(R.id.edt_dialog_tambah_alumni_nim);
-
-        final AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
+        dialog = new AlertDialog.Builder(MainActivity.this)
                 .setView(tambahDialogView)
                 .setPositiveButton("Tambah", null)
                 .setNegativeButton("Batal", null)
@@ -799,7 +765,7 @@ public class MainActivity extends AppCompatActivity {
                         } else if (nimTambahAlumni.length() < 15) {
                             nimTambahAlumni.setError("Panjang NIM minimal 15 digit");
                         } else {
-                            nimTambahAlumni.setError("NIM sudah digunakan");
+                            tambahAlumni(nimTambahAlumni.getText().toString());
                         }
                     }
                 });
@@ -816,4 +782,39 @@ public class MainActivity extends AppCompatActivity {
         });
         dialog.show();
     }
+
+    private void tambahAlumni(String nim){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        Call<String> call = jsonPlaceHolderApi.createAlumni(nim);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (!response.isSuccessful()) {
+                    return;
+                }
+
+                String hasil = response.body();
+                if (hasil.equals("0")) {
+                    nimTambahAlumni.setError("NIM sudah digunakan");
+                } else {
+                    dialog.cancel();
+                    Toast.makeText(MainActivity.this, "Alumni baru sudah ditambahkan", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(MainActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
 }

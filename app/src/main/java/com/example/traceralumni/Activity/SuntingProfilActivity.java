@@ -241,7 +241,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
         img_edit_foto_profil = findViewById(R.id.img_sunting_profil_edit_foto);
 
         oldPath = daftarModel.getFoto();
-        if (!oldPath.equals("")) {
+        if (oldPath != null) {
             Glide.with(SuntingProfilActivity.this)
                     .load(BASE_URL + oldPath)
                     .into(img_foto_profil);
