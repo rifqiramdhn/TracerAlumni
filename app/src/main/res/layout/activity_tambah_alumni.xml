@@ -3,14 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:focusableInTouchMode="true">
+    android:layout_height="match_parent"
+    tools:context=".Activity.TambahAlumniActivity">
 
+    <include
+        android:id="@+id/include_tambah_lowongan"
+        layout="@layout/navigation_bar_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nav_bar_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edt_dialog_tambah_alumni_nim"
+        android:id="@+id/edt_tambah_alumni_nim"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
@@ -21,24 +31,31 @@
         android:textColor="#2699FB"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_dialog_tambah_alumni_judul"
-        app:layout_constraintTop_toBottomOf="@id/tv_dialog_tambah_alumni_judul" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include_tambah_lowongan" />
 
-    <TextView
-        android:id="@+id/tv_dialog_tambah_alumni_judul"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/edt_tambah_alumni_nama"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="Tambah Alumni"
-        android:textColor="@color/black"
-        android:textSize="20sp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/background_edit_text_data_alumni"
+        android:hint="Nama Mahasiswa"
+        android:padding="12dp"
+        android:textColor="#2699FB"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_tambah_alumni_nim" />
 
     <Spinner
-        android:id="@+id/spn_dialog_tambah_alumni_daftar_jurusan"
+        android:id="@+id/spn_tambah_alumni_daftar_jurusan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -48,14 +65,15 @@
         android:layout_marginRight="16dp"
         android:background="@drawable/background_edit_text_data_alumni"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_dialog_tambah_alumni_nim"
+        app:layout_constraintTop_toBottomOf="@+id/edt_tambah_alumni_nama"
         tools:listitem="@layout/card_spinner">
 
     </Spinner>
 
     <Spinner
-        android:id="@+id/spn_dialog_tambah_alumni_daftar_prodi"
+        android:id="@+id/spn_tambah_alumni_daftar_prodi"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -64,10 +82,9 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/background_edit_text_data_alumni"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spn_dialog_tambah_alumni_daftar_jurusan"
+        app:layout_constraintTop_toBottomOf="@+id/spn_tambah_alumni_daftar_jurusan"
         tools:listitem="@layout/card_spinner">
 
     </Spinner>

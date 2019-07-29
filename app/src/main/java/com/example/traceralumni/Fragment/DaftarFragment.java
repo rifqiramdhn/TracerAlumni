@@ -142,8 +142,7 @@ public class DaftarFragment extends Fragment {
                 "S3 Ilmu Akuntansi",
                 "S3 Ilmu Ekonomi",
                 "S3 Ilmu Manajemen",
-                "PPAk",
-                "S1 Akuntansi (Internasional)"
+                "PPAk"
         };
 
         final List<String> prodiList = new ArrayList<>(Arrays.asList(prodi));

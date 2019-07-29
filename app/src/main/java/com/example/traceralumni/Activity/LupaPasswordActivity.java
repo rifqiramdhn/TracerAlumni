@@ -88,6 +88,8 @@ public class LupaPasswordActivity extends AppCompatActivity {
                 } else if (!daftarModel.getJenis_user().equalsIgnoreCase("alumni")) {
                     Toast.makeText(LupaPasswordActivity.this,
                             "Fitur ini hanya untuk akun alumni, mohon hubungi operator!", Toast.LENGTH_SHORT).show();
+                } else if (daftarModel.getEmail().equals("")) {
+                    Toast.makeText(LupaPasswordActivity.this, "Data akun ini belum lengkap", Toast.LENGTH_SHORT).show();
                 } else {
                     email = daftarModel.getEmail();
                     password = daftarModel.getPassword();
