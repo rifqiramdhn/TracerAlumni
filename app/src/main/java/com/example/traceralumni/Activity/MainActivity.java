@@ -135,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
             JENIS_USER = sharedPreferences.getString(JENIS_USER_PREF, "");
             if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
                 NIM = sharedPreferences.getString(NIM_PREF, "");
+                Toast.makeText(this, NIM, Toast.LENGTH_SHORT).show();
             }
         } else {
             moveActivityToLogin();
@@ -784,37 +785,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void tambahAlumni(String nim){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<String> call = jsonPlaceHolderApi.createAlumni(nim);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if (!response.isSuccessful()) {
-                    return;
-                }
-
-                String hasil = response.body();
-                if (hasil.equals("0")) {
-                    nimTambahAlumni.setError("NIM sudah digunakan");
-                } else {
-                    dialog.cancel();
-                    Toast.makeText(MainActivity.this, "Alumni baru sudah ditambahkan", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                if (t.getMessage().contains("Failed to connect")) {
-                    Toast.makeText(MainActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(BASE_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//
+//        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+//        Call<String> call = jsonPlaceHolderApi.createAlumni(nim);
+//        call.enqueue(new Callback<String>() {
+//            @Override
+//            public void onResponse(Call<String> call, Response<String> response) {
+//                if (!response.isSuccessful()) {
+//                    return;
+//                }
+//
+//                String hasil = response.body();
+//                if (hasil.equals("0")) {
+//                    nimTambahAlumni.setError("NIM sudah digunakan");
+//                } else {
+//                    dialog.cancel();
+//                    Toast.makeText(MainActivity.this, "Alumni baru sudah ditambahkan", Toast.LENGTH_SHORT).show();
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<String> call, Throwable t) {
+//                if (t.getMessage().contains("Failed to connect")) {
+//                    Toast.makeText(MainActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
     }
 
 }
