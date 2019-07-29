@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
@@ -16,9 +17,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +37,10 @@ import com.example.traceralumni.Adapter.AlumniFragPagerAdapter;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     View tambahDialogView;
     EditText nimTambahAlumni;
     AlertDialog dialog;
+    Spinner spn_jurusan, spn_prodi;
 
     boolean doubleBackToExitPressedOnce = false;
 
@@ -744,6 +754,9 @@ public class MainActivity extends AppCompatActivity {
     private void showTambahDialog() {
         tambahDialogView = getLayoutInflater().inflate(R.layout.dialog_tambah_alumni, null);
         nimTambahAlumni = tambahDialogView.findViewById(R.id.edt_dialog_tambah_alumni_nim);
+        spn_jurusan = tambahDialogView.findViewById(R.id.spn_dialog_tambah_alumni_daftar_jurusan);
+        spn_prodi = tambahDialogView.findViewById(R.id.spn_dialog_tambah_alumni_daftar_prodi);
+        customSpinner();
 
         dialog = new AlertDialog.Builder(MainActivity.this)
                 .setView(tambahDialogView)
@@ -763,8 +776,8 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         if (nimTambahAlumni.length() == 0) {
                             nimTambahAlumni.setError("Wajib diisi");
-                        } else if (nimTambahAlumni.length() < 15) {
-                            nimTambahAlumni.setError("Panjang NIM minimal 15 digit");
+                        } else if (nimTambahAlumni.length() < 10) {
+                            nimTambahAlumni.setError("Panjang NIM minimal 10 digit");
                         } else {
                             tambahAlumni(nimTambahAlumni.getText().toString());
                         }
@@ -785,7 +798,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void tambahAlumni(String nim){
-        
 
 //        Retrofit retrofit = new Retrofit.Builder()
 //                .baseUrl(BASE_URL)
@@ -819,5 +831,191 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
     }
+
+    private void customSpinner() {
+        String[] jurusan = new String[]{
+                "Jurusan",
+                "Akuntansi",
+                "Ilmu Ekonomi",
+                "Manajemen"
+        };
+
+        String[] prodi = new String[]{
+                "Prodi",
+                "S1 Akuntansi (Internasional)",
+                "S1 Ekonomi, Keuangan, dan Perbankan (Internasional)",
+                "S2 Akuntansi",
+                "S3 Ilmu Akuntansi",
+                "PPAk",
+                "S1 Ekonomi Pembangunan",
+                "S1 Ekonomi Pembangunan (Internasional)",
+                "S2 Ilmu Ekonomi",
+                "S3 Ilmu Ekonomi",
+                "S1 Ekonomi, Keuangan, dan Perbankan",
+                "S1 Kewirausahaan",
+                "S1 Manajemen",
+                "S1 Manajemen (Internasional)",
+                "S2 Manajemen",
+                "S3 Ilmu Manajemen"
+        };
+
+        String[] prodiAkuntansi = new String[]{
+                "Prodi",
+                "S1 Akuntansi (Internasional)",
+                "S1 Ekonomi, Keuangan, dan Perbankan (Internasional)",
+                "S2 Akuntansi",
+                "S3 Ilmu Akuntansi",
+                "PPAk"
+        };
+
+        String[] prodiIlmuEkonomi = new String[]{
+                "Prodi",
+                "S1 - Ekonomi Pembangunan",
+                "S1 - Ekonomi Pembangunan (Internasional)",
+                "S2 - Ilmu Ekonomi",
+                "S3 - Ilmu Ekonomi",
+        };
+
+        String[] prodiManajemen = new String[]{
+                "Prodi",
+                "S1 - Ekonomi, Keuangan, dan Perbankan",
+                "S1 - Kewirausahaan",
+                "S1 - Manajemen",
+                "S1 - Manajemen (Internasional)",
+                "S2 - Manajemen",
+                "S3 - Ilmu Manajemen",
+        };
+
+        final List<String> jurusanList = new ArrayList<>(Arrays.asList(jurusan));
+        final List<String> prodiList = new ArrayList<>(Arrays.asList(prodi));
+        final List<String> prodiListAkuntansi = new ArrayList<>(Arrays.asList(prodiAkuntansi));
+        final List<String> prodiListIlmuEkonomi = new ArrayList<>(Arrays.asList(prodiIlmuEkonomi));
+        final List<String> prodiListManajemen = new ArrayList<>(Arrays.asList(prodiManajemen));
+
+        final ArrayAdapter<String> spinnerArrayAdapterJurusan = new ArrayAdapter<String>(
+                MainActivity.this, R.layout.card_spinner, jurusanList) {
+            @Override
+            public boolean isEnabled(int position) {
+                return true;
+            }
+
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if (position == 0) {
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(getResources().getColor(R.color.colorIconBiru));
+                }
+                return view;
+            }
+        };
+
+        final ArrayAdapter<String> spinnerArrayAdapterProdi = new ArrayAdapter<String>(
+                MainActivity.this, R.layout.card_spinner, prodiList) {
+            @Override
+            public boolean isEnabled(int position) {
+                return true;
+            }
+
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if (position == 0) {
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(getResources().getColor(R.color.colorIconBiru));
+                }
+                return view;
+            }
+        };
+
+        final ArrayAdapter<String> spinnerArrayAdapterAkuntansi = new ArrayAdapter<String>(
+                MainActivity.this, R.layout.card_spinner, prodiListAkuntansi) {
+            @Override
+            public boolean isEnabled(int position) {
+                return true;
+            }
+
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if (position == 0) {
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(getResources().getColor(R.color.colorIconBiru));
+                }
+                return view;
+            }
+        };
+
+        final ArrayAdapter<String> spinnerArrayAdapterIlmuEkonomi = new ArrayAdapter<String>(
+                MainActivity.this, R.layout.card_spinner, prodiListIlmuEkonomi) {
+            @Override
+            public boolean isEnabled(int position) {
+                return true;
+            }
+
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if (position == 0) {
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(getResources().getColor(R.color.colorIconBiru));
+                }
+                return view;
+            }
+        };
+
+        final ArrayAdapter<String> spinnerArrayAdapterManajemen = new ArrayAdapter<String>(
+                MainActivity.this, R.layout.card_spinner, prodiListManajemen) {
+            @Override
+            public boolean isEnabled(int position) {
+                return true;
+            }
+
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if (position == 0) {
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(getResources().getColor(R.color.colorIconBiru));
+                }
+                return view;
+            }
+        };
+
+        spinnerArrayAdapterJurusan.setDropDownViewResource(R.layout.card_spinner);
+
+        spn_jurusan.setAdapter(spinnerArrayAdapterJurusan);
+
+        spn_jurusan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 1) {
+                    spinnerArrayAdapterAkuntansi.setDropDownViewResource(R.layout.card_spinner);
+                    spn_prodi.setAdapter(spinnerArrayAdapterAkuntansi);
+                } else if (position == 2) {
+                    spinnerArrayAdapterIlmuEkonomi.setDropDownViewResource(R.layout.card_spinner);
+                    spn_prodi.setAdapter(spinnerArrayAdapterIlmuEkonomi);
+                } else if (position == 3) {
+                    spinnerArrayAdapterManajemen.setDropDownViewResource(R.layout.card_spinner);
+                    spn_prodi.setAdapter(spinnerArrayAdapterManajemen);
+                } else {
+                    spinnerArrayAdapterProdi.setDropDownViewResource(R.layout.card_spinner);
+                    spn_prodi.setAdapter(spinnerArrayAdapterProdi);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+
 
 }
