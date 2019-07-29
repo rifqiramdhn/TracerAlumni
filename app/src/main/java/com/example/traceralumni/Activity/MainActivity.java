@@ -1,5 +1,6 @@
 package com.example.traceralumni.Activity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,7 +14,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String JENIS_USER_PIMPINAN = "pimpinan";
     public static final String JENIS_USER_OPERATOR = "operator";
 
-//    public static final String BASE_URL = "http://psik.feb.ub.ac.id/apptracer/";
-    public static final String BASE_URL = "http://10.22.251.123/tracer/";
+    public static final String BASE_URL = "http://psik.feb.ub.ac.id/apptracer/";
+//    public static final String BASE_URL = "http://10.22.251.123/tracer/";
 
     public static final String INDEX_OPENED_TAB_KEY = "index_opened_tab_key";
 
@@ -129,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (STATE_USER_LOGGED == 0){
+        if (STATE_USER_LOGGED == 0) {
             moveActivityToLogin();
         }
     }
@@ -450,7 +454,7 @@ public class MainActivity extends AppCompatActivity {
                 //tab pesan
                 switch (iconNumber) {
                     case 3:
-                        //icon tambah pesan
+                        //icon chat baru
                         break;
                     case 4:
                         ConstraintLayout cl_fragment_chat_search = findViewById(R.id.cl_fragment_chat_search);
@@ -695,4 +699,47 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+    private void showTambahDialog() {
+        View tambahDialogView = getLayoutInflater().inflate(R.layout.dialog_tambah_alumni, null);
+
+        final EditText nimTambahAlumni = tambahDialogView.findViewById(R.id.edt_dialog_tambah_alumni_nim);
+
+        final AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
+                .setView(tambahDialogView)
+                .setPositiveButton("Tambah", null)
+                .setNegativeButton("Batal", null)
+                .create();
+
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+
+                Button tambah = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                tambah.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        if (nimTambahAlumni.length() == 0) {
+                            nimTambahAlumni.setError("Wajib diisi");
+                        } else if (nimTambahAlumni.length() < 15) {
+                            nimTambahAlumni.setError("Panjang NIM minimal 15 digit");
+                        } else {
+                            nimTambahAlumni.setError("NIM sudah digunakan");
+                        }
+                    }
+                });
+
+                Button batal = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+                batal.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        dialog.cancel();
+                    }
+                });
+            }
+        });
+        dialog.show();
+    }
 }
