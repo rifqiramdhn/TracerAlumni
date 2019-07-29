@@ -26,11 +26,18 @@ import com.example.traceralumni.Adapter.OpFragPagerAdapter;
 import com.example.traceralumni.Adapter.PimFragPagerAdapter;
 import com.example.traceralumni.Fragment.OpDonasiFragment;
 import com.example.traceralumni.Fragment.OpLowonganFragment;
+import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.R;
 import com.example.traceralumni.Adapter.AlumniFragPagerAdapter;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     ConstraintLayout cl_icon1, cl_icon2, cl_icon3, cl_icon4;
@@ -45,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String JENIS_USER_PIMPINAN = "pimpinan";
     public static final String JENIS_USER_OPERATOR = "operator";
 
-    public static final String BASE_URL = "http://psik.feb.ub.ac.id/apptracer/";
-//    public static final String BASE_URL = "http://10.22.251.123/tracer/";
+//    public static final String BASE_URL = "http://psik.feb.ub.ac.id/apptracer/";
+    public static final String BASE_URL = "http://10.22.255.18/tracer/";
 
     public static final String INDEX_OPENED_TAB_KEY = "index_opened_tab_key";
 
@@ -161,10 +168,12 @@ public class MainActivity extends AppCompatActivity {
         } else if (JENIS_USER.equals(JENIS_USER_OPERATOR)) {
             int arrayDrawable[] = {R.drawable.ic_lowongan,
                     R.drawable.ic_info,
-                    R.drawable.ic_attach_money};
+                    R.drawable.ic_attach_money,
+                    R.drawable.ic_person};
             String titleNavBar[] = {"LOWONGAN",
                     "INFO",
-                    "DONASI"};
+                    "DONASI",
+                    "DAFTAR ALUMNI"};
             viewPager.setAdapter(adapterOperator);
             tabLayout.setupWithViewPager(viewPager);
             setTabLayout(tabLayout, arrayDrawable, titleNavBar);
@@ -238,6 +247,9 @@ public class MainActivity extends AppCompatActivity {
                     imgIcon3.setImageResource(R.drawable.ic_search);
                     imgIcon4.setImageResource(R.drawable.ic_power_settings_new);
                     break;
+                case 3:
+                    imgIcon3.setImageResource(R.drawable.ic_add);
+                    imgIcon4.setImageResource(R.drawable.ic_search);
             }
         }
 
@@ -352,6 +364,12 @@ public class MainActivity extends AppCompatActivity {
                 case 2:
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.VISIBLE);
+                    cl_icon3.setVisibility(View.VISIBLE);
+                    cl_icon4.setVisibility(View.VISIBLE);
+                    break;
+                case 3:
+                    cl_icon1.setVisibility(View.GONE);
+                    cl_icon2.setVisibility(View.GONE);
                     cl_icon3.setVisibility(View.VISIBLE);
                     cl_icon4.setVisibility(View.VISIBLE);
                     break;
@@ -661,10 +679,66 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
                 break;
+            case 3:
+                //tab daftar alumni
+                switch (iconNumber) {
+                    case 3:
+                        //icon tambah alumni
+                        showTambahAlumniDialog(this);
+                        break;
+                    case 4:
+                        //icon search
+                        ConstraintLayout cl_fragment_daftar_search = findViewById(R.id.cl_fragment_daftar_search);
+                        if (cl_fragment_daftar_search.getVisibility() == View.GONE) {
+                            cl_fragment_daftar_search.setVisibility(View.VISIBLE);
+                        } else {
+                            cl_fragment_daftar_search.setVisibility(View.GONE);
+                        }
+                        break;
+                    default:
+                        break;
+                }
             default:
                 break;
         }
     }
+
+    public void showTambahAlumniDialog(final Context context){
+        Toast.makeText(context, "Tambah Alumni ah", Toast.LENGTH_SHORT).show();
+        //fungsi tambah alumni
+        String nim = "";
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        Call<String> call = jsonPlaceHolderApi.createAlumni(nim);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (!response.isSuccessful()){
+                    return;
+                }
+
+                String hasil = response.body();
+                if (hasil.equals("0")){
+                    //kalau nim ada
+                } else {
+                    //kalau nim gaada (sukses)
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(MainActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+
 
     public static void showKeluarDialog(final Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
