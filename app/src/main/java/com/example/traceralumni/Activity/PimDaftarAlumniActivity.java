@@ -87,7 +87,7 @@ public class PimDaftarAlumniActivity extends AppCompatActivity {
         cl_iconBack.setVisibility(View.VISIBLE);
         cl_iconSearch.setVisibility(View.VISIBLE);
 
-        tvNavBar.setText("DAFTAR ALUMNI");
+        tvNavBar.setText("ALUMNI");
     }
 
     private void setSearch(final DaftarAdapter daftarAdapter) {

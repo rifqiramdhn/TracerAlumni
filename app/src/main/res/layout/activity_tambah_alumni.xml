@@ -7,7 +7,7 @@
     tools:context=".Activity.TambahAlumniActivity">
 
     <include
-        android:id="@+id/include_tambah_lowongan"
+        android:id="@+id/include_tambah_alumni"
         layout="@layout/navigation_bar_top"
         android:layout_width="match_parent"
         android:layout_height="@dimen/nav_bar_height"
@@ -15,44 +15,56 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edt_tambah_alumni_nim"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/edt_tambah_alumni_nim_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_welcome1"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/background_edit_text_data_alumni"
-        android:hint="Nomor Induk Mahasiswa"
-        android:inputType="number"
-        android:padding="12dp"
-        android:textColor="#2699FB"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_tambah_lowongan" />
+        app:layout_constraintTop_toBottomOf="@+id/include_tambah_alumni">
 
-    <EditText
-        android:id="@+id/edt_tambah_alumni_nama"
+        <EditText
+            android:id="@+id/edt_tambah_alumni_nim"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Nomor Induk Mahasiswa"
+            android:inputType="number"
+            android:padding="12dp"
+            android:textColor="#2699FB"
+            android:textSize="16sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/edt_tambah_alumni_nama_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_welcome1"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/background_edit_text_data_alumni"
-        android:hint="Nama Mahasiswa"
-        android:padding="12dp"
-        android:textColor="#2699FB"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_tambah_alumni_nim" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_tambah_alumni_nim_container">
+
+        <EditText
+            android:id="@+id/edt_tambah_alumni_nama"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Nama Mahasiswa"
+            android:padding="12dp"
+            android:textColor="#2699FB"
+            android:textSize="16sp" />
+    </android.support.design.widget.TextInputLayout>
 
     <Spinner
         android:id="@+id/spn_tambah_alumni_daftar_jurusan"
@@ -63,11 +75,10 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/background_edit_text_data_alumni"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_tambah_alumni_nama"
+        app:layout_constraintTop_toBottomOf="@+id/edt_tambah_alumni_nama_container"
         tools:listitem="@layout/card_spinner">
 
     </Spinner>
@@ -81,7 +92,6 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/background_edit_text_data_alumni"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spn_tambah_alumni_daftar_jurusan"
