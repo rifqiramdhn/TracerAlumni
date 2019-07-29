@@ -1,37 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:focusableInTouchMode="true"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:focusableInTouchMode="true">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/edt_dialog_tambah_alumni_nim_container"
+
+    <EditText
+        android:id="@+id/edt_dialog_tambah_alumni_nim"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_welcome1"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:textColorHint="@color/colorIconBiru"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/background_edit_text_data_alumni"
+        android:hint="Nomor Induk Mahasiswa"
+        android:inputType="number"
+        android:padding="12dp"
+        android:textColor="#2699FB"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/edt_dialog_tambah_alumni_judul"
-        app:layout_constraintTop_toBottomOf="@+id/edt_dialog_tambah_alumni_judul">
-
-        <EditText
-            android:id="@+id/edt_dialog_tambah_alumni_nim"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Nomor Induk Mahasiswa"
-            android:inputType="text"
-            android:textColor="#2699FB"
-            android:textSize="16sp" />
-    </android.support.design.widget.TextInputLayout>
+        app:layout_constraintStart_toStartOf="@+id/tv_dialog_tambah_alumni_judul"
+        app:layout_constraintTop_toBottomOf="@id/tv_dialog_tambah_alumni_judul" />
 
     <TextView
-        android:id="@+id/edt_dialog_tambah_alumni_judul"
+        android:id="@+id/tv_dialog_tambah_alumni_judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -42,4 +36,39 @@
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spn_dialog_tambah_alumni_daftar_jurusan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/background_edit_text_data_alumni"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_dialog_tambah_alumni_nim"
+        tools:listitem="@layout/card_spinner">
+
+    </Spinner>
+
+    <Spinner
+        android:id="@+id/spn_dialog_tambah_alumni_daftar_prodi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/background_edit_text_data_alumni"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spn_dialog_tambah_alumni_daftar_jurusan"
+        tools:listitem="@layout/card_spinner">
+
+    </Spinner>
 </android.support.constraint.ConstraintLayout>

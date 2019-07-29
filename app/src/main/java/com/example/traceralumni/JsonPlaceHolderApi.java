@@ -239,6 +239,6 @@ public interface JsonPlaceHolderApi {
     @FormUrlEncoded
     @POST("create_alumni.php")
     Call<String> createAlumni(@Field("nim") String nim,
-                              @Field("id_prodi") Integer idProdi,
-                              @Field("id_jurusan") Integer idJurusan);
+                              @Field("id_jurusan") Integer idJurusan,
+                              @Field("id_prodi") Integer idProdi);
 }

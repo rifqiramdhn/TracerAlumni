@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
@@ -16,9 +17,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +37,10 @@ import com.example.traceralumni.Adapter.AlumniFragPagerAdapter;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
     View tambahDialogView;
     EditText nimTambahAlumni;
     AlertDialog dialog;
+    Spinner spn_jurusan, spn_prodi;
+    Integer id_jurusan, id_prodi;
 
     boolean doubleBackToExitPressedOnce = false;
 
@@ -135,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
             JENIS_USER = sharedPreferences.getString(JENIS_USER_PREF, "");
             if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
                 NIM = sharedPreferences.getString(NIM_PREF, "");
-                Toast.makeText(this, NIM, Toast.LENGTH_SHORT).show();
             }
         } else {
             moveActivityToLogin();
@@ -744,6 +754,9 @@ public class MainActivity extends AppCompatActivity {
     private void showTambahDialog() {
         tambahDialogView = getLayoutInflater().inflate(R.layout.dialog_tambah_alumni, null);
         nimTambahAlumni = tambahDialogView.findViewById(R.id.edt_dialog_tambah_alumni_nim);
+        spn_jurusan = tambahDialogView.findViewById(R.id.spn_dialog_tambah_alumni_daftar_jurusan);
+        spn_prodi = tambahDialogView.findViewById(R.id.spn_dialog_tambah_alumni_daftar_prodi);
+        customSpinner();
 
         dialog = new AlertDialog.Builder(MainActivity.this)
                 .setView(tambahDialogView)
@@ -763,10 +776,12 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         if (nimTambahAlumni.length() == 0) {
                             nimTambahAlumni.setError("Wajib diisi");
-                        } else if (nimTambahAlumni.length() < 15) {
-                            nimTambahAlumni.setError("Panjang NIM minimal 15 digit");
+                        } else if (nimTambahAlumni.length() < 10) {
+                            nimTambahAlumni.setError("Panjang NIM minimal 10 digit");
+                        } else if (spn_prodi.getSelectedItem().toString().equalsIgnoreCase("Prodi")) {
+                            Toast.makeText(MainActivity.this, "Anda belum memilih prodi", Toast.LENGTH_SHORT).show();
                         } else {
-                            tambahAlumni(nimTambahAlumni.getText().toString());
+                            tambahAlumni(nimTambahAlumni.getText().toString(), id_jurusan, id_prodi);
                         }
                     }
                 });
@@ -784,40 +799,301 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void tambahAlumni(String nim){
-        
+    private void tambahAlumni(String nim, Integer id_jurusan, Integer id_prodi) {
 
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(BASE_URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-//        Call<String> call = jsonPlaceHolderApi.createAlumni(nim);
-//        call.enqueue(new Callback<String>() {
-//            @Override
-//            public void onResponse(Call<String> call, Response<String> response) {
-//                if (!response.isSuccessful()) {
-//                    return;
-//                }
-//
-//                String hasil = response.body();
-//                if (hasil.equals("0")) {
-//                    nimTambahAlumni.setError("NIM sudah digunakan");
-//                } else {
-//                    dialog.cancel();
-//                    Toast.makeText(MainActivity.this, "Alumni baru sudah ditambahkan", Toast.LENGTH_SHORT).show();
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<String> call, Throwable t) {
-//                if (t.getMessage().contains("Failed to connect")) {
-//                    Toast.makeText(MainActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        Call<String> call = jsonPlaceHolderApi.createAlumni(nim, id_jurusan, id_prodi);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (!response.isSuccessful()) {
+                    return;
+                }
+
+                String hasil = response.body();
+                if (hasil.equals("0")) {
+                    nimTambahAlumni.setError("NIM sudah digunakan");
+                } else {
+                    dialog.cancel();
+                    Toast.makeText(MainActivity.this, "Alumni baru sudah ditambahkan", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(MainActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
+
+    private void customSpinner() {
+        String[] jurusan = new String[]{
+                "Jurusan",
+                "Akuntansi",
+                "Ilmu Ekonomi",
+                "Manajemen"
+        };
+
+        String[] prodi = new String[]{
+                "Prodi",
+                "S1 Akuntansi (Internasional)",
+                "S1 Ekonomi, Keuangan, dan Perbankan (Internasional)",
+                "S2 Akuntansi",
+                "S3 Ilmu Akuntansi",
+                "PPAk",
+                "S1 Ekonomi Pembangunan",
+                "S1 Ekonomi Pembangunan (Internasional)",
+                "S2 Ilmu Ekonomi",
+                "S3 Ilmu Ekonomi",
+                "S1 Ekonomi, Keuangan, dan Perbankan",
+                "S1 Kewirausahaan",
+                "S1 Manajemen",
+                "S1 Manajemen (Internasional)",
+                "S2 Manajemen",
+                "S3 Ilmu Manajemen"
+        };
+
+        String[] prodiAkuntansi = new String[]{
+                "Prodi",
+                "S1 Akuntansi (Internasional)",
+                "S1 Ekonomi, Keuangan, dan Perbankan (Internasional)",
+                "S2 Akuntansi",
+                "S3 Ilmu Akuntansi",
+                "PPAk"
+        };
+
+        String[] prodiIlmuEkonomi = new String[]{
+                "Prodi",
+                "S1 - Ekonomi Pembangunan",
+                "S1 - Ekonomi Pembangunan (Internasional)",
+                "S2 - Ilmu Ekonomi",
+                "S3 - Ilmu Ekonomi",
+        };
+
+        String[] prodiManajemen = new String[]{
+                "Prodi",
+                "S1 - Ekonomi, Keuangan, dan Perbankan",
+                "S1 - Kewirausahaan",
+                "S1 - Manajemen",
+                "S1 - Manajemen (Internasional)",
+                "S2 - Manajemen",
+                "S3 - Ilmu Manajemen",
+        };
+
+        final List<String> jurusanList = new ArrayList<>(Arrays.asList(jurusan));
+        final List<String> prodiList = new ArrayList<>(Arrays.asList(prodi));
+        final List<String> prodiListAkuntansi = new ArrayList<>(Arrays.asList(prodiAkuntansi));
+        final List<String> prodiListIlmuEkonomi = new ArrayList<>(Arrays.asList(prodiIlmuEkonomi));
+        final List<String> prodiListManajemen = new ArrayList<>(Arrays.asList(prodiManajemen));
+
+        final ArrayAdapter<String> spinnerArrayAdapterJurusan = new ArrayAdapter<String>(
+                MainActivity.this, R.layout.card_spinner, jurusanList) {
+            @Override
+            public boolean isEnabled(int position) {
+                return true;
+            }
+
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if (position == 0) {
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(getResources().getColor(R.color.colorIconBiru));
+                }
+                return view;
+            }
+        };
+
+        final ArrayAdapter<String> spinnerArrayAdapterProdi = new ArrayAdapter<String>(
+                MainActivity.this, R.layout.card_spinner, prodiList) {
+            @Override
+            public boolean isEnabled(int position) {
+                return true;
+            }
+
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if (position == 0) {
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(getResources().getColor(R.color.colorIconBiru));
+                }
+                return view;
+            }
+        };
+
+        final ArrayAdapter<String> spinnerArrayAdapterAkuntansi = new ArrayAdapter<String>(
+                MainActivity.this, R.layout.card_spinner, prodiListAkuntansi) {
+            @Override
+            public boolean isEnabled(int position) {
+                return true;
+            }
+
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if (position == 0) {
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(getResources().getColor(R.color.colorIconBiru));
+                }
+                return view;
+            }
+        };
+
+        final ArrayAdapter<String> spinnerArrayAdapterIlmuEkonomi = new ArrayAdapter<String>(
+                MainActivity.this, R.layout.card_spinner, prodiListIlmuEkonomi) {
+            @Override
+            public boolean isEnabled(int position) {
+                return true;
+            }
+
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if (position == 0) {
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(getResources().getColor(R.color.colorIconBiru));
+                }
+                return view;
+            }
+        };
+
+        final ArrayAdapter<String> spinnerArrayAdapterManajemen = new ArrayAdapter<String>(
+                MainActivity.this, R.layout.card_spinner, prodiListManajemen) {
+            @Override
+            public boolean isEnabled(int position) {
+                return true;
+            }
+
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if (position == 0) {
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(getResources().getColor(R.color.colorIconBiru));
+                }
+                return view;
+            }
+        };
+
+        spinnerArrayAdapterJurusan.setDropDownViewResource(R.layout.card_spinner);
+
+        spn_jurusan.setAdapter(spinnerArrayAdapterJurusan);
+
+        spn_jurusan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 1) {
+                    id_jurusan = position;
+                    spinnerArrayAdapterAkuntansi.setDropDownViewResource(R.layout.card_spinner);
+                    spn_prodi.setAdapter(spinnerArrayAdapterAkuntansi);
+                } else if (position == 2) {
+                    id_jurusan = position;
+                    spinnerArrayAdapterIlmuEkonomi.setDropDownViewResource(R.layout.card_spinner);
+                    spn_prodi.setAdapter(spinnerArrayAdapterIlmuEkonomi);
+                } else if (position == 3) {
+                    id_jurusan = position;
+                    spinnerArrayAdapterManajemen.setDropDownViewResource(R.layout.card_spinner);
+                    spn_prodi.setAdapter(spinnerArrayAdapterManajemen);
+                } else {
+                    spinnerArrayAdapterProdi.setDropDownViewResource(R.layout.card_spinner);
+                    spn_prodi.setAdapter(spinnerArrayAdapterProdi);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spn_prodi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (spn_prodi.getSelectedItem().toString()) {
+
+                    case "S1 Akuntansi (Internasional)":
+                        id_jurusan = 1;
+                        id_prodi = 2;
+                        break;
+                    case "S1 Ekonomi, Keuangan, dan Perbankan (Internasional)":
+                        id_jurusan = 1;
+                        id_prodi = 3;
+                        break;
+                    case "S2 Akuntansi":
+                        id_jurusan = 2;
+                        id_prodi = 5;
+                        break;
+                    case "S3 Ilmu Akuntansi":
+                        id_jurusan = 2;
+                        id_prodi = 6;
+                        break;
+                    case "PPAk":
+                        id_jurusan = 3;
+                        id_prodi = 7;
+                        break;
+                    case "S1 Ekonomi Pembangunan":
+                        id_jurusan = 3;
+                        id_prodi = 8;
+                        break;
+                    case "S1 Ekonomi Pembangunan (Internasional)":
+                        id_jurusan = 3;
+                        id_prodi = 9;
+                        break;
+                    case "S2 Ilmu Ekonomi":
+                        id_jurusan = 3;
+                        id_prodi = 10;
+                        break;
+                    case "S3 Ilmu Ekonomi":
+                        id_jurusan = 1;
+                        id_prodi = 11;
+                        break;
+                    case "S1 Ekonomi, Keuangan, dan Perbankan":
+                        id_jurusan = 3;
+                        id_prodi = 12;
+                        break;
+                    case "S1 Kewirausahaan":
+                        id_jurusan = 2;
+                        id_prodi = 13;
+                        break;
+                    case "S1 Manajemen":
+                        id_jurusan = 1;
+                        id_prodi = 14;
+                        break;
+                    case "S1 Manajemen (Internasional)":
+                        id_jurusan = 2;
+                        id_prodi = 15;
+                        break;
+                    case "S2 Manajemen":
+                        id_jurusan = 3;
+                        id_prodi = 16;
+                        break;
+                    case "S3 Ilmu Manajemen":
+                        id_jurusan = 1;
+                        id_prodi = 17;
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+
 
 }

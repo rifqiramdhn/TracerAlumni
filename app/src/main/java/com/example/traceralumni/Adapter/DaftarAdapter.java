@@ -55,12 +55,10 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
 
         holder.nama.setText(daftarModel.getNama());
 
-        holder.prodi.setText(daftarModel.getProdi());
-
-        holder.angkatan.setText(daftarModel.getAngkatan());
+        holder.prodi.setText(daftarModel.getProdi() + " " + daftarModel.getAngkatan());
 
         oldPath = daftarModel.getFoto();
-        if (oldPath != null){
+        if (oldPath != null) {
             Glide.with(context)
                     .load(BASE_URL + oldPath)
                     .into(holder.foto);
@@ -88,7 +86,7 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         //Deklarasi TextView nama, prodi, dan angkatan
-        private TextView nama, prodi, angkatan;
+        private TextView nama, prodi;
 
         //Deklarasi ImageView foto
         private CircleImageView foto;
@@ -100,7 +98,6 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
             super(itemView);
             nama = itemView.findViewById(R.id.tv_card_daftar_nama);
             prodi = itemView.findViewById(R.id.tv_card_daftar_prodi);
-            angkatan = itemView.findViewById(R.id.tv_card_daftar_angkatan);
             foto = itemView.findViewById(R.id.img_card_daftar);
             container = itemView.findViewById(R.id.card_daftar_container);
         }

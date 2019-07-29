@@ -198,17 +198,15 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                 Intent intent = null;
                 switch (index) {
                     case 1:
-                        Toast.makeText(context, "NIM : " + NIM, Toast.LENGTH_SHORT).show();
                         intent = new Intent(context, KartuAlumniActivity.class);
                         intent.putExtra("daftarModel", daftarModel);
                         break;
                     case 4:
-                        Toast.makeText(context, "NIM : " + NIM, Toast.LENGTH_SHORT).show();
                         intent = new Intent(context, SuntingProfilActivity.class);
                         intent.putExtra("daftarModel", daftarModel);
                         break;
                 }
-//                context.startActivity(intent);
+                context.startActivity(intent);
             }
 
             @Override
