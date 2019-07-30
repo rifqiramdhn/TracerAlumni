@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String JENIS_USER_OPERATOR = "operator";
 
     public static final String BASE_URL = "http://psik.feb.ub.ac.id/apptracer/";
-//    public static final String BASE_URL = "http://10.22.255.18/tracer/";
+//    public static final String BASE_URL = "http://10.22.254.164/tracer/";
 
     public static final String INDEX_OPENED_TAB_KEY = "index_opened_tab_key";
 

@@ -46,6 +46,7 @@ import static com.example.traceralumni.Activity.LocationPickerActivity.LOKASI_EX
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 import static com.example.traceralumni.Activity.TambahLowonganActivity.PICK_PHOTO_REQUEST;
@@ -54,6 +55,7 @@ public class DetailProfilActivity extends AppCompatActivity {
     BottomNavigationView bnChat;
     DaftarModel daftarModel;
     TextView tvNama, tvProdi, tvAngkatan, tvThnLulus, tvTglYudisium, tvKwn, tvNegara, tvEmail, tvTTL, tvAlamat, tvKodePos, tvNoHp, tvNoTelp, tvFacebook, tvTwitter;
+    TextView tvNim, tvPassword, tvJudulPassword;
 
     CircleImageView img_detail_profil;
     ConstraintLayout cl_wa;
@@ -117,6 +119,8 @@ public class DetailProfilActivity extends AppCompatActivity {
                     startActivity(i);
                 }
             });
+            tvPassword.setText(daftarModel.getPassword());
+            tvNim.setText(daftarModel.getNim());
         } else {
             getDataFromNIM(intent.getStringExtra("nim"));
         }
@@ -154,6 +158,8 @@ public class DetailProfilActivity extends AppCompatActivity {
                 tvNoTelp.setText(daftarModel.getNomor_telepon());
                 tvFacebook.setText(daftarModel.getFacebook());
                 tvTwitter.setText(daftarModel.getTwitter());
+                tvPassword.setText(daftarModel.getPassword());
+                tvNim.setText(daftarModel.getNim());
                 oldPath = daftarModel.getFoto();
                 if (!oldPath.equals("")) {
                     Glide.with(DetailProfilActivity.this)
@@ -200,5 +206,12 @@ public class DetailProfilActivity extends AppCompatActivity {
         tvTwitter = findViewById(R.id.txt_twitter);
         bnChat = findViewById(R.id.bn_chat);
         cl_wa = findViewById(R.id.cl_detail_profil_wa);
+        tvPassword = findViewById(R.id.tv_detail_profil_password);
+        tvNim = findViewById(R.id.tv_detail_profil_nim);
+        tvJudulPassword = findViewById(R.id.tv_judul_password);
+        if (JENIS_USER.equals(JENIS_USER_OPERATOR)){
+            tvJudulPassword.setVisibility(View.VISIBLE);
+            tvPassword.setVisibility(View.VISIBLE);
+        }
     }
 }
