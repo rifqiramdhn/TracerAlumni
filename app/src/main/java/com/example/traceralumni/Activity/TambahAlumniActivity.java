@@ -100,6 +100,69 @@ public class TambahAlumniActivity extends AppCompatActivity {
     }
 
     private void showKonfirmasiTambah() {
+        switch (spn_prodi.getSelectedItem().toString()) {
+            case "S1 Akuntansi (Internasional)":
+                id_jurusan = 1;
+                id_prodi = 2;
+                break;
+            case "S1 Ekonomi, Keuangan, dan Perbankan (Internasional)":
+                id_jurusan = 1;
+                id_prodi = 3;
+                break;
+            case "S2 Akuntansi":
+                id_jurusan = 1;
+                id_prodi = 11;
+                break;
+            case "S3 Ilmu Akuntansi":
+                id_jurusan = 1;
+                id_prodi = 14;
+                break;
+            case "PPAk":
+                id_jurusan = 1;
+                id_prodi = 17;
+                break;
+            case "S1 Ekonomi Pembangunan":
+                id_jurusan = 2;
+                id_prodi = 5;
+                break;
+            case "S1 Ekonomi Pembangunan (Internasional)":
+                id_jurusan = 2;
+                id_prodi = 6;
+                break;
+            case "S2 Ilmu Ekonomi":
+                id_jurusan = 2;
+                id_prodi = 13;
+                break;
+            case "S3 Ilmu Ekonomi":
+                id_jurusan = 2;
+                id_prodi = 15;
+                break;
+            case "S1 Ekonomi, Keuangan, dan Perbankan":
+                id_jurusan = 3;
+                id_prodi = 7;
+                break;
+            case "S1 Kewirausahaan":
+                id_jurusan = 3;
+                id_prodi = 8;
+                break;
+            case "S1 Manajemen":
+                id_jurusan = 3;
+                id_prodi = 9;
+                break;
+            case "S1 Manajemen (Internasional)":
+                id_jurusan = 3;
+                id_prodi = 10;
+                break;
+            case "S2 Manajemen":
+                id_jurusan = 3;
+                id_prodi = 12;
+                break;
+            case "S3 Ilmu Manajemen":
+                id_jurusan = 3;
+                id_prodi = 16;
+                break;
+        }
+
         AlertDialog.Builder builder = new AlertDialog.Builder(TambahAlumniActivity.this);
         builder.setMessage("Apakah anda yakin ingin menambah alumni?");
         builder.setTitle("Tambah Alumni");
@@ -200,20 +263,20 @@ public class TambahAlumniActivity extends AppCompatActivity {
 
         String[] prodiIlmuEkonomi = new String[]{
                 "Prodi",
-                "S1 - Ekonomi Pembangunan",
-                "S1 - Ekonomi Pembangunan (Internasional)",
-                "S2 - Ilmu Ekonomi",
-                "S3 - Ilmu Ekonomi",
+                "S1 Ekonomi Pembangunan",
+                "S1 Ekonomi Pembangunan (Internasional)",
+                "S2 Ilmu Ekonomi",
+                "S3 Ilmu Ekonomi",
         };
 
         String[] prodiManajemen = new String[]{
                 "Prodi",
-                "S1 - Ekonomi, Keuangan, dan Perbankan",
-                "S1 - Kewirausahaan",
-                "S1 - Manajemen",
-                "S1 - Manajemen (Internasional)",
-                "S2 - Manajemen",
-                "S3 - Ilmu Manajemen",
+                "S1 Ekonomi, Keuangan, dan Perbankan",
+                "S1 Kewirausahaan",
+                "S1 Manajemen",
+                "S1 Manajemen (Internasional)",
+                "S2 Manajemen",
+                "S3 Ilmu Manajemen",
         };
 
         final List<String> jurusanList = new ArrayList<>(Arrays.asList(jurusan));
@@ -325,93 +388,17 @@ public class TambahAlumniActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 1) {
-                    id_jurusan = position;
                     spinnerArrayAdapterAkuntansi.setDropDownViewResource(R.layout.card_spinner);
                     spn_prodi.setAdapter(spinnerArrayAdapterAkuntansi);
                 } else if (position == 2) {
-                    id_jurusan = position;
                     spinnerArrayAdapterIlmuEkonomi.setDropDownViewResource(R.layout.card_spinner);
                     spn_prodi.setAdapter(spinnerArrayAdapterIlmuEkonomi);
                 } else if (position == 3) {
-                    id_jurusan = position;
                     spinnerArrayAdapterManajemen.setDropDownViewResource(R.layout.card_spinner);
                     spn_prodi.setAdapter(spinnerArrayAdapterManajemen);
                 } else {
                     spinnerArrayAdapterProdi.setDropDownViewResource(R.layout.card_spinner);
                     spn_prodi.setAdapter(spinnerArrayAdapterProdi);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        spn_prodi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (spn_prodi.getSelectedItem().toString()) {
-
-                    case "S1 Akuntansi (Internasional)":
-                        id_jurusan = 1;
-                        id_prodi = 2;
-                        break;
-                    case "S1 Ekonomi, Keuangan, dan Perbankan (Internasional)":
-                        id_jurusan = 1;
-                        id_prodi = 3;
-                        break;
-                    case "S2 Akuntansi":
-                        id_jurusan = 1;
-                        id_prodi = 11;
-                        break;
-                    case "S3 Ilmu Akuntansi":
-                        id_jurusan = 1;
-                        id_prodi = 14;
-                        break;
-                    case "PPAk":
-                        id_jurusan = 1;
-                        id_prodi = 17;
-                        break;
-                    case "S1 Ekonomi Pembangunan":
-                        id_jurusan = 2;
-                        id_prodi = 5;
-                        break;
-                    case "S1 Ekonomi Pembangunan (Internasional)":
-                        id_jurusan = 2;
-                        id_prodi = 6;
-                        break;
-                    case "S2 Ilmu Ekonomi":
-                        id_jurusan = 2;
-                        id_prodi = 13;
-                        break;
-                    case "S3 Ilmu Ekonomi":
-                        id_jurusan = 2;
-                        id_prodi = 15;
-                        break;
-                    case "S1 Ekonomi, Keuangan, dan Perbankan":
-                        id_jurusan = 3;
-                        id_prodi = 7;
-                        break;
-                    case "S1 Kewirausahaan":
-                        id_jurusan = 3;
-                        id_prodi = 8;
-                        break;
-                    case "S1 Manajemen":
-                        id_jurusan = 3;
-                        id_prodi = 9;
-                        break;
-                    case "S1 Manajemen (Internasional)":
-                        id_jurusan = 3;
-                        id_prodi = 10;
-                        break;
-                    case "S2 Manajemen":
-                        id_jurusan = 3;
-                        id_prodi = 12;
-                        break;
-                    case "S3 Ilmu Manajemen":
-                        id_jurusan = 3;
-                        id_prodi = 16;
-                        break;
                 }
             }
 

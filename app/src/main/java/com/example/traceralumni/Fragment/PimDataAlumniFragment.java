@@ -130,20 +130,20 @@ public class PimDataAlumniFragment extends Fragment {
 
         String[] prodiIlmuEkonomi = new String[]{
                 "Prodi",
-                "S1 - Ekonomi Pembangunan",
-                "S1 - Ekonomi Pembangunan (Internasional)",
-                "S2 - Ilmu Ekonomi",
-                "S3 - Ilmu Ekonomi",
+                "S1 Ekonomi Pembangunan",
+                "S1 Ekonomi Pembangunan (Internasional)",
+                "S2 Ilmu Ekonomi",
+                "S3 Ilmu Ekonomi",
         };
 
         String[] prodiManajemen = new String[]{
                 "Prodi",
-                "S1 - Ekonomi, Keuangan, dan Perbankan",
-                "S1 - Kewirausahaan",
-                "S1 - Manajemen",
-                "S1 - Manajemen (Internasional)",
-                "S2 - Manajemen",
-                "S3 - Ilmu Manajemen",
+                "S1 Ekonomi, Keuangan, dan Perbankan",
+                "S1 Kewirausahaan",
+                "S1 Manajemen",
+                "S1 Manajemen (Internasional)",
+                "S2 Manajemen",
+                "S3 Ilmu Manajemen",
         };
 
         final List<String> jurusanList = new ArrayList<>(Arrays.asList(jurusan));

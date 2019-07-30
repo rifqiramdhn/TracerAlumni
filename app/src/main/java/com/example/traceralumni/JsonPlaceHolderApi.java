@@ -242,4 +242,8 @@ public interface JsonPlaceHolderApi {
                               @Field("nim") String nim,
                               @Field("id_jurusan") Integer idJurusan,
                               @Field("id_prodi") Integer idProdi);
+
+    @FormUrlEncoded
+    @POST("delete_alumni.php")
+    Call<Void> deleteAlumni(@Field("nim") String nim);
 }

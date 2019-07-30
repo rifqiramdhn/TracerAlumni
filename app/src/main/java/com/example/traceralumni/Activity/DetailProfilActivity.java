@@ -1,6 +1,9 @@
 package com.example.traceralumni.Activity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,12 +13,14 @@ import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.content.CursorLoader;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,6 +66,8 @@ public class DetailProfilActivity extends AppCompatActivity {
     ConstraintLayout cl_wa;
 
     String oldPath = "";
+
+    Button btnDelete;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -142,7 +149,7 @@ public class DetailProfilActivity extends AppCompatActivity {
                     return;
                 }
 
-                final DaftarModel daftarModel = response.body();
+                daftarModel = response.body();
                 tvNama.setText(daftarModel.getNama());
                 tvProdi.setText(daftarModel.getProdi());
                 tvAngkatan.setText(daftarModel.getAngkatan());
@@ -187,6 +194,59 @@ public class DetailProfilActivity extends AppCompatActivity {
         });
     }
 
+    public void showHapusDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Apakah anda yakin ingin menghapus data alumni ini?");
+        builder.setTitle("Hapus Alumni");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                hapusAlumni(daftarModel.getNim());
+            }
+        });
+
+        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void hapusAlumni(String nim){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<Void> call = jsonPlaceHolderApi.deleteAlumni(nim);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()){
+                    return;
+                }
+
+                onBackPressed();
+                Toast.makeText(DetailProfilActivity.this, "Alumni telah dihapus", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(DetailProfilActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
     private void initView() {
         img_detail_profil = findViewById(R.id.iv_activity_detail_profil_foto);
         tvNama = findViewById(R.id.txt_nama);
@@ -209,9 +269,17 @@ public class DetailProfilActivity extends AppCompatActivity {
         tvPassword = findViewById(R.id.tv_detail_profil_password);
         tvNim = findViewById(R.id.tv_detail_profil_nim);
         tvJudulPassword = findViewById(R.id.tv_judul_password);
+        btnDelete = findViewById(R.id.btn_hapus_alumni);
         if (JENIS_USER.equals(JENIS_USER_OPERATOR)){
             tvJudulPassword.setVisibility(View.VISIBLE);
             tvPassword.setVisibility(View.VISIBLE);
+            btnDelete.setVisibility(View.VISIBLE);
         }
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showHapusDialog();
+            }
+        });
     }
 }
