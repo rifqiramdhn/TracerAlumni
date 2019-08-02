@@ -50,6 +50,7 @@
                 android:id="@+id/img_sunting_profil_edit_foto"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:elevation="1dp"
                 android:src="@color/colorIconBiru"
                 app:layout_constraintBottom_toBottomOf="@+id/img_sunting_profil_foto"
                 app:layout_constraintEnd_toEndOf="@+id/img_sunting_profil_foto" />
@@ -59,6 +60,7 @@
                 android:id="@+id/img_sunting_profil_edit_foto2"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:elevation="1dp"
                 android:tint="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/img_sunting_profil_edit_foto"
                 app:layout_constraintEnd_toEndOf="@+id/img_sunting_profil_edit_foto"

@@ -2,9 +2,12 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_navbar_container"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_bar_height"
-    android:background="@drawable/background_shadow"
+    android:background="@color/white"
+    android:clipToPadding="false"
+    android:elevation="4dp"
     tools:context=".Activity.MainActivity">
 
     <TextView

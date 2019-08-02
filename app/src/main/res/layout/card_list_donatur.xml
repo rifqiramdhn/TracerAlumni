@@ -6,7 +6,8 @@
     android:layout_marginLeft="@dimen/margin_card"
     android:layout_marginRight="@dimen/margin_card"
     android:layout_marginBottom="@dimen/margin_card"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:elevation="1dp">
 
     <TextView
         android:id="@+id/tv_nama_donatur"

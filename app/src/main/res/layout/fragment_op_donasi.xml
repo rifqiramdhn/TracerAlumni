@@ -30,6 +30,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:background="@color/white"
+        android:elevation="2dp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/tv_fragment_op_donasi_permintaan"
         app:layout_constraintEnd_toEndOf="parent"

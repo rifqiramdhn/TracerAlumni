@@ -642,6 +642,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/nav_bar_height"
         android:background="@color/colorIconBiru"
+        android:elevation="8dp"
         app:itemIconTint="@android:color/white"
         app:itemTextColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"

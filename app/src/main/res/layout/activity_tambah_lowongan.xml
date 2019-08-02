@@ -51,6 +51,7 @@
                 android:id="@+id/iv_edit_lowongan_logo"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:elevation="1dp"
                 android:src="@color/colorIconBiru"
                 app:layout_constraintBottom_toBottomOf="@id/iv_tambah_lowongan_logo"
                 app:layout_constraintEnd_toEndOf="@+id/iv_tambah_lowongan_logo" />
@@ -59,6 +60,7 @@
                 android:id="@+id/iv_edit_lowongan_logo2"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:elevation="1dp"
                 android:tint="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_edit_lowongan_logo"
                 app:layout_constraintEnd_toEndOf="@+id/iv_edit_lowongan_logo"
