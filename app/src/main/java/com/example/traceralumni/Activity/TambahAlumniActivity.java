@@ -1,8 +1,10 @@
 package com.example.traceralumni.Activity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,20 +18,26 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class TambahAlumniActivity extends AppCompatActivity {
@@ -44,6 +52,12 @@ public class TambahAlumniActivity extends AppCompatActivity {
     Spinner spn_jurusan, spn_prodi;
     EditText edtNim, edtNama;
 
+    ProgressDialog pd;
+
+    FirebaseAuth auth;
+    FirebaseAuth auth2;
+    DatabaseReference reference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +65,13 @@ public class TambahAlumniActivity extends AppCompatActivity {
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         builder = new AlertDialog.Builder(this);
+
+        pd = new ProgressDialog(TambahAlumniActivity.this);
+        pd.setCancelable(false);
+        pd.setMessage("Loading...");
+        auth = FirebaseAuth.getInstance();
+        auth2 = FirebaseAuth.getInstance();
+
         initView();
     }
 
@@ -169,11 +190,11 @@ public class TambahAlumniActivity extends AppCompatActivity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (CAN_CLICK_BUTTON_SAVE == 0) {
-                    CAN_CLICK_BUTTON_SAVE = 1;
-                    saveData(edtNama.getText().toString(), edtNim.getText().toString(),
-                            id_prodi, id_jurusan);
-                }
+//                if (CAN_CLICK_BUTTON_SAVE == 0){
+//                    CAN_CLICK_BUTTON_SAVE = 1;
+                pd.show();
+                registerAlumni();
+//                }
             }
         });
 
@@ -188,39 +209,93 @@ public class TambahAlumniActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void saveData(String nama, String nim, Integer idProdi, Integer idJurusan) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+    private void registerAlumni() {
+        final String nim = edtNim.getText().toString().trim();
+        String nama = edtNama.getText().toString().trim();
+        Integer idJurusan = id_jurusan;
+        Integer idProdi = id_prodi;
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<String> call = jsonPlaceHolderApi.createAlumni(nama, nim, idJurusan, idProdi);
+        final String email = nim + "traceralumnifeb@gmail.com";
+        final String password = getRandomPassword(8);
+
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
+        Call<String> call = jsonApi.createAlumni(nama, nim, email, password, idJurusan, idProdi);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if (!response.isSuccessful()) {
-                    CAN_CLICK_BUTTON_SAVE = 0;
+//                    CAN_CLICK_BUTTON_SAVE = 0;
                     return;
                 }
-                CAN_CLICK_BUTTON_SAVE = 0;
+//                CAN_CLICK_BUTTON_SAVE = 0;
                 String hasil = response.body();
                 if (hasil.equals("0")) {
                     edtNim.setError("NIM sudah digunakan");
                 } else {
-                    onBackPressed();
-                    Toast.makeText(TambahAlumniActivity.this, "Alumni baru sudah ditambahkan", Toast.LENGTH_SHORT).show();
+                    registerToFirebase(email, password, nim);
+//                    onBackPressed();
+//                    Toast.makeText(TambahAlumniActivity.this, "Alumni baru sudah ditambahkan", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                CAN_CLICK_BUTTON_SAVE = 0;
+//                CAN_CLICK_BUTTON_SAVE = 0;
                 if (t.getMessage().contains("Failed to connect")) {
                     Toast.makeText(TambahAlumniActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    private void registerToFirebase(String email, String password, final String nim) {
+        auth2.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser firebaseUser = auth2.getCurrentUser();
+                            assert firebaseUser != null;
+                            String userId = firebaseUser.getUid();
+
+                            reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
+
+                            HashMap<String, String> hashMap = new HashMap<>();
+                            hashMap.put("id", userId);
+                            hashMap.put("edtEmail", nim);
+
+                            reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    auth2.signOut();
+                                    pd.dismiss();
+                                    Toast.makeText(TambahAlumniActivity.this, "Alumni berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+                                    onBackPressed();
+                                }
+                            });
+                        } else {
+                            Toast.makeText(TambahAlumniActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            pd.dismiss();
+                        }
+                    }
+                });
+    }
+
+    private String getRandomPassword(int n) {
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789"
+                + "abcdefghijklmnopqrstuvxyz";
+
+        StringBuilder sb = new StringBuilder(n);
+        for (int i = 0; i < n; i++) {
+            int index
+                    = (int) (AlphaNumericString.length()
+                    * Math.random());
+            sb.append(AlphaNumericString
+                    .charAt(index));
+        }
+
+        return sb.toString();
     }
 
     private void customSpinner() {

@@ -1,10 +1,12 @@
 package com.example.traceralumni.Adapter;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -17,7 +19,6 @@ import android.widget.Toast;
 
 import com.example.traceralumni.Activity.AboutActivity;
 import com.example.traceralumni.Activity.BantuanActivity;
-import com.example.traceralumni.Activity.ChangePasswordActivity;
 import com.example.traceralumni.Activity.DonasiActivity;
 import com.example.traceralumni.Activity.KartuAlumniActivity;
 import com.example.traceralumni.Activity.MainActivity;
@@ -25,20 +26,21 @@ import com.example.traceralumni.Activity.RiwayatPekerjaanActivity;
 import com.example.traceralumni.Activity.StatusPermintaanDonasiActivity;
 import com.example.traceralumni.Activity.StatusPermintaanLowonganActivity;
 import com.example.traceralumni.Activity.SuntingProfilActivity;
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.LainnyaModel;
 import com.example.traceralumni.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
@@ -106,8 +108,7 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                         context.startActivity(statusLowongan);
                         break;
                     case 8:
-                        Intent gantiPass = new Intent(context, ChangePasswordActivity.class);
-                        context.startActivity(gantiPass);
+                        showResetPasswordDialog();
                         break;
                     case 9:
                         showHapusSemuaChatDialog();
@@ -152,6 +153,78 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
         }
     }
 
+    private void resetPassword(String nim, final ProgressDialog pd) {
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
+        Call<DaftarModel> call = jsonApi.getUserData(nim);
+        call.enqueue(new Callback<DaftarModel>() {
+            @Override
+            public void onResponse(Call<DaftarModel> call, Response<DaftarModel> response) {
+                if (!response.isSuccessful()) {
+                    pd.dismiss();
+                    return;
+                }
+
+                DaftarModel daftarModel = response.body();
+                if (daftarModel.getStatus_data().equals("y")) {
+                    if (daftarModel.getNim().contains("traceralumnifeb@gmail.com")) {
+                        resetPasswordFirebase(daftarModel.getEmail(), pd);
+                    } else {
+                        pd.dismiss();
+                        Toast.makeText(context, "Mohon lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DaftarModel> call, Throwable t) {
+                pd.dismiss();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(context, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void resetPasswordFirebase(String email, final ProgressDialog pd) {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        auth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            pd.dismiss();
+                            Toast.makeText(context, "Mohon periksa email anda", Toast.LENGTH_SHORT).show();
+                        } else {
+                            pd.dismiss();
+                            Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    private void showResetPasswordDialog() {
+        builder.setMessage("Apakah anda yakin ingin mengatur ulang kata sandi?");
+        builder.setTitle("Reset Password");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                ProgressDialog pd = new ProgressDialog(context);
+                pd.setMessage("Mengirim ke email anda...");
+                pd.show();
+                resetPassword(NIM, pd);
+            }
+        });
+        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
     private void showHapusSemuaChatDialog() {
         builder.setMessage("Apakah anda yakin ingin menghapus semua chat?");
         builder.setTitle("Hapus Semua Chat");
@@ -174,14 +247,9 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
     }
 
     public void getData(final int index) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<DaftarModel> call = jsonPlaceHolderApi.getUserData(NIM);
+        Call<DaftarModel> call = jsonApi.getUserData(NIM);
         call.enqueue(new Callback<DaftarModel>() {
             @Override
             public void onResponse(Call<DaftarModel> call, Response<DaftarModel> response) {

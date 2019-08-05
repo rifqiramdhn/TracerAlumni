@@ -14,7 +14,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.R;
 
 import java.text.SimpleDateFormat;
@@ -23,10 +24,7 @@ import java.util.Date;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
@@ -190,13 +188,8 @@ public class NominalDonasiActivity extends AppCompatActivity {
     }
 
     private void saveData(Double totalBantuan, String tanggal_donasi) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<Void> call = jsonPlaceHolderApi.createPermintaanDonasi(idDonasi, nim, totalBantuan, tanggal_donasi);
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
+        Call<Void> call = jsonApi.createPermintaanDonasi(idDonasi, nim, totalBantuan, tanggal_donasi);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

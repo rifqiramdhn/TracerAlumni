@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1000617983319",
+    "firebase_url": "https://traceralumni-af40a.firebaseio.com",
+    "project_id": "traceralumni-af40a",
+    "storage_bucket": "traceralumni-af40a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1000617983319:android:d5949eb5f9f0c535",
+        "android_client_info": {
+          "package_name": "com.example.traceralumni"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1000617983319-175e5jfbq20rvmonnro604k86t7gr6q1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.traceralumni",
+            "certificate_hash": "a8bfc029b651af285770885d6646cb1d1006db52"
+          }
+        },
+        {
+          "client_id": "1000617983319-n5qc04eceb6kmcvfmskkfpfcvf5vf6r0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCm5UWPmzXB0O7XVaIvC5QxjoCo9IVdFLw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1000617983319-n5qc04eceb6kmcvfmskkfpfcvf5vf6r0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

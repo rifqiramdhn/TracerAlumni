@@ -14,8 +14,8 @@ import android.widget.Toast;
 
 import com.example.traceralumni.Activity.DetailDonasiActivity;
 import com.example.traceralumni.Activity.DetailProfilActivity;
-import com.example.traceralumni.Activity.MainActivity;
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.PermintaanDonasiModel;
 import com.example.traceralumni.R;
 
@@ -24,8 +24,6 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
@@ -204,14 +202,9 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
     }
 
     private void confirmDonation(final int position, int idDonatur, final String confirm) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(MainActivity.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<Void> call = jsonPlaceHolderApi.confirmDonasi(idDonatur, confirm);
+        Call<Void> call = jsonApi.confirmDonasi(idDonatur, confirm);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

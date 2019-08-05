@@ -22,11 +22,11 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Query;
 
-public interface JsonPlaceHolderApi {
+public interface JsonApi {
 
     @FormUrlEncoded
     @POST("post_login.php")
-    Call<DaftarModel> requestLogin(@Field("username") String username, @Field("password") String password);
+    Call<DaftarModel> login(@Field("nim") String nim, @Field("password") String password);
 
     @GET("get_all_donasi.php")
     Call<ArrayList<DonasiModel>> getAllDonasi();
@@ -102,6 +102,10 @@ public interface JsonPlaceHolderApi {
     @FormUrlEncoded
     @POST("post_get_user_data.php")
     Call<DaftarModel> getUserData(@Field("nim") String nim);
+
+    @FormUrlEncoded
+    @POST("post_get_user_data.php")
+    Call<DaftarModel> getUserDataFromEmail(@Field("email") String email);
 
     @FormUrlEncoded
     @POST("post_sunting_profil.php")
@@ -236,6 +240,8 @@ public interface JsonPlaceHolderApi {
     @POST("create_alumni.php")
     Call<String> createAlumni(@Field("nama") String nama,
                               @Field("nim") String nim,
+                              @Field("email") String email,
+                              @Field("password") String password,
                               @Field("id_jurusan") Integer idJurusan,
                               @Field("id_prodi") Integer idProdi);
 
