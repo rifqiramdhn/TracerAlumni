@@ -17,7 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.Model.PermintaanDonasiModel;
 import com.example.traceralumni.R;
@@ -78,13 +79,9 @@ public class DetailDonasiActivity extends AppCompatActivity {
 
     private void getDataFromID(int idDonasi) {
         if (idDonasi != -1) {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+            JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-            Call<DonasiModel> call = jsonPlaceHolderApi.getDonasi(idDonasi);
+            Call<DonasiModel> call = jsonApi.getDonasi(idDonasi);
             call.enqueue(new Callback<DonasiModel>() {
                 @Override
                 public void onResponse(Call<DonasiModel> call, Response<DonasiModel> response) {
@@ -213,13 +210,8 @@ public class DetailDonasiActivity extends AppCompatActivity {
     }
 
     private void getJumlahDuit(Integer idDonasi) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<PermintaanDonasiModel> call = jsonPlaceHolderApi.getJumlahDuit(idDonasi);
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
+        Call<PermintaanDonasiModel> call = jsonApi.getJumlahDuit(idDonasi);
         call.enqueue(new Callback<PermintaanDonasiModel>() {
             @Override
             public void onResponse(Call<PermintaanDonasiModel> call, Response<PermintaanDonasiModel> response) {

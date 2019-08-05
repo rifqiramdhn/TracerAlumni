@@ -10,10 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.traceralumni.Adapter.DonasiAdapter;
 import com.example.traceralumni.Adapter.PermintaanDonasiAdapter;
-import com.example.traceralumni.JsonPlaceHolderApi;
-import com.example.traceralumni.Model.DonasiModel;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.PermintaanDonasiModel;
 import com.example.traceralumni.R;
 
@@ -65,14 +64,9 @@ public class StatusPermintaanDonasiActivity extends AppCompatActivity {
     }
 
     private void getAllStatusPermintaanDonasi() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<ArrayList<PermintaanDonasiModel>> call = jsonPlaceHolderApi.getStatusPermintaanDonasi(NIM);
+        Call<ArrayList<PermintaanDonasiModel>> call = jsonApi.getStatusPermintaanDonasi(NIM);
         call.enqueue(new Callback<ArrayList<PermintaanDonasiModel>>() {
             @Override
             public void onResponse(Call<ArrayList<PermintaanDonasiModel>> call, Response<ArrayList<PermintaanDonasiModel>> response) {

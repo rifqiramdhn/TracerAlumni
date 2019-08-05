@@ -5,14 +5,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.traceralumni.Adapter.BerandaAdapter;
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.BerandaModel;
 import com.example.traceralumni.R;
 
@@ -78,13 +78,8 @@ public class BerandaFragment extends Fragment {
     }
 
     private void getAllBeranda(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<ArrayList<BerandaModel>> call = jsonPlaceHolderApi.getAllBeranda();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
+        Call<ArrayList<BerandaModel>> call = jsonApi.getAllBeranda();
         call.enqueue(new Callback<ArrayList<BerandaModel>>() {
             @Override
             public void onResponse(Call<ArrayList<BerandaModel>> call, Response<ArrayList<BerandaModel>> response) {

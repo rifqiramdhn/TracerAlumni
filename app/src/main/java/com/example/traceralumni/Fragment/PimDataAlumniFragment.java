@@ -20,7 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.traceralumni.Activity.PimDaftarAlumniActivity;
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;
 
@@ -279,36 +280,31 @@ public class PimDataAlumniFragment extends Fragment {
     }
 
     private void getDataAlumniDaftar() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
         Call<ArrayList<DaftarModel>> call;
 
         if (edt_angkatan.getText().toString().equalsIgnoreCase("")) {
-            call = jsonPlaceHolderApi.getDataAlumniDaftar(
+            call = jsonApi.getDataAlumniDaftar(
                     spn_jurusan.getSelectedItem().toString(),
                     spn_prodi.getSelectedItem().toString(),
                     "",
                     edt_jabatan.getText().toString());
         } else if (edt_jabatan.getText().toString().equalsIgnoreCase("")) {
-            call = jsonPlaceHolderApi.getDataAlumniDaftar(
+            call = jsonApi.getDataAlumniDaftar(
                     spn_jurusan.getSelectedItem().toString(),
                     spn_prodi.getSelectedItem().toString(),
                     edt_angkatan.getText().toString(),
                     "");
         } else if (edt_angkatan.getText().toString().equalsIgnoreCase("")
                 && edt_jabatan.getText().toString().equalsIgnoreCase("")) {
-            call = jsonPlaceHolderApi.getDataAlumniDaftar(
+            call = jsonApi.getDataAlumniDaftar(
                     spn_jurusan.getSelectedItem().toString(),
                     spn_prodi.getSelectedItem().toString(),
                     "",
                     "");
         } else {
-            call = jsonPlaceHolderApi.getDataAlumniDaftar(
+            call = jsonApi.getDataAlumniDaftar(
                     spn_jurusan.getSelectedItem().toString(),
                     spn_prodi.getSelectedItem().toString(),
                     edt_angkatan.getText().toString(),
@@ -341,36 +337,31 @@ public class PimDataAlumniFragment extends Fragment {
     }
 
     private void getDataAlumniCount() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
         Call<DaftarModel> call;
 
         if (edt_angkatan.getText().toString().equalsIgnoreCase("")) {
-            call = jsonPlaceHolderApi.getDataAlumniCount(
+            call = jsonApi.getDataAlumniCount(
                     spn_jurusan.getSelectedItem().toString(),
                     spn_prodi.getSelectedItem().toString(),
                     "",
                     edt_jabatan.getText().toString());
         } else if (edt_jabatan.getText().toString().equalsIgnoreCase("")) {
-            call = jsonPlaceHolderApi.getDataAlumniCount(
+            call = jsonApi.getDataAlumniCount(
                     spn_jurusan.getSelectedItem().toString(),
                     spn_prodi.getSelectedItem().toString(),
                     edt_angkatan.getText().toString(),
                     "");
         } else if (edt_angkatan.getText().toString().equalsIgnoreCase("")
                 && edt_jabatan.getText().toString().equalsIgnoreCase("")) {
-            call = jsonPlaceHolderApi.getDataAlumniCount(
+            call = jsonApi.getDataAlumniCount(
                     spn_jurusan.getSelectedItem().toString(),
                     spn_prodi.getSelectedItem().toString(),
                     "",
                     "");
         } else {
-            call = jsonPlaceHolderApi.getDataAlumniCount(
+            call = jsonApi.getDataAlumniCount(
                     spn_jurusan.getSelectedItem().toString(),
                     spn_prodi.getSelectedItem().toString(),
                     edt_angkatan.getText().toString(),

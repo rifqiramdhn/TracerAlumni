@@ -11,7 +11,6 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,13 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.LowonganModel;
-import com.example.traceralumni.Model.PermintaanLowonganModel;
 import com.example.traceralumni.R;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
@@ -35,12 +32,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
-import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
-import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB_KEY;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
-import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
-import static com.example.traceralumni.Activity.MainActivity.NIM;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 import static com.example.traceralumni.Activity.StatusPermintaanLowonganActivity.BUKA_STATUS_LOWONGAN;
 
@@ -221,14 +214,9 @@ public class DetailLowonganActivity extends AppCompatActivity {
     }
 
     private void deleteLowongan(Integer idLowongan) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<Void> call = jsonPlaceHolderApi.deleteLowongan(idLowongan);
+        Call<Void> call = jsonApi.deleteLowongan(idLowongan);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -249,14 +237,9 @@ public class DetailLowonganActivity extends AppCompatActivity {
 
     public void getNama() {
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<DaftarModel> call = jsonPlaceHolderApi.getUserData(lowonganModel.getUsername());
+        Call<DaftarModel> call = jsonApi.getUserData(lowonganModel.getUsername());
         call.enqueue(new Callback<DaftarModel>() {
             @Override
             public void onResponse(Call<DaftarModel> call, Response<DaftarModel> response) {
@@ -292,13 +275,8 @@ public class DetailLowonganActivity extends AppCompatActivity {
     }
 
     private void getLowonganFromId(Integer id_lowongan) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<LowonganModel> call = jsonPlaceHolderApi.getLowonganFromId(id_lowongan);
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
+        Call<LowonganModel> call = jsonApi.getLowonganFromId(id_lowongan);
         call.enqueue(new Callback<LowonganModel>() {
             @Override
             public void onResponse(Call<LowonganModel> call, Response<LowonganModel> response) {

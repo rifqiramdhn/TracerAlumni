@@ -3,15 +3,11 @@ package com.example.traceralumni.Fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.traceralumni.Adapter.DaftarAdapter;
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;
 
@@ -95,14 +92,9 @@ public class DaftarFragment extends Fragment {
     }
 
     private void getDaftarAlumni() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<ArrayList<DaftarModel>> call = jsonPlaceHolderApi.getDaftarAlumni();
+        Call<ArrayList<DaftarModel>> call = jsonApi.getDaftarAlumni();
         call.enqueue(new Callback<ArrayList<DaftarModel>>() {
             @Override
             public void onResponse(Call<ArrayList<DaftarModel>> call, Response<ArrayList<DaftarModel>> response) {

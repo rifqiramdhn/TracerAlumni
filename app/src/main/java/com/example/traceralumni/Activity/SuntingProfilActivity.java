@@ -6,8 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -22,7 +20,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -34,18 +31,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.PathModel;
 import com.example.traceralumni.R;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -267,13 +260,8 @@ public class SuntingProfilActivity extends AppCompatActivity {
         RequestBody requestBody = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)), compressedFile);
         MultipartBody.Part kirim = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        final JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<PathModel> call = jsonPlaceHolderApi.uploadPhoto(kirim);
+        final JsonApi jsonApi = Client.getClient().create(JsonApi.class);
+        Call<PathModel> call = jsonApi.uploadPhoto(kirim);
         call.enqueue(new Callback<PathModel>() {
             @Override
             public void onResponse(Call<PathModel> call, Response<PathModel> response) {
@@ -284,7 +272,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 PathModel pathModel = response.body();
                 if (!pathModel.getPath().equals("invalid")) {
                     newPath = pathModel.getPath();
-                    addPhotoPathToDatabase(jsonPlaceHolderApi);
+                    addPhotoPathToDatabase(jsonApi);
                     oldPath = pathModel.getPath();
                     Glide.with(SuntingProfilActivity.this)
                             .load(BASE_URL + pathModel.getPath())
@@ -301,8 +289,8 @@ public class SuntingProfilActivity extends AppCompatActivity {
         });
     }
 
-    private void addPhotoPathToDatabase(JsonPlaceHolderApi jsonPlaceHolderApi) {
-        Call<Void> call = jsonPlaceHolderApi.updatePhotoPath(NIM, oldPath, newPath);
+    private void addPhotoPathToDatabase(JsonApi jsonApi) {
+        Call<Void> call = jsonApi.updatePhotoPath(NIM, oldPath, newPath);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -401,12 +389,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
     }
 
     private void suntingProfil() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
         String telepon;
         if (edt_no_hp.getText().toString().charAt(0) == '0') {
             telepon = "+62" + edt_no_hp.getText().toString().substring(1);
@@ -415,7 +398,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
         } else {
             telepon = edt_no_hp.getText().toString();
         }
-        Call<Void> call = jsonPlaceHolderApi.suntingProfil(
+        Call<Void> call = jsonApi.suntingProfil(
                 daftarModel.getNim(),
                 edt_email.getText().toString(),
                 edt_tempat_lahir.getText().toString(),

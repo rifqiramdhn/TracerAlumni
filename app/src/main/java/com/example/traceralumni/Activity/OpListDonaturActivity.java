@@ -11,7 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.traceralumni.Adapter.ListDonaturAdapter;
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.PermintaanDonasiModel;
 import com.example.traceralumni.R;
 
@@ -67,14 +68,9 @@ public class OpListDonaturActivity extends AppCompatActivity {
     }
 
     private void getAllDonatur() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<ArrayList<PermintaanDonasiModel>> call = jsonPlaceHolderApi.getAllDonatur(getIntent().getIntExtra("id_donasi", 0));
+        Call<ArrayList<PermintaanDonasiModel>> call = jsonApi.getAllDonatur(getIntent().getIntExtra("id_donasi", 0));
         call.enqueue(new Callback<ArrayList<PermintaanDonasiModel>>() {
             @Override
             public void onResponse(Call<ArrayList<PermintaanDonasiModel>> call, Response<ArrayList<PermintaanDonasiModel>> response) {

@@ -19,7 +19,8 @@ import android.widget.Toast;
 
 import com.example.traceralumni.Activity.OpPermintaanLowonganActivity;
 import com.example.traceralumni.Adapter.LowonganAdapter;
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.LowonganModel;
 import com.example.traceralumni.R;
 import com.google.gson.Gson;
@@ -121,14 +122,9 @@ public class OpLowonganFragment extends Fragment {
         Gson gson = new GsonBuilder()
                 .setLenient().create();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<ArrayList<LowonganModel>> lowongan = jsonPlaceHolderApi.getAllLowongan();
+        Call<ArrayList<LowonganModel>> lowongan = jsonApi.getAllLowongan();
         lowongan.enqueue(new Callback<ArrayList<LowonganModel>>() {
             @Override
             public void onResponse(Call<ArrayList<LowonganModel>> call, Response<ArrayList<LowonganModel>> response) {
@@ -159,13 +155,8 @@ public class OpLowonganFragment extends Fragment {
     }
 
     private void getRequestLowongan(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<String> call = jsonPlaceHolderApi.getCountPermintaanLowongan();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
+        Call<String> call = jsonApi.getCountPermintaanLowongan();
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {

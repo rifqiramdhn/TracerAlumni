@@ -14,7 +14,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.R;
 
 import java.text.SimpleDateFormat;
@@ -190,13 +191,8 @@ public class NominalDonasiActivity extends AppCompatActivity {
     }
 
     private void saveData(Double totalBantuan, String tanggal_donasi) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<Void> call = jsonPlaceHolderApi.createPermintaanDonasi(idDonasi, nim, totalBantuan, tanggal_donasi);
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
+        Call<Void> call = jsonApi.createPermintaanDonasi(idDonasi, nim, totalBantuan, tanggal_donasi);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

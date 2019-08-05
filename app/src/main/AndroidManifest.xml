@@ -31,7 +31,6 @@
         <activity android:name=".Activity.LocationPickerActivity" />
         <activity android:name=".Activity.NominalDonasiActivity" />
         <activity android:name=".Activity.SuntingProfilActivity" />
-        <activity android:name=".Activity.ChangePasswordActivity" />
         <activity android:name=".Activity.AboutActivity" />
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.MainActivity">

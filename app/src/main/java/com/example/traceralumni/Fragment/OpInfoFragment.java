@@ -2,24 +2,20 @@ package com.example.traceralumni.Fragment;
 
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.traceralumni.Adapter.DonasiAdapter;
 import com.example.traceralumni.Adapter.InfoAdapter;
-import com.example.traceralumni.JsonPlaceHolderApi;
-import com.example.traceralumni.Model.DonasiModel;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.InfoModel;
 import com.example.traceralumni.R;
 
@@ -73,14 +69,9 @@ public class OpInfoFragment extends Fragment {
     }
 
     private void getAllInfo() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<ArrayList<InfoModel>> call = jsonPlaceHolderApi.getAllInfo();
+        Call<ArrayList<InfoModel>> call = jsonApi.getAllInfo();
         call.enqueue(new Callback<ArrayList<InfoModel>>() {
             @Override
             public void onResponse(Call<ArrayList<InfoModel>> call, Response<ArrayList<InfoModel>> response) {

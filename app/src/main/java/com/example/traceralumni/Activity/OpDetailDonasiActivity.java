@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Path;
 import android.net.ParseException;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -25,9 +24,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.example.traceralumni.Fragment.OpDonasiFragment;
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.Model.PathModel;
 import com.example.traceralumni.Model.PermintaanDonasiModel;
@@ -216,14 +214,9 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
     }
 
     private void deleteDonasiID(Integer idDonasi) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<Void> call = jsonPlaceHolderApi.deleteDonasi(idDonasi);
+        Call<Void> call = jsonApi.deleteDonasi(idDonasi);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -274,14 +267,9 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
     }
 
     private void saveData(Integer idDonasi, String namaKegiatan, String keterangan, String noTelepon, Double totalAnggaran, String tanggal_donasi, String file) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<Void> call = jsonPlaceHolderApi.createDonasi(idDonasi, namaKegiatan, noTelepon, keterangan, totalAnggaran, tanggal_donasi, file);
+        Call<Void> call = jsonApi.createDonasi(idDonasi, namaKegiatan, noTelepon, keterangan, totalAnggaran, tanggal_donasi, file);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -305,14 +293,9 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
     }
 
     private void getJumlahDuit() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<PermintaanDonasiModel> call = jsonPlaceHolderApi.getJumlahDuit(donasiModel.getIdDonasi());
+        Call<PermintaanDonasiModel> call = jsonApi.getJumlahDuit(donasiModel.getIdDonasi());
         call.enqueue(new Callback<PermintaanDonasiModel>() {
             @Override
             public void onResponse(Call<PermintaanDonasiModel> call, Response<PermintaanDonasiModel> response) {
@@ -367,13 +350,8 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
         RequestBody requestBody = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)), compressedFile);
         MultipartBody.Part kirim = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        final JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<PathModel> call = jsonPlaceHolderApi.uploadPhoto(kirim);
+        final JsonApi jsonApi = Client.getClient().create(JsonApi.class);
+        Call<PathModel> call = jsonApi.uploadPhoto(kirim);
         call.enqueue(new Callback<PathModel>() {
             @Override
             public void onResponse(Call<PathModel> call, Response<PathModel> response) {

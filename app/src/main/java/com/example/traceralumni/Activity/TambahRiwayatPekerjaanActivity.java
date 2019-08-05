@@ -1,13 +1,11 @@
 package com.example.traceralumni.Activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.ParseException;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -19,13 +17,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.RiwayatPekerjaanModel;
 import com.example.traceralumni.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -67,13 +65,8 @@ public class TambahRiwayatPekerjaanActivity extends AppCompatActivity {
     }
 
     private void hapusData() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<Void> call = jsonPlaceHolderApi.deleteRiwayat(idRiwayat);
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
+        Call<Void> call = jsonApi.deleteRiwayat(idRiwayat);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -109,14 +102,9 @@ public class TambahRiwayatPekerjaanActivity extends AppCompatActivity {
     }
 
     private void submitData() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<Void> call = jsonPlaceHolderApi.createRiwayat(idRiwayat, NIM,
+        Call<Void> call = jsonApi.createRiwayat(idRiwayat, NIM,
                 edtPekerjaan.getText().toString().trim(),
                 edtLokasi.getText().toString().trim(),
                 edtNamaPer.getText().toString().trim(),

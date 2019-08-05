@@ -15,7 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.InfoModel;
 import com.example.traceralumni.R;
 
@@ -115,14 +116,9 @@ public class OpDetailInfoActivity extends AppCompatActivity {
     }
 
     private void deleteInfoID(Integer idInfo) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<Void> call = jsonPlaceHolderApi.deleteInfo(idInfo);
+        Call<Void> call = jsonApi.deleteInfo(idInfo);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -195,14 +191,9 @@ public class OpDetailInfoActivity extends AppCompatActivity {
     }
 
     private void saveData(Integer idInfo, String judul, String keterangan, String link, String tanggal_info) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<Void> call = jsonPlaceHolderApi.createInfo(idInfo, judul, keterangan, link, tanggal_info);
+        Call<Void> call = jsonApi.createInfo(idInfo, judul, keterangan, link, tanggal_info);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

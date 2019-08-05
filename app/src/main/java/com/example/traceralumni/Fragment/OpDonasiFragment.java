@@ -3,14 +3,11 @@ package com.example.traceralumni.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.traceralumni.Adapter.DonasiAdapter;
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.Activity.OpPermintaanDonasiActivity;
 import com.example.traceralumni.R;
@@ -97,13 +95,8 @@ public class OpDonasiFragment extends Fragment {
     }
 
     private void getRequestDonasi() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<String> call = jsonPlaceHolderApi.getCountPermintaanDonasi();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
+        Call<String> call = jsonApi.getCountPermintaanDonasi();
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -130,14 +123,9 @@ public class OpDonasiFragment extends Fragment {
     }
 
     private void getAllDonasi() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<ArrayList<DonasiModel>> call = jsonPlaceHolderApi.getAllDonasi();
+        Call<ArrayList<DonasiModel>> call = jsonApi.getAllDonasi();
         call.enqueue(new Callback<ArrayList<DonasiModel>>() {
             @Override
             public void onResponse(Call<ArrayList<DonasiModel>> call, Response<ArrayList<DonasiModel>> response) {
