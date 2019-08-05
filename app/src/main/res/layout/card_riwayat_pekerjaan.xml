@@ -18,14 +18,13 @@
 
         <TextView
             android:id="@+id/tv_jabatan"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:textColor="@color/colorIconBiru2"
-            android:textSize="16sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Manager" />
@@ -42,14 +41,12 @@
 
         <TextView
             android:id="@+id/tv_nama_perusahaan"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:textColor="@android:color/black"
-            android:textSize="14sp"
-            android:textStyle="normal"
             app:layout_constraintStart_toEndOf="@+id/img_bangunnan"
             app:layout_constraintTop_toBottomOf="@+id/tv_jabatan"
             tools:text="PT. Tembaga Pura" />
@@ -66,14 +63,11 @@
 
         <TextView
             android:id="@+id/tv_lokasi_perusahaan"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="2dp"
-            android:textColor="@android:color/black"
-            android:textSize="14sp"
-            android:textStyle="normal"
             app:layout_constraintStart_toEndOf="@+id/img_lokasi"
             app:layout_constraintTop_toBottomOf="@+id/tv_nama_perusahaan"
             tools:text="Palembang, Indonesia" />
@@ -90,15 +84,12 @@
 
         <TextView
             android:id="@+id/tv_pendapatan"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="2dp"
             android:layout_marginBottom="8dp"
-            android:textColor="@android:color/black"
-            android:textSize="14sp"
-            android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_gaji"
             app:layout_constraintTop_toBottomOf="@+id/tv_lokasi_perusahaan"
@@ -106,13 +97,12 @@
 
         <TextView
             android:id="@+id/tv_tahun_riwayat"
+            style="@style/TextAppearance.MaterialComponents.Subtitle2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="14sp"
-            android:textStyle="bold"
+            android:textColor="@color/defaultTextColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_jabatan"
             tools:text="sekarang" />

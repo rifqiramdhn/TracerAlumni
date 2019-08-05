@@ -44,29 +44,26 @@
 
             <TextView
                 android:id="@+id/tv_nama_lowongan"
-                android:layout_width="wrap_content"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="24dp"
-                android:textColor="@android:color/black"
-                android:textSize="24sp"
-                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_activity_detail_lowongan_logo"
                 tools:text="Staff Administrasi HRD" />
 
             <TextView
                 android:id="@+id/tv_nama_perusahaan"
-                android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/tv_nama_lowongan"
                 app:layout_constraintTop_toBottomOf="@+id/tv_nama_lowongan"
                 tools:text="PT. Bank Muamalat" />
 
@@ -74,26 +71,22 @@
                 android:id="@+id/img_lokasi"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="16dp"
                 android:tint="@color/colorIconBiru"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_nama_perusahaan"
                 app:layout_constraintTop_toBottomOf="@+id/tv_nama_perusahaan"
                 app:srcCompat="@drawable/ic_location_on" />
 
             <TextView
                 android:id="@+id/tv_lokasi_perusahaan"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/img_lokasi"
                 app:layout_constraintStart_toEndOf="@+id/img_lokasi"
-                app:layout_constraintTop_toBottomOf="@+id/tv_nama_perusahaan"
+                app:layout_constraintTop_toTopOf="@+id/img_lokasi"
                 tools:text="Kota Malang, Indonesia" />
 
             <ImageView
@@ -110,52 +103,43 @@
 
             <TextView
                 android:id="@+id/tv_kisaran_gaji"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_lokasi_perusahaan"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_lokasi_perusahaan"
-                tools:text="~Rp 5.000.000" />
+                tools:text="~5 juta" />
 
             <ImageView
                 android:id="@+id/img_profil"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/img_lokasi"
                 app:layout_constraintTop_toBottomOf="@+id/tv_lokasi_perusahaan"
                 app:srcCompat="@drawable/ic_person" />
 
             <TextView
                 android:id="@+id/tv_profil"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/img_profil"
-                app:layout_constraintStart_toEndOf="@+id/img_profil"
+                app:layout_constraintStart_toStartOf="@+id/tv_lokasi_perusahaan"
                 app:layout_constraintTop_toTopOf="@+id/img_profil"
                 tools:text="Paidi Sugiono" />
 
             <Button
                 android:id="@+id/btn_lihat_profil"
+                style="@style/TextAppearance.MaterialComponents.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:backgroundTint="@color/colorIconBiru"
                 android:text="Lihat Profil"
                 android:textColor="@color/white"
-                android:textSize="12sp"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/tv_profil"
                 app:layout_constraintTop_toBottomOf="@+id/tv_profil" />
@@ -164,38 +148,27 @@
                 android:id="@+id/img_syarat"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/img_profil"
                 app:layout_constraintTop_toBottomOf="@+id/btn_lihat_profil"
                 app:srcCompat="@drawable/ic_syarat" />
 
             <TextView
                 android:id="@+id/tv_judul_syarat"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:text="Syarat Pekerjaan"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/img_syarat"
-                app:layout_constraintStart_toEndOf="@+id/img_syarat"
+                app:layout_constraintStart_toStartOf="@+id/tv_profil"
                 app:layout_constraintTop_toTopOf="@+id/img_syarat" />
 
             <TextView
                 android:id="@+id/tv_syarat"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tv_kisaran_gaji"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_syarat"
                 app:layout_constraintTop_toBottomOf="@+id/tv_judul_syarat"
                 tools:text="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt." />
@@ -204,35 +177,26 @@
                 android:id="@+id/img_kuota"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/img_syarat"
                 app:layout_constraintTop_toBottomOf="@+id/tv_syarat"
                 app:srcCompat="@drawable/ic_kuota" />
 
             <TextView
                 android:id="@+id/tv_judul_kuota"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:text="Kuota yang Dibutuhkan"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/img_kuota"
-                app:layout_constraintStart_toEndOf="@+id/img_kuota"
+                app:layout_constraintStart_toStartOf="@+id/tv_judul_syarat"
                 app:layout_constraintTop_toTopOf="@+id/img_kuota" />
 
             <TextView
                 android:id="@+id/tv_kuota"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_kuota"
                 app:layout_constraintTop_toBottomOf="@+id/tv_judul_kuota"
                 tools:text="6 Orang" />
@@ -241,35 +205,26 @@
                 android:id="@+id/img_jabatan"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/img_kuota"
                 app:layout_constraintTop_toBottomOf="@+id/tv_kuota"
                 app:srcCompat="@drawable/ic_jabatan" />
 
             <TextView
                 android:id="@+id/tv_judul_jabatan"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:text="Jabatan"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/img_jabatan"
-                app:layout_constraintStart_toEndOf="@+id/img_jabatan"
+                app:layout_constraintStart_toStartOf="@+id/tv_judul_kuota"
                 app:layout_constraintTop_toTopOf="@+id/img_jabatan" />
 
             <TextView
                 android:id="@+id/tv_jabatan"
-                android:layout_width="wrap_content"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_jabatan"
                 app:layout_constraintTop_toBottomOf="@+id/tv_judul_jabatan"
                 tools:text="Staff Administrasi" />
@@ -278,35 +233,26 @@
                 android:id="@+id/img_web"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/img_jabatan"
                 app:layout_constraintTop_toBottomOf="@+id/tv_jabatan"
                 app:srcCompat="@drawable/ic_web" />
 
             <TextView
                 android:id="@+id/tv_judul_web"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:text="Website Perusahaan"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/img_web"
-                app:layout_constraintStart_toEndOf="@+id/img_web"
+                app:layout_constraintStart_toStartOf="@+id/tv_judul_jabatan"
                 app:layout_constraintTop_toTopOf="@+id/img_web" />
 
             <TextView
                 android:id="@+id/tv_web"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginTop="8dp"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_web"
                 app:layout_constraintTop_toBottomOf="@+id/tv_judul_web"
                 tools:text="www.muamalat.com" />
@@ -315,35 +261,26 @@
                 android:id="@+id/img_email"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/img_web"
                 app:layout_constraintTop_toBottomOf="@+id/tv_web"
                 app:srcCompat="@drawable/ic_mail" />
 
             <TextView
                 android:id="@+id/tv_judul_email"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:text="Email Perusahaan"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/img_email"
-                app:layout_constraintStart_toEndOf="@+id/img_email"
+                app:layout_constraintStart_toStartOf="@+id/tv_judul_web"
                 app:layout_constraintTop_toTopOf="@+id/img_email" />
 
             <TextView
                 android:id="@+id/tv_email"
-                android:layout_width="wrap_content"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_email"
                 app:layout_constraintTop_toBottomOf="@+id/tv_judul_email"
                 tools:text="muamalat@gmail.com" />
@@ -352,35 +289,26 @@
                 android:id="@+id/img_telp"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/img_email"
                 app:layout_constraintTop_toBottomOf="@+id/tv_email"
                 app:srcCompat="@drawable/ic_local_phone" />
 
             <TextView
                 android:id="@+id/tv_judul_telpon"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:text="Nomor Telepon Perusahaan"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/img_telp"
-                app:layout_constraintStart_toEndOf="@+id/img_telp"
+                app:layout_constraintStart_toStartOf="@+id/tv_judul_email"
                 app:layout_constraintTop_toTopOf="@+id/img_telp" />
 
             <TextView
                 android:id="@+id/tv_telpon"
-                android:layout_width="wrap_content"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_telpon"
                 app:layout_constraintTop_toBottomOf="@+id/tv_judul_telpon"
                 tools:text="(021) 782172" />
@@ -389,38 +317,29 @@
                 android:id="@+id/img_hubungi"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/img_telp"
                 app:layout_constraintTop_toBottomOf="@+id/tv_telpon"
                 app:srcCompat="@drawable/ic_smartphone" />
 
             <TextView
                 android:id="@+id/txt_judul_hubungi"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:text="Hubungi"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/img_hubungi"
-                app:layout_constraintStart_toEndOf="@+id/img_hubungi"
+                app:layout_constraintStart_toStartOf="@+id/tv_judul_telpon"
                 app:layout_constraintTop_toTopOf="@+id/img_hubungi" />
 
             <TextView
                 android:id="@+id/txt_hubungi"
-                android:layout_width="wrap_content"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/tv_telpon"
+                app:layout_constraintStart_toStartOf="@+id/txt_judul_hubungi"
                 app:layout_constraintTop_toBottomOf="@+id/txt_judul_hubungi"
                 tools:text="+62 81 728 827 129" />
 
@@ -428,8 +347,8 @@
                 android:id="@+id/cl_btn_hubungi_lowongan"
                 android:layout_width="@dimen/icon_btn_width"
                 android:layout_height="@dimen/icon_btn_height"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:background="@drawable/card_rounded_edges"
                 app:layout_constraintBottom_toBottomOf="@+id/txt_hubungi"
                 app:layout_constraintStart_toEndOf="@+id/txt_hubungi"

@@ -10,15 +10,14 @@
 
     <TextView
         android:id="@+id/tv_fragment_op_donasi_permintaan"
+        style="@style/TextAppearance.MaterialComponents.Subtitle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/robotobold"
         android:textColor="@color/colorIconBiru"
-        android:textSize="14sp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/rv_fragment_op_donasi"
         app:layout_constraintEnd_toEndOf="parent"

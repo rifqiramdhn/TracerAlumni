@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/margin_card"
@@ -11,40 +12,34 @@
 
     <TextView
         android:id="@+id/tv_nama_donatur"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/robotobold"
         android:text="Paidi Sugiono"
         android:textColor="@color/colorIconBiru2"
-        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_jumlah_donasi"
+        style="@style/TextAppearance.MaterialComponents.Subtitle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/robotomedium"
         android:text="Jumlah Donasi : Rp 20.000.000"
-        android:textColor="@color/black"
-        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/tv_nama_donatur"
         app:layout_constraintTop_toBottomOf="@+id/tv_nama_donatur" />
 
     <TextView
         android:id="@+id/tv_card_list_donatur_tanggal"
+        style="@style/TextAppearance.MaterialComponents.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:fontFamily="@font/robotomedium"
         android:text="2019-08-17"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="16sp"
+        android:textColor="@color/defaultTextColor"
         app:layout_constraintBottom_toBottomOf="@+id/tv_nama_donatur"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_nama_donatur" />
@@ -61,16 +56,11 @@
 
         <TextView
             android:id="@+id/tv_profil"
+            style="@style/TextAppearance.MaterialComponents.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:fontFamily="@font/robotobold"
             android:text="PROFIL DONATUR"
             android:textColor="@color/colorIconBiru"
-            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

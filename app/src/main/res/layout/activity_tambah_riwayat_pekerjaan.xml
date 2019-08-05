@@ -26,7 +26,8 @@
         <android.support.constraint.ConstraintLayout
             android:id="@+id/cl_body_tambah_riwayat"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp">
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/edt_jabatan_container"
@@ -37,18 +38,18 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
                     android:id="@+id/edt_riwayat_pekerjaan"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Pekerjaan"
                     android:inputType="text|textCapWords"
-                    android:textSize="16sp" />
+                    android:textColor="@color/colorIconBiru" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -61,18 +62,19 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edt_jabatan_container">
 
                 <EditText
                     android:id="@+id/edt_riwayat_nama_perusahaan"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Nama Perusahaan"
                     android:inputType="text|textCapWords"
-                    android:textSize="16sp" />
+                    android:textColor="@color/colorIconBiru" />
+
 
             </android.support.design.widget.TextInputLayout>
 
@@ -85,18 +87,19 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/edt_nmPerusahaan_container">
 
                 <EditText
                     android:id="@+id/edt_riwayat_lokasi"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Lokasi Tempat Kerja"
                     android:inputType="text|textCapWords"
-                    android:textSize="16sp" />
+                    android:textColor="@color/colorIconBiru" />
+
 
             </android.support.design.widget.TextInputLayout>
 
@@ -180,18 +183,19 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spn_tahun_keluar">
 
                 <EditText
                     android:id="@+id/edt_riwayat_gaji"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Pendapatan per Bulan (Juta)"
                     android:inputType="number"
-                    android:textSize="16sp" />
+                    android:textColor="@color/colorIconBiru" />
+
 
             </android.support.design.widget.TextInputLayout>
 
@@ -200,15 +204,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
                 android:background="@color/colorIconBiru"
                 android:text="SIMPAN"
                 android:textColor="@android:color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"

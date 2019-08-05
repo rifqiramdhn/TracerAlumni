@@ -17,6 +17,7 @@
 
         <TextView
             android:id="@+id/tv_card_permintaan_lowongan_jabatan"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -26,37 +27,31 @@
             android:layout_marginRight="16dp"
             android:text="Staff Marketing"
             android:textColor="@color/colorIconBiru2"
-            android:textSize="16sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/cl_card_permintaan_lowongan_tolak"
             app:layout_constraintStart_toEndOf="@+id/iv_card_permintaan_lowongan_foto"
             app:layout_constraintTop_toBottomOf="@+id/tv_card_permintaan_lowongan_nama_pelowong" />
 
         <TextView
             android:id="@+id/tv_card_permintaan_lowongan_lokasi_perusahaan"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="2dp"
             android:text="Kota Malang"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/tv_card_permintaan_lowongan_nama_perusahaan"
             app:layout_constraintStart_toEndOf="@+id/imageView5"
             app:layout_constraintTop_toBottomOf="@+id/tv_card_permintaan_lowongan_nama_perusahaan" />
 
         <TextView
             android:id="@+id/tv_card_permintaan_lowongan_gaji"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:text="~Rp50.000.000"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tv_card_permintaan_lowongan_lokasi_perusahaan"
             app:layout_constraintStart_toEndOf="@+id/imageView6"
@@ -65,17 +60,17 @@
 
         <TextView
             android:id="@+id/tv_card_permintaan_lowongan_nama_perusahaan"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:text="Bank Muamalat"
-            android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="@+id/tv_card_permintaan_lowongan_jabatan"
             app:layout_constraintStart_toStartOf="@+id/tv_card_permintaan_lowongan_jabatan"
             app:layout_constraintTop_toBottomOf="@+id/tv_card_permintaan_lowongan_jabatan" />
 
         <TextView
             android:id="@+id/tv_card_permintaan_lowongan_nama_pelowong"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -83,17 +78,16 @@
             android:layout_marginTop="8dp"
             android:text="Paidi Sugiono"
             android:textColor="@color/colorIconBiru2"
-            android:textSize="18sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_card_permintaan_lowongan_tanggal"
+            style="@style/TextAppearance.MaterialComponents.Body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="12/12/2012"
-            android:textSize="12sp"
+            android:textColor="@color/defaultTextColor"
             app:layout_constraintBottom_toBottomOf="@+id/tv_card_permintaan_lowongan_gaji"
             app:layout_constraintEnd_toEndOf="@+id/cl_card_permintaan_lowongan_konfirmasi"
             app:layout_constraintStart_toStartOf="@+id/cl_card_permintaan_lowongan_tolak" />
