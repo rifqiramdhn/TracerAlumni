@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +67,7 @@ public class BerandaFragment extends Fragment {
         getAllBeranda();
     }
 
-    private void sortArrayList(){
+    private void sortArrayList() {
         Collections.sort(arrayBeranda, new Comparator<BerandaModel>() {
             @Override
             public int compare(BerandaModel berandaModel, BerandaModel berandaModel2) {
@@ -77,7 +76,7 @@ public class BerandaFragment extends Fragment {
         });
     }
 
-    private void getAllBeranda(){
+    private void getAllBeranda() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -88,13 +87,13 @@ public class BerandaFragment extends Fragment {
         call.enqueue(new Callback<ArrayList<BerandaModel>>() {
             @Override
             public void onResponse(Call<ArrayList<BerandaModel>> call, Response<ArrayList<BerandaModel>> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
 
                 arrayBeranda.clear();
                 ArrayList<BerandaModel> berandaResponse = response.body();
-                if (berandaResponse.get(0).getStatus_data().equals("y")){
+                if (berandaResponse.get(0).getStatus_data().equals("y")) {
                     arrayBeranda.addAll(berandaResponse);
                     sortArrayList();
 

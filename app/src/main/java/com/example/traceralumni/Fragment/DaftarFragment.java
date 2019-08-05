@@ -3,15 +3,11 @@ package com.example.traceralumni.Fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -112,7 +108,7 @@ public class DaftarFragment extends Fragment {
 
                 daftarModels.clear();
                 ArrayList<DaftarModel> daftarModelsResponse = response.body();
-                if (daftarModelsResponse.get(0).getStatus_data().equals("y")){
+                if (daftarModelsResponse.get(0).getStatus_data().equals("y")) {
                     daftarModels.addAll(daftarModelsResponse);
                     final DaftarAdapter daftarAdapterNew = new DaftarAdapter(getActivity(), daftarModels);
                     daftarRecycler.setAdapter(daftarAdapterNew);

@@ -11,7 +11,6 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,10 +21,7 @@ import com.bumptech.glide.Glide;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.LowonganModel;
-import com.example.traceralumni.Model.PermintaanLowonganModel;
 import com.example.traceralumni.R;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
@@ -35,12 +31,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
-import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
-import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB_KEY;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
-import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
-import static com.example.traceralumni.Activity.MainActivity.NIM;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 import static com.example.traceralumni.Activity.StatusPermintaanLowonganActivity.BUKA_STATUS_LOWONGAN;
 
@@ -76,16 +68,16 @@ public class DetailLowonganActivity extends AppCompatActivity {
         Intent intent = getIntent();
         lowonganModel = intent.getParcelableExtra("object_lowongan");
 
-        if (BUKA_STATUS_LOWONGAN){
+        if (BUKA_STATUS_LOWONGAN) {
             cl_iconEdit.setVisibility(View.VISIBLE);
             cl_iconHapus.setVisibility(View.VISIBLE);
         }
 
-        if (intent.getStringExtra("status") != null && intent.getStringExtra("status").equals("TidakValid")){
+        if (intent.getStringExtra("status") != null && intent.getStringExtra("status").equals("TidakValid")) {
             cl_iconEdit.setVisibility(View.GONE);
         }
 
-        if (intent.getStringExtra("status") != null && intent.getStringExtra("status").equals("Valid")){
+        if (intent.getStringExtra("status") != null && intent.getStringExtra("status").equals("Valid")) {
             cl_iconEdit.setVisibility(View.GONE);
             cl_iconHapus.setVisibility(View.GONE);
         }
@@ -192,7 +184,7 @@ public class DetailLowonganActivity extends AppCompatActivity {
         });
     }
 
-    private void editPermintaanLowongan(){
+    private void editPermintaanLowongan() {
         Intent intent = new Intent(DetailLowonganActivity.this, TambahLowonganActivity.class);
         intent.putExtra("object_lowongan", lowonganModel);
         startActivity(intent);

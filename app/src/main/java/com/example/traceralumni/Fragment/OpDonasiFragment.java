@@ -4,13 +4,11 @@ package com.example.traceralumni.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +16,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traceralumni.Activity.OpPermintaanDonasiActivity;
 import com.example.traceralumni.Adapter.DonasiAdapter;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DonasiModel;
-import com.example.traceralumni.Activity.OpPermintaanDonasiActivity;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
@@ -78,15 +76,13 @@ public class OpDonasiFragment extends Fragment {
             }
         });
 
+
+
         return rootView;
     }
 
-    public static boolean permintaanDonasi0(){
-        if (jumlahRequest.equals("0")){
-            return true;
-        } else {
-            return false;
-        }
+    public static boolean permintaanDonasi0() {
+        return jumlahRequest.equals("0");
     }
 
     @Override
@@ -147,7 +143,7 @@ public class OpDonasiFragment extends Fragment {
 
                 arrayDonasi.clear();
                 ArrayList<DonasiModel> donasiResponse = response.body();
-                if (donasiResponse.get(0).getStatus_data().equals("y")){
+                if (donasiResponse.get(0).getStatus_data().equals("y")) {
                     arrayDonasi.addAll(donasiResponse);
                     final DonasiAdapter donasiAdapterNew = new DonasiAdapter(getActivity(), arrayDonasi);
                     donasiRecycler.setAdapter(donasiAdapterNew);

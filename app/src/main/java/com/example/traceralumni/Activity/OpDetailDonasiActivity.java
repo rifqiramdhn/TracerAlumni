@@ -5,9 +5,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Path;
 import android.net.ParseException;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,7 +17,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,8 +24,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.example.traceralumni.Fragment.OpDonasiFragment;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.Model.PathModel;
@@ -92,7 +89,6 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
             }
         });
 
-        btn_simpan = findViewById(R.id.btn_simpan);
         btn_simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -192,6 +188,7 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
         tvTotalDonasi = findViewById(R.id.tv_total_donasi);
         tvFile = findViewById(R.id.tv_file);
         btn_upload = findViewById(R.id.btn_upload);
+        btn_simpan = findViewById(R.id.btn_simpan);
     }
 
     private void hapusDonasi() {

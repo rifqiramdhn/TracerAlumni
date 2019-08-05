@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -98,13 +97,13 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> im
         protected FilterResults performFiltering(CharSequence constraint) {
             ArrayList<ChatModel> filteredList = new ArrayList<>();
 
-            if (constraint == null || constraint.length() == 0){
+            if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(chatModelsFull);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
-                for (ChatModel item : chatModelsFull){
-                    if (item.getNama().toLowerCase().contains(filterPattern)){
+                for (ChatModel item : chatModelsFull) {
+                    if (item.getNama().toLowerCase().contains(filterPattern)) {
                         filteredList.add(item);
                     }
                 }

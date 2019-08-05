@@ -16,7 +16,6 @@ import com.example.traceralumni.Adapter.RiwayatPekerjaanAdapter;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.RiwayatPekerjaanModel;
 import com.example.traceralumni.R;
-import com.example.traceralumni.Activity.TambahRiwayatPekerjaanActivity;
 
 import java.util.ArrayList;
 
@@ -56,7 +55,7 @@ public class RiwayatPekerjaanActivity extends AppCompatActivity {
         getRiwayatPekerjaan();
     }
 
-    private void initView(){
+    private void initView() {
         riwayatRecycler = findViewById(R.id.rv_riwayat_pekerjaan);
         tvNavBar = findViewById(R.id.tv_navbar_top);
         tvNavBar.setText("RIWAYAT PEKERJAAN");
@@ -83,7 +82,7 @@ public class RiwayatPekerjaanActivity extends AppCompatActivity {
         });
     }
 
-    private void getRiwayatPekerjaan(){
+    private void getRiwayatPekerjaan() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -95,13 +94,13 @@ public class RiwayatPekerjaanActivity extends AppCompatActivity {
         call.enqueue(new Callback<ArrayList<RiwayatPekerjaanModel>>() {
             @Override
             public void onResponse(Call<ArrayList<RiwayatPekerjaanModel>> call, Response<ArrayList<RiwayatPekerjaanModel>> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
 
                 riwayatModels.clear();
                 ArrayList<RiwayatPekerjaanModel> riwayatPekerjaanModels = response.body();
-                if (riwayatPekerjaanModels.get(0).getStatus_data().equals("y")){
+                if (riwayatPekerjaanModels.get(0).getStatus_data().equals("y")) {
                     riwayatModels.addAll(riwayatPekerjaanModels);
                     riwayatAdapter.notifyDataSetChanged();
                 }

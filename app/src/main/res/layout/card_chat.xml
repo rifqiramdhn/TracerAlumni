@@ -30,7 +30,9 @@
 
         <TextView
             android:id="@+id/card_chat_nama_text_view"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:textStyle="bold"
+            android:textSize="20sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -44,7 +46,7 @@
 
         <TextView
             android:id="@+id/card_chat_chat_text_view"
-            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="TextView"

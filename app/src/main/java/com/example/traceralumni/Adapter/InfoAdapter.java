@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +13,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.traceralumni.Activity.MainActivity;
 import com.example.traceralumni.Activity.OpDetailInfoActivity;
 import com.example.traceralumni.Model.InfoModel;
 import com.example.traceralumni.R;
@@ -73,7 +70,7 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> im
                         Intent i = new Intent(Intent.ACTION_VIEW);
                         i.setData(Uri.parse(url));
                         context.startActivity(i);
-                    } catch (ActivityNotFoundException e){
+                    } catch (ActivityNotFoundException e) {
                         Intent i = new Intent(Intent.ACTION_VIEW);
                         String urlNew = "http://" + url;
                         i.setData(Uri.parse(urlNew));

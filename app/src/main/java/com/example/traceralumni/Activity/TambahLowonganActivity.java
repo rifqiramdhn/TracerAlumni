@@ -5,8 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.ParseException;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,9 +17,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,10 +30,7 @@ import com.example.traceralumni.Model.PathModel;
 import com.example.traceralumni.R;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -53,13 +46,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
-import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
-import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB_KEY;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
-import static com.example.traceralumni.Activity.SuntingProfilActivity.PICK_PHOTO_REQUEST;
 
 public class TambahLowonganActivity extends AppCompatActivity {
 
@@ -115,31 +105,31 @@ public class TambahLowonganActivity extends AppCompatActivity {
         cl_icon_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (uriKirim == null){
+                if (uriKirim == null) {
                     Toast.makeText(TambahLowonganActivity.this, "Foto belum terpilih", Toast.LENGTH_SHORT).show();
-                } else if (edt_judulLowongan.getText().toString().equalsIgnoreCase("")){
+                } else if (edt_judulLowongan.getText().toString().equalsIgnoreCase("")) {
                     edt_judulLowongan.setError("Harap isi judul lowongan");
-                } else if (edt_jabatan.getText().toString().equalsIgnoreCase("")){
+                } else if (edt_jabatan.getText().toString().equalsIgnoreCase("")) {
                     edt_jabatan.setError("Harap isi jabatan");
-                } else if (edt_namaPerusahaan.getText().toString().equalsIgnoreCase("")){
+                } else if (edt_namaPerusahaan.getText().toString().equalsIgnoreCase("")) {
                     edt_namaPerusahaan.setError("Harap isi nama perusahaan");
-                } else if (edt_alamatPerusahaan.getText().toString().equalsIgnoreCase("")){
+                } else if (edt_alamatPerusahaan.getText().toString().equalsIgnoreCase("")) {
                     edt_alamatPerusahaan.setError("Harap isi alamat perusahaan");
-                } else if (edt_kuota.getText().toString().equalsIgnoreCase("")){
+                } else if (edt_kuota.getText().toString().equalsIgnoreCase("")) {
                     edt_kuota.setError("Harap isi kuota");
-                } else if (edt_gaji.getText().toString().equalsIgnoreCase("")){
+                } else if (edt_gaji.getText().toString().equalsIgnoreCase("")) {
                     edt_gaji.setError("Harap isi gaji");
-                } else if (edt_syarat.getText().toString().equalsIgnoreCase("")){
+                } else if (edt_syarat.getText().toString().equalsIgnoreCase("")) {
                     edt_syarat.setError("Harap isi syarat pekerjaan");
-                } else if (edt_website.getText().toString().equalsIgnoreCase("")){
+                } else if (edt_website.getText().toString().equalsIgnoreCase("")) {
                     edt_website.setError("Harap isi website");
-                } else if (edt_email.getText().toString().equalsIgnoreCase("")){
+                } else if (edt_email.getText().toString().equalsIgnoreCase("")) {
                     edt_email.setError("Harap isi email");
-                } else if (edt_notelp.getText().toString().equalsIgnoreCase("")){
+                } else if (edt_notelp.getText().toString().equalsIgnoreCase("")) {
                     edt_notelp.setError("Harap isi nomor telepon");
-                } else if (edt_cp.getText().toString().equalsIgnoreCase("")){
+                } else if (edt_cp.getText().toString().equalsIgnoreCase("")) {
                     edt_cp.setError("Harap isi kontak yang dapat dihubungi");
-                } else if (edt_cp.getText().length() < 10){
+                } else if (edt_cp.getText().length() < 10) {
                     edt_cp.setError("Nomor kontak tidak valid");
                 } else {
                     showKonfirmasiTambah();
@@ -160,9 +150,9 @@ public class TambahLowonganActivity extends AppCompatActivity {
         }
     }
 
-    private void getDataFromIntent(){
+    private void getDataFromIntent() {
         lowonganModel = getIntent().getParcelableExtra("object_lowongan");
-        if (lowonganModel != null){
+        if (lowonganModel != null) {
             Glide.with(this)
                     .load(BASE_URL + lowonganModel.getLogo_perusahaan())
                     .into(img_logo_lowongan);
@@ -194,13 +184,13 @@ public class TambahLowonganActivity extends AppCompatActivity {
                 Uri imageUri = data.getData();
                 uriKirim = imageUri;
                 Glide.with(this)
-                        .load(new File (getRealPathFromURI(imageUri)))
+                        .load(new File(getRealPathFromURI(imageUri)))
                         .into(img_logo_lowongan);
             }
         }
     }
 
-    private String getRealPathFromURI(Uri contentUri){
+    private String getRealPathFromURI(Uri contentUri) {
         String[] proj = {MediaStore.Images.Media.DATA};
         CursorLoader loader = new CursorLoader(this, contentUri, proj, null, null, null);
         Cursor cursor = loader.loadInBackground();
@@ -212,7 +202,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
     }
 
     private void showKonfirmasiTambah() {
-        if (idLowongan!=null){
+        if (idLowongan != null) {
             builder.setMessage("Apakah yakin anda akan merubah lowongan ini?");
         } else {
             builder.setMessage("Apakah yakin anda akan menambahkan lowongan ini?");
@@ -241,7 +231,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
                     cp = edt_cp.getText().toString();
                 }
 
-                if (CAN_CLICK_BUTTON_SAVE == 0){
+                if (CAN_CLICK_BUTTON_SAVE == 0) {
                     CAN_CLICK_BUTTON_SAVE = 1;
                     getTanggalLowongan();
                     uploadPhoto(uriKirim);
@@ -268,7 +258,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
 
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
         Call<Void> call;
-        if (idLowongan != null){
+        if (idLowongan != null) {
             call = jsonPlaceHolderApi.updateLowongan(idLowongan, judulLowongan, jabatan, namaPerusahaan, alamat, kuota, gaji, syarat, website, email, notelp, cp, status, tglLowongan, logo);
             call.enqueue(new Callback<Void>() {
                 @Override
@@ -278,7 +268,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
                         return;
                     }
                     CAN_CLICK_BUTTON_SAVE = 0;
-                    if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
+                    if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
                         Toast.makeText(TambahLowonganActivity.this, "Tunggu konfirmasi dari operator", Toast.LENGTH_SHORT).show();
                         onBackPressed();
                     } else {
@@ -305,7 +295,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
                         return;
                     }
                     CAN_CLICK_BUTTON_SAVE = 0;
-                    if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
+                    if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
                         Toast.makeText(TambahLowonganActivity.this, "Tunggu konfirmasi dari operator", Toast.LENGTH_SHORT).show();
                         onBackPressed();
                     } else {
@@ -347,17 +337,17 @@ public class TambahLowonganActivity extends AppCompatActivity {
         call.enqueue(new Callback<PathModel>() {
             @Override
             public void onResponse(Call<PathModel> call, Response<PathModel> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     CAN_CLICK_BUTTON_SAVE = 0;
                     return;
                 }
                 PathModel pathModel = response.body();
-                if (!pathModel.getPath().equals("invalid")){
+                if (!pathModel.getPath().equals("invalid")) {
                     photoPath = pathModel.getPath();
-                    if(JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)){
-                        saveData(idLowongan, NIM, judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "BelumValid",tanggal_lowongan, photoPath);
+                    if (JENIS_USER.equalsIgnoreCase(JENIS_USER_ALUMNI)) {
+                        saveData(idLowongan, NIM, judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "BelumValid", tanggal_lowongan, photoPath);
                     } else {
-                        saveData(idLowongan, "Admin", judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "Valid",tanggal_lowongan, photoPath);
+                        saveData(idLowongan, "Admin", judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, kuota, gaji, syarat, website, email, notelp, cp, "Valid", tanggal_lowongan, photoPath);
                     }
                 } else {
                     CAN_CLICK_BUTTON_SAVE = 0;

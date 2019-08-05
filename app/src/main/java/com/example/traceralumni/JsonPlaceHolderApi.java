@@ -10,11 +10,7 @@ import com.example.traceralumni.Model.PermintaanDonasiModel;
 import com.example.traceralumni.Model.PermintaanLowonganModel;
 import com.example.traceralumni.Model.RiwayatPekerjaanModel;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;

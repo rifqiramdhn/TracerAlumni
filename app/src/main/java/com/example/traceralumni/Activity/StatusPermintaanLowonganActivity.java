@@ -1,11 +1,10 @@
 package com.example.traceralumni.Activity;
 
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 import com.example.traceralumni.Adapter.LowonganAdapter;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.LowonganModel;
-import com.example.traceralumni.Model.RiwayatPekerjaanModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
@@ -63,7 +61,7 @@ public class StatusPermintaanLowonganActivity extends AppCompatActivity {
         BUKA_STATUS_LOWONGAN = false;
     }
 
-    private void initView(){
+    private void initView() {
         recyclerView = findViewById(R.id.rv_status_loker);
         tvNavBar = findViewById(R.id.tv_navbar_top);
         tvNavBar.setText("STATUS LOKER");
@@ -79,7 +77,7 @@ public class StatusPermintaanLowonganActivity extends AppCompatActivity {
         });
     }
 
-    private void getStatusLowongan(){
+    private void getStatusLowongan() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -91,13 +89,13 @@ public class StatusPermintaanLowonganActivity extends AppCompatActivity {
         call.enqueue(new Callback<ArrayList<LowonganModel>>() {
             @Override
             public void onResponse(Call<ArrayList<LowonganModel>> call, Response<ArrayList<LowonganModel>> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
 
                 arrayModels.clear();
                 ArrayList<LowonganModel> lowonganModels = response.body();
-                if (lowonganModels.get(0).getStatus_data().equals("y")){
+                if (lowonganModels.get(0).getStatus_data().equals("y")) {
                     arrayModels.addAll(lowonganModels);
                     lowonganAdapter.notifyDataSetChanged();
                 }

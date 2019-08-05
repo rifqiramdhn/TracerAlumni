@@ -1,17 +1,15 @@
 package com.example.traceralumni.Activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.traceralumni.Fragment.MapsFragment;
 import com.example.traceralumni.R;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
 
 import static com.example.traceralumni.Activity.SuntingProfilActivity.PICK_ADDRESS_REQUEST;
 
@@ -68,7 +66,7 @@ public class LocationPickerActivity extends AppCompatActivity {
                 .commit();
     }
 
-    public void sendLocation(){
+    public void sendLocation() {
         Intent intent = new Intent(LocationPickerActivity.this, SuntingProfilActivity.class);
         intent.putExtra(LOKASI_EXTRA_KEY, LOKASI_EXTRA);
         intent.putExtra(KODE_POS_EXTRA_KEY, KODE_POS_EXTRA);

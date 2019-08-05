@@ -12,9 +12,7 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.example.traceralumni.Activity.DetailDonasiActivity;
-import com.example.traceralumni.Activity.MainActivity;
 import com.example.traceralumni.Activity.OpDetailDonasiActivity;
-import com.example.traceralumni.Model.ChatModel;
 import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.R;
 

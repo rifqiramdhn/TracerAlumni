@@ -1,11 +1,10 @@
 package com.example.traceralumni.Activity;
 
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,7 +15,6 @@ import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.PermintaanDonasiModel;
 import com.example.traceralumni.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -89,7 +87,7 @@ public class OpPermintaanDonasiActivity extends AppCompatActivity {
 
                 perDonasiModels.clear();
                 ArrayList<PermintaanDonasiModel> permintaanDonasiModels = response.body();
-                if (permintaanDonasiModels.get(0).getStatus_data().equals("y")){
+                if (permintaanDonasiModels.get(0).getStatus_data().equals("y")) {
                     perDonasiModels.addAll(permintaanDonasiModels);
                     perDonasiAdapter.notifyDataSetChanged();
                 }

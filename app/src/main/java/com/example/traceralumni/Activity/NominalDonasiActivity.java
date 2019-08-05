@@ -3,10 +3,10 @@ package com.example.traceralumni.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ParseException;
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -159,7 +159,7 @@ public class NominalDonasiActivity extends AppCompatActivity {
                 if (edt_lainnya.getText().toString().equals("") && rdGroup.getCheckedRadioButtonId() == -1) {
                     Toast.makeText(NominalDonasiActivity.this, "Nominal belum ditentukan", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (CAN_CLICK_BUTTON_SAVE == 0){
+                    if (CAN_CLICK_BUTTON_SAVE == 0) {
                         CAN_CLICK_BUTTON_SAVE = 1;
                         getTanggalHariIni();
                         saveData(totalBantuan, tanggal_daftar_donatur);

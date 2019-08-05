@@ -5,10 +5,6 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.support.annotation.Nullable;
 import android.support.v4.content.AsyncTaskLoader;
-import android.util.Log;
-import android.widget.Toast;
-
-import com.example.traceralumni.Activity.LocationPickerActivity;
 
 import java.io.IOException;
 import java.util.List;

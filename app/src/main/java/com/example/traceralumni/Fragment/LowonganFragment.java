@@ -15,10 +15,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.traceralumni.Adapter.LowonganAdapter;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.LowonganModel;
 import com.example.traceralumni.R;
-import com.example.traceralumni.Adapter.LowonganAdapter;
 
 import java.util.ArrayList;
 

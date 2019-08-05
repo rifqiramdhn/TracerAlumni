@@ -1,8 +1,8 @@
 package com.example.traceralumni.Activity;
 
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -70,7 +70,7 @@ public class OpPermintaanLowonganActivity extends AppCompatActivity {
         });
     }
 
-    private void getAllPermintaanLowongan(){
+    private void getAllPermintaanLowongan() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -81,13 +81,13 @@ public class OpPermintaanLowonganActivity extends AppCompatActivity {
         call.enqueue(new Callback<ArrayList<PermintaanLowonganModel>>() {
             @Override
             public void onResponse(Call<ArrayList<PermintaanLowonganModel>> call, Response<ArrayList<PermintaanLowonganModel>> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
 
                 permintaanLowonganModels.clear();
                 ArrayList<PermintaanLowonganModel> perLowonganModels = response.body();
-                if (perLowonganModels.get(0).getStatus_data().equals("y")){
+                if (perLowonganModels.get(0).getStatus_data().equals("y")) {
                     permintaanLowonganModels.addAll(perLowonganModels);
                     permintaanLowonganAdapter.notifyDataSetChanged();
                 }

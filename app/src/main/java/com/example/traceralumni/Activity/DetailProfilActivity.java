@@ -1,23 +1,15 @@
 package com.example.traceralumni.Activity;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -25,36 +17,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.traceralumni.Adapter.RiwayatPekerjaanAdapter;
 import com.example.traceralumni.JsonPlaceHolderApi;
 import com.example.traceralumni.Model.DaftarModel;
-import com.example.traceralumni.Model.PathModel;
-import com.example.traceralumni.Model.RiwayatPekerjaanModel;
 import com.example.traceralumni.R;
 
-import java.io.File;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 import de.hdodenhof.circleimageview.CircleImageView;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.example.traceralumni.Activity.LocationPickerActivity.KODE_POS_EXTRA_KEY;
-import static com.example.traceralumni.Activity.LocationPickerActivity.LOKASI_EXTRA_KEY;
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
-import static com.example.traceralumni.Activity.MainActivity.NIM;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
-import static com.example.traceralumni.Activity.TambahLowonganActivity.PICK_PHOTO_REQUEST;
 
 public class DetailProfilActivity extends AppCompatActivity {
     BottomNavigationView bnChat;
@@ -218,7 +196,7 @@ public class DetailProfilActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void hapusAlumni(String nim){
+    private void hapusAlumni(String nim) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -230,7 +208,7 @@ public class DetailProfilActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
 
@@ -270,7 +248,7 @@ public class DetailProfilActivity extends AppCompatActivity {
         tvNim = findViewById(R.id.tv_detail_profil_nim);
         tvJudulPassword = findViewById(R.id.tv_judul_password);
         btnDelete = findViewById(R.id.btn_hapus_alumni);
-        if (JENIS_USER.equals(JENIS_USER_OPERATOR)){
+        if (JENIS_USER.equals(JENIS_USER_OPERATOR)) {
             tvJudulPassword.setVisibility(View.VISIBLE);
             tvPassword.setVisibility(View.VISIBLE);
             btnDelete.setVisibility(View.VISIBLE);

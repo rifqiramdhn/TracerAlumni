@@ -23,7 +23,7 @@ public class RiwayatPekerjaanAdapter extends RecyclerView.Adapter<RiwayatPekerja
     private Context context;
     private ArrayList<RiwayatPekerjaanModel> listRiwayat;
 
-    public RiwayatPekerjaanAdapter(Context context, ArrayList<RiwayatPekerjaanModel> listRiwayat){
+    public RiwayatPekerjaanAdapter(Context context, ArrayList<RiwayatPekerjaanModel> listRiwayat) {
         this.listRiwayat = listRiwayat;
         this.context = context;
     }
@@ -42,12 +42,12 @@ public class RiwayatPekerjaanAdapter extends RecyclerView.Adapter<RiwayatPekerja
         holder.tvJabatan.setText(list.getPekerjaan());
         holder.tvNmPerusahaan.setText(list.getNamaPerusahaan());
         holder.tvLokPerusahaan.setText(list.getLokasi());
-        holder.tvPendapatan.setText("Rp "+list.getGaji()+" juta / bulan");
+        holder.tvPendapatan.setText("Rp " + list.getGaji() + " juta / bulan");
         holder.tvThn.setText(list.getTahunAwal() + " - " + list.getTahunAkhir());
         holder.clContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (list.getNim().equals(NIM) && INDEX_OPENED_TAB != 0){
+                if (list.getNim().equals(NIM) && INDEX_OPENED_TAB != 0) {
                     Intent intent = new Intent(context, TambahRiwayatPekerjaanActivity.class);
                     intent.putExtra("object_riwayat", list);
                     context.startActivity(intent);
@@ -61,10 +61,11 @@ public class RiwayatPekerjaanAdapter extends RecyclerView.Adapter<RiwayatPekerja
         return listRiwayat.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvJabatan, tvNmPerusahaan, tvLokPerusahaan, tvPendapatan, tvThn;
         private ConstraintLayout clContainer;
-        public ViewHolder(View itemView){
+
+        public ViewHolder(View itemView) {
             super(itemView);
             clContainer = itemView.findViewById(R.id.cl_riwayat_container);
             tvJabatan = itemView.findViewById(R.id.tv_jabatan);

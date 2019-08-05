@@ -70,7 +70,7 @@ public class PimDataAlumniFragment extends Fragment {
         btn_lihatDaftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (CAN_CLICK_BUTTON_SAVE == 0){
+                if (CAN_CLICK_BUTTON_SAVE == 0) {
                     CAN_CLICK_BUTTON_SAVE = 1;
                     getDataAlumniDaftar();
                 }

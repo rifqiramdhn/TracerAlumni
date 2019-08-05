@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +27,6 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
-import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
-import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 
 public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHolder> {
 
@@ -99,7 +96,7 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
                         Intent i = new Intent(Intent.ACTION_VIEW);
                         i.setData(Uri.parse(url));
                         context.startActivity(i);
-                    } catch (ActivityNotFoundException e){
+                    } catch (ActivityNotFoundException e) {
                         Intent i = new Intent(Intent.ACTION_VIEW);
                         String urlNew = "http://" + url;
                         i.setData(Uri.parse(urlNew));

@@ -5,8 +5,6 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 public class PermintaanLowonganModel implements Parcelable {
     @SerializedName("id_lowongan")
     private Integer idLowongan;
@@ -35,8 +33,8 @@ public class PermintaanLowonganModel implements Parcelable {
     private String tanggal_lowongan;
     private String status_data;
 
-    protected PermintaanLowonganModel(Parcel in){
-        if (in.readByte() == 0){
+    protected PermintaanLowonganModel(Parcel in) {
+        if (in.readByte() == 0) {
             idLowongan = null;
         } else {
             idLowongan = in.readInt();
@@ -70,7 +68,7 @@ public class PermintaanLowonganModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
-        if (idLowongan == null){
+        if (idLowongan == null) {
             parcel.writeByte((byte) 0);
         } else {
             parcel.writeByte((byte) 1);

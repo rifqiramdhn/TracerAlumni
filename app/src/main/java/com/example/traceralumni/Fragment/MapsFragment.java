@@ -3,25 +3,19 @@ package com.example.traceralumni.Fragment;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.location.Address;
 import android.location.Criteria;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.traceralumni.AlamatAsynctaskLoader;
 import com.example.traceralumni.R;
@@ -33,10 +27,6 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
 
 import static com.example.traceralumni.Activity.LocationPickerActivity.LOKASI_EXTRA;
 
@@ -125,7 +115,7 @@ public class MapsFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public Loader<String> onCreateLoader(int i, @Nullable Bundle bundle) {
         double lat, lng;
-        if (bundle != null){
+        if (bundle != null) {
             lat = bundle.getDouble("lat");
             lng = bundle.getDouble("lng");
             return new AlamatAsynctaskLoader(getActivity(), lat, lng);

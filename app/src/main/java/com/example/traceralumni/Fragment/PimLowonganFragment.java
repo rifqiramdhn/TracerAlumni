@@ -1,4 +1,4 @@
-   package com.example.traceralumni.Fragment;
+package com.example.traceralumni.Fragment;
 
 
 import android.os.Bundle;
@@ -31,18 +31,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
-   /**
+/**
  * A simple {@link Fragment} subclass.
  */
 public class PimLowonganFragment extends Fragment {
 
-       View rootview;
+    View rootview;
 
-       RecyclerView lowonganRecycler;
-       LowonganAdapter lowonganAdapter;
-       ArrayList<LowonganModel> arrayLowongan;
+    RecyclerView lowonganRecycler;
+    LowonganAdapter lowonganAdapter;
+    ArrayList<LowonganModel> arrayLowongan;
 
-       EditText edt_lowongan_cari;
+    EditText edt_lowongan_cari;
 
     public PimLowonganFragment() {
         // Required empty public constructor
@@ -53,7 +53,7 @@ public class PimLowonganFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootview = inflater.inflate(R.layout.fragment_pim_lowongan,  container,false);
+        rootview = inflater.inflate(R.layout.fragment_pim_lowongan, container, false);
         edt_lowongan_cari = rootview.findViewById(R.id.edt_fragment_pim_lowongan_search);
 
         arrayLowongan = new ArrayList<>();
@@ -78,57 +78,58 @@ public class PimLowonganFragment extends Fragment {
         super.onResume();
     }
 
-    private void getAllLowongan(){
-       Retrofit retrofit = new Retrofit.Builder()
-               .baseUrl(BASE_URL)
-               .addConverterFactory(GsonConverterFactory.create())
-               .build();
+    private void getAllLowongan() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-       JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
-       Call<ArrayList<LowonganModel>> lowongan = jsonPlaceHolderApi.getAllLowongan();
-       lowongan.enqueue(new Callback<ArrayList<LowonganModel>>() {
-           @Override
-           public void onResponse(Call<ArrayList<LowonganModel>> call, Response<ArrayList<LowonganModel>> response) {
-               if(!response.isSuccessful()){
-                   return;
-               }
+        Call<ArrayList<LowonganModel>> lowongan = jsonPlaceHolderApi.getAllLowongan();
+        lowongan.enqueue(new Callback<ArrayList<LowonganModel>>() {
+            @Override
+            public void onResponse(Call<ArrayList<LowonganModel>> call, Response<ArrayList<LowonganModel>> response) {
+                if (!response.isSuccessful()) {
+                    return;
+                }
 
-               arrayLowongan.clear();
-               ArrayList<LowonganModel> lowonganResponse = response.body();
-               if (lowonganResponse.get(0).getStatus_data().equals("y")){
-                   arrayLowongan.addAll(lowonganResponse);
-                   final LowonganAdapter lowonganAdapterNew = new LowonganAdapter(getActivity(), arrayLowongan);
-                   lowonganRecycler.setAdapter(lowonganAdapterNew);
-                   setSearch(lowonganAdapterNew);
-               }
-           }
+                arrayLowongan.clear();
+                ArrayList<LowonganModel> lowonganResponse = response.body();
+                if (lowonganResponse.get(0).getStatus_data().equals("y")) {
+                    arrayLowongan.addAll(lowonganResponse);
+                    final LowonganAdapter lowonganAdapterNew = new LowonganAdapter(getActivity(), arrayLowongan);
+                    lowonganRecycler.setAdapter(lowonganAdapterNew);
+                    setSearch(lowonganAdapterNew);
+                }
+            }
 
-           @Override
-           public void onFailure(Call<ArrayList<LowonganModel>> call, Throwable t) {
-               if (t.getMessage().contains("Failed to connect")) {
-                   Toast.makeText(getContext(), TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
-               }
-           }
-       });
-       lowonganAdapter.notifyDataSetChanged();
-   }
-   private void setSearch(final LowonganAdapter lowonganAdapter){
-       edt_lowongan_cari.addTextChangedListener(new TextWatcher() {
-           @Override
-           public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            @Override
+            public void onFailure(Call<ArrayList<LowonganModel>> call, Throwable t) {
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(getContext(), TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        lowonganAdapter.notifyDataSetChanged();
+    }
 
-           }
+    private void setSearch(final LowonganAdapter lowonganAdapter) {
+        edt_lowongan_cari.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-           @Override
-           public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-               lowonganAdapter.getFilter().filter(charSequence);
-           }
+            }
 
-           @Override
-           public void afterTextChanged(Editable editable) {
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                lowonganAdapter.getFilter().filter(charSequence);
+            }
 
-           }
-       });
-   }
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
 }

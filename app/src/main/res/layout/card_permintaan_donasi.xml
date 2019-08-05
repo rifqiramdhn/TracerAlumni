@@ -17,7 +17,8 @@
 
         <TextView
             android:id="@+id/tv_card_permintaan_donasi_tulisan_donasi"
-            style="@style/TextAppearance.MaterialComponents.Subtitle2"
+            style="@style/TextAppearance.MaterialComponents.Body2"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -35,7 +36,9 @@
 
         <TextView
             android:id="@+id/tv_card_permintaan_donasi_nama_donatur"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:textStyle="bold"
+            android:textSize="20sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -49,7 +52,7 @@
 
         <TextView
             android:id="@+id/tv_card_permintaan_donasi_jumlah"
-            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -60,7 +63,7 @@
 
         <TextView
             android:id="@+id/tv_card_permintaan_donasi_nama_donasi"
-            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"

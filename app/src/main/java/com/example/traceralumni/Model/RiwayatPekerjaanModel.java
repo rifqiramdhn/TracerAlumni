@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-public class RiwayatPekerjaanModel implements Parcelable{
+public class RiwayatPekerjaanModel implements Parcelable {
     @SerializedName("id_riwayat_pekerjaan")
     Integer idRiwayat;
 

@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.traceralumni.Activity.DetailLowonganActivity;
-import com.example.traceralumni.Activity.TambahLowonganActivity;
 import com.example.traceralumni.Model.LowonganModel;
 import com.example.traceralumni.R;
 
@@ -23,7 +22,6 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
-import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.StatusPermintaanLowonganActivity.BUKA_STATUS_LOWONGAN;
@@ -76,7 +74,7 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
             public void onClick(View v) {
                 Intent i = new Intent(context, DetailLowonganActivity.class);
                 i.putExtra("object_lowongan", list);
-                if (BUKA_STATUS_LOWONGAN){
+                if (BUKA_STATUS_LOWONGAN) {
                     i.putExtra("status", list.getStatus_lowongan());
                 }
                 context.startActivity(i);

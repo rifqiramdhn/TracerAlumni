@@ -24,7 +24,7 @@
 
         <EditText
             android:id="@+id/edt_fragment_daftar_nama"
-            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -42,7 +42,7 @@
 
         <EditText
             android:id="@+id/edt_fragment_daftar_tahun"
-            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"

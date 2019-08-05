@@ -1,13 +1,11 @@
 package com.example.traceralumni.Activity;
 
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -171,7 +169,7 @@ public class TambahAlumniActivity extends AppCompatActivity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (CAN_CLICK_BUTTON_SAVE == 0){
+                if (CAN_CLICK_BUTTON_SAVE == 0) {
                     CAN_CLICK_BUTTON_SAVE = 1;
                     saveData(edtNama.getText().toString(), edtNim.getText().toString(),
                             id_prodi, id_jurusan);

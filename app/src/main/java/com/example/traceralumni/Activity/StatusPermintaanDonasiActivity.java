@@ -1,8 +1,8 @@
 package com.example.traceralumni.Activity;
 
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,10 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.traceralumni.Adapter.DonasiAdapter;
 import com.example.traceralumni.Adapter.PermintaanDonasiAdapter;
 import com.example.traceralumni.JsonPlaceHolderApi;
-import com.example.traceralumni.Model.DonasiModel;
 import com.example.traceralumni.Model.PermintaanDonasiModel;
 import com.example.traceralumni.R;
 

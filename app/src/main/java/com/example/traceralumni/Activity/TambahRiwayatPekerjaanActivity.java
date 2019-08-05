@@ -1,13 +1,11 @@
 package com.example.traceralumni.Activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.ParseException;
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -25,7 +23,6 @@ import com.example.traceralumni.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 

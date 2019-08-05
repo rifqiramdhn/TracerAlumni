@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
@@ -12,18 +13,17 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traceralumni.Adapter.AlumniFragPagerAdapter;
 import com.example.traceralumni.Adapter.OpFragPagerAdapter;
 import com.example.traceralumni.Adapter.PimFragPagerAdapter;
 import com.example.traceralumni.Fragment.OpDonasiFragment;
 import com.example.traceralumni.Fragment.OpLowonganFragment;
 import com.example.traceralumni.R;
-import com.example.traceralumni.Adapter.AlumniFragPagerAdapter;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
@@ -143,12 +143,12 @@ public class MainActivity extends AppCompatActivity {
 
         //ngecheck kalau jenis usernya apa kemudian menginisialisasi tab layoutnya
         if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
-            int arrayDrawable[] = {R.drawable.ic_person,
+            int[] arrayDrawable = {R.drawable.ic_person,
                     R.drawable.ic_chat,
                     R.drawable.ic_home,
                     R.drawable.ic_lowongan,
                     R.drawable.ic_dots_horizontal};
-            String titleNavBar[] = {"ALUMNI",
+            String[] titleNavBar = {"ALUMNI",
                     "PESAN",
                     "BERANDA",
                     "LOWONGAN",
@@ -157,11 +157,11 @@ public class MainActivity extends AppCompatActivity {
             tabLayout.setupWithViewPager(viewPager);
             setTabLayout(tabLayout, arrayDrawable, titleNavBar);
         } else if (JENIS_USER.equals(JENIS_USER_OPERATOR)) {
-            int arrayDrawable[] = {R.drawable.ic_lowongan,
+            int[] arrayDrawable = {R.drawable.ic_lowongan,
                     R.drawable.ic_info,
                     R.drawable.ic_attach_money,
                     R.drawable.ic_person};
-            String titleNavBar[] = {"LOWONGAN",
+            String[] titleNavBar = {"LOWONGAN",
                     "INFO",
                     "DONASI",
                     "ALUMNI"};
@@ -169,11 +169,11 @@ public class MainActivity extends AppCompatActivity {
             tabLayout.setupWithViewPager(viewPager);
             setTabLayout(tabLayout, arrayDrawable, titleNavBar);
         } else if (JENIS_USER.equals(JENIS_USER_PIMPINAN)) {
-            int arrayDrawable[] = {R.drawable.ic_person,
+            int[] arrayDrawable = {R.drawable.ic_person,
                     R.drawable.ic_info,
                     R.drawable.ic_lowongan,
                     R.drawable.ic_attach_money};
-            String titleNavBar[] = {"DATA ALUMNI",
+            String[] titleNavBar = {"DATA ALUMNI",
                     "INFO",
                     "LOWONGAN",
                     "DONASI"};
@@ -369,13 +369,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void setTabLayout(TabLayout tabLayout, int arrayDrawable[], final String titleNavBar[]) {
-        View arrayCustomView[] = new View[arrayDrawable.length];
+    public void setTabLayout(TabLayout tabLayout, int[] arrayDrawable, final String[] titleNavBar) {
+        View[] arrayCustomView = new View[arrayDrawable.length];
         for (int i = 0; i < arrayDrawable.length; i++) {
             arrayCustomView[i] = getLayoutInflater().inflate(R.layout.custom_view_tab, null);
         }
 
-        final ImageView arrayImageView[] = new ImageView[arrayDrawable.length];
+        final ImageView[] arrayImageView = new ImageView[arrayDrawable.length];
         for (int i = 0; i < arrayDrawable.length; i++) {
             arrayImageView[i] = arrayCustomView[i].findViewById(R.id.img_custom_view_tab);
         }

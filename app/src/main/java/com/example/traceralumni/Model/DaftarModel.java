@@ -3,8 +3,6 @@ package com.example.traceralumni.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
-
 public class DaftarModel implements Parcelable {
     private String username;
     private String email;

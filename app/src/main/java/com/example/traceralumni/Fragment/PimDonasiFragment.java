@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +75,7 @@ public class PimDonasiFragment extends Fragment {
         getAllDonasi();
     }
 
-    private void getAllDonasi(){
+    private void getAllDonasi() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -88,13 +87,13 @@ public class PimDonasiFragment extends Fragment {
         call.enqueue(new Callback<ArrayList<DonasiModel>>() {
             @Override
             public void onResponse(Call<ArrayList<DonasiModel>> call, Response<ArrayList<DonasiModel>> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
 
                 arrayDonasi.clear();
                 ArrayList<DonasiModel> donasiResponse = response.body();
-                if (donasiResponse.get(0).getStatus_data().equals("y")){
+                if (donasiResponse.get(0).getStatus_data().equals("y")) {
                     arrayDonasi.addAll(donasiResponse);
                     final DonasiAdapter donasiAdapterNew = new DonasiAdapter(getActivity(), arrayDonasi);
                     donasiRecycler.setAdapter(donasiAdapterNew);
@@ -111,7 +110,7 @@ public class PimDonasiFragment extends Fragment {
         });
     }
 
-    private void setSearch(final DonasiAdapter donasiAdapter){
+    private void setSearch(final DonasiAdapter donasiAdapter) {
         edt_donasi_cari.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

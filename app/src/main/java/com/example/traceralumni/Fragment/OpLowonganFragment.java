@@ -58,7 +58,7 @@ public class OpLowonganFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootview = inflater.inflate(R.layout.fragment_op_lowongan,  container,false);
+        rootview = inflater.inflate(R.layout.fragment_op_lowongan, container, false);
         edt_lowongan_cari = rootview.findViewById(R.id.edt_fragment_op_lowongan_search);
         tv_permintaan = rootview.findViewById(R.id.tv_permintaan_lowongan);
 
@@ -83,12 +83,8 @@ public class OpLowonganFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    public static boolean permintaanLowongan0(){
-        if (jumlahRequestLowongan.equals("0")){
-            return true;
-        } else {
-            return false;
-        }
+    public static boolean permintaanLowongan0() {
+        return jumlahRequestLowongan.equals("0");
     }
 
     @Override
@@ -98,7 +94,7 @@ public class OpLowonganFragment extends Fragment {
         getAllLowongan();
     }
 
-    private void setSearch(final LowonganAdapter lowonganAdapter){
+    private void setSearch(final LowonganAdapter lowonganAdapter) {
         edt_lowongan_cari.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -117,7 +113,7 @@ public class OpLowonganFragment extends Fragment {
         });
     }
 
-    private void getAllLowongan(){
+    private void getAllLowongan() {
         Gson gson = new GsonBuilder()
                 .setLenient().create();
 
@@ -132,13 +128,13 @@ public class OpLowonganFragment extends Fragment {
         lowongan.enqueue(new Callback<ArrayList<LowonganModel>>() {
             @Override
             public void onResponse(Call<ArrayList<LowonganModel>> call, Response<ArrayList<LowonganModel>> response) {
-                if(!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
 
                 arrayLowongan.clear();
                 ArrayList<LowonganModel> lowonganResponse = response.body();
-                if (lowonganResponse.get(0).getStatus_data().equals("y")){
+                if (lowonganResponse.get(0).getStatus_data().equals("y")) {
                     arrayLowongan.addAll(lowonganResponse);
 
                     final LowonganAdapter lowonganAdapterNew = new LowonganAdapter(getActivity(), arrayLowongan);
@@ -158,7 +154,7 @@ public class OpLowonganFragment extends Fragment {
         lowonganAdapter.notifyDataSetChanged();
     }
 
-    private void getRequestLowongan(){
+    private void getRequestLowongan() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -169,12 +165,12 @@ public class OpLowonganFragment extends Fragment {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if(!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
 
                 jumlahRequestLowongan = response.body();
-                if (!jumlahRequestLowongan.equals("0")){
+                if (!jumlahRequestLowongan.equals("0")) {
                     tv_permintaan.setText(jumlahRequestLowongan + " Permintaan Lowongan");
                     tv_permintaan.setVisibility(View.VISIBLE);
                 } else {
