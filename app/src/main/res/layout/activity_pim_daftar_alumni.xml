@@ -20,6 +20,7 @@
         android:id="@+id/cl_activity_pim_daftar_search"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:elevation="3dp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/rv_daftar_alumni"
         app:layout_constraintEnd_toEndOf="parent"

@@ -2,9 +2,10 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:animateLayoutChanges="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:clipToPadding="false"
     tools:context=".Activity.MainActivity">
 
     <include
@@ -16,8 +17,9 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/tl_main_alumni"
         android:layout_width="0dp"
-        android:layout_height="76dp"
-        android:background="#2699FB"
+        android:layout_height="72dp"
+        android:background="@color/colorIconBiru"
+        android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

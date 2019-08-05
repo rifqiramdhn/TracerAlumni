@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:background="?android:attr/selectableItemBackground"
@@ -53,8 +53,8 @@
                     android:id="@+id/imageView81"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -62,13 +62,12 @@
 
                 <TextView
                     android:id="@+id/tv_bantuan_wa1"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:text="+6281 333 555 047"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView81"
                     app:layout_constraintStart_toEndOf="@+id/imageView81"
                     app:layout_constraintTop_toTopOf="@+id/imageView81" />
@@ -105,8 +104,8 @@
                     android:id="@+id/imageView8"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -114,13 +113,12 @@
 
                 <TextView
                     android:id="@+id/tv_bantuan_wa"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:text="+6281 333 444 861"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView8"
                     app:layout_constraintStart_toEndOf="@+id/imageView8"
                     app:layout_constraintTop_toTopOf="@+id/imageView8" />
@@ -158,8 +156,8 @@
                     android:id="@+id/imageView10"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -167,13 +165,12 @@
 
                 <TextView
                     android:id="@+id/tv_bantuan_telp"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:text="0341 555 000"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView10"
                     app:layout_constraintStart_toEndOf="@+id/imageView10"
                     app:layout_constraintTop_toTopOf="@+id/imageView10" />
@@ -192,7 +189,7 @@
                 android:id="@+id/cl_bantuan_email"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:background="?android:attr/selectableItemBackground"
                 app:layout_constraintEnd_toEndOf="@+id/cl_bantuan_telp"
                 app:layout_constraintStart_toStartOf="@+id/cl_bantuan_telp"
@@ -202,8 +199,8 @@
                     android:id="@+id/imageView11"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -211,13 +208,12 @@
 
                 <TextView
                     android:id="@+id/tv_bantuan_email"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:text="feb@ub.ac.id"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView11"
                     app:layout_constraintStart_toEndOf="@+id/imageView11"
                     app:layout_constraintTop_toTopOf="@+id/imageView11" />
@@ -243,27 +239,29 @@
 
             <TextView
                 android:id="@+id/tv_bantuan_judul_kontak"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:text="Hubungi Kami"
                 android:textColor="@color/colorIconBiru2"
-                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_bantuan" />
+            <!--app:layout_constraintTop_toTopOf="parent" />-->
+
 
             <TextView
                 android:id="@+id/tv_bantuan_judul_email"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:text="Info Layanan"
                 android:textColor="@color/colorIconBiru2"
-                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cl_bantuan_telp" />
         </android.support.constraint.ConstraintLayout>

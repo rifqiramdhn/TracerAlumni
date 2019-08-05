@@ -28,15 +28,17 @@
             <ImageView
                 android:id="@+id/iv_detail_donasi_foto"
                 android:layout_width="0dp"
-                android:layout_height="240dp"
+                android:layout_height="0dp"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher"
+                app:layout_constraintDimensionRatio="16:9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_detail_donasi_judul_donasi"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -44,9 +46,6 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:textColor="@android:color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_detail_donasi_foto"
@@ -54,28 +53,22 @@
 
             <TextView
                 android:id="@+id/tv_detail_donasi_total_biaya"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
                 android:textColor="@color/colorIconBiru"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tv_detail_donasi_judul_donasi"
                 app:layout_constraintStart_toStartOf="@+id/tv_detail_donasi_judul_donasi"
                 app:layout_constraintTop_toBottomOf="@+id/tv_detail_donasi_judul_donasi"
                 tools:text="Total Biaya Rp 80.000.000,00" />
 
             <TextView
                 android:id="@+id/tv_detail_donasi_keterangan"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tv_detail_donasi_total_biaya"
                 app:layout_constraintStart_toStartOf="@+id/tv_detail_donasi_total_biaya"
                 app:layout_constraintTop_toBottomOf="@+id/tv_detail_donasi_total_biaya"
                 tools:text="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
@@ -84,17 +77,13 @@
 
             <TextView
                 android:id="@+id/tv_detail_donasi_kontak"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="44dp"
                 android:text="Hubungi"
-                android:textColor="@android:color/black"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/cl_detail_donasi_kontak"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_detail_donasi_keterangan" />
+                app:layout_constraintBottom_toBottomOf="@+id/cl_detail_donasi_kontak"
+                app:layout_constraintStart_toStartOf="@+id/tv_detail_donasi_keterangan"
+                app:layout_constraintTop_toTopOf="@+id/cl_detail_donasi_kontak" />
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/cl_detail_donasi_kontak"
@@ -102,10 +91,10 @@
                 android:layout_height="@dimen/icon_btn_height"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
+                android:layout_marginTop="32dp"
                 android:background="@drawable/card_rounded_edges"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_detail_donasi_kontak"
-                app:layout_constraintStart_toEndOf="@+id/tv_detail_donasi_kontak"
-                app:layout_constraintTop_toTopOf="@+id/tv_detail_donasi_kontak">
+                app:layout_constraintStart_toEndOf="@+id/barrier9"
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail_donasi_keterangan">
 
                 <ImageView
                     android:id="@+id/iv_detail_donasi_kontak"
@@ -121,34 +110,31 @@
 
             <TextView
                 android:id="@+id/tv_detail_donasi_total_donasi_masuk"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:text="Total Donasi yang Masuk"
-                android:textColor="@android:color/black"
-                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cl_detail_donasi_kontak" />
 
             <TextView
                 android:id="@+id/tv_detail_donasi_jumlah_donasi_masuk"
+                style="@style/TextAppearance.MaterialComponents.Headline4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="8dp"
                 android:text="Rp 0"
                 android:textColor="@android:color/black"
-                android:textSize="32sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -157,11 +143,12 @@
 
             <Button
                 android:id="@+id/btn_detail_donasi_donasi"
+                style="@style/TextAppearance.MaterialComponents.Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="32dp"
@@ -182,6 +169,5 @@
                 tools:layout_editor_absoluteX="411dp" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
-
 
 </android.support.constraint.ConstraintLayout>

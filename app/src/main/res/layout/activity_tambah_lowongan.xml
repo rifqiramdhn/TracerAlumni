@@ -31,7 +31,8 @@
         <android.support.constraint.ConstraintLayout
             android:id="@+id/cl_body_tambah_lowongan"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_tambah_lowongan_logo"
@@ -51,6 +52,7 @@
                 android:id="@+id/iv_edit_lowongan_logo"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:elevation="1dp"
                 android:src="@color/colorIconBiru"
                 app:layout_constraintBottom_toBottomOf="@id/iv_tambah_lowongan_logo"
                 app:layout_constraintEnd_toEndOf="@+id/iv_tambah_lowongan_logo" />
@@ -59,6 +61,7 @@
                 android:id="@+id/iv_edit_lowongan_logo2"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:elevation="1dp"
                 android:tint="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_edit_lowongan_logo"
                 app:layout_constraintEnd_toEndOf="@+id/iv_edit_lowongan_logo"
@@ -70,24 +73,24 @@
                 android:id="@+id/edt_lowongan_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/black"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_tambah_lowongan_logo">
 
                 <EditText
                     android:id="@+id/edt_lowongan"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Nama Lowongan"
                     android:inputType="textMultiLine|text|textCapWords"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textColor="@color/colorIconBiru" />
+
 
             </android.support.design.widget.TextInputLayout>
 
@@ -96,24 +99,20 @@
                 android:id="@+id/edt_jabatan_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/edt_lowongan_container"
+                app:layout_constraintStart_toStartOf="@+id/edt_lowongan_container"
                 app:layout_constraintTop_toBottomOf="@+id/edt_lowongan_container">
 
                 <EditText
                     android:id="@+id/edt_riwayat_pekerjaan"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Nama Jabatan"
                     android:inputType="textMultiLine|text|textCapWords"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textColor="@color/colorIconBiru" />
+
 
             </android.support.design.widget.TextInputLayout>
 
@@ -121,24 +120,20 @@
                 android:id="@+id/edt_perusahaan_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/edt_jabatan_container"
+                app:layout_constraintStart_toStartOf="@+id/edt_jabatan_container"
                 app:layout_constraintTop_toBottomOf="@+id/edt_jabatan_container">
 
                 <EditText
                     android:id="@+id/edt_perusahaan"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Nama Perusahaan"
                     android:inputType="textMultiLine|text|textCapWords"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textColor="@color/colorIconBiru" />
+
 
             </android.support.design.widget.TextInputLayout>
 
@@ -146,24 +141,19 @@
                 android:id="@+id/edt_lokasi_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/edt_perusahaan_container"
+                app:layout_constraintStart_toStartOf="@+id/edt_perusahaan_container"
                 app:layout_constraintTop_toBottomOf="@+id/edt_perusahaan_container">
 
                 <EditText
                     android:id="@+id/edt_riwayat_lokasi"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Lokasi Perusahaan"
                     android:inputType="textMultiLine|text|textCapWords"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textColor="@color/colorIconBiru" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -171,24 +161,19 @@
                 android:id="@+id/edt_kuota_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/edt_lokasi_container"
+                app:layout_constraintStart_toStartOf="@+id/edt_lokasi_container"
                 app:layout_constraintTop_toBottomOf="@+id/edt_lokasi_container">
 
                 <EditText
                     android:id="@+id/edt_kuota"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Kuota yang Dibutuhkan (orang)"
                     android:inputType="number"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textColor="@color/colorIconBiru" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -196,24 +181,19 @@
                 android:id="@+id/edt_gaji_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/edt_kuota_container"
+                app:layout_constraintStart_toStartOf="@+id/edt_kuota_container"
                 app:layout_constraintTop_toBottomOf="@+id/edt_kuota_container">
 
                 <EditText
                     android:id="@+id/edt_riwayat_gaji"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Kisaran Gaji (juta)"
                     android:inputType="number"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textColor="@color/colorIconBiru" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -221,24 +201,19 @@
                 android:id="@+id/edt_syarat_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/edt_gaji_container"
+                app:layout_constraintStart_toStartOf="@+id/edt_gaji_container"
                 app:layout_constraintTop_toBottomOf="@id/edt_gaji_container">
 
                 <EditText
                     android:id="@+id/edt_syarat"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Syarat Pekerjaan"
                     android:inputType="textMultiLine|text|textCapSentences"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textColor="@color/colorIconBiru" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -246,24 +221,19 @@
                 android:id="@+id/edt_web_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/edt_syarat_container"
+                app:layout_constraintStart_toStartOf="@+id/edt_syarat_container"
                 app:layout_constraintTop_toBottomOf="@+id/edt_syarat_container">
 
                 <EditText
                     android:id="@+id/edt_web"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Website Perusahaan"
                     android:inputType="text"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textColor="@color/colorIconBiru" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -272,24 +242,19 @@
                 android:id="@+id/edt_email_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/edt_web_container"
+                app:layout_constraintStart_toStartOf="@+id/edt_web_container"
                 app:layout_constraintTop_toBottomOf="@+id/edt_web_container">
 
                 <EditText
                     android:id="@+id/edt_email"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Email Perusahaan"
                     android:inputType="textMultiLine|text|textEmailAddress"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textColor="@color/colorIconBiru" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -297,24 +262,19 @@
                 android:id="@+id/edt_notelp_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:textColorHint="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/edt_email_container"
+                app:layout_constraintStart_toStartOf="@+id/edt_email_container"
                 app:layout_constraintTop_toBottomOf="@+id/edt_email_container">
 
                 <EditText
                     android:id="@+id/edt_notelp"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Nomor Telepon Perusahaan"
                     android:inputType="number"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textColor="@color/colorIconBiru" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -322,26 +282,19 @@
                 android:id="@+id/edt_kontak_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="16dp"
-                android:textColorHint="@android:color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/edt_notelp_container"
+                app:layout_constraintStart_toStartOf="@+id/edt_notelp_container"
                 app:layout_constraintTop_toBottomOf="@+id/edt_notelp_container">
 
                 <EditText
                     android:id="@+id/edt_kontak"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Kontak yang Dapat Dihubungi"
                     android:inputType="number"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textColor="@color/colorIconBiru" />
 
             </android.support.design.widget.TextInputLayout>
 

@@ -85,13 +85,13 @@ public class LowonganFragment extends Fragment {
         lowongan.enqueue(new Callback<ArrayList<LowonganModel>>() {
             @Override
             public void onResponse(Call<ArrayList<LowonganModel>> call, Response<ArrayList<LowonganModel>> response) {
-                if(!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     return;
                 }
 
                 arrayLowongan.clear();
                 ArrayList<LowonganModel> lowonganResponse = response.body();
-                if (lowonganResponse.get(0).getStatus_data().equals("y")){
+                if (lowonganResponse.get(0).getStatus_data().equals("y")) {
                     arrayLowongan.addAll(lowonganResponse);
 
                     final LowonganAdapter lowonganAdapterNew = new LowonganAdapter(getActivity(), arrayLowongan);
@@ -111,7 +111,7 @@ public class LowonganFragment extends Fragment {
         lowonganAdapter.notifyDataSetChanged();
     }
 
-    private void setSearch(final LowonganAdapter lowonganAdapter){
+    private void setSearch(final LowonganAdapter lowonganAdapter) {
         edt_cari.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

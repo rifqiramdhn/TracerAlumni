@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/margin_card"
     android:layout_marginRight="@dimen/margin_card"
     android:layout_marginBottom="@dimen/margin_card"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:elevation="1dp">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/cl_card_permintaan_donasi_container"
@@ -17,6 +17,7 @@
 
         <TextView
             android:id="@+id/tv_card_permintaan_donasi_tulisan_donasi"
+            style="@style/TextAppearance.MaterialComponents.Subtitle2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -26,9 +27,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:text="DONASI"
-            android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_card_permintaan_donasi_jumlah"
@@ -36,42 +35,36 @@
 
         <TextView
             android:id="@+id/tv_card_permintaan_donasi_nama_donatur"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:text="Paidi Sugiono"
             android:textColor="@color/colorIconBiru2"
-            android:textSize="18sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/cl_card_permintaan_donasi_no"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_card_permintaan_donasi_jumlah"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Rp200.000.000"
-            android:textColor="@android:color/black"
-            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@+id/tv_card_permintaan_donasi_nama_donatur"
             app:layout_constraintStart_toStartOf="@+id/tv_card_permintaan_donasi_nama_donatur"
             app:layout_constraintTop_toBottomOf="@+id/tv_card_permintaan_donasi_nama_donatur" />
 
         <TextView
             android:id="@+id/tv_card_permintaan_donasi_nama_donasi"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:layout_marginBottom="8dp"
             android:text="Pembangunan Kantin"
-            android:textColor="@android:color/black"
-            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tv_card_permintaan_donasi_jumlah"
             app:layout_constraintStart_toStartOf="@+id/tv_card_permintaan_donasi_jumlah"
@@ -137,14 +130,13 @@
 
             <TextView
                 android:id="@+id/tv_card_permintaan_detail_donasi"
+                style="@style/TextAppearance.MaterialComponents.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="DETAIL DONASI"
                 android:textColor="@color/colorIconBiru"
-                android:textSize="10sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -162,14 +154,13 @@
 
             <TextView
                 android:id="@+id/tv_card_permintaan_donasi_profil_donatur"
+                style="@style/TextAppearance.MaterialComponents.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="PROFIL DONATUR"
                 android:textColor="@color/colorIconBiru"
-                android:textSize="10sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -178,11 +169,11 @@
 
         <TextView
             android:id="@+id/tv_card_permintaan_donasi_tanggal"
+            style="@style/TextAppearance.MaterialComponents.Body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="12/12/2012"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="12sp"
+            android:textColor="@color/defaultTextColor"
             app:layout_constraintBottom_toBottomOf="@+id/tv_card_permintaan_donasi_nama_donasi"
             app:layout_constraintEnd_toEndOf="@+id/cl_card_permintaan_donasi_ok"
             app:layout_constraintStart_toStartOf="@+id/cl_card_permintaan_donasi_no" />

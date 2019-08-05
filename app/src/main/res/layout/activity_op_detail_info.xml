@@ -26,17 +26,18 @@
         <android.support.constraint.ConstraintLayout
             android:id="@+id/cl_body_detail_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp">
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/edt_judul_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
                 android:textColorHint="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -44,12 +45,11 @@
 
                 <EditText
                     android:id="@+id/edt_judul"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Judul"
-                    android:inputType="textMultiLine|text|textCapWords"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:inputType="textMultiLine|text|textCapWords" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -57,24 +57,19 @@
                 android:id="@+id/edt_isi_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginTop="16dp"
                 android:textColorHint="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/edt_judul_container"
+                app:layout_constraintStart_toStartOf="@+id/edt_judul_container"
                 app:layout_constraintTop_toBottomOf="@id/edt_judul_container">
 
                 <EditText
                     android:id="@+id/edt_isi"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Isi"
-                    android:inputType="textMultiLine|textCapSentences"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:inputType="textMultiLine|textCapSentences" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -82,44 +77,34 @@
                 android:id="@+id/edt_url_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginTop="16dp"
                 android:textColorHint="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/edt_isi_container"
+                app:layout_constraintStart_toStartOf="@+id/edt_isi_container"
                 app:layout_constraintTop_toBottomOf="@id/edt_isi_container">
 
                 <EditText
                     android:id="@+id/edt_url"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="URL"
-                    android:inputType="textMultiLine|text"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:inputType="textMultiLine|text" />
 
             </android.support.design.widget.TextInputLayout>
 
             <Button
                 android:id="@+id/btn_simpan"
+                style="@style/TextAppearance.MaterialComponents.Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@color/colorIconBiru"
                 android:text="SIMPAN"
                 android:textColor="@android:color/white"
-                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/edt_url_container"
+                app:layout_constraintStart_toStartOf="@+id/edt_url_container"
                 app:layout_constraintTop_toBottomOf="@+id/edt_url_container"
                 app:layout_constraintVertical_bias="0.0" />
         </android.support.constraint.ConstraintLayout>
