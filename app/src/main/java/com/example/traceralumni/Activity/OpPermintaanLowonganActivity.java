@@ -11,7 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.traceralumni.Adapter.PermintaanLowonganAdapter;
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.PermintaanLowonganModel;
 import com.example.traceralumni.R;
 
@@ -20,10 +21,7 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class OpPermintaanLowonganActivity extends AppCompatActivity {
@@ -71,13 +69,8 @@ public class OpPermintaanLowonganActivity extends AppCompatActivity {
     }
 
     private void getAllPermintaanLowongan() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<ArrayList<PermintaanLowonganModel>> call = jsonPlaceHolderApi.getPerLowongan();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
+        Call<ArrayList<PermintaanLowonganModel>> call = jsonApi.getPerLowongan();
         call.enqueue(new Callback<ArrayList<PermintaanLowonganModel>>() {
             @Override
             public void onResponse(Call<ArrayList<PermintaanLowonganModel>> call, Response<ArrayList<PermintaanLowonganModel>> response) {

@@ -1,5 +1,6 @@
 package com.example.traceralumni.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,6 +25,7 @@ import com.example.traceralumni.Adapter.PimFragPagerAdapter;
 import com.example.traceralumni.Fragment.OpDonasiFragment;
 import com.example.traceralumni.Fragment.OpLowonganFragment;
 import com.example.traceralumni.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
@@ -42,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String JENIS_USER_PIMPINAN = "pimpinan";
     public static final String JENIS_USER_OPERATOR = "operator";
 
-    public static final String BASE_URL = "http://psik.feb.ub.ac.id/apptracer/";
-//    public static final String BASE_URL = "http://10.22.254.164/tracer/";
+    //    public static final String BASE_URL = "http://psik.feb.ub.ac.id/apptracer/";
+    public static final String BASE_URL = "http://10.22.251.101/tracer2/";
 
     public static final String INDEX_OPENED_TAB_KEY = "index_opened_tab_key";
 
@@ -58,14 +60,34 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TEXT_NO_INTERNET = "Koneksi internet tidak stabil";
 
+    private static FirebaseAuth auth;
+    private static ProgressDialog pd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        loadData();
-        super.onCreate(savedInstanceState);
+        auth = FirebaseAuth.getInstance();
 
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREFS, MODE_PRIVATE);
+        STATE_USER_LOGGED = sharedPreferences.getInt(STATE_USER_LOGGED_PREF, 0);
+        if (STATE_USER_LOGGED != 0) {
+            JENIS_USER = sharedPreferences.getString(JENIS_USER_PREF, "");
+            if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
+                if (auth.getCurrentUser() == null) {
+                    moveActivityToLogin();
+                }
+                NIM = sharedPreferences.getString(NIM_PREF, "");
+            }
+        } else {
+            moveActivityToLogin();
+        }
+
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        pd = new ProgressDialog(MainActivity.this);
+        pd.setMessage("Loading...");
+        pd.setCancelable(false);
 
         cl_icon1 = findViewById(R.id.cl_icon1);
         cl_icon2 = findViewById(R.id.cl_icon2);
@@ -90,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         getDataUser();
+//        Toast.makeText(this, NIM, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -113,19 +136,6 @@ public class MainActivity extends AppCompatActivity {
                 doubleBackToExitPressedOnce = false;
             }
         }, 2000);
-    }
-
-    private void loadData() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREFS, MODE_PRIVATE);
-        STATE_USER_LOGGED = sharedPreferences.getInt(STATE_USER_LOGGED_PREF, 0);
-        if (STATE_USER_LOGGED != 0) {
-            JENIS_USER = sharedPreferences.getString(JENIS_USER_PREF, "");
-            if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
-                NIM = sharedPreferences.getString(NIM_PREF, "");
-            }
-        } else {
-            moveActivityToLogin();
-        }
     }
 
     @Override
@@ -708,6 +718,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                pd.show();
+
+                auth.signOut();
+
                 SharedPreferences sharedPreferences = context.getSharedPreferences(SHARE_PREFS, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -715,6 +729,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.apply();
                 STATE_USER_LOGGED = 0;
 
+                pd.dismiss();
                 Intent intent = new Intent(context, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 context.startActivity(intent);
@@ -731,6 +746,4 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-
-
 }

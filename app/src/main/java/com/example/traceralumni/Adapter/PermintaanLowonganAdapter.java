@@ -14,7 +14,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.traceralumni.Activity.DetailLowonganActivity;
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.PermintaanLowonganModel;
 import com.example.traceralumni.R;
 
@@ -24,8 +25,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
@@ -161,13 +160,8 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
     }
 
     private void confirmLowongan(final int position, int idLowongan, final String confirm) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<Void> call = jsonPlaceHolderApi.confirmLowongan(idLowongan, confirm);
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
+        Call<Void> call = jsonApi.confirmLowongan(idLowongan, confirm);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

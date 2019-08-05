@@ -8,8 +8,8 @@
     <dimen name="icon_width">24dp</dimen>
     <dimen name="icon_height">24dp</dimen>
 
-    <dimen name="icon_btn_width">48dp</dimen>
-    <dimen name="icon_btn_height">48dp</dimen>
+    <dimen name="icon_btn_width">40dp</dimen>
+    <dimen name="icon_btn_height">40dp</dimen>
 
     <dimen name="view_pager_height">76dp</dimen>
 

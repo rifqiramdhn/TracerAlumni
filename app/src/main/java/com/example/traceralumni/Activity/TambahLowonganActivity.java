@@ -24,7 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.LowonganModel;
 import com.example.traceralumni.Model.PathModel;
 import com.example.traceralumni.R;
@@ -42,8 +43,6 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
@@ -251,15 +250,11 @@ public class TambahLowonganActivity extends AppCompatActivity {
     }
 
     private void saveData(Integer idLowongan, String username, String judulLowongan, String jabatan, String namaPerusahaan, String alamat, Integer kuota, String gaji, String syarat, String website, String email, String notelp, String cp, String status, String tglLowongan, String logo) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
         Call<Void> call;
         if (idLowongan != null) {
-            call = jsonPlaceHolderApi.updateLowongan(idLowongan, judulLowongan, jabatan, namaPerusahaan, alamat, kuota, gaji, syarat, website, email, notelp, cp, status, tglLowongan, logo);
+            call = jsonApi.updateLowongan(idLowongan, judulLowongan, jabatan, namaPerusahaan, alamat, kuota, gaji, syarat, website, email, notelp, cp, status, tglLowongan, logo);
             call.enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
@@ -286,7 +281,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
                 }
             });
         } else {
-            call = jsonPlaceHolderApi.createLowongan(username, judulLowongan, jabatan, namaPerusahaan, alamat, kuota, gaji, syarat, website, email, notelp, cp, status, tglLowongan, logo);
+            call = jsonApi.createLowongan(username, judulLowongan, jabatan, namaPerusahaan, alamat, kuota, gaji, syarat, website, email, notelp, cp, status, tglLowongan, logo);
             call.enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
@@ -327,13 +322,9 @@ public class TambahLowonganActivity extends AppCompatActivity {
         RequestBody requestBody = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)), compressedFile);
         MultipartBody.Part kirim = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        final JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        final JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<PathModel> call = jsonPlaceHolderApi.uploadPhoto(kirim);
+        Call<PathModel> call = jsonApi.uploadPhoto(kirim);
         call.enqueue(new Callback<PathModel>() {
             @Override
             public void onResponse(Call<PathModel> call, Response<PathModel> response) {

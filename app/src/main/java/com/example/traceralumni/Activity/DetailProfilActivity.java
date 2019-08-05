@@ -17,7 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;
 
@@ -25,8 +26,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
@@ -107,19 +106,14 @@ public class DetailProfilActivity extends AppCompatActivity {
             tvPassword.setText(daftarModel.getPassword());
             tvNim.setText(daftarModel.getNim());
         } else {
-            getDataFromNIM(intent.getStringExtra("nim"));
+            getDataFromNIM(intent.getStringExtra("edtEmail"));
         }
     }
 
     private void getDataFromNIM(String nim) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<DaftarModel> call = jsonPlaceHolderApi.getUserData(nim);
+        Call<DaftarModel> call = jsonApi.getUserData(nim);
         call.enqueue(new Callback<DaftarModel>() {
             @Override
             public void onResponse(Call<DaftarModel> call, Response<DaftarModel> response) {
@@ -197,14 +191,9 @@ public class DetailProfilActivity extends AppCompatActivity {
     }
 
     private void hapusAlumni(String nim) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<Void> call = jsonPlaceHolderApi.deleteAlumni(nim);
+        Call<Void> call = jsonApi.deleteAlumni(nim);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

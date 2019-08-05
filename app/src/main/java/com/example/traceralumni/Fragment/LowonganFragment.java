@@ -16,7 +16,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.traceralumni.Adapter.LowonganAdapter;
-import com.example.traceralumni.JsonPlaceHolderApi;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.LowonganModel;
 import com.example.traceralumni.R;
 
@@ -25,10 +26,7 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 
@@ -78,14 +76,9 @@ public class LowonganFragment extends Fragment {
     }
 
     private void getAllLowongan() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<ArrayList<LowonganModel>> lowongan = jsonPlaceHolderApi.getAllLowongan();
+        Call<ArrayList<LowonganModel>> lowongan = jsonApi.getAllLowongan();
         lowongan.enqueue(new Callback<ArrayList<LowonganModel>>() {
             @Override
             public void onResponse(Call<ArrayList<LowonganModel>> call, Response<ArrayList<LowonganModel>> response) {
