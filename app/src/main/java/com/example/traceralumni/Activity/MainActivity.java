@@ -51,12 +51,16 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String SHARE_PREFS = "share_prefs";
     public static final String NIM_PREF = "nim_pref";
+    public static final String EMAIL_PREF = "email_pref";
+    public static final String PASS_PREF = "pass_pref";
     public static final String JENIS_USER_PREF = "jenis_user_pref";
     public static final String STATE_USER_LOGGED_PREF = "state_user_logged_pref";
 
     public static int INDEX_OPENED_TAB;
     public static int STATE_USER_LOGGED; //0 berarti belum login, 1 berarti sudah login
     public static String NIM;
+    public static String EMAIL;
+    public static String PASS;
 
     public static final String TEXT_NO_INTERNET = "Koneksi internet tidak stabil";
 
@@ -76,6 +80,11 @@ public class MainActivity extends AppCompatActivity {
                     moveActivityToLogin();
                 }
                 NIM = sharedPreferences.getString(NIM_PREF, "");
+                EMAIL = sharedPreferences.getString(EMAIL_PREF, "");
+                PASS = sharedPreferences.getString(PASS_PREF, "");
+                if (EMAIL.contains("traceralumnifeb@gmail.com")) {
+                    moveActivityToSunting();
+                }
             }
         } else {
             moveActivityToLogin();
@@ -283,6 +292,13 @@ public class MainActivity extends AppCompatActivity {
     public void moveActivityToLogin() {
         //kode untuk pindah apabila jenis usernya kosong
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    public void moveActivityToSunting() {
+        //kode untuk pindah apabila email usernya kosong
+        Intent intent = new Intent(MainActivity.this, SuntingProfilActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

@@ -97,6 +97,7 @@
         android:id="@+id/cl_icon4"
         android:layout_width="@dimen/icon_btn_width"
         android:layout_height="@dimen/icon_btn_height"
+        android:layout_marginRight="8dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

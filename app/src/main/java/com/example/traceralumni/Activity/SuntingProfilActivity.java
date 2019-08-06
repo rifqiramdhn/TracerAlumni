@@ -2,8 +2,10 @@ package com.example.traceralumni.Activity;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -20,6 +22,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -36,8 +39,11 @@ import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.PathModel;
 import com.example.traceralumni.R;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.File;
 import java.io.IOException;
@@ -60,7 +66,10 @@ import retrofit2.Response;
 import static com.example.traceralumni.Activity.LocationPickerActivity.KODE_POS_EXTRA_KEY;
 import static com.example.traceralumni.Activity.LocationPickerActivity.LOKASI_EXTRA_KEY;
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+import static com.example.traceralumni.Activity.MainActivity.EMAIL_PREF;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
+import static com.example.traceralumni.Activity.MainActivity.PASS;
+import static com.example.traceralumni.Activity.MainActivity.SHARE_PREFS;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class SuntingProfilActivity extends AppCompatActivity {
@@ -75,12 +84,20 @@ public class SuntingProfilActivity extends AppCompatActivity {
     Spinner spn_kewarganegaraaan;
     DaftarModel daftarModel;
     CircleImageView img_foto_profil, img_edit_foto_profil;
+    ProgressDialog progressDialog;
 
     static final int PICK_PHOTO_REQUEST = 2;
     static final int PICK_ADDRESS_REQUEST = 1;
 
     String oldPath = "";
     String newPath;
+
+    private boolean dataSudahLengkap = false;
+    private boolean dataBerubah = false;
+
+    private FirebaseAuth mFirebaseAuth;
+
+    private static String TAG = SuntingProfilActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,52 +106,31 @@ public class SuntingProfilActivity extends AppCompatActivity {
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
-        daftarModel = getIntent().getParcelableExtra("daftarModel");
+        mFirebaseAuth = FirebaseAuth.getInstance();
+
+        progressDialog = new ProgressDialog(SuntingProfilActivity.this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Loading...");
 
         setIcon();
         getView();
-        customSpinner();
-        cekPerubahan();
 
-        edt_alamat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (ContextCompat.checkSelfPermission(SuntingProfilActivity.this,
-                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(SuntingProfilActivity.this,
-                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-                } else {
-                    moveToLocationPickerActivity();
-                }
-
-            }
-        });
-
+        daftarModel = getIntent().getParcelableExtra("daftarModel");
+        if (daftarModel != null) {
+            setView();
+            customSpinner();
+        } else {
+            getDataFromNIM(NIM);
+        }
         datePickerGetDate(edt_tanggal_lahir);
         datePickerGetDate(edt_tanggal_yudisium);
-
-        img_edit_foto_profil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (ContextCompat.checkSelfPermission(SuntingProfilActivity.this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(SuntingProfilActivity.this,
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
-                } else {
-                    getPhotoFromGallery();
-                }
-            }
-        });
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case 1: {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    moveToLocationPickerActivity();
-                }
-                return;
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                moveToLocationPickerActivity();
             }
         }
     }
@@ -160,12 +156,6 @@ public class SuntingProfilActivity extends AppCompatActivity {
     private void setIcon() {
         cl_iconBack = findViewById(R.id.cl_icon1);
         cl_iconBack.setVisibility(View.VISIBLE);
-        cl_iconBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
         cl_iconConfirm = findViewById(R.id.cl_icon4);
         cl_iconConfirm.setVisibility(View.VISIBLE);
         cl_iconConfirm.setOnClickListener(new View.OnClickListener() {
@@ -200,52 +190,97 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 }
             }
         });
-
         img_iconBack = findViewById(R.id.img_icon1);
         img_iconBack.setImageResource(R.drawable.ic_arrow_back);
         img_iconConfirm = findViewById(R.id.img_icon4);
         img_iconConfirm.setImageResource(R.drawable.ic_check);
         tv_titleBar = findViewById(R.id.tv_navbar_top);
-        tv_titleBar.setText("SUNTING PROFIL");
     }
 
     private void getView() {
         edt_email = findViewById(R.id.edt_sunting_profil_email);
-        edt_email.setText(daftarModel.getEmail());
         edt_tempat_lahir = findViewById(R.id.edt_sunting_profil_tempat_lahir);
-        edt_tempat_lahir.setText(daftarModel.getTempat_lahir());
-        edt_tanggal_lahir = findViewById(R.id.edt_sunting_profil_tanggal_lahir);
-        edt_tanggal_lahir.setText(daftarModel.getTanggal_lahir());
         edt_alamat = findViewById(R.id.edt_sunting_profil_alamat);
-        edt_alamat.setText(daftarModel.getAlamat());
+        edt_alamat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ContextCompat.checkSelfPermission(SuntingProfilActivity.this,
+                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(SuntingProfilActivity.this,
+                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                } else {
+                    moveToLocationPickerActivity();
+                }
+
+            }
+        });
+        edt_tanggal_lahir = findViewById(R.id.edt_sunting_profil_tanggal_lahir);
         edt_kode_pos = findViewById(R.id.edt_sunting_profil_kode_pos);
-        edt_kode_pos.setText(daftarModel.getKode_pos());
         edt_angkatan = findViewById(R.id.edt_sunting_profil_angkatan);
-        edt_angkatan.setText(daftarModel.getAngkatan());
         edt_tahun_lulus = findViewById(R.id.edt_sunting_profil_tahun_lulus);
-        edt_tahun_lulus.setText(daftarModel.getTahun_lulus());
         edt_tanggal_yudisium = findViewById(R.id.edt_sunting_profil_tanggal_yudisium);
-        edt_tanggal_yudisium.setText(daftarModel.getTanggal_yudisium());
         spn_kewarganegaraaan = findViewById(R.id.spn_sunting_profil_kewarganegaraan);
         edt_negara = findViewById(R.id.edt_sunting_profil_negara);
-        edt_negara.setText(daftarModel.getNama_negara());
         edt_no_hp = findViewById(R.id.edt_sunting_profil_no_hp);
-        edt_no_hp.setText(daftarModel.getNomor_hp());
         edt_no_telp = findViewById(R.id.edt_sunting_profil_no_telepon);
-        edt_no_telp.setText(daftarModel.getNomor_telepon());
         edt_facebook = findViewById(R.id.edt_sunting_profil_facebook);
-        edt_facebook.setText(daftarModel.getFacebook());
         edt_twitter = findViewById(R.id.edt_sunting_profil_twitter);
-        edt_twitter.setText(daftarModel.getTwitter());
         img_foto_profil = findViewById(R.id.img_sunting_profil_foto);
         img_edit_foto_profil = findViewById(R.id.img_sunting_profil_edit_foto);
+        img_edit_foto_profil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ContextCompat.checkSelfPermission(SuntingProfilActivity.this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(SuntingProfilActivity.this,
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                } else {
+                    getPhotoFromGallery();
+                }
+            }
+        });
+    }
 
+    private void setView() {
+        if (daftarModel.getEmail().contains("traceralumnifeb@gmail.com")) {
+            edt_email.setText("");
+            tv_titleBar.setText("ISI DATA");
+            cl_iconBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    MainActivity.showKeluarDialog(SuntingProfilActivity.this);
+                }
+            });
+        } else {
+            dataSudahLengkap = true;
+            edt_email.setText(daftarModel.getEmail());
+            tv_titleBar.setText("SUNTING PROFIL");
+            cl_iconBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SuntingProfilActivity.super.onBackPressed();
+                }
+            });
+        }
+        edt_tanggal_lahir.setText(daftarModel.getTanggal_lahir());
+        edt_tempat_lahir.setText(daftarModel.getTempat_lahir());
+        edt_alamat.setText(daftarModel.getAlamat());
+        edt_kode_pos.setText(daftarModel.getKode_pos());
+        edt_angkatan.setText(daftarModel.getAngkatan());
+        edt_tahun_lulus.setText(daftarModel.getTahun_lulus());
+        edt_tanggal_yudisium.setText(daftarModel.getTanggal_yudisium());
+        edt_negara.setText(daftarModel.getNama_negara());
+        edt_no_hp.setText(daftarModel.getNomor_hp());
+        edt_no_telp.setText(daftarModel.getNomor_telepon());
+        edt_facebook.setText(daftarModel.getFacebook());
+        edt_twitter.setText(daftarModel.getTwitter());
         oldPath = daftarModel.getFoto();
         if (oldPath != null) {
             Glide.with(SuntingProfilActivity.this)
                     .load(BASE_URL + oldPath)
                     .into(img_foto_profil);
         }
+        cekPerubahan();
     }
 
     private void getPhotoFromGallery() {
@@ -401,6 +436,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
     }
 
     private void suntingProfil() {
+        progressDialog.show();
         JsonApi jsonApi = Client.getClient().create(JsonApi.class);
         String telepon;
         if (edt_no_hp.getText().toString().charAt(0) == '0') {
@@ -432,8 +468,29 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 if (!response.isSuccessful()) {
                     return;
                 }
-                onBackPressed();
-                Toast.makeText(SuntingProfilActivity.this, "Data telah diubah", Toast.LENGTH_SHORT).show();
+                AuthCredential credential = EmailAuthProvider.getCredential(daftarModel.getEmail(), PASS);
+                mFirebaseAuth.getCurrentUser().reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            mFirebaseAuth.getCurrentUser().updateEmail(edt_email.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREFS, MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString(EMAIL_PREF, daftarModel.getEmail());
+                                    editor.apply();
+                                    SuntingProfilActivity.super.onBackPressed();
+                                    Toast.makeText(SuntingProfilActivity.this, "Data telah diubah", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        } else {
+                            Log.d(TAG, "Auth ganti password gagal");
+                        }
+                    }
+                });
+
             }
 
             @Override
@@ -481,7 +538,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                onBackPressed();
+                SuntingProfilActivity.super.onBackPressed();
             }
         });
 
@@ -512,13 +569,22 @@ public class SuntingProfilActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                cl_iconBack.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        showKonfirmasiKembaliDialog();
-                    }
-                });
-
+                dataBerubah = true;
+                if (!dataSudahLengkap) {
+                    cl_iconBack.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            MainActivity.showKeluarDialog(SuntingProfilActivity.this);
+                        }
+                    });
+                } else {
+                    cl_iconBack.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            showKonfirmasiKembaliDialog();
+                        }
+                    });
+                }
             }
         });
     }
@@ -539,4 +605,40 @@ public class SuntingProfilActivity extends AppCompatActivity {
         setTextWatcher(edt_twitter);
     }
 
+    private void getDataFromNIM(String nim) {
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
+
+        Call<DaftarModel> call = jsonApi.getUserData(nim);
+        call.enqueue(new Callback<DaftarModel>() {
+            @Override
+            public void onResponse(Call<DaftarModel> call, Response<DaftarModel> response) {
+                if (!response.isSuccessful()) {
+                    return;
+                }
+                daftarModel = response.body();
+                setView();
+                customSpinner();
+            }
+
+            @Override
+            public void onFailure(Call<DaftarModel> call, Throwable t) {
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(SuntingProfilActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!dataSudahLengkap && dataBerubah) {
+            MainActivity.showKeluarDialog(SuntingProfilActivity.this);
+        } else if (!dataSudahLengkap) {
+            MainActivity.showKeluarDialog(SuntingProfilActivity.this);
+        } else if (dataBerubah) {
+            showKonfirmasiKembaliDialog();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }
