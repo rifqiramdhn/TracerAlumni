@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.TambahAlumniActivity"></activity>
+        <activity android:name=".Activity.PesanActivity"></activity>
+        <activity android:name=".Activity.TambahAlumniActivity" />
         <activity android:name=".Activity.StatusPermintaanLowonganActivity" />
         <activity android:name=".Activity.StatusPermintaanDonasiActivity" />
         <activity android:name=".Activity.BantuanActivity" />
