@@ -44,6 +44,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
 import java.io.IOException;
@@ -147,9 +149,6 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 edt_alamat.setText(data.getStringExtra(LOKASI_EXTRA_KEY));
                 edt_kode_pos.setText(data.getStringExtra(KODE_POS_EXTRA_KEY));
             }
-//            if (data != null){
-//
-//            }
         }
     }
 
@@ -479,7 +478,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
                                     progressDialog.dismiss();
                                     SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREFS, MODE_PRIVATE);
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                                    editor.putString(EMAIL_PREF, daftarModel.getEmail());
+                                    editor.putString(EMAIL_PREF, edt_email.getText().toString());
                                     editor.apply();
                                     SuntingProfilActivity.super.onBackPressed();
                                     Toast.makeText(SuntingProfilActivity.this, "Data telah diubah", Toast.LENGTH_SHORT).show();
