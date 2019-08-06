@@ -68,6 +68,7 @@ import retrofit2.Response;
 import static com.example.traceralumni.Activity.LocationPickerActivity.KODE_POS_EXTRA_KEY;
 import static com.example.traceralumni.Activity.LocationPickerActivity.LOKASI_EXTRA_KEY;
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+import static com.example.traceralumni.Activity.MainActivity.EMAIL;
 import static com.example.traceralumni.Activity.MainActivity.EMAIL_PREF;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
 import static com.example.traceralumni.Activity.MainActivity.PASS;
@@ -145,7 +146,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 uploadPhoto(imageUri);
             }
         } else if (requestCode == PICK_ADDRESS_REQUEST) {
-            if (resultCode == RESULT_OK){
+            if (resultCode == RESULT_OK) {
                 edt_alamat.setText(data.getStringExtra(LOKASI_EXTRA_KEY));
                 edt_kode_pos.setText(data.getStringExtra(KODE_POS_EXTRA_KEY));
             }
@@ -354,7 +355,6 @@ public class SuntingProfilActivity extends AppCompatActivity {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(daftarModel.getUserId());
         Map<String, Object> map = new HashMap<>();
         map.put("imageUrl", imageUrl);
-
         reference.updateChildren(map);
     }
 
