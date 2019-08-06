@@ -47,7 +47,7 @@ public class LainnyaFragment extends Fragment {
         lainnyaModels = new ArrayList<>();
         lainnyaModels.add(new LainnyaModel("Legalisir Ijazah", R.drawable.ic_ijazah));
         lainnyaModels.add(new LainnyaModel("Kartu Alumni", R.drawable.ic_kartu_alumni));
-        lainnyaModels.add(new LainnyaModel("Donasi", R.drawable.ic_attach_money));
+//        lainnyaModels.add(new LainnyaModel("Donasi", R.drawable.ic_attach_money));
         lainnyaModels.add(new LainnyaModel("Tracer Studi", R.drawable.ic_tracer_study));
         lainnyaModels.add(new LainnyaModel("Sunting Profil", R.drawable.ic_person));
         lainnyaModels.add(new LainnyaModel("Riwayat Pekerjaaan", R.drawable.ic_riwayat_pekerjaan));
