@@ -43,6 +43,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB_KEY;
 import static com.example.traceralumni.Activity.MainActivity.SHARE_PREFS;
 
 public class PesanActivity extends AppCompatActivity {
@@ -91,7 +92,6 @@ public class PesanActivity extends AppCompatActivity {
 
         intent = getIntent();
         userId = intent.getStringExtra("userId");
-        Log.e("aldy", "userId dia : " + userId);
 
         if (userId != null) {
             firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -307,6 +307,15 @@ public class PesanActivity extends AppCompatActivity {
         super.onPause();
         reference.removeEventListener(seenListener);
         currentUser("none");
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(PesanActivity.this, MainActivity.class);
+        intent.putExtra(INDEX_OPENED_TAB_KEY, 1);
+        startActivity(intent);
+        finish();
     }
 
     private void initView() {
