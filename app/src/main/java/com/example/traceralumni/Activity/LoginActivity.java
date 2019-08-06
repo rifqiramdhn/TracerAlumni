@@ -28,9 +28,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.traceralumni.Activity.MainActivity.EMAIL_PREF;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_PREF;
 import static com.example.traceralumni.Activity.MainActivity.NIM_PREF;
+import static com.example.traceralumni.Activity.MainActivity.PASS_PREF;
 import static com.example.traceralumni.Activity.MainActivity.SHARE_PREFS;
 import static com.example.traceralumni.Activity.MainActivity.STATE_USER_LOGGED_PREF;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
@@ -42,7 +44,6 @@ public class LoginActivity extends AppCompatActivity {
     ConstraintLayout cl_lupa_password;
     ProgressDialog pd;
     FirebaseAuth auth;
-    DatabaseReference reference;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -121,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void loginToFirebase(String email, String password, final String nim) {
+    private void loginToFirebase(String email, final String password, final String nim) {
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -148,6 +149,8 @@ public class LoginActivity extends AppCompatActivity {
 
         if (daftarModel.getJenis_user().equals(JENIS_USER_ALUMNI)) {
             editor.putString(NIM_PREF, daftarModel.getNim());
+            editor.putString(EMAIL_PREF, daftarModel.getEmail());
+            editor.putString(PASS_PREF, edtPassword.getText().toString());
         }
 
         editor.apply();

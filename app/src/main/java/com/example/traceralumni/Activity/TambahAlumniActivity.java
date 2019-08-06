@@ -262,7 +262,7 @@ public class TambahAlumniActivity extends AppCompatActivity {
 
                             HashMap<String, String> hashMap = new HashMap<>();
                             hashMap.put("id", userId);
-                            hashMap.put("edtEmail", nim);
+                            hashMap.put("nim", nim);
 
                             reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
