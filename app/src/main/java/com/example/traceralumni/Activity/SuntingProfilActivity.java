@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -63,10 +64,11 @@ import retrofit2.Response;
 import static com.example.traceralumni.Activity.LocationPickerActivity.KODE_POS_EXTRA_KEY;
 import static com.example.traceralumni.Activity.LocationPickerActivity.LOKASI_EXTRA_KEY;
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+import static com.example.traceralumni.Activity.MainActivity.EMAIL_PREF;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
 import static com.example.traceralumni.Activity.MainActivity.PASS;
+import static com.example.traceralumni.Activity.MainActivity.SHARE_PREFS;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
-
 
 public class SuntingProfilActivity extends AppCompatActivity {
 
@@ -124,12 +126,9 @@ public class SuntingProfilActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case 1: {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    moveToLocationPickerActivity();
-                }
-                return;
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                moveToLocationPickerActivity();
             }
         }
     }
@@ -462,6 +461,10 @@ public class SuntingProfilActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressDialog.dismiss();
+                                    SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREFS, MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString(EMAIL_PREF, daftarModel.getEmail());
+                                    editor.apply();
                                     SuntingProfilActivity.super.onBackPressed();
                                     Toast.makeText(SuntingProfilActivity.this, "Data telah diubah", Toast.LENGTH_SHORT).show();
                                 }
