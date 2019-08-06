@@ -63,6 +63,7 @@ public class PesanActivity extends AppCompatActivity {
     ValueEventListener seenListener;
 
     String userId;
+    String myid;
 
     APIService apiService;
     boolean notify = false;
@@ -94,6 +95,7 @@ public class PesanActivity extends AppCompatActivity {
 
         if (userId != null) {
             firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            myid = firebaseUser.getUid();
             if (firebaseUser == null) {
                 startActivity(new Intent(PesanActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
             } else {
@@ -304,7 +306,7 @@ public class PesanActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         reference.removeEventListener(seenListener);
-        currentUser(userId);
+        currentUser("none");
     }
 
     private void initView() {

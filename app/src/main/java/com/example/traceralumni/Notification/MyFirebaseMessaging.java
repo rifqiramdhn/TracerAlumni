@@ -18,6 +18,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import static com.example.traceralumni.Activity.MainActivity.SHARE_PREFS;
+
 public class MyFirebaseMessaging extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -25,23 +27,33 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
         String sented = remoteMessage.getData().get("sented");
         String user = remoteMessage.getData().get("user");
 
-        SharedPreferences preferences = getSharedPreferences("PREFS", MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences(SHARE_PREFS, MODE_PRIVATE);
         String currentUser = preferences.getString("currentuser", "none");
 
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         Log.e("aldy", "onmessagereceiver jalan");
+        Log.e("aldy", "sented : " + sented);
+        Log.e("aldy", "user : " + user);
+        Log.e("aldy", "currentuser : " + currentUser);
+
         if (firebaseUser != null && sented.equals(firebaseUser.getUid())) {
-            if (!currentUser.equals(user)) {
+            Log.e("aldy", "berhasil 1");
+            //DISINI BELUM SOALNYA WAKTU BUKA CHATNYA ORANG KALAU ORANGNYA CHAT AKU NOTIFNYA MASIH MUNCUL
+//            if (!currentUser.equals(user)) {
+                Log.e("aldy", "berhasil 2");
+
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     sendOreoNotification(remoteMessage);
                 } else {
                     sendNotification(remoteMessage);
                 }
-            }
+//            }
         }
     }
 
     private void sendOreoNotification(RemoteMessage remoteMessage) {
+        Log.e("aldy", "sendOreoNotification jalan");
+
         String user = remoteMessage.getData().get("user");
         String icon = remoteMessage.getData().get("icon");
         String title = remoteMessage.getData().get("title");
@@ -70,6 +82,8 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
     }
 
     private void sendNotification(RemoteMessage remoteMessage) {
+        Log.e("aldy", "sendNotification jalan");
+
         String user = remoteMessage.getData().get("user");
         String icon = remoteMessage.getData().get("icon");
         String title = remoteMessage.getData().get("title");
