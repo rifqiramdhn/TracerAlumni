@@ -18,6 +18,8 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+
 public class PesanAdapter extends RecyclerView.Adapter<PesanAdapter.ViewHolder> {
 
     public static final int MSG_TYPE_LEFT = 0;
@@ -57,10 +59,10 @@ public class PesanAdapter extends RecyclerView.Adapter<PesanAdapter.ViewHolder> 
         holder.tvPesan.setText(chat.getMessage());
 
         if (TYPE_PESAN != 1){
-            if (imageURL.equals("default")){
+            if (imageURL.equals("")){
                 holder.imgProfil.setImageResource(R.mipmap.ic_launcher);
             } else {
-                Glide.with(context).load(imageURL).into(holder.imgProfil);
+                Glide.with(context).load(BASE_URL + imageURL).into(holder.imgProfil);
             }
         } else {
             if (position == chats.size()-1){

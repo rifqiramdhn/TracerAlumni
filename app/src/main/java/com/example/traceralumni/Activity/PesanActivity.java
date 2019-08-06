@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -39,6 +40,10 @@ import java.util.HashMap;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.traceralumni.Activity.MainActivity.SHARE_PREFS;
 
 public class PesanActivity extends AppCompatActivity {
     TextView tvNavbar;
@@ -66,9 +71,16 @@ public class PesanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pesan);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         initView();
 
-        apiService = Client.getClientForMessage().create(APIService.class);
+//        apiService = Client.getClientForMessage().create(APIService.class);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://fcm.googleapis.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        apiService = retrofit.create(APIService.class);
 
         recyclerView = findViewById(R.id.rv_pesan);
         recyclerView.setHasFixedSize(true);
@@ -78,13 +90,13 @@ public class PesanActivity extends AppCompatActivity {
 
         intent = getIntent();
         userId = intent.getStringExtra("userId");
+        Log.e("aldy", "userId dia : " + userId);
 
         if (userId != null) {
             firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
             if (firebaseUser == null) {
                 startActivity(new Intent(PesanActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
             } else {
-                getUserIdFromNim();
                 reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
 
                 clKirim.setOnClickListener(new View.OnClickListener() {
@@ -119,10 +131,6 @@ public class PesanActivity extends AppCompatActivity {
                 seenMessage(userId);
             }
         }
-    }
-
-    private void getUserIdFromNim() {
-
     }
 
     private void seenMessage(final String userId) {
@@ -277,7 +285,7 @@ public class PesanActivity extends AppCompatActivity {
     }
 
     private void currentUser(String userId) {
-        SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = getSharedPreferences(SHARE_PREFS, MODE_PRIVATE).edit();
         editor.putString("currentuser", userId);
         editor.apply();
     }

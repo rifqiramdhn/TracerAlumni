@@ -31,6 +31,7 @@ import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
+import static com.example.traceralumni.Activity.MainActivity.NIM;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class DetailProfilActivity extends AppCompatActivity {
@@ -60,6 +61,11 @@ public class DetailProfilActivity extends AppCompatActivity {
         }
 
         getDataFromIntent();
+
+        if (daftarModel.getNim().equals(NIM)){
+            bnChat.setVisibility(View.GONE);
+        }
+
         bnChat.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

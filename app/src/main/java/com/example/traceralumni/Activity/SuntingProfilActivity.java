@@ -150,9 +150,6 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 edt_alamat.setText(data.getStringExtra(LOKASI_EXTRA_KEY));
                 edt_kode_pos.setText(data.getStringExtra(KODE_POS_EXTRA_KEY));
             }
-//            if (data != null){
-//
-//            }
         }
     }
 
