@@ -83,7 +83,7 @@ public interface JsonApi {
 
     @FormUrlEncoded
     @POST("create_lowongan_pekerjaan.php")
-    Call<Void> createLowongan(@Field("username") String username,
+    Call<Void> createLowongan(@Field("nim") String nim,
                               @Field("judulLowongan") String judulLowongan,
                               @Field("jabatan") String jabatan,
                               @Field("namaPerusahaan") String namaPerusahaan,
@@ -102,10 +102,6 @@ public interface JsonApi {
     @FormUrlEncoded
     @POST("post_get_user_data.php")
     Call<DaftarModel> getUserData(@Field("nim") String nim);
-
-    @FormUrlEncoded
-    @POST("post_get_user_data.php")
-    Call<DaftarModel> getUserDataFromEmail(@Field("email") String email);
 
     @FormUrlEncoded
     @POST("post_sunting_profil.php")
@@ -248,4 +244,9 @@ public interface JsonApi {
     @FormUrlEncoded
     @POST("delete_alumni.php")
     Call<Void> deleteAlumni(@Field("nim") String nim);
+
+    @FormUrlEncoded
+    @POST("post_add_userid_alumni.php")
+    Call<Void> addUserIdAlumni(@Field("nim") String nim,
+                               @Field("userId") String userId);
 }

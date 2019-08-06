@@ -249,7 +249,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void saveData(Integer idLowongan, String username, String judulLowongan, String jabatan, String namaPerusahaan, String alamat, Integer kuota, String gaji, String syarat, String website, String email, String notelp, String cp, String status, String tglLowongan, String logo) {
+    private void saveData(Integer idLowongan, String nim, String judulLowongan, String jabatan, String namaPerusahaan, String alamat, Integer kuota, String gaji, String syarat, String website, String email, String notelp, String cp, String status, String tglLowongan, String logo) {
         JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
         Call<Void> call;
@@ -281,7 +281,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
                 }
             });
         } else {
-            call = jsonApi.createLowongan(username, judulLowongan, jabatan, namaPerusahaan, alamat, kuota, gaji, syarat, website, email, notelp, cp, status, tglLowongan, logo);
+            call = jsonApi.createLowongan(nim, judulLowongan, jabatan, namaPerusahaan, alamat, kuota, gaji, syarat, website, email, notelp, cp, status, tglLowongan, logo);
             call.enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
