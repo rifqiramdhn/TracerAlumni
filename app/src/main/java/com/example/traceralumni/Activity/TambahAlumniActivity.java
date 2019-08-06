@@ -190,11 +190,8 @@ public class TambahAlumniActivity extends AppCompatActivity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-//                if (CAN_CLICK_BUTTON_SAVE == 0){
-//                    CAN_CLICK_BUTTON_SAVE = 1;
                 pd.show();
                 registerAlumni();
-//                }
             }
         });
 
@@ -211,7 +208,7 @@ public class TambahAlumniActivity extends AppCompatActivity {
 
     private void registerAlumni() {
         final String nim = edtNim.getText().toString().trim();
-        String nama = edtNama.getText().toString().trim();
+        final String nama = edtNama.getText().toString().trim();
         Integer idJurusan = id_jurusan;
         Integer idProdi = id_prodi;
 
@@ -230,7 +227,7 @@ public class TambahAlumniActivity extends AppCompatActivity {
                 if (hasil.equals("0")) {
                     edtNim.setError("NIM sudah digunakan");
                 } else {
-                    registerToFirebase(email, password, nim);
+                    registerToFirebase(email, password, nim, nama);
                 }
             }
 
@@ -244,7 +241,7 @@ public class TambahAlumniActivity extends AppCompatActivity {
         });
     }
 
-    private void registerToFirebase(String email, String password, final String nim) {
+    private void registerToFirebase(String email, String password, final String nim, final String nama) {
         auth2.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -259,6 +256,8 @@ public class TambahAlumniActivity extends AppCompatActivity {
                             HashMap<String, String> hashMap = new HashMap<>();
                             hashMap.put("id", userId);
                             hashMap.put("nim", nim);
+                            hashMap.put("username", nama);
+                            hashMap.put("imageUrl", "");
 
                             reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

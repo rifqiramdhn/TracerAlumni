@@ -49,7 +49,7 @@ public class LocationPickerActivity extends AppCompatActivity {
         cl_iconBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendLocation();
+                onBackPressed();
             }
         });
 
@@ -71,7 +71,7 @@ public class LocationPickerActivity extends AppCompatActivity {
         intent.putExtra(LOKASI_EXTRA_KEY, LOKASI_EXTRA);
         intent.putExtra(KODE_POS_EXTRA_KEY, KODE_POS_EXTRA);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        this.setResult(PICK_ADDRESS_REQUEST, intent);
+        this.setResult(RESULT_OK, intent);
         finish();
     }
 }

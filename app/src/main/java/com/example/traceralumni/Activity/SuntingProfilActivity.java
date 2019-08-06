@@ -36,13 +36,17 @@ import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.PathModel;
 import com.example.traceralumni.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import id.zelory.compressor.Compressor;
@@ -72,8 +76,8 @@ public class SuntingProfilActivity extends AppCompatActivity {
     DaftarModel daftarModel;
     CircleImageView img_foto_profil, img_edit_foto_profil;
 
-    static final int PICK_PHOTO_REQUEST = 1;
-    static final int PICK_ADDRESS_REQUEST = 2;
+    static final int PICK_PHOTO_REQUEST = 2;
+    static final int PICK_ADDRESS_REQUEST = 1;
 
     String oldPath = "";
     String newPath;
@@ -115,7 +119,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 if (ContextCompat.checkSelfPermission(SuntingProfilActivity.this,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(SuntingProfilActivity.this,
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
                 } else {
                     getPhotoFromGallery();
                 }
@@ -143,8 +147,13 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 uploadPhoto(imageUri);
             }
         } else if (requestCode == PICK_ADDRESS_REQUEST) {
-            edt_alamat.setText(data.getStringExtra(LOKASI_EXTRA_KEY));
-            edt_kode_pos.setText(data.getStringExtra(KODE_POS_EXTRA_KEY));
+            if (resultCode == RESULT_OK){
+                edt_alamat.setText(data.getStringExtra(LOKASI_EXTRA_KEY));
+                edt_kode_pos.setText(data.getStringExtra(KODE_POS_EXTRA_KEY));
+            }
+//            if (data != null){
+//
+//            }
         }
     }
 
@@ -295,6 +304,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 if (!response.isSuccessful()) {
                     return;
                 }
+                addImageUrlToFirebase(newPath);
             }
 
             @Override
@@ -304,6 +314,14 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void addImageUrlToFirebase(String imageUrl) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(daftarModel.getUserId());
+        Map<String, Object> map = new HashMap<>();
+        map.put("imageUrl", imageUrl);
+
+        reference.updateChildren(map);
     }
 
     private String getRealPathFromURI(Uri contentUri) {

@@ -200,8 +200,7 @@ public class MainActivity extends AppCompatActivity {
                     imgIcon4.setImageResource(R.drawable.ic_search);
                     break;
                 case 1:
-                    imgIcon3.setImageResource(R.drawable.ic_chat);
-                    imgIcon4.setImageResource(R.drawable.ic_search);
+                    imgIcon4.setImageResource(R.drawable.ic_chat);
                     break;
                 case 2:
                     break;
@@ -300,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     cl_icon1.setVisibility(View.GONE);
                     cl_icon2.setVisibility(View.GONE);
-                    cl_icon3.setVisibility(View.VISIBLE);
+                    cl_icon3.setVisibility(View.GONE);
                     cl_icon4.setVisibility(View.VISIBLE);
                     break;
                 case 2:
@@ -473,16 +472,8 @@ public class MainActivity extends AppCompatActivity {
             case 1:
                 //tab pesan
                 switch (iconNumber) {
-                    case 3:
-                        //icon chat baru
-                        break;
                     case 4:
-                        ConstraintLayout cl_fragment_chat_search = findViewById(R.id.cl_fragment_chat_search);
-                        if (cl_fragment_chat_search.getVisibility() == View.GONE) {
-                            cl_fragment_chat_search.setVisibility(View.VISIBLE);
-                        } else {
-                            cl_fragment_chat_search.setVisibility(View.GONE);
-                        }
+                        //icon chat baru
                         break;
                     default:
                         break;

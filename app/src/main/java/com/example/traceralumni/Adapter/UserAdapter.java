@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.traceralumni.Activity.PesanActivity;
 import com.example.traceralumni.Model.Chat;
-import com.example.traceralumni.Model.UserForChat;
+import com.example.traceralumni.Model.UserModel;
 import com.example.traceralumni.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,14 +29,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList<UserForChat> userForChats;
+    private ArrayList<UserModel> userModels;
     private boolean isChat;
 
     String theLastMessage;
 
-    public UserAdapter(Context context, ArrayList<UserForChat> userForChats, boolean isChat) {
+    public UserAdapter(Context context, ArrayList<UserModel> userModels, boolean isChat) {
         this.context = context;
-        this.userForChats = userForChats;
+        this.userModels = userModels;
         this.isChat = isChat;
     }
 
@@ -49,23 +49,23 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final UserForChat userForChat = userForChats.get(position);
-        holder.tvUsername.setText(userForChat.getUsername());
-        if (userForChat.getImageURL().equals("default")) {
+        final UserModel userModel = userModels.get(position);
+        holder.tvUsername.setText(userModel.getUsername());
+        if (userModel.getImageUrl().equals("default")) {
             holder.imgProfil.setImageResource(R.mipmap.ic_launcher);
         } else {
-            Glide.with(context).load(userForChat.getImageURL()).into(holder.imgProfil);
+            Glide.with(context).load(userModel.getImageUrl()).into(holder.imgProfil);
         }
 
         if (isChat) {
-            lastMessage(userForChat.getId(), holder.tvLastMessage);
+            lastMessage(userModel.getId(), holder.tvLastMessage);
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, PesanActivity.class);
-                intent.putExtra("userId", userForChat.getId());
+                intent.putExtra("userId", userModel.getId());
                 context.startActivity(intent);
             }
         });
@@ -73,7 +73,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return userForChats.size();
+        return userModels.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

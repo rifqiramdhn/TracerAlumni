@@ -59,16 +59,24 @@ public class DetailProfilActivity extends AppCompatActivity {
             bnChat.setVisibility(View.GONE);
         }
 
+        getDataFromIntent();
         bnChat.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.ic_chat) {
+                    moveToPesanActivity();
                 }
                 return true;
             }
         });
+    }
 
-        getDataFromIntent();
+    private void moveToPesanActivity(){
+        if (daftarModel != null){
+            Intent intent = new Intent(DetailProfilActivity.this, PesanActivity.class);
+            intent.putExtra("userId", daftarModel.getUserId());
+            startActivity(intent);
+        }
     }
 
     private void getDataFromIntent() {

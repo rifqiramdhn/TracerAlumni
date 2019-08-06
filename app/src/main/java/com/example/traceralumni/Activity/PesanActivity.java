@@ -18,7 +18,7 @@ import com.example.traceralumni.APIService;
 import com.example.traceralumni.Adapter.PesanAdapter;
 import com.example.traceralumni.Client;
 import com.example.traceralumni.Model.Chat;
-import com.example.traceralumni.Model.UserForChat;
+import com.example.traceralumni.Model.UserModel;
 import com.example.traceralumni.Notification.Data;
 import com.example.traceralumni.Notification.MyResponse;
 import com.example.traceralumni.Notification.Sender;
@@ -57,7 +57,7 @@ public class PesanActivity extends AppCompatActivity {
 
     ValueEventListener seenListener;
 
-    String userId, nimUser;
+    String userId;
 
     APIService apiService;
     boolean notify = false;
@@ -78,32 +78,50 @@ public class PesanActivity extends AppCompatActivity {
 
         intent = getIntent();
         userId = intent.getStringExtra("userId");
-        nimUser = intent.getStringExtra("nim");
 
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (firebaseUser == null){
-            startActivity(new Intent(PesanActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
-        } else {
-            getUserIdFromNim();
-            reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
+        if (userId != null) {
+            firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            if (firebaseUser == null) {
+                startActivity(new Intent(PesanActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            } else {
+                getUserIdFromNim();
+                reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
 
-            clKirim.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    notify = true;
-                    String message = edtIsiPesan.getText().toString().trim();
-                    if (edtIsiPesan.getText().toString().equals("")){
-                        Toast.makeText(PesanActivity.this, "Can't send empty message", Toast.LENGTH_SHORT).show();
-                    } else {
-                        sendMessageToFirebase(firebaseUser.getUid(), userId, message);
+                clKirim.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        notify = true;
+                        String message = edtIsiPesan.getText().toString().trim();
+                        if (edtIsiPesan.getText().toString().equals("")) {
+                            Toast.makeText(PesanActivity.this, "Can't send empty message", Toast.LENGTH_SHORT).show();
+                        } else {
+                            sendMessageToFirebase(firebaseUser.getUid(), userId, message);
+                        }
+                        edtIsiPesan.setText("");
                     }
-                    edtIsiPesan.setText("");
-                }
-            });
+                });
+
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        UserModel userModel = dataSnapshot.getValue(UserModel.class);
+                        tvNavbar.setText(userModel.getUsername());
+
+                        readMessage(firebaseUser.getUid(), userModel.getId(), userModel.getImageUrl());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+                seenMessage(userId);
+            }
         }
     }
 
-    private void getUserIdFromNim(){
+    private void getUserIdFromNim() {
 
     }
 
@@ -129,7 +147,7 @@ public class PesanActivity extends AppCompatActivity {
         });
     }
 
-    private void sendMessageToFirebase(String sender, final String receiver, String message){
+    private void sendMessageToFirebase(String sender, final String receiver, String message) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
         HashMap<String, Object> hashMap = new HashMap<>();
@@ -182,9 +200,9 @@ public class PesanActivity extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                UserForChat userForChat = dataSnapshot.getValue(UserForChat.class);
+                UserModel userModel = dataSnapshot.getValue(UserModel.class);
                 if (notify)
-                    sendNotification(receiver, userForChat.getUsername(), msg);
+                    sendNotification(receiver, userModel.getUsername(), msg);
                 notify = false;
             }
 
@@ -210,7 +228,7 @@ public class PesanActivity extends AppCompatActivity {
                             .enqueue(new Callback<MyResponse>() {
                                 @Override
                                 public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
-                                    if (!response.isSuccessful()){
+                                    if (!response.isSuccessful()) {
                                         Toast.makeText(PesanActivity.this, "Gagal", Toast.LENGTH_SHORT).show();
                                         return;
                                     }
@@ -258,17 +276,30 @@ public class PesanActivity extends AppCompatActivity {
         });
     }
 
-    private void currentUser(String userId){
+    private void currentUser(String userId) {
         SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
         editor.putString("currentuser", userId);
         editor.apply();
     }
 
-    private void moveToDetailProfil(){
+    private void moveToDetailProfil() {
         //pindah untuk lihat profil alumni yang sedang dichat
     }
 
-    private void initView(){
+    @Override
+    protected void onResume() {
+        super.onResume();
+        currentUser(userId);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        reference.removeEventListener(seenListener);
+        currentUser(userId);
+    }
+
+    private void initView() {
         tvNavbar = findViewById(R.id.tv_navbar_top);
         clBack = findViewById(R.id.cl_icon1);
         clBack.setVisibility(View.VISIBLE);
