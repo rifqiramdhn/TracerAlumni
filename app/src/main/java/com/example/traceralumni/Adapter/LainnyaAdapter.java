@@ -82,46 +82,46 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                     case 1:
                         getData(1);
                         break;
+//                    case 2:
+//                        Intent donasi = new Intent(context, DonasiActivity.class);
+//                        context.startActivity(donasi);
+//                        break;
                     case 2:
-                        Intent donasi = new Intent(context, DonasiActivity.class);
-                        context.startActivity(donasi);
-                        break;
-                    case 3:
                         String url = "http://www.google.com";
                         Intent tracerStudi = new Intent(Intent.ACTION_VIEW);
                         tracerStudi.setData(Uri.parse(url));
                         context.startActivity(tracerStudi);
                         break;
-                    case 4:
-                        getData(4);
+                    case 3:
+                        getData(3);
                         break;
-                    case 5:
+                    case 4:
                         Intent riwayat = new Intent(context, RiwayatPekerjaanActivity.class);
                         context.startActivity(riwayat);
                         break;
-                    case 6:
-                        Intent statusDonasi = new Intent(context, StatusPermintaanDonasiActivity.class);
-                        context.startActivity(statusDonasi);
-                        break;
-                    case 7:
+//                    case 5:
+//                        Intent statusDonasi = new Intent(context, StatusPermintaanDonasiActivity.class);
+//                        context.startActivity(statusDonasi);
+//                        break;
+                    case 5:
                         Intent statusLowongan = new Intent(context, StatusPermintaanLowonganActivity.class);
                         context.startActivity(statusLowongan);
                         break;
-                    case 8:
+                    case 6:
                         showResetPasswordDialog();
                         break;
-                    case 9:
+                    case 7:
                         showHapusSemuaChatDialog();
                         break;
-                    case 10:
+                    case 8:
                         Intent tentang = new Intent(context, AboutActivity.class);
                         context.startActivity(tentang);
                         break;
-                    case 11:
+                    case 9:
                         Intent bantuan = new Intent(context, BantuanActivity.class);
                         context.startActivity(bantuan);
                         break;
-                    case 12:
+                    case 10:
                         MainActivity.showKeluarDialog(context);
                         break;
                 }
