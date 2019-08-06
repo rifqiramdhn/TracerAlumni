@@ -224,23 +224,19 @@ public class TambahAlumniActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if (!response.isSuccessful()) {
-//                    CAN_CLICK_BUTTON_SAVE = 0;
                     return;
                 }
-//                CAN_CLICK_BUTTON_SAVE = 0;
                 String hasil = response.body();
                 if (hasil.equals("0")) {
                     edtNim.setError("NIM sudah digunakan");
                 } else {
                     registerToFirebase(email, password, nim);
-//                    onBackPressed();
-//                    Toast.makeText(TambahAlumniActivity.this, "Alumni baru sudah ditambahkan", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-//                CAN_CLICK_BUTTON_SAVE = 0;
+                pd.dismiss();
                 if (t.getMessage().contains("Failed to connect")) {
                     Toast.makeText(TambahAlumniActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
                 }
@@ -256,7 +252,7 @@ public class TambahAlumniActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser firebaseUser = auth2.getCurrentUser();
                             assert firebaseUser != null;
-                            String userId = firebaseUser.getUid();
+                            final String userId = firebaseUser.getUid();
 
                             reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
 
@@ -268,9 +264,7 @@ public class TambahAlumniActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     auth2.signOut();
-                                    pd.dismiss();
-                                    Toast.makeText(TambahAlumniActivity.this, "Alumni berhasil ditambahkan", Toast.LENGTH_SHORT).show();
-                                    onBackPressed();
+                                    addUserIdToSQL(nim, userId);
                                 }
                             });
                         } else {
@@ -279,6 +273,32 @@ public class TambahAlumniActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void addUserIdToSQL(String nim, String userId){
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
+        Call<Void> call = jsonApi.addUserIdAlumni(nim, userId);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()){
+                    pd.dismiss();
+                    return;
+                }
+
+                pd.dismiss();
+                Toast.makeText(TambahAlumniActivity.this, "Alumni berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+                onBackPressed();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                pd.dismiss();
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(TambahAlumniActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private String getRandomPassword(int n) {

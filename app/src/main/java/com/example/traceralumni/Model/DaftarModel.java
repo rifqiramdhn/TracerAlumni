@@ -4,11 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class DaftarModel implements Parcelable {
-    private String username;
     private String email;
     private String nim;
     private String nama;
-    private String jenjang;
     private String jurusan;
     private String prodi;
     private String angkatan;
@@ -38,12 +36,13 @@ public class DaftarModel implements Parcelable {
     private String jumlah;
     private String password;
 
+    private String userId;
+
     protected DaftarModel(Parcel in) {
-        username = in.readString();
+        userId = in.readString();
         email = in.readString();
         nim = in.readString();
         nama = in.readString();
-        jenjang = in.readString();
         jurusan = in.readString();
         prodi = in.readString();
         angkatan = in.readString();
@@ -90,11 +89,10 @@ public class DaftarModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(username);
+        dest.writeString(userId);
         dest.writeString(email);
         dest.writeString(nim);
         dest.writeString(nama);
-        dest.writeString(jenjang);
         dest.writeString(jurusan);
         dest.writeString(prodi);
         dest.writeString(angkatan);
@@ -122,8 +120,8 @@ public class DaftarModel implements Parcelable {
         dest.writeString(password);
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserId() {
+        return userId;
     }
 
     public String getEmail() {
@@ -136,10 +134,6 @@ public class DaftarModel implements Parcelable {
 
     public String getNama() {
         return nama;
-    }
-
-    public String getJenjang() {
-        return jenjang;
     }
 
     public String getJurusan() {
@@ -240,9 +234,5 @@ public class DaftarModel implements Parcelable {
 
     public String getPassword() {
         return password;
-    }
-
-    public static Creator<DaftarModel> getCREATOR() {
-        return CREATOR;
     }
 }

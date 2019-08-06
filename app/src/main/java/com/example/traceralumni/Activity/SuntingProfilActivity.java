@@ -106,7 +106,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(SuntingProfilActivity.this);
         progressDialog.setCancelable(false);
-        progressDialog.setTitle("Loading...");
+        progressDialog.setMessage("Loading...");
 
         setIcon();
         getView();
@@ -551,13 +551,21 @@ public class SuntingProfilActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 dataBerubah = true;
-                cl_iconBack.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        showKonfirmasiKembaliDialog();
-                    }
-                });
-
+                if (!dataSudahLengkap) {
+                    cl_iconBack.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            MainActivity.showKeluarDialog(SuntingProfilActivity.this);
+                        }
+                    });
+                } else {
+                    cl_iconBack.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            showKonfirmasiKembaliDialog();
+                        }
+                    });
+                }
             }
         });
     }
@@ -604,7 +612,9 @@ public class SuntingProfilActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (!dataSudahLengkap) {
+        if (!dataSudahLengkap && dataBerubah) {
+            MainActivity.showKeluarDialog(SuntingProfilActivity.this);
+        } else if (!dataSudahLengkap) {
             MainActivity.showKeluarDialog(SuntingProfilActivity.this);
         } else if (dataBerubah) {
             showKonfirmasiKembaliDialog();
