@@ -44,6 +44,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
 import java.io.IOException;
@@ -66,6 +68,7 @@ import retrofit2.Response;
 import static com.example.traceralumni.Activity.LocationPickerActivity.KODE_POS_EXTRA_KEY;
 import static com.example.traceralumni.Activity.LocationPickerActivity.LOKASI_EXTRA_KEY;
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+import static com.example.traceralumni.Activity.MainActivity.EMAIL;
 import static com.example.traceralumni.Activity.MainActivity.EMAIL_PREF;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
 import static com.example.traceralumni.Activity.MainActivity.PASS;
@@ -143,7 +146,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 uploadPhoto(imageUri);
             }
         } else if (requestCode == PICK_ADDRESS_REQUEST) {
-            if (resultCode == RESULT_OK){
+            if (resultCode == RESULT_OK) {
                 edt_alamat.setText(data.getStringExtra(LOKASI_EXTRA_KEY));
                 edt_kode_pos.setText(data.getStringExtra(KODE_POS_EXTRA_KEY));
             }
@@ -355,7 +358,6 @@ public class SuntingProfilActivity extends AppCompatActivity {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(daftarModel.getUserId());
         Map<String, Object> map = new HashMap<>();
         map.put("imageUrl", imageUrl);
-
         reference.updateChildren(map);
     }
 
@@ -479,7 +481,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
                                     progressDialog.dismiss();
                                     SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREFS, MODE_PRIVATE);
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                                    editor.putString(EMAIL_PREF, daftarModel.getEmail());
+                                    editor.putString(EMAIL_PREF, edt_email.getText().toString());
                                     editor.apply();
                                     SuntingProfilActivity.super.onBackPressed();
                                     Toast.makeText(SuntingProfilActivity.this, "Data telah diubah", Toast.LENGTH_SHORT).show();

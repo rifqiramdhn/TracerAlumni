@@ -489,7 +489,8 @@ public class MainActivity extends AppCompatActivity {
                 //tab pesan
                 switch (iconNumber) {
                     case 4:
-                        //icon chat baru
+                        Intent intent = new Intent(MainActivity.this, DaftarAlumniActivity.class);
+                        startActivity(intent);
                         break;
                     default:
                         break;
