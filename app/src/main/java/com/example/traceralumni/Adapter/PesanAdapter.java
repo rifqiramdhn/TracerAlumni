@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.traceralumni.Model.Chat;
 import com.example.traceralumni.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,8 +16,6 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-
-import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 
 public class PesanAdapter extends RecyclerView.Adapter<PesanAdapter.ViewHolder> {
 
@@ -58,23 +55,23 @@ public class PesanAdapter extends RecyclerView.Adapter<PesanAdapter.ViewHolder> 
 
         holder.tvPesan.setText(chat.getMessage());
 
-        if (TYPE_PESAN != 1) {
-            if (!imageURL.equals("")) {
-                Glide.with(context).load(BASE_URL + imageURL).into(holder.imgProfil);
+//        if (TYPE_PESAN != 1) {
+//            if (!imageURL.equals("")) {
+//                Glide.with(context).load(BASE_URL + imageURL).into(holder.imgProfil);
+//            }
+//        } else {
+        if (position == chats.size() - 1) {
+            if (chat.isIsseen()) {
+                holder.tvIsseen.setVisibility(View.VISIBLE);
+                holder.tvIsseen.setText("seen");
+            } else {
+                holder.tvIsseen.setVisibility(View.VISIBLE);
+                holder.tvIsseen.setText("terkirim");
             }
         } else {
-            if (position == chats.size() - 1) {
-                if (chat.isIsseen()) {
-                    holder.tvIsseen.setVisibility(View.VISIBLE);
-                    holder.tvIsseen.setText("seen");
-                } else {
-                    holder.tvIsseen.setVisibility(View.VISIBLE);
-                    holder.tvIsseen.setText("terkirim");
-                }
-            } else {
-                holder.tvIsseen.setVisibility(View.GONE);
-            }
+            holder.tvIsseen.setVisibility(View.GONE);
         }
+//        }
     }
 
     @Override
@@ -89,7 +86,7 @@ public class PesanAdapter extends RecyclerView.Adapter<PesanAdapter.ViewHolder> 
         public ViewHolder(View v) {
             super(v);
 
-            imgProfil = v.findViewById(R.id.img_c_chat_profil);
+//            imgProfil = v.findViewById(R.id.img_c_chat_profil);
             tvPesan = v.findViewById(R.id.tv_c_chat_pesan);
             tvIsseen = v.findViewById(R.id.tv_c_chat_seen);
         }
