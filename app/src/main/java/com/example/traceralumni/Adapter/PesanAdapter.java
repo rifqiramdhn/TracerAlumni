@@ -63,7 +63,7 @@ public class PesanAdapter extends RecyclerView.Adapter<PesanAdapter.ViewHolder> 
         if (position == chats.size() - 1) {
             if (chat.isIsseen()) {
                 holder.tvIsseen.setVisibility(View.VISIBLE);
-                holder.tvIsseen.setText("seen");
+                holder.tvIsseen.setText("dilihat");
             } else {
                 holder.tvIsseen.setVisibility(View.VISIBLE);
                 holder.tvIsseen.setText("terkirim");

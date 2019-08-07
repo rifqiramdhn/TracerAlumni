@@ -36,7 +36,7 @@
         style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="seen"
+        android:text="dilihat"
         android:textSize="10sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/tv_c_chat_pesan"
