@@ -67,7 +67,6 @@ public class TambahAlumniActivity extends AppCompatActivity {
         builder = new AlertDialog.Builder(this);
 
         pd = new ProgressDialog(TambahAlumniActivity.this);
-        pd.setCancelable(false);
         pd.setMessage("Loading...");
         auth = FirebaseAuth.getInstance();
         auth2 = FirebaseAuth.getInstance();

@@ -207,7 +207,6 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
     private void showResetPasswordDialog() {
         builder.setMessage("Apakah anda yakin ingin mengatur ulang kata sandi?");
         builder.setTitle("Reset Password");
-        builder.setCancelable(false);
         builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -230,7 +229,6 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
     private void showHapusSemuaChatDialog() {
         builder.setMessage("Apakah anda yakin ingin menghapus semua chat?");
         builder.setTitle("Hapus Semua Chat");
-        builder.setCancelable(false);
         builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
 
             @Override
@@ -265,7 +263,7 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                         intent = new Intent(context, KartuAlumniActivity.class);
                         intent.putExtra("daftarModel", daftarModel);
                         break;
-                    case 4:
+                    case 3:
                         intent = new Intent(context, SuntingProfilActivity.class);
                         intent.putExtra("daftarModel", daftarModel);
                         break;

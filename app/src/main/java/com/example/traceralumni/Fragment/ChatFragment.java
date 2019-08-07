@@ -61,27 +61,28 @@ public class ChatFragment extends Fragment {
 
         usersList = new ArrayList<>();
 
-        reference = FirebaseDatabase.getInstance().getReference("Chatlist").child(firebaseUser.getUid());
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                usersList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    ChatList chatList = snapshot.getValue(ChatList.class);
-                    usersList.add(chatList);
+        if (firebaseUser != null){
+            reference = FirebaseDatabase.getInstance().getReference("Chatlist").child(firebaseUser.getUid());
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    usersList.clear();
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        ChatList chatList = snapshot.getValue(ChatList.class);
+                        usersList.add(chatList);
+                    }
+
+                    chatList();
                 }
 
-                chatList();
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
 
-            }
-        });
-
-        updateToken(FirebaseInstanceId.getInstance().getToken());
-
+            updateToken(FirebaseInstanceId.getInstance().getToken());
+        }
         return v;
     }
 

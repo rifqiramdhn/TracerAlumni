@@ -112,7 +112,6 @@ public class SuntingProfilActivity extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         progressDialog = new ProgressDialog(SuntingProfilActivity.this);
-        progressDialog.setCancelable(false);
         progressDialog.setMessage("Loading...");
 
         setIcon();
@@ -131,7 +130,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == 1) {
+        if (requestCode == PICK_ADDRESS_REQUEST) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 moveToLocationPickerActivity();
             }
@@ -233,7 +232,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
                 if (ContextCompat.checkSelfPermission(SuntingProfilActivity.this,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(SuntingProfilActivity.this,
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
                 } else {
                     getPhotoFromGallery();
                 }

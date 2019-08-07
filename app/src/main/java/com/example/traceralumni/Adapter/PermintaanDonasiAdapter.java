@@ -162,7 +162,6 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
     private void showKonfirmasiDialog(final int position) {
         builder.setMessage("Konfirmasi permintaan donasi?");
         builder.setTitle("Konfirmasi");
-        builder.setCancelable(false);
         builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
 
             @Override

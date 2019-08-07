@@ -76,8 +76,7 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
             //visibility
             holder.container_lowongan.setVisibility(View.GONE);
             holder.container_info.setVisibility(View.GONE);
-            //Untuk hide, agar muncul GONE diganti VISIBLE
-            holder.container_donasi.setVisibility(View.GONE);
+            holder.container_donasi.setVisibility(View.VISIBLE);
         } else if (list.getJenis_data().equals("info")) {
 
             Integer idInfo = list.getId_info();

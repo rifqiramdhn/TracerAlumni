@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String JENIS_USER_PIMPINAN = "pimpinan";
     public static final String JENIS_USER_OPERATOR = "operator";
 
-    //    public static final String BASE_URL = "http://psik.feb.ub.ac.id/apptracer/";
-    public static final String BASE_URL = "http://10.22.251.5/tracer2/";
+    public static final String BASE_URL = "http://psik.feb.ub.ac.id/apptracer/";
+//    public static final String BASE_URL = "http://10.22.251.5/tracer2/";
 
     public static final String INDEX_OPENED_TAB_KEY = "index_opened_tab_key";
 
@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         pd = new ProgressDialog(MainActivity.this);
         pd.setMessage("Loading...");
-        pd.setCancelable(false);
 
         cl_icon1 = findViewById(R.id.cl_icon1);
         cl_icon2 = findViewById(R.id.cl_icon2);

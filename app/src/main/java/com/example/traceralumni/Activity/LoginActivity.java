@@ -53,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         pd = new ProgressDialog(LoginActivity.this);
-        pd.setCancelable(false);
         pd.setMessage("Loading...");
 
         auth = FirebaseAuth.getInstance();

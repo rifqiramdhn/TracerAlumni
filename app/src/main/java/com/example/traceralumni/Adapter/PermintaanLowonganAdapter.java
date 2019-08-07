@@ -118,7 +118,6 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
     private void showKonfirmasiDialog(final int position) {
         builder.setMessage("Konfirmasi permintaan lowongan?");
         builder.setTitle("Konfirmasi");
-        builder.setCancelable(false);
         builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
 
             @Override
@@ -139,7 +138,6 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
     private void showTolakDialog(final int position) {
         builder.setMessage("Tolak permintaan lowongan?");
         builder.setTitle("Tolak");
-        builder.setCancelable(false);
         builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
