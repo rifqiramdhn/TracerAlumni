@@ -3,8 +3,8 @@ package com.example.traceralumni.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +64,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             lastMessage(userModel.getId(), holder.tvLastMessage);
         }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.clContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, PesanActivity.class);
@@ -81,6 +81,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         CircleImageView imgProfil;
+        ConstraintLayout clContainer;
         TextView tvUsername, tvLastMessage;
 
         public ViewHolder(View v) {
@@ -89,6 +90,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             imgProfil = v.findViewById(R.id.img_c_user_profil);
             tvUsername = v.findViewById(R.id.tv_c_user_username);
             tvLastMessage = v.findViewById(R.id.tv_c_user_last_message);
+            clContainer = v.findViewById(R.id.cl_card_user);
         }
     }
 
