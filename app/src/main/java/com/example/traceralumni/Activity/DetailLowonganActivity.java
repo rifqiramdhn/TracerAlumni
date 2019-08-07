@@ -96,9 +96,11 @@ public class DetailLowonganActivity extends AppCompatActivity {
             tvTelepon.setText(lowonganModel.getNo_telp());
             tvHubungi.setText(lowonganModel.getCp());
             oldPath = lowonganModel.getLogo_perusahaan();
-            Glide.with(DetailLowonganActivity.this)
-                    .load(BASE_URL + oldPath)
-                    .into(img_logo_perusahaan);
+            if (!oldPath.equals("")) {
+                Glide.with(DetailLowonganActivity.this)
+                        .load(BASE_URL + oldPath)
+                        .into(img_logo_perusahaan);
+            }
             idLowongan = lowonganModel.getIdLowongan();
             getNama();
         } else if (intent.getIntExtra("object_permintaan_lowongan", -1) != -1) {
@@ -312,9 +314,11 @@ public class DetailLowonganActivity extends AppCompatActivity {
                 tvTelepon.setText(lowonganModel.getNo_telp());
                 tvHubungi.setText(lowonganModel.getCp());
                 oldPath = lowonganModel.getLogo_perusahaan();
-                Glide.with(DetailLowonganActivity.this)
-                        .load(BASE_URL + oldPath)
-                        .into(img_logo_perusahaan);
+                if (!oldPath.equals("")) {
+                    Glide.with(DetailLowonganActivity.this)
+                            .load(BASE_URL + oldPath)
+                            .into(img_logo_perusahaan);
+                }
                 idLowongan = lowonganModel.getIdLowongan();
                 getNama();
 

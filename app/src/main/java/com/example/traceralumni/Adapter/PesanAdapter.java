@@ -58,15 +58,13 @@ public class PesanAdapter extends RecyclerView.Adapter<PesanAdapter.ViewHolder> 
 
         holder.tvPesan.setText(chat.getMessage());
 
-        if (TYPE_PESAN != 1){
-            if (imageURL.equals("")){
-                holder.imgProfil.setImageResource(R.mipmap.ic_launcher);
-            } else {
+        if (TYPE_PESAN != 1) {
+            if (!imageURL.equals("")) {
                 Glide.with(context).load(BASE_URL + imageURL).into(holder.imgProfil);
             }
         } else {
-            if (position == chats.size()-1){
-                if (chat.isIsseen()){
+            if (position == chats.size() - 1) {
+                if (chat.isIsseen()) {
                     holder.tvIsseen.setVisibility(View.VISIBLE);
                     holder.tvIsseen.setText("seen");
                 } else {
@@ -88,7 +86,7 @@ public class PesanAdapter extends RecyclerView.Adapter<PesanAdapter.ViewHolder> 
         CircleImageView imgProfil;
         TextView tvPesan, tvIsseen;
 
-        public ViewHolder (View v){
+        public ViewHolder(View v) {
             super(v);
 
             imgProfil = v.findViewById(R.id.img_c_chat_profil);
@@ -100,7 +98,7 @@ public class PesanAdapter extends RecyclerView.Adapter<PesanAdapter.ViewHolder> 
     @Override
     public int getItemViewType(int position) {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (chats.get(position).getSender().equals(firebaseUser.getUid())){
+        if (chats.get(position).getSender().equals(firebaseUser.getUid())) {
             return MSG_TYPE_RIGHT;
         } else {
             return MSG_TYPE_LEFT;

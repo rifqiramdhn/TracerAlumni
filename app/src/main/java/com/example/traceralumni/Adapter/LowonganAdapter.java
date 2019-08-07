@@ -66,9 +66,11 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
             }
         }
 
-        Glide.with(context)
-                .load(BASE_URL + oldPath)
-                .into(holder.foto);
+        if (!oldPath.equals("")) {
+            Glide.with(context)
+                    .load(BASE_URL + oldPath)
+                    .into(holder.foto);
+        }
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

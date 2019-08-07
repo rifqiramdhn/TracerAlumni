@@ -61,7 +61,7 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
         holder.prodi.setText(daftarModel.getProdi() + " " + daftarModel.getAngkatan());
 
         oldPath = daftarModel.getFoto();
-        if (oldPath != null) {
+        if (!oldPath.equals("")) {
             Glide.with(context)
                     .load(BASE_URL + oldPath)
                     .into(holder.foto);

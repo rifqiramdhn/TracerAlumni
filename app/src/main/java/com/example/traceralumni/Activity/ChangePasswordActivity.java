@@ -1,4 +1,4 @@
-package com.example.traceralumni;
+package com.example.traceralumni.Activity;
 
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
@@ -12,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
+import com.example.traceralumni.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;

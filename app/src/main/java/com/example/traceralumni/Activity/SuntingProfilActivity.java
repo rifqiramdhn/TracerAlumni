@@ -68,7 +68,6 @@ import retrofit2.Response;
 import static com.example.traceralumni.Activity.LocationPickerActivity.KODE_POS_EXTRA_KEY;
 import static com.example.traceralumni.Activity.LocationPickerActivity.LOKASI_EXTRA_KEY;
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
-import static com.example.traceralumni.Activity.MainActivity.EMAIL;
 import static com.example.traceralumni.Activity.MainActivity.EMAIL_PREF;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
 import static com.example.traceralumni.Activity.MainActivity.PASS;
@@ -274,7 +273,7 @@ public class SuntingProfilActivity extends AppCompatActivity {
         edt_facebook.setText(daftarModel.getFacebook());
         edt_twitter.setText(daftarModel.getTwitter());
         oldPath = daftarModel.getFoto();
-        if (oldPath != null) {
+        if (!oldPath.equals("")) {
             Glide.with(SuntingProfilActivity.this)
                     .load(BASE_URL + oldPath)
                     .into(img_foto_profil);
@@ -315,9 +314,11 @@ public class SuntingProfilActivity extends AppCompatActivity {
                     newPath = pathModel.getPath();
                     addPhotoPathToDatabase(jsonApi);
                     oldPath = pathModel.getPath();
-                    Glide.with(SuntingProfilActivity.this)
-                            .load(BASE_URL + pathModel.getPath())
-                            .into(img_foto_profil);
+                    if (!pathModel.getPath().equals("")) {
+                        Glide.with(SuntingProfilActivity.this)
+                                .load(BASE_URL + pathModel.getPath())
+                                .into(img_foto_profil);
+                    }
                 }
             }
 

@@ -41,7 +41,7 @@
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:layout_marginTop="16dp"
-                android:src="@color/black"
+                android:src="@color/colorIconBiru"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:elevation="1dp"
-                android:src="@color/colorIconBiru"
+                android:src="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/img_sunting_profil_foto"
                 app:layout_constraintEnd_toEndOf="@+id/img_sunting_profil_foto" />
 

@@ -54,9 +54,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final UserModel userModel = userModels.get(position);
         holder.tvUsername.setText(userModel.getUsername());
-        if (userModel.getImageUrl().equals("")) {
-            holder.imgProfil.setImageResource(R.mipmap.ic_launcher);
-        } else {
+        if (!userModel.getImageUrl().equals("")) {
             Glide.with(context).load(BASE_URL + userModel.getImageUrl()).into(holder.imgProfil);
         }
 

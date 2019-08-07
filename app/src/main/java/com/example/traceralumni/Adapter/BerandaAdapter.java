@@ -135,10 +135,11 @@ public class BerandaAdapter extends RecyclerView.Adapter<BerandaAdapter.ViewHold
             holder.l_txtLokasi.setText(lowonganModel.getAlamat_perusahaan());
             holder.l_txtPerusahaan.setText(lowonganModel.getNama_perusahaan());
             holder.l_txtTitle.setText(lowonganModel.getNama_lowongan());
-            Glide.with(context)
-                    .load(BASE_URL + logoPath)
-                    .into(holder.l_logo);
-
+            if (!logoPath.equals("")) {
+                Glide.with(context)
+                        .load(BASE_URL + logoPath)
+                        .into(holder.l_logo);
+            }
             holder.container_lowongan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

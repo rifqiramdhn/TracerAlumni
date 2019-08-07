@@ -152,9 +152,11 @@ public class TambahLowonganActivity extends AppCompatActivity {
     private void getDataFromIntent() {
         lowonganModel = getIntent().getParcelableExtra("object_lowongan");
         if (lowonganModel != null) {
-            Glide.with(this)
-                    .load(BASE_URL + lowonganModel.getLogo_perusahaan())
-                    .into(img_logo_lowongan);
+            if (!lowonganModel.getLogo_perusahaan().equals("")) {
+                Glide.with(this)
+                        .load(BASE_URL + lowonganModel.getLogo_perusahaan())
+                        .into(img_logo_lowongan);
+            }
             edt_judulLowongan.setText(lowonganModel.getNama_lowongan());
             edt_jabatan.setText(lowonganModel.getJabatan());
             edt_namaPerusahaan.setText(lowonganModel.getNama_perusahaan());

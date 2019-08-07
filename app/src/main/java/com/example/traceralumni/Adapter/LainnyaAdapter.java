@@ -19,14 +19,12 @@ import android.widget.Toast;
 
 import com.example.traceralumni.Activity.AboutActivity;
 import com.example.traceralumni.Activity.BantuanActivity;
-import com.example.traceralumni.Activity.DonasiActivity;
 import com.example.traceralumni.Activity.KartuAlumniActivity;
 import com.example.traceralumni.Activity.MainActivity;
 import com.example.traceralumni.Activity.RiwayatPekerjaanActivity;
-import com.example.traceralumni.Activity.StatusPermintaanDonasiActivity;
 import com.example.traceralumni.Activity.StatusPermintaanLowonganActivity;
 import com.example.traceralumni.Activity.SuntingProfilActivity;
-import com.example.traceralumni.ChangePasswordActivity;
+import com.example.traceralumni.Activity.ChangePasswordActivity;
 import com.example.traceralumni.Client;
 import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.DaftarModel;

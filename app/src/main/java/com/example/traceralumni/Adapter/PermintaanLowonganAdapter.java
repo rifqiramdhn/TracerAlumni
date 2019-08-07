@@ -60,9 +60,11 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
         holder.gaji.setText("Rp~ " + permintaanLowonganModel.getKisaranGaji() + " juta");
         holder.tanggal.setText(permintaanLowonganModel.getTanggal_lowongan());
         oldPath = permintaanLowonganModel.getLogoPerusahaan();
-        Glide.with(context)
-                .load(BASE_URL + oldPath)
-                .into(holder.foto);
+        if (!oldPath.equals("")) {
+            Glide.with(context)
+                    .load(BASE_URL + oldPath)
+                    .into(holder.foto);
+        }
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

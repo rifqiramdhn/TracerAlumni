@@ -65,9 +65,11 @@ public class DetailDonasiActivity extends AppCompatActivity {
             tv_totalBiaya.setText("Rp " + String.format("%.0f", donasiModel.getTotalAnggaran()));
             tv_kontak.setText("Hubungi\n" + donasiModel.getContactPerson());
             kontak = donasiModel.getContactPerson();
-            Glide.with(DetailDonasiActivity.this)
-                    .load(BASE_URL + donasiModel.getFile())
-                    .into(foto);
+            if (!donasiModel.getFile().equals("")) {
+                Glide.with(DetailDonasiActivity.this)
+                        .load(BASE_URL + donasiModel.getFile())
+                        .into(foto);
+            }
             getJumlahDuit(donasiModel.getIdDonasi());
         } else {
             getDataFromID(intent.getIntExtra("id_donasi", -1));
@@ -95,9 +97,11 @@ public class DetailDonasiActivity extends AppCompatActivity {
                     tv_totalBiaya.setText("Rp " + String.format("%.0f", donasiModelNew.getTotalAnggaran()));
                     tv_kontak.setText("Hubungi\n" + donasiModelNew.getContactPerson());
                     kontak = donasiModelNew.getContactPerson();
-                    Glide.with(DetailDonasiActivity.this)
-                            .load(BASE_URL + donasiModelNew.getFile())
-                            .into(foto);
+                    if (!donasiModelNew.getFile().equals("")) {
+                        Glide.with(DetailDonasiActivity.this)
+                                .load(BASE_URL + donasiModelNew.getFile())
+                                .into(foto);
+                    }
                 }
 
                 @Override
