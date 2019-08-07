@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.traceralumni.Activity.DetailProfilActivity;
+import com.example.traceralumni.Activity.PesanActivity;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;
 
@@ -21,6 +22,10 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
+import static com.example.traceralumni.Activity.MainActivity.INDEX_OPENED_TAB;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
+import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
+import static com.example.traceralumni.Activity.MainActivity.NIM;
 import static com.example.traceralumni.Fragment.DaftarFragment.SPINNER_SEARCH_DAFTAR_USE_PRODI;
 import static com.example.traceralumni.Fragment.DaftarFragment.TEXT_SEARCH_DAFTAR_USE_ANGKATAN;
 import static com.example.traceralumni.Fragment.DaftarFragment.TEXT_SEARCH_DAFTAR_USE_NAMA;
@@ -65,9 +70,25 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, DetailProfilActivity.class);
-                i.putExtra("daftarModel", daftarModels.get(position));
-                context.startActivity(i);
+                Intent intent;
+                if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
+                    if (INDEX_OPENED_TAB == 0) {
+                        intent = new Intent(context, DetailProfilActivity.class);
+                        intent.putExtra("daftarModel", daftarModels.get(position));
+                    } else {
+                        if (!daftarModel.getNim().equals(NIM)) {
+                            intent = new Intent(context, PesanActivity.class);
+                            intent.putExtra("userId", daftarModel.getUserId());
+                        } else {
+                            intent = new Intent(context, DetailProfilActivity.class);
+                            intent.putExtra("daftarModel", daftarModels.get(position));
+                        }
+                    }
+                } else {
+                    intent = new Intent(context, DetailProfilActivity.class);
+                    intent.putExtra("daftarModel", daftarModels.get(position));
+                }
+                context.startActivity(intent);
             }
         });
 
