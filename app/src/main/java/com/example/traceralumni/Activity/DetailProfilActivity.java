@@ -68,13 +68,12 @@ public class DetailProfilActivity extends AppCompatActivity {
 
         if (!JENIS_USER.equals(JENIS_USER_ALUMNI)) {
             bnChat.setVisibility(View.GONE);
+        } else if (getIntent().getBooleanExtra("dariPesanActivity", false)) {
+            bnChat.setVisibility(View.GONE);
         }
 
         getDataFromIntent();
 
-        if (daftarModel.getNim().equals(NIM)) {
-            bnChat.setVisibility(View.GONE);
-        }
 
         bnChat.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -131,6 +130,9 @@ public class DetailProfilActivity extends AppCompatActivity {
             });
             tvPassword.setText(daftarModel.getPassword());
             tvNim.setText(daftarModel.getNim());
+            if (daftarModel.getNim().equals(NIM)) {
+                bnChat.setVisibility(View.GONE);
+            }
         } else {
             getDataFromNIM(intent.getStringExtra("edtEmail"));
         }
@@ -180,7 +182,9 @@ public class DetailProfilActivity extends AppCompatActivity {
                         startActivity(i);
                     }
                 });
-
+                if (daftarModel.getNim().equals(NIM)) {
+                    bnChat.setVisibility(View.GONE);
+                }
             }
 
             @Override

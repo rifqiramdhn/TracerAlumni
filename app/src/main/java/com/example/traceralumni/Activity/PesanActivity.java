@@ -2,13 +2,12 @@ package com.example.traceralumni.Activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 
 import com.example.traceralumni.APIService;
 import com.example.traceralumni.Adapter.PesanAdapter;
-import com.example.traceralumni.Client;
 import com.example.traceralumni.Model.Chat;
 import com.example.traceralumni.Model.UserModel;
 import com.example.traceralumni.Notification.Data;
@@ -293,7 +291,11 @@ public class PesanActivity extends AppCompatActivity {
     }
 
     private void moveToDetailProfil() {
-        //pindah untuk lihat profil alumni yang sedang dichat
+        String nim = intent.getStringExtra("nim");
+        Intent intent = new Intent(PesanActivity.this, DetailProfilActivity.class);
+        intent.putExtra("edtEmail", nim);
+        intent.putExtra("dariPesanActivity", true);
+        startActivity(intent);
     }
 
     @Override
