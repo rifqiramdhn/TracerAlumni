@@ -17,4 +17,8 @@
     <dimen name="custom_tab_icon_heigth">28dp</dimen>
 
     <dimen name="margin_card">8dp</dimen>
+
+    <dimen name="speech_bubble_spacing">4dp</dimen>
+    <dimen name="speech_bubble_corners">6dp</dimen>
+    <dimen name="speech_bubble_corners_plus_tail">8dp</dimen>
 </resources>

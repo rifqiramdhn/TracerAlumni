@@ -19,6 +19,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".Activity.DaftarAlumniActivity"></activity>
         <activity android:name=".Activity.PesanActivity" />
+        <activity android:name=".ChangePasswordActivity"></activity>
         <activity android:name=".Activity.TambahAlumniActivity" />
         <activity android:name=".Activity.StatusPermintaanLowonganActivity" />
         <activity android:name=".Activity.StatusPermintaanDonasiActivity" />

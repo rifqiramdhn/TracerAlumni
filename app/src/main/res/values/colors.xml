@@ -13,4 +13,7 @@
     <color name="white">#ffffff</color>
     <color name="defaultTextColor">#808080</color>
     <color name="rvBackground">#e8eaf6</color>
+
+    <color name="speech_bubble_user">#06FFF5</color>
+    <color name="speech_bubble_agent">#03A9F4</color>
 </resources>

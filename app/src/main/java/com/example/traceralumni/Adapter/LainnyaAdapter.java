@@ -26,6 +26,7 @@ import com.example.traceralumni.Activity.RiwayatPekerjaanActivity;
 import com.example.traceralumni.Activity.StatusPermintaanDonasiActivity;
 import com.example.traceralumni.Activity.StatusPermintaanLowonganActivity;
 import com.example.traceralumni.Activity.SuntingProfilActivity;
+import com.example.traceralumni.ChangePasswordActivity;
 import com.example.traceralumni.Client;
 import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.DaftarModel;
@@ -108,7 +109,8 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                         context.startActivity(statusLowongan);
                         break;
                     case 6:
-                        showResetPasswordDialog();
+                        Intent gantiPassword = new Intent(context, ChangePasswordActivity.class);
+                        context.startActivity(gantiPassword);
                         break;
                     case 7:
                         showHapusSemuaChatDialog();

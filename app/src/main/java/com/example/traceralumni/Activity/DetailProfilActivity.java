@@ -10,6 +10,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,15 @@ import com.example.traceralumni.Client;
 import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
@@ -32,6 +42,7 @@ import static com.example.traceralumni.Activity.MainActivity.JENIS_USER;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_OPERATOR;
 import static com.example.traceralumni.Activity.MainActivity.NIM;
+import static com.example.traceralumni.Activity.MainActivity.PASS;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class DetailProfilActivity extends AppCompatActivity {
@@ -46,6 +57,9 @@ public class DetailProfilActivity extends AppCompatActivity {
     String oldPath = "";
 
     Button btnDelete;
+
+    FirebaseAuth mAuth;
+    DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -189,7 +203,7 @@ public class DetailProfilActivity extends AppCompatActivity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                hapusAlumni(daftarModel.getNim());
+                hapusAlumni(daftarModel.getNim(), daftarModel.getPassword());
             }
         });
 
@@ -204,7 +218,7 @@ public class DetailProfilActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void hapusAlumni(String nim) {
+    private void hapusAlumni(String nim, final String pass) {
         JsonApi jsonApi = Client.getClient().create(JsonApi.class);
 
         Call<Void> call = jsonApi.deleteAlumni(nim);
@@ -214,9 +228,8 @@ public class DetailProfilActivity extends AppCompatActivity {
                 if (!response.isSuccessful()) {
                     return;
                 }
-
+                hapusAlumniFirebase(daftarModel.getEmail(), pass);
                 onBackPressed();
-                Toast.makeText(DetailProfilActivity.this, "Alumni telah dihapus", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -229,6 +242,9 @@ public class DetailProfilActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+
         img_detail_profil = findViewById(R.id.iv_activity_detail_profil_foto);
         tvNama = findViewById(R.id.txt_nama);
         tvProdi = findViewById(R.id.txt_prodi);
@@ -260,6 +276,28 @@ public class DetailProfilActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showHapusDialog();
+            }
+        });
+    }
+
+    private void hapusAlumniFirebase(String email, String pass){
+        mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    final FirebaseUser user = mAuth.getCurrentUser();
+                    user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()){
+                                mDatabase.child(user.getUid()).removeValue();
+                                Toast.makeText(DetailProfilActivity.this, "Alumni berhasil dihapus!", Toast.LENGTH_SHORT).show();
+                                mAuth.signOut();
+                            }
+                        }
+                    });
+
+                }
             }
         });
     }
