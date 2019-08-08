@@ -33,6 +33,9 @@ import com.example.traceralumni.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -50,6 +53,9 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
     private DaftarModel daftarModel;
     AlertDialog.Builder builder;
 
+    DatabaseReference mDatabase;
+    FirebaseAuth mAuth;
+
     public LainnyaAdapter(Context context) {
         this.context = context;
     }
@@ -63,6 +69,8 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_lainnya, parent, false);
         builder = new AlertDialog.Builder(context);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
         return new ViewHolder(itemView);
     }
 
@@ -186,8 +194,7 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
     }
 
     private void resetPasswordFirebase(String email, final ProgressDialog pd) {
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        auth.sendPasswordResetEmail(email)
+        mAuth.sendPasswordResetEmail(email)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -231,7 +238,7 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(context, "Semua chat telah dihapus", Toast.LENGTH_SHORT).show();
+                hapusChat();
             }
         });
         builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
@@ -273,6 +280,22 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
             public void onFailure(Call<DaftarModel> call, Throwable t) {
                 if (t.getMessage().contains("Failed to connect")) {
                     Toast.makeText(context, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void hapusChat(){
+        DatabaseReference mDatabaseChat = mDatabase.child("Chatlist");
+        String current_user = mAuth.getCurrentUser().getUid();
+
+        mDatabaseChat.child(current_user).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(context, "Semua chat telah dihapus", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Chat gagal dihapus", Toast.LENGTH_SHORT).show();
                 }
             }
         });
