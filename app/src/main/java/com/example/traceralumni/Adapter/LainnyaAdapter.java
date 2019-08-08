@@ -27,6 +27,7 @@ import com.example.traceralumni.Activity.SuntingProfilActivity;
 import com.example.traceralumni.Activity.ChangePasswordActivity;
 import com.example.traceralumni.Client;
 import com.example.traceralumni.JsonApi;
+import com.example.traceralumni.Model.Chat;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.LainnyaModel;
 import com.example.traceralumni.R;
@@ -34,8 +35,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -161,76 +165,6 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
         }
     }
 
-    private void resetPassword(String nim, final ProgressDialog pd) {
-        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
-        Call<DaftarModel> call = jsonApi.getUserData(nim);
-        call.enqueue(new Callback<DaftarModel>() {
-            @Override
-            public void onResponse(Call<DaftarModel> call, Response<DaftarModel> response) {
-                if (!response.isSuccessful()) {
-                    pd.dismiss();
-                    return;
-                }
-
-                DaftarModel daftarModel = response.body();
-                if (daftarModel.getStatus_data().equals("y")) {
-                    if (daftarModel.getNim().contains("traceralumnifeb@gmail.com")) {
-                        resetPasswordFirebase(daftarModel.getEmail(), pd);
-                    } else {
-                        pd.dismiss();
-                        Toast.makeText(context, "Mohon lengkapi data terlebih dahulu", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<DaftarModel> call, Throwable t) {
-                pd.dismiss();
-                if (t.getMessage().contains("Failed to connect")) {
-                    Toast.makeText(context, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    private void resetPasswordFirebase(String email, final ProgressDialog pd) {
-        mAuth.sendPasswordResetEmail(email)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            pd.dismiss();
-                            Toast.makeText(context, "Mohon periksa email anda", Toast.LENGTH_SHORT).show();
-                        } else {
-                            pd.dismiss();
-                            Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
-
-    private void showResetPasswordDialog() {
-        builder.setMessage("Apakah anda yakin ingin mengatur ulang kata sandi?");
-        builder.setTitle("Reset Password");
-        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                ProgressDialog pd = new ProgressDialog(context);
-                pd.setMessage("Mengirim ke email anda...");
-                pd.show();
-                resetPassword(NIM, pd);
-            }
-        });
-        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
-
     private void showHapusSemuaChatDialog() {
         builder.setMessage("Apakah anda yakin ingin menghapus semua chat?");
         builder.setTitle("Hapus Semua Chat");
@@ -287,9 +221,9 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
 
     private void hapusChat(){
         DatabaseReference mDatabaseChat = mDatabase.child("Chatlist");
-        String current_user = mAuth.getCurrentUser().getUid();
+        final String myId = mAuth.getCurrentUser().getUid();
 
-        mDatabaseChat.child(current_user).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+        mDatabaseChat.child(myId).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
@@ -297,6 +231,31 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
                 } else {
                     Toast.makeText(context, "Chat gagal dihapus", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        final DatabaseReference mDatabaseChat2 = mDatabase.child("Chats");
+        mDatabaseChat2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    if (snapshot.child("receiver").getValue().toString().equals(myId)){
+                        DatabaseReference mDatabaseChat3 = mDatabase.child("Chats")
+                                .child(snapshot.getKey())
+                                .child("hideforreceiver");
+                        mDatabaseChat3.setValue(true);
+                    } else if (snapshot.child("sender").getValue().toString().equals(myId)){
+                        DatabaseReference mDatabaseChat4 = mDatabase.child("Chats")
+                                .child(snapshot.getKey())
+                                .child("hideforsender");
+                        mDatabaseChat4.setValue(true);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }

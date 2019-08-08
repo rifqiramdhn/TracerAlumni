@@ -54,24 +54,20 @@ public class PesanAdapter extends RecyclerView.Adapter<PesanAdapter.ViewHolder> 
         Chat chat = chats.get(position);
 
         holder.tvPesan.setText(chat.getMessage());
-
-//        if (TYPE_PESAN != 1) {
-//            if (!imageURL.equals("")) {
-//                Glide.with(context).load(BASE_URL + imageURL).into(holder.imgProfil);
-//            }
-//        } else {
-        if (position == chats.size() - 1) {
-            if (chat.isIsseen()) {
-                holder.tvIsseen.setVisibility(View.VISIBLE);
-                holder.tvIsseen.setText("dilihat");
+        
+        if (TYPE_PESAN == 1){
+            if (position == chats.size() - 1) {
+                if (chat.isIsseen()) {
+                    holder.tvIsseen.setVisibility(View.VISIBLE);
+                    holder.tvIsseen.setText("dilihat");
+                } else {
+                    holder.tvIsseen.setVisibility(View.VISIBLE);
+                    holder.tvIsseen.setText("terkirim");
+                }
             } else {
-                holder.tvIsseen.setVisibility(View.VISIBLE);
-                holder.tvIsseen.setText("terkirim");
+                holder.tvIsseen.setVisibility(View.GONE);
             }
-        } else {
-            holder.tvIsseen.setVisibility(View.GONE);
         }
-//        }
     }
 
     @Override

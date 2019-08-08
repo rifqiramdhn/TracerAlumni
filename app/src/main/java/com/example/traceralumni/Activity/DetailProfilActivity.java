@@ -134,7 +134,7 @@ public class DetailProfilActivity extends AppCompatActivity {
                 bnChat.setVisibility(View.GONE);
             }
         } else {
-            getDataFromNIM(intent.getStringExtra("edtEmail"));
+            getDataFromNIM(intent.getStringExtra("nim"));
         }
     }
 

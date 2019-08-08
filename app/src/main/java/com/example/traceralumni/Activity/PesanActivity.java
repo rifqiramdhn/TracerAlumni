@@ -163,6 +163,8 @@ public class PesanActivity extends AppCompatActivity {
         hashMap.put("receiver", receiver);
         hashMap.put("message", message);
         hashMap.put("isseen", false);
+        hashMap.put("hideforsender", false);
+        hashMap.put("hideforreceiver", false);
 
         reference.child("Chats").push().setValue(hashMap);
 
@@ -267,8 +269,8 @@ public class PesanActivity extends AppCompatActivity {
                 chats.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Chat chat = snapshot.getValue(Chat.class);
-                    if (chat.getReceiver().equals(myId) && chat.getSender().equals(userId) ||
-                            chat.getReceiver().equals(userId) && chat.getSender().equals(myId)) {
+                    if ((chat.getReceiver().equals(myId) && chat.getSender().equals(userId) && !chat.isHideforreceiver()) ||
+                            (chat.getReceiver().equals(userId) && chat.getSender().equals(myId) && !chat.isHideforsender())) {
                         chats.add(chat);
                     }
                 }
@@ -293,7 +295,7 @@ public class PesanActivity extends AppCompatActivity {
     private void moveToDetailProfil() {
         String nim = intent.getStringExtra("nim");
         Intent intent = new Intent(PesanActivity.this, DetailProfilActivity.class);
-        intent.putExtra("edtEmail", nim);
+        intent.putExtra("nim", nim);
         intent.putExtra("dariPesanActivity", true);
         startActivity(intent);
     }
