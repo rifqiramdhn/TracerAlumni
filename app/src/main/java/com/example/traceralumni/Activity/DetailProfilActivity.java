@@ -19,15 +19,20 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.traceralumni.Client;
 import com.example.traceralumni.JsonApi;
+import com.example.traceralumni.Model.Chat;
 import com.example.traceralumni.Model.DaftarModel;
+import com.example.traceralumni.Model.UserModel;
 import com.example.traceralumni.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
@@ -55,7 +60,7 @@ public class DetailProfilActivity extends AppCompatActivity {
     Button btnDelete;
 
     FirebaseAuth mAuth;
-    DatabaseReference mDatabase;
+    DatabaseReference mDatabaseUser, mDatabaseToken, mDatabaseChat, mDatabaseChatlist;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -245,7 +250,10 @@ public class DetailProfilActivity extends AppCompatActivity {
 
     private void initView() {
         mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+        mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users");
+        mDatabaseToken = FirebaseDatabase.getInstance().getReference().child("Tokens");
+        mDatabaseChat = FirebaseDatabase.getInstance().getReference().child("Chats");
+        mDatabaseChatlist = FirebaseDatabase.getInstance().getReference().child("Chatlist");
 
         img_detail_profil = findViewById(R.id.iv_activity_detail_profil_foto);
         tvNama = findViewById(R.id.txt_nama);
@@ -292,14 +300,105 @@ public class DetailProfilActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                mDatabase.child(user.getUid()).removeValue();
-                                Toast.makeText(DetailProfilActivity.this, "Alumni berhasil dihapus!", Toast.LENGTH_SHORT).show();
-                                mAuth.signOut();
+                                Toast.makeText(DetailProfilActivity.this, "Hapus user di auth berhasil", Toast.LENGTH_SHORT).show();
+                                mDatabaseUser.child(user.getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()){
+                                            Toast.makeText(DetailProfilActivity.this, "Hapus database user berhasil", Toast.LENGTH_SHORT).show();
+                                            mDatabaseToken.child(user.getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()){
+                                                        Toast.makeText(DetailProfilActivity.this, "Hapus token berhasil", Toast.LENGTH_SHORT).show();
+                                                        mDatabaseChatlist.child(user.getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                if (task.isSuccessful()){
+                                                                    Toast.makeText(DetailProfilActivity.this, "Hapus chatlist berhasil", Toast.LENGTH_SHORT).show();
+                                                                    hapusChatChildFirebase(user.getUid());
+                                                                } else {
+                                                                    Toast.makeText(DetailProfilActivity.this, "Hapus chatlist gagal", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            }
+                                                        });
+                                                    } else {
+                                                        Toast.makeText(DetailProfilActivity.this, "Gagal hapus token", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                        } else {
+                                            Toast.makeText(DetailProfilActivity.this, "Gagal hapus user di root database", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            } else {
+                                Toast.makeText(DetailProfilActivity.this, "Gagal user delete", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
 
+                } else {
+                    Toast.makeText(DetailProfilActivity.this, "Gagal Login", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+    }
+
+    private void hapusChatChildFirebase(final String uid){
+        mDatabaseChat.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot data : dataSnapshot.getChildren()){
+                    if (data.child("sender").getValue().toString().equals(uid) ||
+                            data.child("receiver").getValue().toString().equals(uid)) {
+                        mDatabaseChat.child(data.getKey()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+                                    hapusChatListChildFirebase(uid);
+                                    Toast.makeText(DetailProfilActivity.this, "Alumni berhasil dihapus!", Toast.LENGTH_SHORT).show();
+                                    mAuth.signOut();
+                                } else {
+                                    Toast.makeText(DetailProfilActivity.this, "Alumni gagal dihapus!", Toast.LENGTH_SHORT).show();
+                                    mAuth.signOut();
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void hapusChatListChildFirebase(final String uid){
+        mDatabaseChatlist.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    if (snapshot.child(uid).child("id").toString().equals(uid)){
+                        mDatabaseChatlist.child(snapshot.getKey()).child(uid).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+                                    Toast.makeText(DetailProfilActivity.this, "Berhasil menghapus chatlist receiver", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(DetailProfilActivity.this, "Gagal menghapus chatlist receiver", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }
