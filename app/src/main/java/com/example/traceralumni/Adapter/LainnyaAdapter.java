@@ -228,9 +228,10 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
                     Toast.makeText(context, "Semua chat telah dihapus", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(context, "Chat gagal dihapus", Toast.LENGTH_SHORT).show();
                 }
+//                else {
+//                    Toast.makeText(context, "Chat gagal dihapus", Toast.LENGTH_SHORT).show();
+//                }
             }
         });
 

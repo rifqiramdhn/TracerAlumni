@@ -224,6 +224,7 @@ public class OpDetailDonasiActivity extends AppCompatActivity {
                 Intent i = new Intent(OpDetailDonasiActivity.this, MainActivity.class);
                 i.putExtra(INDEX_OPENED_TAB_KEY, INDEX_OPENED_TAB);
                 startActivity(i);
+                Toast.makeText(OpDetailDonasiActivity.this, "Donasi telah dihapus", Toast.LENGTH_SHORT).show();
             }
 
             @Override

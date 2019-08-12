@@ -124,6 +124,7 @@ public class OpDetailInfoActivity extends AppCompatActivity {
                 }
                 Intent i = new Intent(OpDetailInfoActivity.this, MainActivity.class);
                 startActivity(i);
+                Toast.makeText(OpDetailInfoActivity.this, "Info telah dihapus", Toast.LENGTH_SHORT).show();
             }
 
             @Override

@@ -242,6 +242,7 @@ public class DetailLowonganActivity extends AppCompatActivity {
                     return;
                 }
                 onBackPressed();
+                Toast.makeText(DetailLowonganActivity.this, "Lowongan teah dihapus", Toast.LENGTH_SHORT).show();
             }
 
             @Override

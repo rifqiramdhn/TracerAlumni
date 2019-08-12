@@ -300,46 +300,46 @@ public class DetailProfilActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(DetailProfilActivity.this, "Hapus user di auth berhasil", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(DetailProfilActivity.this, "Hapus user di auth berhasil", Toast.LENGTH_SHORT).show();
                                 mDatabaseUser.child(user.getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()){
-                                            Toast.makeText(DetailProfilActivity.this, "Hapus database user berhasil", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(DetailProfilActivity.this, "Hapus database user berhasil", Toast.LENGTH_SHORT).show();
                                             mDatabaseToken.child(user.getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()){
-                                                        Toast.makeText(DetailProfilActivity.this, "Hapus token berhasil", Toast.LENGTH_SHORT).show();
+//                                                        Toast.makeText(DetailProfilActivity.this, "Hapus token berhasil", Toast.LENGTH_SHORT).show();
                                                         mDatabaseChatlist.child(user.getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                             @Override
                                                             public void onComplete(@NonNull Task<Void> task) {
                                                                 if (task.isSuccessful()){
-                                                                    Toast.makeText(DetailProfilActivity.this, "Hapus chatlist berhasil", Toast.LENGTH_SHORT).show();
+//                                                                    Toast.makeText(DetailProfilActivity.this, "Hapus chatlist berhasil", Toast.LENGTH_SHORT).show();
                                                                     hapusChatChildFirebase(user.getUid());
                                                                 } else {
-                                                                    Toast.makeText(DetailProfilActivity.this, "Hapus chatlist gagal", Toast.LENGTH_SHORT).show();
+//                                                                    Toast.makeText(DetailProfilActivity.this, "Hapus chatlist gagal", Toast.LENGTH_SHORT).show();
                                                                 }
                                                             }
                                                         });
                                                     } else {
-                                                        Toast.makeText(DetailProfilActivity.this, "Gagal hapus token", Toast.LENGTH_SHORT).show();
+//                                                        Toast.makeText(DetailProfilActivity.this, "Gagal hapus token", Toast.LENGTH_SHORT).show();
                                                     }
                                                 }
                                             });
                                         } else {
-                                            Toast.makeText(DetailProfilActivity.this, "Gagal hapus user di root database", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(DetailProfilActivity.this, "Gagal hapus user di root database", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
                             } else {
-                                Toast.makeText(DetailProfilActivity.this, "Gagal user delete", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(DetailProfilActivity.this, "Gagal user delete", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
 
                 } else {
-                    Toast.makeText(DetailProfilActivity.this, "Gagal Login", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(DetailProfilActivity.this, "Gagal Login", Toast.LENGTH_SHORT).show();
                 }
             }
         });

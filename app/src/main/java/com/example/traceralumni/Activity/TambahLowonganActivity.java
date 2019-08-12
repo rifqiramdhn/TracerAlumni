@@ -105,7 +105,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (uriKirim == null) {
-                    Toast.makeText(TambahLowonganActivity.this, "Foto belum terpilih", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TambahLowonganActivity.this, "Belum memilih foto", Toast.LENGTH_SHORT).show();
                 } else if (edt_judulLowongan.getText().toString().equalsIgnoreCase("")) {
                     edt_judulLowongan.setError("Harap isi judul lowongan");
                 } else if (edt_jabatan.getText().toString().equalsIgnoreCase("")) {
