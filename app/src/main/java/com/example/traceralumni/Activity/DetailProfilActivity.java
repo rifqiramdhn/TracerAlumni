@@ -61,6 +61,7 @@ public class DetailProfilActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     DatabaseReference mDatabaseUser, mDatabaseToken, mDatabaseChat, mDatabaseChatlist;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -295,73 +296,44 @@ public class DetailProfilActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    final FirebaseUser user = mAuth.getCurrentUser();
-                    user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-//                                Toast.makeText(DetailProfilActivity.this, "Hapus user di auth berhasil", Toast.LENGTH_SHORT).show();
-                                mDatabaseUser.child(user.getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()){
-//                                            Toast.makeText(DetailProfilActivity.this, "Hapus database user berhasil", Toast.LENGTH_SHORT).show();
-                                            mDatabaseToken.child(user.getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    if (task.isSuccessful()){
-//                                                        Toast.makeText(DetailProfilActivity.this, "Hapus token berhasil", Toast.LENGTH_SHORT).show();
-                                                        mDatabaseChatlist.child(user.getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                            @Override
-                                                            public void onComplete(@NonNull Task<Void> task) {
-                                                                if (task.isSuccessful()){
-//                                                                    Toast.makeText(DetailProfilActivity.this, "Hapus chatlist berhasil", Toast.LENGTH_SHORT).show();
-                                                                    hapusChatChildFirebase(user.getUid());
-                                                                } else {
-//                                                                    Toast.makeText(DetailProfilActivity.this, "Hapus chatlist gagal", Toast.LENGTH_SHORT).show();
-                                                                }
-                                                            }
-                                                        });
-                                                    } else {
-//                                                        Toast.makeText(DetailProfilActivity.this, "Gagal hapus token", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                }
-                                            });
-                                        } else {
-//                                            Toast.makeText(DetailProfilActivity.this, "Gagal hapus user di root database", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                            } else {
-//                                Toast.makeText(DetailProfilActivity.this, "Gagal user delete", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-
+                    user = mAuth.getCurrentUser();
+                    hapusRootToken(user.getUid());
                 } else {
-//                    Toast.makeText(DetailProfilActivity.this, "Gagal Login", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailProfilActivity.this, "Gagal login", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    private void hapusChatChildFirebase(final String uid){
+    private void hapusRootToken(final String uid) {
+        mDatabaseToken.child(uid).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(DetailProfilActivity.this, "Hapus token berhasil", Toast.LENGTH_SHORT).show();
+                    hapusChat(uid);
+                } else {
+                    Toast.makeText(DetailProfilActivity.this, "Hapus token gagal", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void hapusChat(final String uid) {
         mDatabaseChat.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot data : dataSnapshot.getChildren()){
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
                     if (data.child("sender").getValue().toString().equals(uid) ||
                             data.child("receiver").getValue().toString().equals(uid)) {
                         mDatabaseChat.child(data.getKey()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()){
-                                    hapusChatListChildFirebase(uid);
-                                    Toast.makeText(DetailProfilActivity.this, "Alumni berhasil dihapus!", Toast.LENGTH_SHORT).show();
-                                    mAuth.signOut();
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(DetailProfilActivity.this, "Berhasil menghapus chat", Toast.LENGTH_SHORT).show();
+                                    hapusChildChatlist(uid);
                                 } else {
-                                    Toast.makeText(DetailProfilActivity.this, "Alumni gagal dihapus!", Toast.LENGTH_SHORT).show();
-                                    mAuth.signOut();
+                                    Toast.makeText(DetailProfilActivity.this, "Gagal menghapus chat", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -376,29 +348,88 @@ public class DetailProfilActivity extends AppCompatActivity {
         });
     }
 
-    private void hapusChatListChildFirebase(final String uid){
+    private void hapusChatlist(final String uid) {
+        mDatabaseChatlist.child(uid).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(DetailProfilActivity.this, "Hapus chatlist berhasil", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(DetailProfilActivity.this, "Hapus chatlist gagal", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void hapusChildChatlist(final String uid) {
         mDatabaseChatlist.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    if (snapshot.child(uid).child("id").toString().equals(uid)){
-                        mDatabaseChatlist.child(snapshot.getKey()).child(uid).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()){
-                                    Toast.makeText(DetailProfilActivity.this, "Berhasil menghapus chatlist receiver", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(DetailProfilActivity.this, "Gagal menghapus chatlist receiver", Toast.LENGTH_SHORT).show();
+                for (final DataSnapshot data : dataSnapshot.getChildren()) {
+                    if(data.getKey().equals(uid)){
+                        hapusChatlist(uid);
+                    }
+                    mDatabaseChatlist.child(data.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                if (snapshot.child("id").getValue().toString().equals(uid)) {
+                                    mDatabaseChatlist.child(data.getKey()).child(snapshot.getKey()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(DetailProfilActivity.this, "Berhasil menghapus chatlist receiver", Toast.LENGTH_SHORT).show();
+                                                hapusRootUser(uid);
+                                            } else {
+                                                Toast.makeText(DetailProfilActivity.this, "Gagal menghapus chatlist receiver", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
                                 }
                             }
-                        });
-                    }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+    }
+
+    private void hapusRootUser(String uid) {
+        mDatabaseUser.child(uid).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(DetailProfilActivity.this, "Hapus root database user berhasil", Toast.LENGTH_SHORT).show();
+                    hapusAuthFirebase(user);
+                } else {
+                    Toast.makeText(DetailProfilActivity.this, "Hapus root database gagal", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void hapusAuthFirebase(FirebaseUser user) {
+        user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(DetailProfilActivity.this, "Berhasil menghapus auth", Toast.LENGTH_SHORT).show();
+                    mAuth.signOut();
+                } else {
+                    Toast.makeText(DetailProfilActivity.this, "Gagal menghapus auth", Toast.LENGTH_SHORT).show();
+                    mAuth.signOut();
+                }
             }
         });
     }
