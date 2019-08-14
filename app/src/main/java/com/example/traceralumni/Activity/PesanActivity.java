@@ -23,6 +23,7 @@ import com.example.traceralumni.Notification.MyResponse;
 import com.example.traceralumni.Notification.Sender;
 import com.example.traceralumni.Notification.Token;
 import com.example.traceralumni.R;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -67,11 +68,15 @@ public class PesanActivity extends AppCompatActivity {
     APIService apiService;
     boolean notify = false;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pesan);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
         initView();
 
 //        apiService = Client.getClientForMessage().create(APIService.class);
@@ -156,6 +161,11 @@ public class PesanActivity extends AppCompatActivity {
     }
 
     private void sendMessageToFirebase(String sender, final String receiver, String message) {
+        Bundle params = new Bundle();
+        params.putString("sender", sender);
+        params.putString("receiver", receiver);
+        mFirebaseAnalytics.logEvent("chatSent", params);
+
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
         HashMap<String, Object> hashMap = new HashMap<>();
