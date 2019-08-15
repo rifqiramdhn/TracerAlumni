@@ -51,6 +51,7 @@ public class DetailProfilActivity extends AppCompatActivity {
     DaftarModel daftarModel;
     TextView tvNama, tvProdi, tvAngkatan, tvThnLulus, tvTglYudisium, tvKwn, tvNegara, tvEmail, tvTTL, tvAlamat, tvKodePos, tvNoHp, tvNoTelp, tvFacebook, tvTwitter;
     TextView tvNim, tvPassword, tvJudulPassword;
+    View garis;
 
     CircleImageView img_detail_profil;
     ConstraintLayout cl_wa;
@@ -256,6 +257,7 @@ public class DetailProfilActivity extends AppCompatActivity {
         mDatabaseChat = FirebaseDatabase.getInstance().getReference().child("Chats");
         mDatabaseChatlist = FirebaseDatabase.getInstance().getReference().child("Chatlist");
 
+        garis = findViewById(R.id.v_garis16);
         img_detail_profil = findViewById(R.id.iv_activity_detail_profil_foto);
         tvNama = findViewById(R.id.txt_nama);
         tvProdi = findViewById(R.id.txt_prodi);
@@ -282,6 +284,7 @@ public class DetailProfilActivity extends AppCompatActivity {
             tvJudulPassword.setVisibility(View.VISIBLE);
             tvPassword.setVisibility(View.VISIBLE);
             btnDelete.setVisibility(View.VISIBLE);
+            garis.setVisibility(View.VISIBLE);
         }
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override

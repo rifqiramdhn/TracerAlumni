@@ -43,7 +43,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@color/white"
+            android:background="@drawable/background_edit_text_pesan_rounded"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/cl_btn_kirim_pesan"
             app:layout_constraintStart_toStartOf="parent"

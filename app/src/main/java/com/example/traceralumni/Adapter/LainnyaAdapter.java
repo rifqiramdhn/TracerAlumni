@@ -98,7 +98,7 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
 //                        context.startActivity(donasi);
 //                        break;
                     case 2:
-                        String url = "http://www.google.com";
+                        String url = "https://sinatra.ub.ac.id/";
                         Intent tracerStudi = new Intent(Intent.ACTION_VIEW);
                         tracerStudi.setData(Uri.parse(url));
                         context.startActivity(tracerStudi);

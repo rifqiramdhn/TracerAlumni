@@ -16,4 +16,6 @@
 
     <color name="speech_bubble_user">#06FFF5</color>
     <color name="speech_bubble_agent">#03A9F4</color>
+
+    <color name="garis">#e8e8e8</color>
 </resources>

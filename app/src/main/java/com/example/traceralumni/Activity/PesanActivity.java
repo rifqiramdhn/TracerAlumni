@@ -241,7 +241,7 @@ public class PesanActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Token token = snapshot.getValue(Token.class);
-                    Data data = new Data(firebaseUser.getUid(), R.mipmap.ic_launcher, username + ": " + message, "New Message", userId);
+                    Data data = new Data(firebaseUser.getUid(), R.mipmap.ic_kirim, username + ": " + message, "New Message", userId);
 
                     Sender sender = new Sender(data, token.getToken());
                     apiService.sendNotification(sender)

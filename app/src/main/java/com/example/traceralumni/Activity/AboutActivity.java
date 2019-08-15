@@ -39,7 +39,8 @@ public class AboutActivity extends AppCompatActivity {
         tvVersion = findViewById(R.id.tv_current_version);
 
         String currentVersion = "v1.0";
-        String changeLog = "v1.0 26 Juli 2019\n" + "- Aplikasi rilis";
+        String changeLog = "v1.0 15 Agustus 2019" +
+                "\n- Aplikasi rilis";
 
         tvVersion.setText(currentVersion);
         tvChangeLog.setText(changeLog);
