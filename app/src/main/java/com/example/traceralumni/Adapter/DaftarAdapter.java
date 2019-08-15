@@ -32,10 +32,57 @@ import static com.example.traceralumni.Fragment.DaftarFragment.TEXT_SEARCH_DAFTA
 
 public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder> implements Filterable {
 
+    String oldPath = "";
     private Context context;
     private ArrayList<DaftarModel> daftarModels;
     private ArrayList<DaftarModel> daftarModelsFull;
-    String oldPath = "";
+    private Filter daftarModelsFilterNamaTahun = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<DaftarModel> filteredList = new ArrayList<>();
+            String filterAngkatan = TEXT_SEARCH_DAFTAR_USE_ANGKATAN;
+            String filterNama = TEXT_SEARCH_DAFTAR_USE_NAMA;
+            String filterProdi = SPINNER_SEARCH_DAFTAR_USE_PRODI;
+            if ((TEXT_SEARCH_DAFTAR_USE_NAMA == null
+                    || TEXT_SEARCH_DAFTAR_USE_NAMA.length() == 0)
+                    && (TEXT_SEARCH_DAFTAR_USE_ANGKATAN == null
+                    || TEXT_SEARCH_DAFTAR_USE_ANGKATAN.length() == 0)
+                    && (SPINNER_SEARCH_DAFTAR_USE_PRODI.equalsIgnoreCase("prodi")
+                    || SPINNER_SEARCH_DAFTAR_USE_PRODI.equalsIgnoreCase(""))) {
+                filteredList.addAll(daftarModelsFull);
+            } else if ((SPINNER_SEARCH_DAFTAR_USE_PRODI.equalsIgnoreCase("prodi")
+                    || SPINNER_SEARCH_DAFTAR_USE_PRODI.equalsIgnoreCase(""))) {
+                for (DaftarModel item : daftarModelsFull) {
+                    if (item.getAngkatan().toLowerCase().contains(filterAngkatan)
+                            && item.getNama().toLowerCase().contains(filterNama)) {
+                        filteredList.add(item);
+                    }
+                }
+            } else {
+                for (DaftarModel item : daftarModelsFull) {
+                    if (item.getAngkatan().toLowerCase().contains(filterAngkatan)
+                            && item.getNama().toLowerCase().contains(filterNama)
+                            && item.getProdi().equalsIgnoreCase(filterProdi)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            daftarModels.clear();
+            if (filterResults.values != null) {
+                daftarModels.addAll((ArrayList<DaftarModel>) filterResults.values);
+            }
+            notifyDataSetChanged();
+        }
+    };
 
     public DaftarAdapter(Context context, ArrayList<DaftarModel> data) {
         this.context = context;
@@ -94,12 +141,16 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
 
     }
 
-
     @Override
     public int getItemCount() {
 
         //Mengembalikan ukuran dari ArrayList daftarModels
         return daftarModels.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return daftarModelsFilterNamaTahun;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -121,58 +172,5 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
             container = itemView.findViewById(R.id.card_daftar_container);
         }
     }
-
-    @Override
-    public Filter getFilter() {
-        return daftarModelsFilterNamaTahun;
-    }
-
-    private Filter daftarModelsFilterNamaTahun = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            ArrayList<DaftarModel> filteredList = new ArrayList<>();
-            String filterAngkatan = TEXT_SEARCH_DAFTAR_USE_ANGKATAN;
-            String filterNama = TEXT_SEARCH_DAFTAR_USE_NAMA;
-            String filterProdi = SPINNER_SEARCH_DAFTAR_USE_PRODI;
-            if ((TEXT_SEARCH_DAFTAR_USE_NAMA == null
-                    || TEXT_SEARCH_DAFTAR_USE_NAMA.length() == 0)
-                    && (TEXT_SEARCH_DAFTAR_USE_ANGKATAN == null
-                    || TEXT_SEARCH_DAFTAR_USE_ANGKATAN.length() == 0)
-                    && (SPINNER_SEARCH_DAFTAR_USE_PRODI.equalsIgnoreCase("prodi")
-                    || SPINNER_SEARCH_DAFTAR_USE_PRODI.equalsIgnoreCase(""))) {
-                filteredList.addAll(daftarModelsFull);
-            } else if ((SPINNER_SEARCH_DAFTAR_USE_PRODI.equalsIgnoreCase("prodi")
-                    || SPINNER_SEARCH_DAFTAR_USE_PRODI.equalsIgnoreCase(""))) {
-                for (DaftarModel item : daftarModelsFull) {
-                    if (item.getAngkatan().toLowerCase().contains(filterAngkatan)
-                            && item.getNama().toLowerCase().contains(filterNama)) {
-                        filteredList.add(item);
-                    }
-                }
-            } else {
-                for (DaftarModel item : daftarModelsFull) {
-                    if (item.getAngkatan().toLowerCase().contains(filterAngkatan)
-                            && item.getNama().toLowerCase().contains(filterNama)
-                            && item.getProdi().equalsIgnoreCase(filterProdi)) {
-                        filteredList.add(item);
-                    }
-                }
-            }
-
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            daftarModels.clear();
-            if (filterResults.values != null) {
-                daftarModels.addAll((ArrayList<DaftarModel>) filterResults.values);
-            }
-            notifyDataSetChanged();
-        }
-    };
 
 }

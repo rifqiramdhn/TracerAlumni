@@ -17,7 +17,7 @@ public class Chat {
         this.hideforreceiver = hideforreceiver;
     }
 
-    public Chat(){
+    public Chat() {
 
     }
 

@@ -7,18 +7,25 @@ import com.google.gson.annotations.SerializedName;
 
 public class InfoModel implements Parcelable {
 
+    public static final Creator<InfoModel> CREATOR = new Creator<InfoModel>() {
+        @Override
+        public InfoModel createFromParcel(Parcel in) {
+            return new InfoModel(in);
+        }
+
+        @Override
+        public InfoModel[] newArray(int size) {
+            return new InfoModel[size];
+        }
+    };
     @SerializedName("id_info")
     private Integer idInfo;
-
     @SerializedName("judul")
     private String judul;
-
     @SerializedName("keterangan")
     private String keterangan;
-
     @SerializedName("link")
     private String link;
-
     private String tanggal_info;
     private String status_data;
 
@@ -42,18 +49,6 @@ public class InfoModel implements Parcelable {
         tanggal_info = in.readString();
         status_data = in.readString();
     }
-
-    public static final Creator<InfoModel> CREATOR = new Creator<InfoModel>() {
-        @Override
-        public InfoModel createFromParcel(Parcel in) {
-            return new InfoModel(in);
-        }
-
-        @Override
-        public InfoModel[] newArray(int size) {
-            return new InfoModel[size];
-        }
-    };
 
     @Override
     public int describeContents() {

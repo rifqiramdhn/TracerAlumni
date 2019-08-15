@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/ic_chat"
-        android:title="Chat"
-        android:icon="@drawable/ic_chat"></item>
+        android:icon="@drawable/ic_chat"
+        android:title="Chat"></item>
 </menu>

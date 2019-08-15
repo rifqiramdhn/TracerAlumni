@@ -26,13 +26,13 @@ import static com.example.traceralumni.Activity.MainActivity.NIM;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class StatusPermintaanLowonganActivity extends AppCompatActivity {
+    public static boolean BUKA_STATUS_LOWONGAN;
     TextView tvNavBar;
     ConstraintLayout cl_iconBack;
     ImageView img_iconBack;
     RecyclerView recyclerView;
     LowonganAdapter lowonganAdapter;
     ArrayList<LowonganModel> arrayModels;
-    public static boolean BUKA_STATUS_LOWONGAN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

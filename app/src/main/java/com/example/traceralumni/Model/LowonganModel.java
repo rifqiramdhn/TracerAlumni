@@ -6,51 +6,47 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 public class LowonganModel implements Parcelable {
+    public static final Creator<LowonganModel> CREATOR = new Creator<LowonganModel>() {
+        @Override
+        public LowonganModel createFromParcel(Parcel in) {
+            return new LowonganModel(in);
+        }
+
+        @Override
+        public LowonganModel[] newArray(int size) {
+            return new LowonganModel[size];
+        }
+    };
     @SerializedName("id_lowongan")
     private Integer idLowongan;
-
     @SerializedName("username")
     private String username;
-
     @SerializedName("nama_lowongan")
     private String nama_lowongan;
-
     @SerializedName("nama_perusahaan")
     private String nama_perusahaan;
-
     @SerializedName("alamat_perusahaan")
     private String alamat_perusahaan;
-
     @SerializedName("kisaran_gaji")
     private String kisaran_gaji;
-
     @SerializedName("syarat_pekerjaan")
     private String syarat_pekerjaan;
-
     @SerializedName("pelamar_yang_dibutuhkan")
     private Integer kuota;
-
     @SerializedName("lowongan_jabatan")
     private String jabatan;
-
     @SerializedName("website_perusahaan")
     private String website;
-
     @SerializedName("email_perusahaan")
     private String email;
-
     @SerializedName("no_telp_perusahaan")
     private String no_telp;
-
     @SerializedName("contact_person")
     private String cp;
-
     @SerializedName("status")
     private String status_lowongan;
-
     @SerializedName("logo_perusahaan")
     private String logo_perusahaan;
-
     private String tanggal_lowongan;
     private String status_data;
 
@@ -100,18 +96,6 @@ public class LowonganModel implements Parcelable {
         tanggal_lowongan = in.readString();
         status_data = in.readString();
     }
-
-    public static final Creator<LowonganModel> CREATOR = new Creator<LowonganModel>() {
-        @Override
-        public LowonganModel createFromParcel(Parcel in) {
-            return new LowonganModel(in);
-        }
-
-        @Override
-        public LowonganModel[] newArray(int size) {
-            return new LowonganModel[size];
-        }
-    };
 
     @Override
     public int describeContents() {

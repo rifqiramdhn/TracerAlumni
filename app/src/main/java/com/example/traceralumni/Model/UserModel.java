@@ -6,7 +6,7 @@ public class UserModel {
     private String username;
     private String imageUrl;
 
-    public UserModel(){
+    public UserModel() {
 
     }
 

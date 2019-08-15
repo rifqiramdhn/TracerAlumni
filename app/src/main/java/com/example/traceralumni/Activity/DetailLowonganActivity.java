@@ -43,14 +43,13 @@ public class DetailLowonganActivity extends AppCompatActivity {
     ImageView img_iconBack, img_iconHapus, img_iconEdit;
     CircleImageView img_logo_perusahaan;
     TextView tvNavBar;
-    private TextView tvNamaLowongan, tvNamaPerusahaan, tvLokasi, tvKisaranGaji, tvProfil, tvSyarat, tvKuota, tvJabatan, tvWeb, tvEmail, tvTelepon, tvHubungi;
     Integer idLowongan;
     String username;
     String oldPath = "";
     AlertDialog.Builder builder;
     LowonganModel lowonganModel;
-
     int CAN_CLICK_BUTTON_SAVE = 0; //0 bisa diklik, 1 tidak bisa diklik
+    private TextView tvNamaLowongan, tvNamaPerusahaan, tvLokasi, tvKisaranGaji, tvProfil, tvSyarat, tvKuota, tvJabatan, tvWeb, tvEmail, tvTelepon, tvHubungi;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -6,33 +6,34 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 public class PermintaanDonasiModel implements Parcelable {
+    public static final Creator<PermintaanDonasiModel> CREATOR = new Creator<PermintaanDonasiModel>() {
+        @Override
+        public PermintaanDonasiModel createFromParcel(Parcel in) {
+            return new PermintaanDonasiModel(in);
+        }
+
+        @Override
+        public PermintaanDonasiModel[] newArray(int size) {
+            return new PermintaanDonasiModel[size];
+        }
+    };
     @SerializedName("id_daftardonatur")
     private Integer idDonatur;
-
     @SerializedName("id_opendonasi")
     private Integer idDonasi;
-
     @SerializedName("nim")
     private String nim;
-
     @SerializedName("status")
     private String status;
-
     @SerializedName("nama")
     private String namaDonatur;
-
     @SerializedName("bantuan")
     private Double bantuan;
-
     @SerializedName("nama_kegiatan")
     private String namaDonasi;
-
     private String status_data;
-
     private String tanggal_daftar_donatur;
-
     private Double total;
-
 
     protected PermintaanDonasiModel(Parcel in) {
         if (in.readByte() == 0) {
@@ -61,6 +62,10 @@ public class PermintaanDonasiModel implements Parcelable {
         } else {
             total = in.readDouble();
         }
+    }
+
+    public static Creator<PermintaanDonasiModel> getCREATOR() {
+        return CREATOR;
     }
 
     @Override
@@ -102,18 +107,6 @@ public class PermintaanDonasiModel implements Parcelable {
         return 0;
     }
 
-    public static final Creator<PermintaanDonasiModel> CREATOR = new Creator<PermintaanDonasiModel>() {
-        @Override
-        public PermintaanDonasiModel createFromParcel(Parcel in) {
-            return new PermintaanDonasiModel(in);
-        }
-
-        @Override
-        public PermintaanDonasiModel[] newArray(int size) {
-            return new PermintaanDonasiModel[size];
-        }
-    };
-
     public Integer getIdDonatur() {
         return idDonatur;
     }
@@ -152,9 +145,5 @@ public class PermintaanDonasiModel implements Parcelable {
 
     public Double getTotal() {
         return total;
-    }
-
-    public static Creator<PermintaanDonasiModel> getCREATOR() {
-        return CREATOR;
     }
 }

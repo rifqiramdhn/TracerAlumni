@@ -29,6 +29,37 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> im
     private Context context;
     private ArrayList<InfoModel> infoModels;
     private ArrayList<InfoModel> infoModelsFull;
+    private Filter infoModelsFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<InfoModel> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(infoModelsFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (InfoModel item : infoModelsFull) {
+                    if (item.getJudul().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            infoModels.clear();
+            if (filterResults.values != null) {
+                infoModels.addAll((ArrayList<InfoModel>) filterResults.values);
+            }
+            notifyDataSetChanged();
+        }
+    };
 
     public InfoAdapter(Context context, ArrayList<InfoModel> data) {
         this.context = context;
@@ -88,6 +119,11 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> im
         return infoModels.size();
     }
 
+    @Override
+    public Filter getFilter() {
+        return infoModelsFilter;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         //Deklarasi TextView nama, chat, waktu
@@ -115,41 +151,4 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> im
             }
         }
     }
-
-    @Override
-    public Filter getFilter() {
-        return infoModelsFilter;
-    }
-
-    private Filter infoModelsFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            ArrayList<InfoModel> filteredList = new ArrayList<>();
-
-            if (constraint == null || constraint.length() == 0) {
-                filteredList.addAll(infoModelsFull);
-            } else {
-                String filterPattern = constraint.toString().toLowerCase().trim();
-                for (InfoModel item : infoModelsFull) {
-                    if (item.getJudul().toLowerCase().contains(filterPattern)) {
-                        filteredList.add(item);
-                    }
-                }
-            }
-
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            infoModels.clear();
-            if (filterResults.values != null) {
-                infoModels.addAll((ArrayList<InfoModel>) filterResults.values);
-            }
-            notifyDataSetChanged();
-        }
-    };
 }

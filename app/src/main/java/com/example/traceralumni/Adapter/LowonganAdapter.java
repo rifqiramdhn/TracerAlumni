@@ -28,9 +28,40 @@ import static com.example.traceralumni.Activity.StatusPermintaanLowonganActivity
 
 public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLowonganHolder> implements Filterable {
     Context context;
+    String oldPath = "";
     private ArrayList<LowonganModel> listLowongan;
     private ArrayList<LowonganModel> listLowonganFull;
-    String oldPath = "";
+    private Filter listLowonganFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<LowonganModel> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(listLowonganFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (LowonganModel item : listLowonganFull) {
+                    if (item.getNama_lowongan().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            listLowongan.clear();
+            if (filterResults.values != null) {
+                listLowongan.addAll((ArrayList<LowonganModel>) filterResults.values);
+            }
+            notifyDataSetChanged();
+        }
+    };
 
     public LowonganAdapter(Context context, ArrayList<LowonganModel> listLowongan) {
         this.context = context;
@@ -89,6 +120,11 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
         return listLowongan.size();
     }
 
+    @Override
+    public Filter getFilter() {
+        return listLowonganFilter;
+    }
+
     public class ListLowonganHolder extends RecyclerView.ViewHolder {
         private TextView txtTitle, txtPerusahaan, txtLokasi, txtKisaranGaji, txtTanggal, txtDetail;
         private ConstraintLayout container;
@@ -114,41 +150,4 @@ public class LowonganAdapter extends RecyclerView.Adapter<LowonganAdapter.ListLo
         }
 
     }
-
-    @Override
-    public Filter getFilter() {
-        return listLowonganFilter;
-    }
-
-    private Filter listLowonganFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            ArrayList<LowonganModel> filteredList = new ArrayList<>();
-
-            if (constraint == null || constraint.length() == 0) {
-                filteredList.addAll(listLowonganFull);
-            } else {
-                String filterPattern = constraint.toString().toLowerCase().trim();
-                for (LowonganModel item : listLowonganFull) {
-                    if (item.getNama_lowongan().toLowerCase().contains(filterPattern)) {
-                        filteredList.add(item);
-                    }
-                }
-            }
-
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            listLowongan.clear();
-            if (filterResults.values != null) {
-                listLowongan.addAll((ArrayList<LowonganModel>) filterResults.values);
-            }
-            notifyDataSetChanged();
-        }
-    };
 }

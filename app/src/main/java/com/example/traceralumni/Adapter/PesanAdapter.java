@@ -21,14 +21,11 @@ public class PesanAdapter extends RecyclerView.Adapter<PesanAdapter.ViewHolder> 
 
     public static final int MSG_TYPE_LEFT = 0;
     public static final int MSG_TYPE_RIGHT = 1;
-
+    FirebaseUser firebaseUser;
     private Context context;
     private ArrayList<Chat> chats;
     private String imageURL;
-
     private int TYPE_PESAN;
-
-    FirebaseUser firebaseUser;
 
     public PesanAdapter(Context context, ArrayList<Chat> chats, String imageURL) {
         this.context = context;
@@ -54,8 +51,8 @@ public class PesanAdapter extends RecyclerView.Adapter<PesanAdapter.ViewHolder> 
         Chat chat = chats.get(position);
 
         holder.tvPesan.setText(chat.getMessage());
-        
-        if (TYPE_PESAN == 1){
+
+        if (TYPE_PESAN == 1) {
             if (position == chats.size() - 1) {
                 if (chat.isIsseen()) {
                     holder.tvIsseen.setVisibility(View.VISIBLE);
@@ -75,6 +72,16 @@ public class PesanAdapter extends RecyclerView.Adapter<PesanAdapter.ViewHolder> 
         return chats.size();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (chats.get(position).getSender().equals(firebaseUser.getUid())) {
+            return MSG_TYPE_RIGHT;
+        } else {
+            return MSG_TYPE_LEFT;
+        }
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         CircleImageView imgProfil;
         TextView tvPesan, tvIsseen;
@@ -85,16 +92,6 @@ public class PesanAdapter extends RecyclerView.Adapter<PesanAdapter.ViewHolder> 
 //            imgProfil = v.findViewById(R.id.img_c_chat_profil);
             tvPesan = v.findViewById(R.id.tv_c_chat_pesan);
             tvIsseen = v.findViewById(R.id.tv_c_chat_seen);
-        }
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (chats.get(position).getSender().equals(firebaseUser.getUid())) {
-            return MSG_TYPE_RIGHT;
-        } else {
-            return MSG_TYPE_LEFT;
         }
     }
 }

@@ -4,6 +4,6 @@
 
     <solid android:color="@color/white" />
     <stroke
-        android:color="@color/defaultTextColor"
-        android:width="2dp" />
+        android:width="2dp"
+        android:color="@color/defaultTextColor" />
 </shape>

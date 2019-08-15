@@ -61,13 +61,13 @@ public class ChatFragment extends Fragment {
 
         usersList = new ArrayList<>();
 
-        if (firebaseUser != null){
+        if (firebaseUser != null) {
             reference = FirebaseDatabase.getInstance().getReference("Chatlist").child(firebaseUser.getUid());
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     usersList.clear();
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         ChatList chatList = snapshot.getValue(ChatList.class);
                         usersList.add(chatList);
                     }
@@ -86,23 +86,23 @@ public class ChatFragment extends Fragment {
         return v;
     }
 
-    private void updateToken(String token){
+    private void updateToken(String token) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
         Token token1 = new Token(token);
         reference.child(firebaseUser.getUid()).setValue(token1);
     }
 
-    private void chatList(){
+    private void chatList() {
         mUsers = new ArrayList<>();
         reference = FirebaseDatabase.getInstance().getReference("Users");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUsers.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     UserModel user = snapshot.getValue(UserModel.class);
-                    for (ChatList chatList : usersList){
-                        if (user.getId().equals(chatList.getId())){
+                    for (ChatList chatList : usersList) {
+                        if (user.getId().equals(chatList.getId())) {
                             mUsers.add(user);
                         }
                     }

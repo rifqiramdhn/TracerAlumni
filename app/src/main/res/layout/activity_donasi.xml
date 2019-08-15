@@ -30,6 +30,7 @@
 
         <EditText
             android:id="@+id/edt_donasi_cari"
+            style="@style/Body1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -38,7 +39,6 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="8dp"
-            style="@style/Body1"
             android:ems="10"
             android:hint="Donasi"
             android:inputType="textPersonName"

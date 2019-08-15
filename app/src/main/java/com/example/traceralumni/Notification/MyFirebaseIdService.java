@@ -14,12 +14,12 @@ public class MyFirebaseIdService extends FirebaseMessagingService {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         String refreshToken = FirebaseInstanceId.getInstance().getToken();
-        if (firebaseUser != null){
+        if (firebaseUser != null) {
             updateToken(refreshToken);
         }
     }
 
-    private void updateToken(String refreshToken){
+    private void updateToken(String refreshToken) {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");

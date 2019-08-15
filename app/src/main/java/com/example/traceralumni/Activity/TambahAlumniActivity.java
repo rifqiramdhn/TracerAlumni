@@ -41,22 +41,18 @@ import retrofit2.Response;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class TambahAlumniActivity extends AppCompatActivity {
-    private ConstraintLayout clIconBack, clIconOk;
-    private ImageView imgIconBack, imgIconOk;
-    private TextView tvNavbar;
-
     int CAN_CLICK_BUTTON_SAVE = 0;
-
     AlertDialog.Builder builder;
     Integer id_prodi, id_jurusan;
     Spinner spn_jurusan, spn_prodi;
     EditText edtNim, edtNama;
-
     ProgressDialog pd;
-
     FirebaseAuth auth;
     FirebaseAuth auth2;
     DatabaseReference reference;
+    private ConstraintLayout clIconBack, clIconOk;
+    private ImageView imgIconBack, imgIconOk;
+    private TextView tvNavbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -273,13 +269,13 @@ public class TambahAlumniActivity extends AppCompatActivity {
                 });
     }
 
-    private void addUserIdToSQL(String nim, String userId){
+    private void addUserIdToSQL(String nim, String userId) {
         JsonApi jsonApi = Client.getClient().create(JsonApi.class);
         Call<Void> call = jsonApi.addUserIdAlumni(nim, userId);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     pd.dismiss();
                     return;
                 }

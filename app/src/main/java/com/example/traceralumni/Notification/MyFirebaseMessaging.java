@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 
 import com.example.traceralumni.Activity.PesanActivity;
 import com.google.firebase.auth.FirebaseAuth;

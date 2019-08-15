@@ -30,10 +30,10 @@ import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLowonganAdapter.ViewHolder> {
-    private Context context;
-    private ArrayList<PermintaanLowonganModel> permintaanLowonganModels;
     AlertDialog.Builder builder;
     String oldPath = "";
+    private Context context;
+    private ArrayList<PermintaanLowonganModel> permintaanLowonganModels;
 
     public PermintaanLowonganAdapter(Context context, ArrayList<PermintaanLowonganModel> data) {
         this.context = context;
@@ -92,29 +92,6 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
 
         //Mengembalikan ukuran dari ArrayList permintaanLowonganModels
         return permintaanLowonganModels.size();
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView namaPelowong, namaLowongan, namaPerusahaan, lokasiPerusahaan, gaji, tanggal;
-
-        private CircleImageView foto;
-
-        private ConstraintLayout container, clKonfirmasi, clTolak;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            namaPelowong = itemView.findViewById(R.id.tv_card_permintaan_lowongan_nama_pelowong);
-            namaLowongan = itemView.findViewById(R.id.tv_card_permintaan_lowongan_jabatan);
-            namaPerusahaan = itemView.findViewById(R.id.tv_card_permintaan_lowongan_nama_perusahaan);
-            lokasiPerusahaan = itemView.findViewById(R.id.tv_card_permintaan_lowongan_lokasi_perusahaan);
-            gaji = itemView.findViewById(R.id.tv_card_permintaan_lowongan_gaji);
-            tanggal = itemView.findViewById(R.id.tv_card_permintaan_lowongan_tanggal);
-            foto = itemView.findViewById(R.id.iv_card_permintaan_lowongan_foto);
-            container = itemView.findViewById(R.id.cl_card_permintaan_lowongan_container);
-            clKonfirmasi = itemView.findViewById(R.id.cl_card_permintaan_lowongan_konfirmasi);
-            clTolak = itemView.findViewById(R.id.cl_card_permintaan_lowongan_tolak);
-        }
     }
 
     private void showKonfirmasiDialog(final int position) {
@@ -185,6 +162,29 @@ public class PermintaanLowonganAdapter extends RecyclerView.Adapter<PermintaanLo
                 }
             }
         });
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView namaPelowong, namaLowongan, namaPerusahaan, lokasiPerusahaan, gaji, tanggal;
+
+        private CircleImageView foto;
+
+        private ConstraintLayout container, clKonfirmasi, clTolak;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            namaPelowong = itemView.findViewById(R.id.tv_card_permintaan_lowongan_nama_pelowong);
+            namaLowongan = itemView.findViewById(R.id.tv_card_permintaan_lowongan_jabatan);
+            namaPerusahaan = itemView.findViewById(R.id.tv_card_permintaan_lowongan_nama_perusahaan);
+            lokasiPerusahaan = itemView.findViewById(R.id.tv_card_permintaan_lowongan_lokasi_perusahaan);
+            gaji = itemView.findViewById(R.id.tv_card_permintaan_lowongan_gaji);
+            tanggal = itemView.findViewById(R.id.tv_card_permintaan_lowongan_tanggal);
+            foto = itemView.findViewById(R.id.iv_card_permintaan_lowongan_foto);
+            container = itemView.findViewById(R.id.cl_card_permintaan_lowongan_container);
+            clKonfirmasi = itemView.findViewById(R.id.cl_card_permintaan_lowongan_konfirmasi);
+            clTolak = itemView.findViewById(R.id.cl_card_permintaan_lowongan_tolak);
+        }
     }
 
 

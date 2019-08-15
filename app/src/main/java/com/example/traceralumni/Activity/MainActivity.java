@@ -31,41 +31,71 @@ import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
 
 public class MainActivity extends AppCompatActivity {
-    ConstraintLayout cl_icon1, cl_icon2, cl_icon3, cl_icon4;
-    ImageView imgIcon1, imgIcon2, imgIcon3, imgIcon4;
-    TabLayout tabLayout;
-    ViewPager viewPager;
-    TextView tv_titleNavBar;
-
-    boolean doubleBackToExitPressedOnce = false;
-
-    public static String JENIS_USER = "";
     public static final String JENIS_USER_ALUMNI = "alumni";
     public static final String JENIS_USER_PIMPINAN = "pimpinan";
     public static final String JENIS_USER_OPERATOR = "operator";
-
     public static final String BASE_URL = "http://psik.feb.ub.ac.id/apptracer/";
-//    public static final String BASE_URL = "http://10.22.248.211/tracer2/";
-
     public static final String INDEX_OPENED_TAB_KEY = "index_opened_tab_key";
-
     public static final String SHARE_PREFS = "share_prefs";
     public static final String NIM_PREF = "nim_pref";
     public static final String EMAIL_PREF = "email_pref";
     public static final String PASS_PREF = "pass_pref";
     public static final String JENIS_USER_PREF = "jenis_user_pref";
     public static final String STATE_USER_LOGGED_PREF = "state_user_logged_pref";
-
+//    public static final String BASE_URL = "http://10.22.248.211/tracer2/";
+    public static final String TEXT_NO_INTERNET = "Koneksi internet tidak stabil";
+    public static String JENIS_USER = "";
     public static int INDEX_OPENED_TAB;
     public static int STATE_USER_LOGGED; //0 berarti belum login, 1 berarti sudah login
     public static String NIM;
     public static String EMAIL;
     public static String PASS;
-
-    public static final String TEXT_NO_INTERNET = "Koneksi internet tidak stabil";
-
     private static FirebaseAuth auth;
     private static ProgressDialog pd;
+    ConstraintLayout cl_icon1, cl_icon2, cl_icon3, cl_icon4;
+    ImageView imgIcon1, imgIcon2, imgIcon3, imgIcon4;
+    TabLayout tabLayout;
+    ViewPager viewPager;
+    TextView tv_titleNavBar;
+    boolean doubleBackToExitPressedOnce = false;
+
+    public static void showKeluarDialog(final Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("Apakah anda yakin ingin keluar?");
+        builder.setTitle("Keluar");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                pd.show();
+
+                auth.signOut();
+
+                SharedPreferences sharedPreferences = context.getSharedPreferences(SHARE_PREFS, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putInt(STATE_USER_LOGGED_PREF, 0);
+                editor.apply();
+                STATE_USER_LOGGED = 0;
+
+                pd.dismiss();
+                Intent intent = new Intent(context, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                context.startActivity(intent);
+            }
+        });
+
+        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +152,6 @@ public class MainActivity extends AppCompatActivity {
         getDataUser();
 //        Toast.makeText(this, NIM, Toast.LENGTH_SHORT).show();
     }
-
 
     @Override
     public void onBackPressed() {
@@ -714,43 +743,5 @@ public class MainActivity extends AppCompatActivity {
             default:
                 break;
         }
-    }
-
-    public static void showKeluarDialog(final Context context) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Apakah anda yakin ingin keluar?");
-        builder.setTitle("Keluar");
-        builder.setCancelable(false);
-        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                pd.show();
-
-                auth.signOut();
-
-                SharedPreferences sharedPreferences = context.getSharedPreferences(SHARE_PREFS, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                editor.putInt(STATE_USER_LOGGED_PREF, 0);
-                editor.apply();
-                STATE_USER_LOGGED = 0;
-
-                pd.dismiss();
-                Intent intent = new Intent(context, LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                context.startActivity(intent);
-            }
-        });
-
-        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
     }
 }

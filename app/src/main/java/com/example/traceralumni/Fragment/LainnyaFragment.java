@@ -22,11 +22,11 @@ import java.util.ArrayList;
  */
 public class LainnyaFragment extends Fragment {
 
+    public static Context CONTEXT;
     RecyclerView pengaturanRecycler;
     LainnyaAdapter lainnyaAdapter;
     ArrayList<LainnyaModel> lainnyaModels;
     View rootView;
-    public static Context CONTEXT;
 
     public LainnyaFragment() {
         // Required empty public constructor
@@ -45,7 +45,7 @@ public class LainnyaFragment extends Fragment {
 
     private void setRecyclerView() {
         lainnyaModels = new ArrayList<>();
-        lainnyaModels.add(new LainnyaModel("Legalisir Ijazah", R.drawable.ic_ijazah));
+        lainnyaModels.add(new LainnyaModel("Legalisir Online", R.drawable.ic_ijazah));
         lainnyaModels.add(new LainnyaModel("Kartu Alumni", R.drawable.ic_kartu_alumni));
 //        lainnyaModels.add(new LainnyaModel("Donasi", R.drawable.ic_attach_money));
         lainnyaModels.add(new LainnyaModel("Tracer Studi", R.drawable.ic_tracer_study));

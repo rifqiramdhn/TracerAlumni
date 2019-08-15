@@ -19,9 +19,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.traceralumni.Client;
 import com.example.traceralumni.JsonApi;
-import com.example.traceralumni.Model.Chat;
 import com.example.traceralumni.Model.DaftarModel;
-import com.example.traceralumni.Model.UserModel;
 import com.example.traceralumni.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -369,7 +367,7 @@ public class DetailProfilActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (final DataSnapshot data : dataSnapshot.getChildren()) {
-                    if(data.getKey().equals(uid)){
+                    if (data.getKey().equals(uid)) {
                         hapusChatlist(uid);
                     }
                     mDatabaseChatlist.child(data.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {

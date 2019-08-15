@@ -1,11 +1,11 @@
 package com.example.traceralumni.Activity;
 
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -47,14 +47,14 @@ public class ChangePasswordActivity extends AppCompatActivity {
         initView();
     }
 
-    private void saveData(){
-        if (edtOldPass.getText().toString().equals("")){
+    private void saveData() {
+        if (edtOldPass.getText().toString().equals("")) {
             edtOldPass.setError("Wajib diisi");
-        } else if (edtNewPass.getText().toString().equals("")){
+        } else if (edtNewPass.getText().toString().equals("")) {
             edtNewPass.setError("Wajib diisi");
-        } else if (edtNewPass.getText().length() < 8){
+        } else if (edtNewPass.getText().length() < 8) {
             edtNewPass.setError("Panjang kata sandi minimal 8 karakter");
-        } else if (!edtNewPass.getText().toString().equals(edtNewPassConfirm.getText().toString())){
+        } else if (!edtNewPass.getText().toString().equals(edtNewPassConfirm.getText().toString())) {
             edtNewPassConfirm.setError("Konfirmasi kata sandi tidak sesuai");
         } else {
             JsonApi jsonApi = Client.getClient().create(JsonApi.class);
@@ -62,11 +62,11 @@ public class ChangePasswordActivity extends AppCompatActivity {
             call.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
-                    if (!response.isSuccessful()){
+                    if (!response.isSuccessful()) {
                         return;
                     }
                     String hasil = response.body();
-                    if (hasil.equals("1")){
+                    if (hasil.equals("1")) {
                         resetPasswordFirebase(edtNewPass.getText().toString());
                         onBackPressed();
                     } else {
@@ -76,7 +76,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<String> call, Throwable t) {
-                    if (t.getMessage().contains("Failed to connect")){
+                    if (t.getMessage().contains("Failed to connect")) {
                         Toast.makeText(ChangePasswordActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -84,7 +84,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         }
     }
 
-    private void initView(){
+    private void initView() {
         mAuth = FirebaseAuth.getInstance();
 
         edtNewPass = findViewById(R.id.edt_new_pass);
@@ -115,7 +115,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         });
     }
 
-    private void showKonfirmasiDialog(){
+    private void showKonfirmasiDialog() {
         builder.setMessage("Anda yakin ingin mengganti kata sandi")
                 .setTitle("Ganti Kata Sandi")
                 .setCancelable(false)
@@ -134,12 +134,12 @@ public class ChangePasswordActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void resetPasswordFirebase(String pass){
+    private void resetPasswordFirebase(String pass) {
         FirebaseUser user = mAuth.getCurrentUser();
         user.updatePassword(pass).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Toast.makeText(ChangePasswordActivity.this, "Password berhasil diperbaharui", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(ChangePasswordActivity.this, "Password gagal diubah", Toast.LENGTH_SHORT).show();

@@ -7,26 +7,30 @@ import com.google.gson.annotations.SerializedName;
 
 public class DonasiModel implements Parcelable {
 
+    public static final Creator<DonasiModel> CREATOR = new Creator<DonasiModel>() {
+        @Override
+        public DonasiModel createFromParcel(Parcel in) {
+            return new DonasiModel(in);
+        }
+
+        @Override
+        public DonasiModel[] newArray(int size) {
+            return new DonasiModel[size];
+        }
+    };
     @SerializedName("id_opendonasi")
     private Integer idDonasi;
-
     @SerializedName("nama_kegiatan")
     private String namaKegiatan;
-
     @SerializedName("file")
     private String file;
-
     @SerializedName("keterangan")
     private String keterangan;
-
     @SerializedName("contact_person")
     private String contactPerson;
-
     @SerializedName("total_anggaran")
     private Double totalAnggaran;
-
     private String tanggal_opendonasi;
-
     private String status_data;
 
     public DonasiModel(Integer idDonasi, String namaKegiatan, String file, String keterangan, String contactPerson, Double totalAnggaran, String tanggal_opendonasi) {
@@ -84,18 +88,6 @@ public class DonasiModel implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
-    public static final Creator<DonasiModel> CREATOR = new Creator<DonasiModel>() {
-        @Override
-        public DonasiModel createFromParcel(Parcel in) {
-            return new DonasiModel(in);
-        }
-
-        @Override
-        public DonasiModel[] newArray(int size) {
-            return new DonasiModel[size];
-        }
-    };
 
     public String getStatus_data() {
         return status_data;

@@ -4,6 +4,17 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class DaftarModel implements Parcelable {
+    public static final Creator<DaftarModel> CREATOR = new Creator<DaftarModel>() {
+        @Override
+        public DaftarModel createFromParcel(Parcel in) {
+            return new DaftarModel(in);
+        }
+
+        @Override
+        public DaftarModel[] newArray(int size) {
+            return new DaftarModel[size];
+        }
+    };
     private String email;
     private String nim;
     private String nama;
@@ -26,16 +37,12 @@ public class DaftarModel implements Parcelable {
     private String foto;
     private String status_bekerja;
     private String status_alumni;
-
     private String jenis_user;
     private String status_data;
-
     private String tanggal_yudisium;
     private String tanggal_lahir;
-
     private String jumlah;
     private String password;
-
     private String userId;
 
     protected DaftarModel(Parcel in) {
@@ -69,18 +76,6 @@ public class DaftarModel implements Parcelable {
         jumlah = in.readString();
         password = in.readString();
     }
-
-    public static final Creator<DaftarModel> CREATOR = new Creator<DaftarModel>() {
-        @Override
-        public DaftarModel createFromParcel(Parcel in) {
-            return new DaftarModel(in);
-        }
-
-        @Override
-        public DaftarModel[] newArray(int size) {
-            return new DaftarModel[size];
-        }
-    };
 
     @Override
     public int describeContents() {

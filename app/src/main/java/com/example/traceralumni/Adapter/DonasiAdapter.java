@@ -27,6 +27,37 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
     private Context context;
     private ArrayList<DonasiModel> donasiModels;
     private ArrayList<DonasiModel> donasiModelsFull;
+    private Filter donasiModelsFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<DonasiModel> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(donasiModelsFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (DonasiModel item : donasiModelsFull) {
+                    if (item.getNamaKegiatan().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            donasiModels.clear();
+            if (filterResults.values != null) {
+                donasiModels.addAll((ArrayList<DonasiModel>) filterResults.values);
+            }
+            notifyDataSetChanged();
+        }
+    };
 
     public DonasiAdapter(Context context, ArrayList<DonasiModel> data) {
         this.context = context;
@@ -84,6 +115,11 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
         return donasiModels.size();
     }
 
+    @Override
+    public Filter getFilter() {
+        return donasiModelsFilter;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         //Deklarasi TextView namaKegiatan, totalBiaya
@@ -101,41 +137,4 @@ public class DonasiAdapter extends RecyclerView.Adapter<DonasiAdapter.ViewHolder
             container = itemView.findViewById(R.id.card_donasi_container);
         }
     }
-
-    @Override
-    public Filter getFilter() {
-        return donasiModelsFilter;
-    }
-
-    private Filter donasiModelsFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            ArrayList<DonasiModel> filteredList = new ArrayList<>();
-
-            if (constraint == null || constraint.length() == 0) {
-                filteredList.addAll(donasiModelsFull);
-            } else {
-                String filterPattern = constraint.toString().toLowerCase().trim();
-                for (DonasiModel item : donasiModelsFull) {
-                    if (item.getNamaKegiatan().toLowerCase().contains(filterPattern)) {
-                        filteredList.add(item);
-                    }
-                }
-            }
-
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            donasiModels.clear();
-            if (filterResults.values != null) {
-                donasiModels.addAll((ArrayList<DonasiModel>) filterResults.values);
-            }
-            notifyDataSetChanged();
-        }
-    };
 }

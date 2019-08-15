@@ -3,7 +3,6 @@ package com.example.traceralumni.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;

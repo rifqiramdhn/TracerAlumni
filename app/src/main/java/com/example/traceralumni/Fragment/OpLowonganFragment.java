@@ -38,19 +38,20 @@ import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
  * A simple {@link Fragment} subclass.
  */
 public class OpLowonganFragment extends Fragment {
+    static String jumlahRequestLowongan = "0";
     View rootview;
-
     RecyclerView lowonganRecycler;
     LowonganAdapter lowonganAdapter;
     ArrayList<LowonganModel> arrayLowongan;
-
     EditText edt_lowongan_cari;
     TextView tv_permintaan;
 
-    static String jumlahRequestLowongan = "0";
-
     public OpLowonganFragment() {
         // Required empty public constructor
+    }
+
+    public static boolean permintaanLowongan0() {
+        return jumlahRequestLowongan.equals("0");
     }
 
     @Override
@@ -79,10 +80,6 @@ public class OpLowonganFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-    }
-
-    public static boolean permintaanLowongan0() {
-        return jumlahRequestLowongan.equals("0");
     }
 
     @Override

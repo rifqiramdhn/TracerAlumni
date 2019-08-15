@@ -11,19 +11,15 @@ import android.widget.TextView;
 import com.example.traceralumni.Fragment.MapsFragment;
 import com.example.traceralumni.R;
 
-import static com.example.traceralumni.Activity.SuntingProfilActivity.PICK_ADDRESS_REQUEST;
-
 public class LocationPickerActivity extends AppCompatActivity {
 
+    public static final String LOKASI_EXTRA_KEY = "lokasi_extra_key";
+    public static final String KODE_POS_EXTRA_KEY = "kode_pos_extra_key";
+    public static String LOKASI_EXTRA = "";
+    public static String KODE_POS_EXTRA = "";
     ConstraintLayout cl_iconBack, cl_iconConfirm;
     ImageView img_iconBack, img_iconConfirm;
     TextView tv_navBar;
-
-    public static String LOKASI_EXTRA = "";
-    public static final String LOKASI_EXTRA_KEY = "lokasi_extra_key";
-
-    public static String KODE_POS_EXTRA = "";
-    public static final String KODE_POS_EXTRA_KEY = "kode_pos_extra_key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

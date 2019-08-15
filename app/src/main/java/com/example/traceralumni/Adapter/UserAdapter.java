@@ -31,11 +31,10 @@ import static com.example.traceralumni.Activity.MainActivity.BASE_URL;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
+    String theLastMessage;
     private Context context;
     private ArrayList<UserModel> userModels;
     private boolean isChat;
-
-    String theLastMessage;
 
     public UserAdapter(Context context, ArrayList<UserModel> userModels, boolean isChat) {
         this.context = context;
@@ -78,21 +77,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         return userModels.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        CircleImageView imgProfil;
-        ConstraintLayout clContainer;
-        TextView tvUsername, tvLastMessage;
-
-        public ViewHolder(View v) {
-            super(v);
-
-            imgProfil = v.findViewById(R.id.img_c_user_profil);
-            tvUsername = v.findViewById(R.id.tv_c_user_username);
-            tvLastMessage = v.findViewById(R.id.tv_c_user_last_message);
-            clContainer = v.findViewById(R.id.cl_card_user);
-        }
-    }
-
     private void lastMessage(final String userId, final TextView tvLastMessage) {
         theLastMessage = "default";
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -124,5 +108,20 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
             }
         });
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        CircleImageView imgProfil;
+        ConstraintLayout clContainer;
+        TextView tvUsername, tvLastMessage;
+
+        public ViewHolder(View v) {
+            super(v);
+
+            imgProfil = v.findViewById(R.id.img_c_user_profil);
+            tvUsername = v.findViewById(R.id.tv_c_user_username);
+            tvLastMessage = v.findViewById(R.id.tv_c_user_last_message);
+            clContainer = v.findViewById(R.id.cl_card_user);
+        }
     }
 }

@@ -48,13 +48,13 @@
         <TextView
             android:id="@+id/tv_card_donasi_tulisan_donasi"
             style="@style/Body2"
-            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:text="DONASI"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tv_card_donasi_jumlah_donasi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_card_donasi_judul_donasi" />

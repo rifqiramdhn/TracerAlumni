@@ -52,24 +52,20 @@ import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class TambahLowonganActivity extends AppCompatActivity {
 
-    private ConstraintLayout cl_icon_back, cl_icon_ok;
-    private ImageView img_icon_back, img_icon_ok;
-    private TextView tv_navbar;
+    static final int PICK_PHOTO_REQUEST = 1;
     LowonganModel lowonganModel;
-
     Integer kuota;
     String judulLowongan, jabatan, namaPerusahaan, alamatPerusahaan, gaji, syarat, website, email, notelp, cp, tanggal_lowongan, logo;
     EditText edt_syarat, edt_website, edt_email, edt_notelp, edt_cp, edt_judulLowongan, edt_jabatan, edt_namaPerusahaan, edt_alamatPerusahaan, edt_kuota, edt_gaji;
     AlertDialog.Builder builder;
     String photoPath;
     Uri uriKirim;
-
     CircleImageView img_logo_lowongan, img_edit_logo_lowongan;
-
     int CAN_CLICK_BUTTON_SAVE = 0; //0 bisa diklik, 1 tidak bisa diklik
-
-    static final int PICK_PHOTO_REQUEST = 1;
     Integer idLowongan;
+    private ConstraintLayout cl_icon_back, cl_icon_ok;
+    private ImageView img_icon_back, img_icon_ok;
+    private TextView tv_navbar;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {

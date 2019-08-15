@@ -6,30 +6,33 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 public class RiwayatPekerjaanModel implements Parcelable {
+    public static final Parcelable.Creator<RiwayatPekerjaanModel> CREATOR = new Parcelable.Creator<RiwayatPekerjaanModel>() {
+        @Override
+        public RiwayatPekerjaanModel createFromParcel(Parcel in) {
+            return new RiwayatPekerjaanModel(in);
+        }
+
+        @Override
+        public RiwayatPekerjaanModel[] newArray(int size) {
+            return new RiwayatPekerjaanModel[size];
+        }
+    };
     @SerializedName("id_riwayat_pekerjaan")
     Integer idRiwayat;
-
     @SerializedName("nim")
     String nim;
-
     @SerializedName("nama_riwayat")
     String pekerjaan;
-
     @SerializedName("lokasi_riwayat")
     String lokasi;
-
     @SerializedName("perusahaan_riwayat")
     String namaPerusahaan;
-
     @SerializedName("gaji_riwayat")
     String gaji;
-
     @SerializedName("tahun_awal_riwayat")
     String tahunAwal;
-
     @SerializedName("tahun_akhir_riwayat")
     String tahunAkhir;
-
     String status_data;
 
     protected RiwayatPekerjaanModel(Parcel in) {
@@ -47,18 +50,6 @@ public class RiwayatPekerjaanModel implements Parcelable {
         tahunAkhir = in.readString();
         status_data = in.readString();
     }
-
-    public static final Parcelable.Creator<RiwayatPekerjaanModel> CREATOR = new Parcelable.Creator<RiwayatPekerjaanModel>() {
-        @Override
-        public RiwayatPekerjaanModel createFromParcel(Parcel in) {
-            return new RiwayatPekerjaanModel(in);
-        }
-
-        @Override
-        public RiwayatPekerjaanModel[] newArray(int size) {
-            return new RiwayatPekerjaanModel[size];
-        }
-    };
 
     @Override
     public int describeContents() {

@@ -30,9 +30,9 @@ import static com.example.traceralumni.Activity.MainActivity.JENIS_USER_ALUMNI;
 import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDonasiAdapter.ViewHolder> {
+    AlertDialog.Builder builder;
     private Context context;
     private ArrayList<PermintaanDonasiModel> permintaanDonasiModels;
-    AlertDialog.Builder builder;
 
     public PermintaanDonasiAdapter(Context context, ArrayList<PermintaanDonasiModel> data) {
         this.context = context;
@@ -114,51 +114,6 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
         return permintaanDonasiModels.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView namaDonatur, namaKegiatan, totalDonasi, tanggalDonasi, tulisanDonasi;
-
-        private ConstraintLayout clDetailDonasi, clProfilDonatur, clKonfirmasi, clTolak, clContainer;
-        private View vVertical, vHorizontal;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            namaDonatur = itemView.findViewById(R.id.tv_card_permintaan_donasi_nama_donatur);
-            namaKegiatan = itemView.findViewById(R.id.tv_card_permintaan_donasi_nama_donasi);
-            totalDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_jumlah);
-            tanggalDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_tanggal);
-            clDetailDonasi = itemView.findViewById(R.id.cl_card_permintaan_donasi_detail_donasi);
-            clProfilDonatur = itemView.findViewById(R.id.cl_card_permintaan_donasi_profil_donatur);
-            clKonfirmasi = itemView.findViewById(R.id.cl_card_permintaan_donasi_ok);
-            clTolak = itemView.findViewById(R.id.cl_card_permintaan_donasi_no);
-            tanggalDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_tanggal);
-            vVertical = itemView.findViewById(R.id.v_card_permintaan_donasi2);
-            vHorizontal = itemView.findViewById(R.id.v_card_permintaan_donasi3);
-            tulisanDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_tulisan_donasi);
-            clContainer = itemView.findViewById(R.id.cl_card_permintaan_donasi_container);
-
-            if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
-                clDetailDonasi.setVisibility(View.GONE);
-                clProfilDonatur.setVisibility(View.GONE);
-                clKonfirmasi.setVisibility(View.INVISIBLE);
-                clTolak.setVisibility(View.INVISIBLE);
-                vVertical.setVisibility(View.GONE);
-                vHorizontal.setVisibility(View.GONE);
-                tulisanDonasi.setVisibility(View.VISIBLE);
-                tanggalDonasi.setVisibility(View.GONE);
-            } else {
-                clDetailDonasi.setVisibility(View.VISIBLE);
-                clProfilDonatur.setVisibility(View.VISIBLE);
-                clKonfirmasi.setVisibility(View.VISIBLE);
-                clTolak.setVisibility(View.VISIBLE);
-                vVertical.setVisibility(View.VISIBLE);
-                vHorizontal.setVisibility(View.VISIBLE);
-                tulisanDonasi.setVisibility(View.GONE);
-                tanggalDonasi.setVisibility(View.VISIBLE);
-            }
-        }
-    }
-
     private void showKonfirmasiDialog(final int position) {
         builder.setMessage("Konfirmasi permintaan donasi?");
         builder.setTitle("Konfirmasi");
@@ -228,5 +183,50 @@ public class PermintaanDonasiAdapter extends RecyclerView.Adapter<PermintaanDona
                 }
             }
         });
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView namaDonatur, namaKegiatan, totalDonasi, tanggalDonasi, tulisanDonasi;
+
+        private ConstraintLayout clDetailDonasi, clProfilDonatur, clKonfirmasi, clTolak, clContainer;
+        private View vVertical, vHorizontal;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            namaDonatur = itemView.findViewById(R.id.tv_card_permintaan_donasi_nama_donatur);
+            namaKegiatan = itemView.findViewById(R.id.tv_card_permintaan_donasi_nama_donasi);
+            totalDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_jumlah);
+            tanggalDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_tanggal);
+            clDetailDonasi = itemView.findViewById(R.id.cl_card_permintaan_donasi_detail_donasi);
+            clProfilDonatur = itemView.findViewById(R.id.cl_card_permintaan_donasi_profil_donatur);
+            clKonfirmasi = itemView.findViewById(R.id.cl_card_permintaan_donasi_ok);
+            clTolak = itemView.findViewById(R.id.cl_card_permintaan_donasi_no);
+            tanggalDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_tanggal);
+            vVertical = itemView.findViewById(R.id.v_card_permintaan_donasi2);
+            vHorizontal = itemView.findViewById(R.id.v_card_permintaan_donasi3);
+            tulisanDonasi = itemView.findViewById(R.id.tv_card_permintaan_donasi_tulisan_donasi);
+            clContainer = itemView.findViewById(R.id.cl_card_permintaan_donasi_container);
+
+            if (JENIS_USER.equals(JENIS_USER_ALUMNI)) {
+                clDetailDonasi.setVisibility(View.GONE);
+                clProfilDonatur.setVisibility(View.GONE);
+                clKonfirmasi.setVisibility(View.INVISIBLE);
+                clTolak.setVisibility(View.INVISIBLE);
+                vVertical.setVisibility(View.GONE);
+                vHorizontal.setVisibility(View.GONE);
+                tulisanDonasi.setVisibility(View.VISIBLE);
+                tanggalDonasi.setVisibility(View.GONE);
+            } else {
+                clDetailDonasi.setVisibility(View.VISIBLE);
+                clProfilDonatur.setVisibility(View.VISIBLE);
+                clKonfirmasi.setVisibility(View.VISIBLE);
+                clTolak.setVisibility(View.VISIBLE);
+                vVertical.setVisibility(View.VISIBLE);
+                vHorizontal.setVisibility(View.VISIBLE);
+                tulisanDonasi.setVisibility(View.GONE);
+                tanggalDonasi.setVisibility(View.VISIBLE);
+            }
+        }
     }
 }

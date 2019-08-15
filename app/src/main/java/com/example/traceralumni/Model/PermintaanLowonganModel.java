@@ -6,30 +6,33 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 public class PermintaanLowonganModel implements Parcelable {
+    public static final Creator<PermintaanLowonganModel> CREATOR = new Creator<PermintaanLowonganModel>() {
+        @Override
+        public PermintaanLowonganModel createFromParcel(Parcel in) {
+            return new PermintaanLowonganModel(in);
+        }
+
+        @Override
+        public PermintaanLowonganModel[] newArray(int size) {
+            return new PermintaanLowonganModel[size];
+        }
+    };
     @SerializedName("id_lowongan")
     private Integer idLowongan;
-
     @SerializedName("username")
     private String username;
-
     @SerializedName("nama")
     private String nama;
-
     @SerializedName("nama_lowongan")
     private String namaLowongan;
-
     @SerializedName("nama_perusahaan")
     private String namaPerusahaan;
-
     @SerializedName("alamat_perusahaan")
     private String alamatPerusahaan;
-
     @SerializedName("kisaran_gaji")
     private String kisaranGaji;
-
     @SerializedName("logo_perusahaan")
     private String logoPerusahaan;
-
     private String tanggal_lowongan;
     private String status_data;
 
@@ -48,18 +51,6 @@ public class PermintaanLowonganModel implements Parcelable {
         logoPerusahaan = in.readString();
         status_data = in.readString();
     }
-
-    public static final Creator<PermintaanLowonganModel> CREATOR = new Creator<PermintaanLowonganModel>() {
-        @Override
-        public PermintaanLowonganModel createFromParcel(Parcel in) {
-            return new PermintaanLowonganModel(in);
-        }
-
-        @Override
-        public PermintaanLowonganModel[] newArray(int size) {
-            return new PermintaanLowonganModel[size];
-        }
-    };
 
     @Override
     public int describeContents() {

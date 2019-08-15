@@ -38,9 +38,8 @@ public class MapsFragment extends Fragment implements LoaderManager.LoaderCallba
     GoogleMap mMap;
 
     LatLng user_touch;
-    private int ID_LOADER = 0;
-
     MarkerOptions markerOptions = new MarkerOptions();
+    private int ID_LOADER = 0;
 
     public MapsFragment() {
         // Required empty public constructor

@@ -76,6 +76,9 @@ import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class SuntingProfilActivity extends AppCompatActivity {
 
+    static final int PICK_PHOTO_REQUEST = 2;
+    static final int PICK_ADDRESS_REQUEST = 1;
+    private static String TAG = SuntingProfilActivity.class.getName();
     ConstraintLayout cl_iconBack, cl_iconConfirm;
     ImageView img_iconBack, img_iconConfirm;
     TextView tv_titleBar;
@@ -87,19 +90,11 @@ public class SuntingProfilActivity extends AppCompatActivity {
     DaftarModel daftarModel;
     CircleImageView img_foto_profil, img_edit_foto_profil;
     ProgressDialog progressDialog;
-
-    static final int PICK_PHOTO_REQUEST = 2;
-    static final int PICK_ADDRESS_REQUEST = 1;
-
     String oldPath = "";
     String newPath;
-
     private boolean dataSudahLengkap = false;
     private boolean dataBerubah = false;
-
     private FirebaseAuth mFirebaseAuth;
-
-    private static String TAG = SuntingProfilActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

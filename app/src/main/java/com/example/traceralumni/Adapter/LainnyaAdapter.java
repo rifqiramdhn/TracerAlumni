@@ -1,6 +1,5 @@
 package com.example.traceralumni.Adapter;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,22 +18,20 @@ import android.widget.Toast;
 
 import com.example.traceralumni.Activity.AboutActivity;
 import com.example.traceralumni.Activity.BantuanActivity;
+import com.example.traceralumni.Activity.ChangePasswordActivity;
 import com.example.traceralumni.Activity.KartuAlumniActivity;
 import com.example.traceralumni.Activity.MainActivity;
 import com.example.traceralumni.Activity.RiwayatPekerjaanActivity;
 import com.example.traceralumni.Activity.StatusPermintaanLowonganActivity;
 import com.example.traceralumni.Activity.SuntingProfilActivity;
-import com.example.traceralumni.Activity.ChangePasswordActivity;
 import com.example.traceralumni.Client;
 import com.example.traceralumni.JsonApi;
-import com.example.traceralumni.Model.Chat;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.Model.LainnyaModel;
 import com.example.traceralumni.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,13 +49,12 @@ import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 
 public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHolder> {
 
+    AlertDialog.Builder builder;
+    DatabaseReference mDatabase;
+    FirebaseAuth mAuth;
     private Context context;
     private ArrayList<LainnyaModel> lainnyaModels;
     private DaftarModel daftarModel;
-    AlertDialog.Builder builder;
-
-    DatabaseReference mDatabase;
-    FirebaseAuth mAuth;
 
     public LainnyaAdapter(Context context) {
         this.context = context;
@@ -152,19 +148,6 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
         return lainnyaModels.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView item;
-        private ImageView icon;
-        private ConstraintLayout container;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            item = itemView.findViewById(R.id.card_pengaturan_nama_item_text_view);
-            icon = itemView.findViewById(R.id.card_pengaturan_icon_image_view);
-            container = itemView.findViewById(R.id.card_pengaturan_container);
-        }
-    }
-
     private void showHapusSemuaChatDialog() {
         builder.setMessage("Apakah anda yakin ingin menghapus semua chat?");
         builder.setTitle("Hapus Semua Chat");
@@ -219,14 +202,14 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
         });
     }
 
-    private void hapusChat(){
+    private void hapusChat() {
         DatabaseReference mDatabaseChat = mDatabase.child("Chatlist");
         final String myId = mAuth.getCurrentUser().getUid();
 
         mDatabaseChat.child(myId).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Toast.makeText(context, "Semua chat telah dihapus", Toast.LENGTH_SHORT).show();
                 }
 //                else {
@@ -240,12 +223,12 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    if (snapshot.child("receiver").getValue().toString().equals(myId)){
+                    if (snapshot.child("receiver").getValue().toString().equals(myId)) {
                         DatabaseReference mDatabaseChat3 = mDatabase.child("Chats")
                                 .child(snapshot.getKey())
                                 .child("hideforreceiver");
                         mDatabaseChat3.setValue(true);
-                    } else if (snapshot.child("sender").getValue().toString().equals(myId)){
+                    } else if (snapshot.child("sender").getValue().toString().equals(myId)) {
                         DatabaseReference mDatabaseChat4 = mDatabase.child("Chats")
                                 .child(snapshot.getKey())
                                 .child("hideforsender");
@@ -259,5 +242,18 @@ public class LainnyaAdapter extends RecyclerView.Adapter<LainnyaAdapter.ViewHold
 
             }
         });
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView item;
+        private ImageView icon;
+        private ConstraintLayout container;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            item = itemView.findViewById(R.id.card_pengaturan_nama_item_text_view);
+            icon = itemView.findViewById(R.id.card_pengaturan_icon_image_view);
+            container = itemView.findViewById(R.id.card_pengaturan_container);
+        }
     }
 }

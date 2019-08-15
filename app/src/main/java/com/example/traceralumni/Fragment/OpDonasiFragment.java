@@ -35,10 +35,7 @@ import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
  */
 public class OpDonasiFragment extends Fragment {
 
-    public OpDonasiFragment() {
-        // Required empty public constructor
-    }
-
+    static String jumlahRequest = "0";
     View rootView;
 
     RecyclerView donasiRecycler;
@@ -48,7 +45,13 @@ public class OpDonasiFragment extends Fragment {
 
     EditText edt_donasi_cari;
 
-    static String jumlahRequest = "0";
+    public OpDonasiFragment() {
+        // Required empty public constructor
+    }
+
+    public static boolean permintaanDonasi0() {
+        return jumlahRequest.equals("0");
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,10 +78,6 @@ public class OpDonasiFragment extends Fragment {
 
 
         return rootView;
-    }
-
-    public static boolean permintaanDonasi0() {
-        return jumlahRequest.equals("0");
     }
 
     @Override

@@ -39,22 +39,18 @@ import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
  */
 public class DaftarFragment extends Fragment {
 
-    public DaftarFragment() {
-        // Required empty public constructor
-    }
-
+    public static String TEXT_SEARCH_DAFTAR_USE_ANGKATAN = "";
+    public static String TEXT_SEARCH_DAFTAR_USE_NAMA = "";
+    public static String SPINNER_SEARCH_DAFTAR_USE_PRODI = "";
     View rootView;
-
     RecyclerView daftarRecycler;
     DaftarAdapter daftarAdapter;
     ArrayList<DaftarModel> daftarModels;
     Spinner spn_prodi;
-
     EditText edt_cari_nama, edt_cari_angkatan;
-
-    public static String TEXT_SEARCH_DAFTAR_USE_ANGKATAN = "";
-    public static String TEXT_SEARCH_DAFTAR_USE_NAMA = "";
-    public static String SPINNER_SEARCH_DAFTAR_USE_PRODI = "";
+    public DaftarFragment() {
+        // Required empty public constructor
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
