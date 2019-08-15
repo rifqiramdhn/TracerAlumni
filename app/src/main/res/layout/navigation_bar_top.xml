@@ -12,7 +12,7 @@
 
     <TextView
         android:id="@+id/tv_navbar_top"
-        style="@style/TextAppearance.MaterialComponents.Body1"
+        style="@style/Headline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -20,8 +20,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:textColor="@color/colorIconBiru"
-        android:textSize="20sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/cl_icon4"
         app:layout_constraintStart_toStartOf="parent"

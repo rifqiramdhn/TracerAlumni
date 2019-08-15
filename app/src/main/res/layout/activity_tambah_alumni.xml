@@ -17,7 +17,7 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/edt_tambah_alumni_nim_container"
-        style="@style/TextAppearance.MaterialComponents.Body1"
+        style="@style/Body1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txt_welcome1"
@@ -33,18 +33,18 @@
 
         <EditText
             android:id="@+id/edt_tambah_alumni_nim"
+            style="@style/Body1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Nomor Induk Mahasiswa"
             android:inputType="number"
             android:padding="12dp"
-            android:textColor="#2699FB"
-            android:textSize="16sp" />
+            android:textColor="@color/colorIconBiru" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/edt_tambah_alumni_nama_container"
-        style="@style/TextAppearance.MaterialComponents.Body1"
+        style="@style/Body1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txt_welcome1"
@@ -60,12 +60,12 @@
 
         <EditText
             android:id="@+id/edt_tambah_alumni_nama"
+            style="@style/Body1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Nama Mahasiswa"
             android:padding="12dp"
-            android:textColor="#2699FB"
-            android:textSize="16sp" />
+            android:textColor="@color/colorIconBiru" />
     </android.support.design.widget.TextInputLayout>
 
     <Spinner

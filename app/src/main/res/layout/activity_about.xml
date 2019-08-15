@@ -26,20 +26,18 @@
 
             <TextView
                 android:id="@+id/textView6"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Current Version"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_current_version"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="current_version_number"
@@ -49,19 +47,17 @@
 
             <TextView
                 android:id="@+id/textView9"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Aplikasi Tracer Alumni"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/tv_current_version"
                 app:layout_constraintTop_toBottomOf="@+id/tv_current_version" />
 
             <TextView
                 android:id="@+id/textView10"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Faculty of Economic and Bussiness - 2019"
@@ -71,19 +67,17 @@
 
             <TextView
                 android:id="@+id/textView11"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="ChangeLog"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/textView10"
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
             <TextView
                 android:id="@+id/tv_changelog"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"

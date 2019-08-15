@@ -44,7 +44,7 @@
 
                 <EditText
                     android:id="@+id/edt_riwayat_pekerjaan"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Pekerjaan"
@@ -68,7 +68,7 @@
 
                 <EditText
                     android:id="@+id/edt_riwayat_nama_perusahaan"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Nama Perusahaan"
@@ -93,7 +93,7 @@
 
                 <EditText
                     android:id="@+id/edt_riwayat_lokasi"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Lokasi Tempat Kerja"
@@ -189,7 +189,7 @@
 
                 <EditText
                     android:id="@+id/edt_riwayat_gaji"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Pendapatan per Bulan (Juta)"

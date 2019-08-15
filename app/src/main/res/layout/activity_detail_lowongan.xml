@@ -28,6 +28,133 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <View
+                android:id="@+id/v_garis17"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/garis"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_kuota" />
+
+            <View
+                android:id="@+id/v_garis20"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/garis"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_jabatan" />
+
+            <View
+                android:id="@+id/v_garis21"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/garis"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_web" />
+
+            <View
+                android:id="@+id/v_garis22"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/garis"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_email" />
+
+            <View
+                android:id="@+id/v_garis23"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/garis"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_telpon" />
+
+            <View
+                android:id="@+id/v_garis26"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/garis"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_hubungi" />
+
+            <View
+                android:id="@+id/v_garis18"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/garis"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_syarat" />
+
+            <View
+                android:id="@+id/v_garis19"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/garis"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_lihat_profil" />
+
+            <View
+                android:id="@+id/v_garis24"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/garis"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_lokasi_perusahaan" />
+
+            <View
+                android:id="@+id/v_garis28"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/garis"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_activity_detail_lowongan_logo" />
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_activity_detail_lowongan_logo"
                 android:layout_width="150dp"
@@ -44,9 +171,7 @@
 
             <TextView
                 android:id="@+id/tv_nama_lowongan"
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:textStyle="bold"
-                android:textSize="20sp"
+                style="@style/Headline6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -62,7 +187,7 @@
 
             <TextView
                 android:id="@+id/tv_nama_perusahaan"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="@+id/tv_nama_lowongan"
@@ -73,7 +198,7 @@
                 android:id="@+id/img_lokasi"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:tint="@color/colorIconBiru"
                 app:layout_constraintStart_toStartOf="@+id/tv_nama_perusahaan"
                 app:layout_constraintTop_toBottomOf="@+id/tv_nama_perusahaan"
@@ -81,7 +206,7 @@
 
             <TextView
                 android:id="@+id/tv_lokasi_perusahaan"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -105,7 +230,7 @@
 
             <TextView
                 android:id="@+id/tv_kisaran_gaji"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -119,16 +244,14 @@
                 android:id="@+id/img_profil"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="@+id/img_lokasi"
                 app:layout_constraintTop_toBottomOf="@+id/tv_lokasi_perusahaan"
                 app:srcCompat="@drawable/ic_person" />
 
             <TextView
                 android:id="@+id/tv_profil"
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:textStyle="bold"
-                android:textSize="20sp"
+                style="@style/Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/img_profil"
@@ -138,7 +261,7 @@
 
             <Button
                 android:id="@+id/btn_lihat_profil"
-                style="@style/TextAppearance.MaterialComponents.Button"
+                style="@style/Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorIconBiru"
@@ -152,26 +275,26 @@
                 android:id="@+id/img_syarat"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="@+id/img_profil"
                 app:layout_constraintTop_toBottomOf="@+id/btn_lihat_profil"
                 app:srcCompat="@drawable/ic_syarat" />
 
             <TextView
                 android:id="@+id/tv_judul_syarat"
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:textStyle="bold"
-                android:textSize="20sp"
+                style="@style/Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Syarat Pekerjaan"
+                android:textColor="@color/defaultTextColor"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_syarat"
                 app:layout_constraintStart_toStartOf="@+id/tv_profil"
                 app:layout_constraintTop_toTopOf="@+id/img_syarat" />
 
             <TextView
                 android:id="@+id/tv_syarat"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="@+id/tv_kisaran_gaji"
@@ -190,19 +313,19 @@
 
             <TextView
                 android:id="@+id/tv_judul_kuota"
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:textStyle="bold"
-                android:textSize="20sp"
+                style="@style/Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Kuota yang Dibutuhkan"
+                android:textColor="@color/defaultTextColor"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_kuota"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_syarat"
                 app:layout_constraintTop_toTopOf="@+id/img_kuota" />
 
             <TextView
                 android:id="@+id/tv_kuota"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_kuota"
@@ -220,19 +343,19 @@
 
             <TextView
                 android:id="@+id/tv_judul_jabatan"
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:textStyle="bold"
-                android:textSize="20sp"
+                style="@style/Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Jabatan"
+                android:textColor="@color/defaultTextColor"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_jabatan"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_kuota"
                 app:layout_constraintTop_toTopOf="@+id/img_jabatan" />
 
             <TextView
                 android:id="@+id/tv_jabatan"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_jabatan"
@@ -250,19 +373,19 @@
 
             <TextView
                 android:id="@+id/tv_judul_web"
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:textStyle="bold"
-                android:textSize="20sp"
+                style="@style/Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Website Perusahaan"
+                android:textColor="@color/defaultTextColor"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_web"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_jabatan"
                 app:layout_constraintTop_toTopOf="@+id/img_web" />
 
             <TextView
                 android:id="@+id/tv_web"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_web"
@@ -280,19 +403,19 @@
 
             <TextView
                 android:id="@+id/tv_judul_email"
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:textStyle="bold"
-                android:textSize="20sp"
+                style="@style/Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Email Perusahaan"
+                android:textColor="@color/defaultTextColor"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_email"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_web"
                 app:layout_constraintTop_toTopOf="@+id/img_email" />
 
             <TextView
                 android:id="@+id/tv_email"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_email"
@@ -310,19 +433,19 @@
 
             <TextView
                 android:id="@+id/tv_judul_telpon"
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:textStyle="bold"
-                android:textSize="20sp"
+                style="@style/Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nomor Telepon Perusahaan"
+                android:textColor="@color/defaultTextColor"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_telp"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_email"
                 app:layout_constraintTop_toTopOf="@+id/img_telp" />
 
             <TextView
                 android:id="@+id/tv_telpon"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_telpon"
@@ -340,19 +463,19 @@
 
             <TextView
                 android:id="@+id/txt_judul_hubungi"
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:textStyle="bold"
-                android:textSize="20sp"
+                style="@style/Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hubungi"
+                android:textColor="@color/defaultTextColor"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_hubungi"
                 app:layout_constraintStart_toStartOf="@+id/tv_judul_telpon"
                 app:layout_constraintTop_toTopOf="@+id/img_hubungi" />
 
             <TextView
                 android:id="@+id/txt_hubungi"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"

@@ -36,9 +36,7 @@
 
                 <RadioButton
                     android:id="@+id/rdBtn_1"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
+                    style="@style/Headline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -51,9 +49,7 @@
 
                 <RadioButton
                     android:id="@+id/rdBtn_2"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
+                    style="@style/Headline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -66,9 +62,7 @@
 
                 <RadioButton
                     android:id="@+id/rdBtn_3"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
+                    style="@style/Headline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -81,9 +75,7 @@
 
                 <RadioButton
                     android:id="@+id/rdBtn_4"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
+                    style="@style/Headline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -96,9 +88,7 @@
 
                 <RadioButton
                     android:id="@+id/rdBtn_5"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
+                    style="@style/Headline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -111,9 +101,7 @@
 
                 <RadioButton
                     android:id="@+id/rdBtn_6"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
+                    style="@style/Headline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -126,9 +114,7 @@
 
                 <RadioButton
                     android:id="@+id/rdBtn_7"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
+                    style="@style/Headline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -141,9 +127,7 @@
 
                 <RadioButton
                     android:id="@+id/rdBtn_8"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
+                    style="@style/Headline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -172,12 +156,12 @@
 
                 <EditText
                     android:id="@+id/edt_lainnya"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Lainnya"
                     android:inputType="number"
-                    android:textColor="#2699FB" />
+                    android:textColor="@color/colorIconBiru" />
 
             </android.support.design.widget.TextInputLayout>
         </android.support.constraint.ConstraintLayout>

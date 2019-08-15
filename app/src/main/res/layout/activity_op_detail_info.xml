@@ -45,7 +45,7 @@
 
                 <EditText
                     android:id="@+id/edt_judul"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Judul"
@@ -65,7 +65,7 @@
 
                 <EditText
                     android:id="@+id/edt_isi"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Isi"
@@ -85,7 +85,7 @@
 
                 <EditText
                     android:id="@+id/edt_url"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="URL"
@@ -95,7 +95,7 @@
 
             <Button
                 android:id="@+id/btn_simpan"
-                style="@style/TextAppearance.MaterialComponents.Button"
+                style="@style/Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

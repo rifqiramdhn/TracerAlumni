@@ -84,12 +84,12 @@
 
                 <EditText
                     android:id="@+id/edt_sunting_profil_email"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Email"
                     android:inputType="textEmailAddress"
-                    android:textColor="#2699FB" />
+                    android:textColor="@color/colorIconBiru" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -103,12 +103,12 @@
 
                 <EditText
                     android:id="@+id/edt_sunting_profil_tempat_lahir"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Tempat Lahir"
                     android:inputType="textMultiLine|text|textCapWords"
-                    android:textColor="#2699FB" />
+                    android:textColor="@color/colorIconBiru" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -123,13 +123,13 @@
 
                 <EditText
                     android:id="@+id/edt_sunting_profil_tanggal_lahir"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:focusable="false"
                     android:hint="Tanggal Lahir"
                     android:inputType="none"
-                    android:textColor="#2699FB" />
+                    android:textColor="@color/colorIconBiru" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -144,13 +144,13 @@
 
                 <EditText
                     android:id="@+id/edt_sunting_profil_alamat"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:focusable="false"
                     android:hint="Alamat"
                     android:inputType="none"
-                    android:textColor="#2699FB" />
+                    android:textColor="@color/colorIconBiru" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -164,12 +164,12 @@
 
                 <EditText
                     android:id="@+id/edt_sunting_profil_kode_pos"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Kode Pos"
                     android:inputType="number"
-                    android:textColor="#2699FB" />
+                    android:textColor="@color/colorIconBiru" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -183,13 +183,13 @@
 
                 <EditText
                     android:id="@+id/edt_sunting_profil_angkatan"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Angkatan"
                     android:inputType="number"
                     android:maxLength="4"
-                    android:textColor="#2699FB" />
+                    android:textColor="@color/colorIconBiru" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -203,13 +203,13 @@
 
                 <EditText
                     android:id="@+id/edt_sunting_profil_tahun_lulus"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Tahun Lulus"
                     android:inputType="number"
                     android:maxLength="4"
-                    android:textColor="#2699FB" />
+                    android:textColor="@color/colorIconBiru" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -223,13 +223,13 @@
 
                 <EditText
                     android:id="@+id/edt_sunting_profil_tanggal_yudisium"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:focusable="false"
                     android:hint="Tanggal Yudisium"
                     android:inputType="none"
-                    android:textColor="#2699FB" />
+                    android:textColor="@color/colorIconBiru" />
             </android.support.design.widget.TextInputLayout>
 
             <Spinner
@@ -253,12 +253,12 @@
 
                 <EditText
                     android:id="@+id/edt_sunting_profil_negara"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Negara"
                     android:inputType="text|textCapSentences"
-                    android:textColor="#2699FB" />
+                    android:textColor="@color/colorIconBiru" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -272,13 +272,13 @@
 
                 <EditText
                     android:id="@+id/edt_sunting_profil_no_hp"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="No. HP"
                     android:inputType="number"
                     android:maxLength="15"
-                    android:textColor="#2699FB" />
+                    android:textColor="@color/colorIconBiru" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -292,13 +292,13 @@
 
                 <EditText
                     android:id="@+id/edt_sunting_profil_no_telepon"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="No. Telepon"
                     android:inputType="number"
                     android:maxLength="13"
-                    android:textColor="#2699FB" />
+                    android:textColor="@color/colorIconBiru" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -312,12 +312,12 @@
 
                 <EditText
                     android:id="@+id/edt_sunting_profil_facebook"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Facebook"
                     android:inputType="text"
-                    android:textColor="#2699FB" />
+                    android:textColor="@color/colorIconBiru" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -332,12 +332,12 @@
 
                 <EditText
                     android:id="@+id/edt_sunting_profil_twitter"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Twitter"
                     android:inputType="text"
-                    android:textColor="#2699FB" />
+                    android:textColor="@color/colorIconBiru" />
             </android.support.design.widget.TextInputLayout>
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

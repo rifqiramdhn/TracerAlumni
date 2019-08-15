@@ -47,7 +47,7 @@
 
                 <EditText
                     android:id="@+id/edt_judul_donasi"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Judul"
@@ -67,7 +67,7 @@
 
                 <EditText
                     android:id="@+id/edt_total_donasi"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Anggaran yang Dibutuhkan"
@@ -89,7 +89,7 @@
 
                 <EditText
                     android:id="@+id/edt_deskripsi"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Deskripsi"
@@ -109,7 +109,7 @@
 
                 <EditText
                     android:id="@+id/edt_notelp_op_donasi"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="No. Telepon"
@@ -119,13 +119,13 @@
 
             <TextView
                 android:id="@+id/tv_file"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 android:text=".jpg"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/defaultTextColor"
                 app:layout_constraintEnd_toStartOf="@+id/btn_upload"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/edt_notelp_container"
@@ -133,7 +133,7 @@
 
             <Button
                 android:id="@+id/btn_upload"
-                style="@style/TextAppearance.MaterialComponents.Button"
+                style="@style/Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -142,14 +142,13 @@
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 android:text="pilih foto"
-                android:textColor="@android:color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_file"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_file" />
 
             <TextView
                 android:id="@+id/tv_1"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -158,15 +157,13 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:text="Total Donasi yang Masuk"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_upload" />
 
             <TextView
                 android:id="@+id/tv_total_donasi"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -174,7 +171,6 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:text="Rp 0"
-                android:textColor="@color/black"
                 android:textSize="34sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -182,7 +178,7 @@
 
             <Button
                 android:id="@+id/btn_list_donatur"
-                style="@style/TextAppearance.MaterialComponents.Button"
+                style="@style/Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -198,7 +194,7 @@
 
             <Button
                 android:id="@+id/btn_simpan"
-                style="@style/TextAppearance.MaterialComponents.Button"
+                style="@style/Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

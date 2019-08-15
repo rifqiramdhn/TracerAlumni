@@ -39,7 +39,7 @@
 
             <TextView
                 android:id="@+id/tv_nama_lowongan"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Headline6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -47,8 +47,6 @@
                 android:layout_marginEnd="8dp"
                 android:text="Staff Administrasi HRD"
                 android:textColor="@color/colorIconBiru2"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/tv_nama_perusahaan"
                 app:layout_constraintEnd_toStartOf="@+id/txt_detail"
                 app:layout_constraintStart_toEndOf="@+id/iv_tambah_lowongan_logo"
@@ -56,7 +54,7 @@
 
             <TextView
                 android:id="@+id/tv_nama_perusahaan"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="PT. Bank Muamalat"
@@ -79,7 +77,7 @@
 
             <TextView
                 android:id="@+id/tv_lokasi_perusahaan"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -102,7 +100,7 @@
 
             <TextView
                 android:id="@+id/tv_kisaran_gaji"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -117,14 +115,13 @@
 
             <TextView
                 android:id="@+id/txt_detail"
-                style="@style/TextAppearance.MaterialComponents.Body2"
+                style="@style/Body2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="8dp"
                 android:text="DETAIL"
-                android:textSize="16sp"
                 android:textStyle="bold"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_kisaran_gaji"
@@ -133,7 +130,7 @@
 
             <TextView
                 android:id="@+id/tv_tanggal_lowongan"
-                style="@style/TextAppearance.MaterialComponents.Body2"
+                style="@style/Body2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"

@@ -22,6 +22,7 @@
 
     <TextView
         android:id="@+id/tv_kartu_alumni_nama"
+        style="@style/Body1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
@@ -29,32 +30,30 @@
         android:layout_marginBottom="8dp"
         android:maxLines="2"
         android:text="Imam Al Mukarom"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_kartu_alumni_nim"
         app:layout_constraintEnd_toEndOf="@+id/imageView9"
         app:layout_constraintStart_toStartOf="@+id/tv_kartu_alumni_nim" />
 
     <TextView
         android:id="@+id/tv_kartu_alumni_nim"
+        style="@style/Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="165150293029303"
-        android:textColor="@android:color/black"
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_kartu_alumni_angkatan"
         app:layout_constraintStart_toStartOf="@+id/tv_kartu_alumni_angkatan" />
 
     <TextView
         android:id="@+id/tv_kartu_alumni_angkatan"
+        style="@style/Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginBottom="20dp"
         android:text="2016"
-        android:textColor="@android:color/black"
         android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView9"
         app:layout_constraintStart_toStartOf="@+id/imageView9" />

@@ -84,7 +84,7 @@
 
                 <EditText
                     android:id="@+id/edt_lowongan"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Nama Lowongan"
@@ -106,7 +106,7 @@
 
                 <EditText
                     android:id="@+id/edt_riwayat_pekerjaan"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Nama Jabatan"
@@ -127,7 +127,7 @@
 
                 <EditText
                     android:id="@+id/edt_perusahaan"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Nama Perusahaan"
@@ -148,7 +148,7 @@
 
                 <EditText
                     android:id="@+id/edt_riwayat_lokasi"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Lokasi Perusahaan"
@@ -168,7 +168,7 @@
 
                 <EditText
                     android:id="@+id/edt_kuota"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Kuota yang Dibutuhkan (orang)"
@@ -188,7 +188,7 @@
 
                 <EditText
                     android:id="@+id/edt_riwayat_gaji"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Kisaran Gaji (juta)"
@@ -208,7 +208,7 @@
 
                 <EditText
                     android:id="@+id/edt_syarat"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Syarat Pekerjaan"
@@ -228,7 +228,7 @@
 
                 <EditText
                     android:id="@+id/edt_web"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Website Perusahaan"
@@ -249,7 +249,7 @@
 
                 <EditText
                     android:id="@+id/edt_email"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Email Perusahaan"
@@ -269,7 +269,7 @@
 
                 <EditText
                     android:id="@+id/edt_notelp"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Nomor Telepon Perusahaan"
@@ -289,7 +289,7 @@
 
                 <EditText
                     android:id="@+id/edt_kontak"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Kontak yang Dapat Dihubungi"

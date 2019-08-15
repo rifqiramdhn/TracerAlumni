@@ -62,7 +62,7 @@
 
                 <TextView
                     android:id="@+id/tv_bantuan_wa1"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -76,7 +76,7 @@
                     android:id="@+id/view11"
                     android:layout_width="0dp"
                     android:layout_height="0.5dp"
-                    android:background="@android:color/darker_gray"
+                    android:background="@color/garis"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -85,7 +85,7 @@
                     android:id="@+id/view21"
                     android:layout_width="0dp"
                     android:layout_height="0.5dp"
-                    android:background="@android:color/darker_gray"
+                    android:background="@color/garis"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -113,7 +113,7 @@
 
                 <TextView
                     android:id="@+id/tv_bantuan_wa"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -127,7 +127,7 @@
                     android:id="@+id/view"
                     android:layout_width="0dp"
                     android:layout_height="0.5dp"
-                    android:background="@android:color/darker_gray"
+                    android:background="@color/garis"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -136,7 +136,7 @@
                     android:id="@+id/view2"
                     android:layout_width="0dp"
                     android:layout_height="0.5dp"
-                    android:background="@android:color/darker_gray"
+                    android:background="@color/garis"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -165,7 +165,7 @@
 
                 <TextView
                     android:id="@+id/tv_bantuan_telp"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -179,7 +179,7 @@
                     android:id="@+id/view3"
                     android:layout_width="0dp"
                     android:layout_height="0.5dp"
-                    android:background="@android:color/darker_gray"
+                    android:background="@color/garis"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -208,7 +208,7 @@
 
                 <TextView
                     android:id="@+id/tv_bantuan_email"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    style="@style/Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -222,7 +222,7 @@
                     android:id="@+id/view4"
                     android:layout_width="0dp"
                     android:layout_height="0.5dp"
-                    android:background="@android:color/darker_gray"
+                    android:background="@color/garis"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -231,7 +231,7 @@
                     android:id="@+id/view5"
                     android:layout_width="0dp"
                     android:layout_height="0.5dp"
-                    android:background="@android:color/darker_gray"
+                    android:background="@color/garis"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -239,7 +239,7 @@
 
             <TextView
                 android:id="@+id/tv_bantuan_judul_kontak"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -247,8 +247,6 @@
                 android:layout_marginTop="16dp"
                 android:text="Hubungi Kami"
                 android:textColor="@color/colorIconBiru2"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_bantuan" />
             <!--app:layout_constraintTop_toTopOf="parent" />-->
@@ -256,7 +254,7 @@
 
             <TextView
                 android:id="@+id/tv_bantuan_judul_email"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -264,8 +262,6 @@
                 android:layout_marginTop="16dp"
                 android:text="Info Layanan"
                 android:textColor="@color/colorIconBiru2"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cl_bantuan_telp" />
         </android.support.constraint.ConstraintLayout>
