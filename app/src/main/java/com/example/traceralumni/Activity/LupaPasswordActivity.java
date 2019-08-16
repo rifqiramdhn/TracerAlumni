@@ -2,6 +2,7 @@ package com.example.traceralumni.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.traceralumni.R;
@@ -21,7 +23,7 @@ public class LupaPasswordActivity extends AppCompatActivity {
     EditText edtEmail;
     ConstraintLayout back;
     Button lupaPassword;
-    String email, password;
+    TextView waOperator1, waOperator2;
 
     ProgressDialog pd;
 
@@ -33,6 +35,8 @@ public class LupaPasswordActivity extends AppCompatActivity {
         edtEmail = findViewById(R.id.edt_lupa_password_email);
         back = findViewById(R.id.cl_lupa_password_back);
         lupaPassword = findViewById(R.id.btn_lupa_password_lupa);
+        waOperator1 = findViewById(R.id.tv_lupa_password_wa1);
+        waOperator2 = findViewById(R.id.tv_lupa_password_wa2);
 
         pd = new ProgressDialog(LupaPasswordActivity.this);
         pd.setMessage("Loading...");
@@ -50,6 +54,24 @@ public class LupaPasswordActivity extends AppCompatActivity {
             public void onClick(View v) {
                 pd.show();
                 resetPassword(edtEmail.getText().toString().trim());
+            }
+        });
+        waOperator1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                String urlNew = "http://wa.me/6281333555047";
+                i.setData(Uri.parse(urlNew));
+                startActivity(i);
+            }
+        });
+        waOperator2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                String urlNew = "http://wa.me/6281333444861";
+                i.setData(Uri.parse(urlNew));
+                startActivity(i);
             }
         });
     }
