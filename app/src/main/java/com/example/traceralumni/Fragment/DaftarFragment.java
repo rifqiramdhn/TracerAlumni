@@ -3,26 +3,40 @@ package com.example.traceralumni.Fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traceralumni.Activity.DetailProfilActivity;
 import com.example.traceralumni.Adapter.DaftarAdapter;
 import com.example.traceralumni.Client;
 import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,6 +62,7 @@ public class DaftarFragment extends Fragment {
     ArrayList<DaftarModel> daftarModels;
     Spinner spn_prodi;
     EditText edt_cari_nama, edt_cari_angkatan;
+
     public DaftarFragment() {
         // Required empty public constructor
     }
@@ -112,7 +127,6 @@ public class DaftarFragment extends Fragment {
                 }
             }
         });
-
     }
 
     private void customSpinner() {
