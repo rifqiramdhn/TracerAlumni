@@ -47,7 +47,6 @@ public class PimDataAlumniFragment extends Fragment {
     ArrayList<DaftarModel> daftarModels;
     ProgressBar progressBar;
 
-    int CAN_CLICK_BUTTON_SAVE = 0; //0 bisa diklik, 1 tidak bisa diklik
 
     public PimDataAlumniFragment() {
         // Required empty public constructor
@@ -68,10 +67,13 @@ public class PimDataAlumniFragment extends Fragment {
         btn_lihatDaftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (CAN_CLICK_BUTTON_SAVE == 0) {
-                    CAN_CLICK_BUTTON_SAVE = 1;
-                    getDataAlumniDaftar();
-                }
+                Intent intent = new Intent(getActivity(), PimDaftarAlumniActivity.class);
+                intent.putExtra("jurusan", spn_jurusan.getSelectedItem().toString());
+                intent.putExtra("prodi", spn_prodi.getSelectedItem().toString());
+                intent.putExtra("angkatan", edt_angkatan.getText().toString());
+                intent.putExtra("jabatan", edt_jabatan.getText().toString());
+                rootView.getContext().startActivity(intent);
+
             }
         });
 
@@ -274,63 +276,6 @@ public class PimDataAlumniFragment extends Fragment {
             }
         });
 
-    }
-
-    private void getDataAlumniDaftar() {
-        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
-
-        Call<ArrayList<DaftarModel>> call;
-
-        if (edt_angkatan.getText().toString().equalsIgnoreCase("")) {
-            call = jsonApi.getDataAlumniDaftar(
-                    spn_jurusan.getSelectedItem().toString(),
-                    spn_prodi.getSelectedItem().toString(),
-                    "",
-                    edt_jabatan.getText().toString());
-        } else if (edt_jabatan.getText().toString().equalsIgnoreCase("")) {
-            call = jsonApi.getDataAlumniDaftar(
-                    spn_jurusan.getSelectedItem().toString(),
-                    spn_prodi.getSelectedItem().toString(),
-                    edt_angkatan.getText().toString(),
-                    "");
-        } else if (edt_angkatan.getText().toString().equalsIgnoreCase("")
-                && edt_jabatan.getText().toString().equalsIgnoreCase("")) {
-            call = jsonApi.getDataAlumniDaftar(
-                    spn_jurusan.getSelectedItem().toString(),
-                    spn_prodi.getSelectedItem().toString(),
-                    "",
-                    "");
-        } else {
-            call = jsonApi.getDataAlumniDaftar(
-                    spn_jurusan.getSelectedItem().toString(),
-                    spn_prodi.getSelectedItem().toString(),
-                    edt_angkatan.getText().toString(),
-                    edt_jabatan.getText().toString());
-        }
-        call.enqueue(new Callback<ArrayList<DaftarModel>>() {
-            @Override
-            public void onResponse(Call<ArrayList<DaftarModel>> call, Response<ArrayList<DaftarModel>> response) {
-                if (!response.isSuccessful()) {
-                    CAN_CLICK_BUTTON_SAVE = 0;
-                    return;
-                }
-                CAN_CLICK_BUTTON_SAVE = 0;
-                daftarModels.clear();
-                ArrayList<DaftarModel> daftarModelsResponse = response.body();
-                daftarModels.addAll(daftarModelsResponse);
-                Intent intent = new Intent(getActivity(), PimDaftarAlumniActivity.class);
-                intent.putParcelableArrayListExtra("daftarModels", daftarModels);
-                rootView.getContext().startActivity(intent);
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<DaftarModel>> call, Throwable t) {
-                CAN_CLICK_BUTTON_SAVE = 0;
-                if (t.getMessage().contains("Failed to connect")) {
-                    Toast.makeText(getContext(), TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
     private void getDataAlumniCount() {

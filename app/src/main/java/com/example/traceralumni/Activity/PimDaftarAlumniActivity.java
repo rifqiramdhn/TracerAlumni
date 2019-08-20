@@ -13,13 +13,21 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.traceralumni.Adapter.DaftarAdapter;
+import com.example.traceralumni.Client;
+import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.Model.DaftarModel;
 import com.example.traceralumni.R;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 import static com.example.traceralumni.Fragment.DaftarFragment.TEXT_SEARCH_DAFTAR_USE_NAMA;
 
 public class PimDaftarAlumniActivity extends AppCompatActivity {
@@ -30,6 +38,7 @@ public class PimDaftarAlumniActivity extends AppCompatActivity {
     DaftarAdapter daftarAdapter;
     ArrayList<DaftarModel> daftarModels;
     EditText edt_search;
+    String jurusan, prodi, angkatan, jabatan;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,14 +50,12 @@ public class PimDaftarAlumniActivity extends AppCompatActivity {
         ambilView();
         setNavBar();
 
-        Intent intent = getIntent();
-        daftarModels = intent.getParcelableArrayListExtra("daftarModels");
-        daftarRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        getDataAlumniDaftar();
+
+        daftarModels = new ArrayList<>();
         daftarAdapter = new DaftarAdapter(this, daftarModels);
-        setSearch(daftarAdapter);
-        if (daftarModels.get(0).getStatus_data().equalsIgnoreCase("y")) {
-            daftarRecycler.setAdapter(daftarAdapter);
-        }
+        daftarRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        daftarRecycler.setAdapter(daftarAdapter);
 
         cl_iconSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,4 +118,55 @@ public class PimDaftarAlumniActivity extends AppCompatActivity {
 
     }
 
+    private void getDataAlumniDaftar() {
+        Intent intent = getIntent();
+
+        jurusan = intent.getStringExtra("jurusan");
+        prodi = intent.getStringExtra("prodi");
+        angkatan = intent.getStringExtra("angkatan");
+        jabatan = intent.getStringExtra("jabatan");
+
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
+
+        Call<ArrayList<DaftarModel>> call;
+
+        if (angkatan.equalsIgnoreCase("")) {
+            call = jsonApi.getDataAlumniDaftar(
+                    jurusan, prodi, "", jabatan);
+        } else if (jabatan.equalsIgnoreCase("")) {
+            call = jsonApi.getDataAlumniDaftar(
+                    jurusan, prodi, angkatan, "");
+        } else if (angkatan.equalsIgnoreCase("")
+                && jabatan.equalsIgnoreCase("")) {
+            call = jsonApi.getDataAlumniDaftar(
+                    jurusan, prodi, "", "");
+        } else {
+            call = jsonApi.getDataAlumniDaftar(
+                    jurusan, prodi, angkatan, jabatan);
+        }
+        call.enqueue(new Callback<ArrayList<DaftarModel>>() {
+            @Override
+            public void onResponse(Call<ArrayList<DaftarModel>> call, Response<ArrayList<DaftarModel>> response) {
+                if (!response.isSuccessful()) {
+                    return;
+                }
+                daftarModels.clear();
+                ArrayList<DaftarModel> daftarModelsResponse = response.body();
+                if (daftarModelsResponse.get(0).getStatus_data().equals("y")) {
+                    daftarModels.addAll(daftarModelsResponse);
+                    final DaftarAdapter daftarAdapterNew = new DaftarAdapter(PimDaftarAlumniActivity.this, daftarModels);
+                    daftarRecycler.setAdapter(daftarAdapterNew);
+                    setSearch(daftarAdapterNew);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<DaftarModel>> call, Throwable t) {
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(PimDaftarAlumniActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        });
+    }
 }
