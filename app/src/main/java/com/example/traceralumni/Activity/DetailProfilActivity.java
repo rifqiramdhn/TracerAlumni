@@ -312,9 +312,23 @@ public class DetailProfilActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(DetailProfilActivity.this, "Hapus token berhasil", Toast.LENGTH_SHORT).show();
-                    hapusChat(uid);
+                    hapusRootUser(uid);
                 } else {
                     Toast.makeText(DetailProfilActivity.this, "Hapus token gagal", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void hapusRootUser(final String uid) {
+        mDatabaseUser.child(uid).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(DetailProfilActivity.this, "Hapus root database user berhasil", Toast.LENGTH_SHORT).show();
+                    hapusAuthFirebase(user, uid);
+                } else {
+                    Toast.makeText(DetailProfilActivity.this, "Hapus root database gagal", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -380,7 +394,6 @@ public class DetailProfilActivity extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 Toast.makeText(DetailProfilActivity.this, "Berhasil menghapus chatlist receiver", Toast.LENGTH_SHORT).show();
-                                                hapusRootUser(uid);
                                             } else {
                                                 Toast.makeText(DetailProfilActivity.this, "Gagal menghapus chatlist receiver", Toast.LENGTH_SHORT).show();
                                             }
@@ -406,26 +419,13 @@ public class DetailProfilActivity extends AppCompatActivity {
         });
     }
 
-    private void hapusRootUser(String uid) {
-        mDatabaseUser.child(uid).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(DetailProfilActivity.this, "Hapus root database user berhasil", Toast.LENGTH_SHORT).show();
-                    hapusAuthFirebase(user);
-                } else {
-                    Toast.makeText(DetailProfilActivity.this, "Hapus root database gagal", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    private void hapusAuthFirebase(FirebaseUser user) {
+    private void hapusAuthFirebase(FirebaseUser user, final String uid) {
         user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(DetailProfilActivity.this, "Berhasil menghapus auth", Toast.LENGTH_SHORT).show();
+                    hapusChat(uid);
                     mAuth.signOut();
                 } else {
                     Toast.makeText(DetailProfilActivity.this, "Gagal menghapus auth", Toast.LENGTH_SHORT).show();

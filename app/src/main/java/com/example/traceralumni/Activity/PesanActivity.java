@@ -122,9 +122,10 @@ public class PesanActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         UserModel userModel = dataSnapshot.getValue(UserModel.class);
-                        tvNavbar.setText(userModel.getUsername());
-
-                        readMessage(firebaseUser.getUid(), userModel.getId(), userModel.getImageUrl());
+                        if (userModel != null){
+                            tvNavbar.setText(userModel.getUsername());
+                            readMessage(firebaseUser.getUid(), userModel.getId(), userModel.getImageUrl());
+                        }
                     }
 
                     @Override

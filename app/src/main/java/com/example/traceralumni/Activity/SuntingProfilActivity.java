@@ -156,6 +156,8 @@ public class SuntingProfilActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (edt_email.getText().toString().equalsIgnoreCase("")) {
                     edt_email.setError("Wajib diisi!");
+                } else if (edt_email.getText().toString().contains(" ")){
+                    edt_email.setError("Email tidak boleh terdapat spasi!");
                 } else if (edt_tempat_lahir.getText().toString().equalsIgnoreCase("")) {
                     edt_tempat_lahir.setError("Wajib diisi!");
                 } else if (edt_tanggal_lahir.getText().toString().equalsIgnoreCase("")) {

@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputFilter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -106,6 +107,8 @@ public class TambahAlumniActivity extends AppCompatActivity {
                     edtNim.setError("Wajib diisi");
                 } else if (edtNim.length() < 10) {
                     edtNim.setError("Panjang NIM minimal 10 digit");
+                } else if (edtNim.getText().toString().contains(" ")){
+                    edtNim.setError("NIM tidak boleh ada spasi");
                 } else if (edtNama.length() == 0) {
                     edtNama.setError("Wajib diisi");
                 } else if (spn_prodi.getSelectedItem().toString().equalsIgnoreCase("Prodi")) {
