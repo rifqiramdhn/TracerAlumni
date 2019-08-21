@@ -129,6 +129,10 @@ public class TambahAlumniActivity extends AppCompatActivity {
         switch (spn_prodi.getSelectedItem().toString()) {
             case "S1 Akuntansi (Internasional)":
                 id_jurusan = 1;
+                id_prodi = 1;
+                break;
+            case "S1 Akuntansi":
+                id_jurusan = 1;
                 id_prodi = 2;
                 break;
             case "S1 Ekonomi, Keuangan, dan Perbankan (Internasional)":
@@ -150,6 +154,10 @@ public class TambahAlumniActivity extends AppCompatActivity {
             case "S1 Ekonomi Pembangunan":
                 id_jurusan = 2;
                 id_prodi = 5;
+                break;
+            case "S1 Ekonomi Islam":
+                id_jurusan = 2;
+                id_prodi = 18;
                 break;
             case "S1 Ekonomi Pembangunan (Internasional)":
                 id_jurusan = 2;
@@ -334,6 +342,7 @@ public class TambahAlumniActivity extends AppCompatActivity {
 
         String[] prodi = new String[]{
                 "Prodi",
+                "S1 Akuntansi",
                 "S1 Akuntansi (Internasional)",
                 "S1 Ekonomi, Keuangan, dan Perbankan (Internasional)",
                 "S2 Akuntansi",
@@ -341,6 +350,7 @@ public class TambahAlumniActivity extends AppCompatActivity {
                 "PPAk",
                 "S1 Ekonomi Pembangunan",
                 "S1 Ekonomi Pembangunan (Internasional)",
+                "S1 Ekonomi Islam",
                 "S2 Ilmu Ekonomi",
                 "S3 Ilmu Ekonomi",
                 "S1 Ekonomi, Keuangan, dan Perbankan",
@@ -353,6 +363,7 @@ public class TambahAlumniActivity extends AppCompatActivity {
 
         String[] prodiAkuntansi = new String[]{
                 "Prodi",
+                "S1 Akuntansi",
                 "S1 Akuntansi (Internasional)",
                 "S1 Ekonomi, Keuangan, dan Perbankan (Internasional)",
                 "S2 Akuntansi",
@@ -364,6 +375,7 @@ public class TambahAlumniActivity extends AppCompatActivity {
                 "Prodi",
                 "S1 Ekonomi Pembangunan",
                 "S1 Ekonomi Pembangunan (Internasional)",
+                "S1 Ekonomi Islam",
                 "S2 Ilmu Ekonomi",
                 "S3 Ilmu Ekonomi",
         };

@@ -142,21 +142,23 @@ public class DaftarAlumniActivity extends AppCompatActivity {
 
         String[] prodi = new String[]{
                 "Prodi",
+                "S1 Akuntansi",
                 "S1 Akuntansi (Internasional)",
-                "S1 Ek., Keu. dan Perbankan (Internasional)",
+                "S1 Ekonomi, Keuangan, dan Perbankan (Internasional)",
+                "S2 Akuntansi",
+                "S3 Ilmu Akuntansi",
+                "PPAk",
                 "S1 Ekonomi Pembangunan",
                 "S1 Ekonomi Pembangunan (Internasional)",
-                "S1 Ekonomi, Keuangan dan Perbankan",
+                "S1 Ekonomi Islam",
+                "S2 Ilmu Ekonomi",
+                "S3 Ilmu Ekonomi",
+                "S1 Ekonomi, Keuangan, dan Perbankan",
                 "S1 Kewirausahaan",
                 "S1 Manajemen",
                 "S1 Manajemen (Internasional)",
-                "S2 Akuntansi",
                 "S2 Manajemen",
-                "S2 Ilmu Ekonomi",
-                "S3 Ilmu Akuntansi",
-                "S3 Ilmu Ekonomi",
-                "S3 Ilmu Manajemen",
-                "PPAk"
+                "S3 Ilmu Manajemen"
         };
 
         final List<String> prodiList = new ArrayList<>(Arrays.asList(prodi));
