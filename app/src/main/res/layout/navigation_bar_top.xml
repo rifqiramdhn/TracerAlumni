@@ -19,12 +19,15 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxWidth="200dp"
         android:textColor="@color/colorIconBiru"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/cl_icon4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="DAFTAR ALUMNI" />
+        tools:text="text_nav_bar" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/cl_icon1"

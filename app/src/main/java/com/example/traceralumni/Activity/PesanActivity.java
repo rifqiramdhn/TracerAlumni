@@ -123,6 +123,7 @@ public class PesanActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         UserModel userModel = dataSnapshot.getValue(UserModel.class);
                         if (userModel != null){
+                            tvNavbar.setAllCaps(true);
                             tvNavbar.setText(userModel.getUsername());
                             readMessage(firebaseUser.getUid(), userModel.getId(), userModel.getImageUrl());
                         }
