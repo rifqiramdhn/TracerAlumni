@@ -203,7 +203,7 @@ public class DetailProfilActivity extends AppCompatActivity {
 
     public void showHapusDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Apakah anda yakin ingin menghapus data alumni ini?");
+        builder.setMessage("Apakah anda yakin ingin menghapus data alumni ini?\nPERI");
         builder.setTitle("Hapus Alumni");
         builder.setCancelable(false);
         builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
@@ -236,7 +236,7 @@ public class DetailProfilActivity extends AppCompatActivity {
                     return;
                 }
                 hapusAlumniFirebase(daftarModel.getEmail(), pass);
-                onBackPressed();
+//                onBackPressed();
             }
 
             @Override
@@ -300,7 +300,7 @@ public class DetailProfilActivity extends AppCompatActivity {
                     user = mAuth.getCurrentUser();
                     hapusRootToken(user.getUid());
                 } else {
-                    Toast.makeText(DetailProfilActivity.this, "Gagal login", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(DetailProfilActivity.this, "Gagal login", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -311,10 +311,10 @@ public class DetailProfilActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(DetailProfilActivity.this, "Hapus token berhasil", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(DetailProfilActivity.this, "Hapus token berhasil", Toast.LENGTH_SHORT).show();
                     hapusRootUser(uid);
                 } else {
-                    Toast.makeText(DetailProfilActivity.this, "Hapus token gagal", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(DetailProfilActivity.this, "Hapus token gagal", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -325,10 +325,10 @@ public class DetailProfilActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(DetailProfilActivity.this, "Hapus root database user berhasil", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(DetailProfilActivity.this, "Hapus root database user berhasil", Toast.LENGTH_SHORT).show();
                     hapusAuthFirebase(user, uid);
                 } else {
-                    Toast.makeText(DetailProfilActivity.this, "Hapus root database gagal", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(DetailProfilActivity.this, "Hapus root database gagal", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -345,10 +345,10 @@ public class DetailProfilActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(DetailProfilActivity.this, "Berhasil menghapus chat", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(DetailProfilActivity.this, "Berhasil menghapus chat", Toast.LENGTH_SHORT).show();
                                     hapusChildChatlist(uid);
                                 } else {
-                                    Toast.makeText(DetailProfilActivity.this, "Gagal menghapus chat", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(DetailProfilActivity.this, "Gagal menghapus chat", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -368,9 +368,9 @@ public class DetailProfilActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(DetailProfilActivity.this, "Hapus chatlist berhasil", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(DetailProfilActivity.this, "Hapus chatlist berhasil", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(DetailProfilActivity.this, "Hapus chatlist gagal", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(DetailProfilActivity.this, "Hapus chatlist gagal", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -393,9 +393,10 @@ public class DetailProfilActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
-                                                Toast.makeText(DetailProfilActivity.this, "Berhasil menghapus chatlist receiver", Toast.LENGTH_SHORT).show();
+//                                                Toast.makeText(DetailProfilActivity.this, "Berhasil menghapus chatlist receiver", Toast.LENGTH_SHORT).show();
+                                                onBackPressed();
                                             } else {
-                                                Toast.makeText(DetailProfilActivity.this, "Gagal menghapus chatlist receiver", Toast.LENGTH_SHORT).show();
+//                                                Toast.makeText(DetailProfilActivity.this, "Gagal menghapus chatlist receiver", Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                     });
@@ -424,11 +425,11 @@ public class DetailProfilActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(DetailProfilActivity.this, "Berhasil menghapus auth", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(DetailProfilActivity.this, "Berhasil menghapus auth", Toast.LENGTH_SHORT).show();
                     hapusChat(uid);
                     mAuth.signOut();
                 } else {
-                    Toast.makeText(DetailProfilActivity.this, "Gagal menghapus auth", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(DetailProfilActivity.this, "Gagal menghapus auth", Toast.LENGTH_SHORT).show();
                     mAuth.signOut();
                 }
             }

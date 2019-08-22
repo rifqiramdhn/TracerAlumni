@@ -3,28 +3,22 @@ package com.example.traceralumni.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputFilter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.traceralumni.Client;
-import com.example.traceralumni.DataAlumni;
 import com.example.traceralumni.JsonApi;
 import com.example.traceralumni.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -60,12 +54,6 @@ public class TambahAlumniActivity extends AppCompatActivity {
     private ImageView imgIconBack, imgIconOk;
     private TextView tvNavbar;
 
-    private Button btnBudal;
-    private TextView tvBudal, tvBudalJumlah;
-    private ScrollView svBudal;
-
-    int alumniTertambah = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +68,6 @@ public class TambahAlumniActivity extends AppCompatActivity {
         auth2 = FirebaseAuth.getInstance();
 
         initView();
-        modeIsiDataAlumni();
     }
 
     private void initView() {
@@ -507,129 +494,6 @@ public class TambahAlumniActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-        });
-    }
-
-    private void modeIsiDataAlumni() {
-        btnBudal = findViewById(R.id.btn_budal);
-        tvBudal = findViewById(R.id.tv_budal);
-        svBudal = findViewById(R.id.sv_budal);
-        tvBudalJumlah = findViewById(R.id.tv_kontlo);
-
-        final String[][] dataAlumni = DataAlumni.dataAlumni;
-        btnBudal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                for (int i = 0; i < dataAlumni.length; i++) {
-                    final String nim = dataAlumni[i][0];
-                    final String nama = dataAlumni[i][1];
-
-                    int jurusan = Integer.valueOf(dataAlumni[i][2]);
-                    int prodi = Integer.valueOf(dataAlumni[i][3]);
-
-                    final String email = nim + "traceralumnifeb@gmail.com";
-                    final String password = getRandomPassword(8);
-
-                    svBudal.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            svBudal.fullScroll(View.FOCUS_DOWN);
-                        }
-                    });
-
-                    tvBudal.append("\n" + nama);
-
-                    JsonApi jsonApi = Client.getClient().create(JsonApi.class);
-                    Call<String> call = jsonApi.createAlumni(nama, nim, email, password, jurusan, prodi);
-                    call.enqueue(new Callback<String>() {
-                        @Override
-                        public void onResponse(Call<String> call, Response<String> response) {
-                            if (!response.isSuccessful()) {
-                                return;
-                            }
-                            String hasil = response.body();
-                            if (hasil.equals("0")) {
-                                edtNim.setError("NIM sudah digunakan");
-                            } else {
-                                tvBudal.append(" 1 ");
-                                auth2.createUserWithEmailAndPassword(email, password)
-                                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                                if (task.isSuccessful()) {
-                                                    FirebaseUser firebaseUser = auth2.getCurrentUser();
-                                                    assert firebaseUser != null;
-                                                    final String userId = firebaseUser.getUid();
-
-                                                    reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
-
-                                                    HashMap<String, String> hashMap = new HashMap<>();
-                                                    hashMap.put("id", userId);
-                                                    hashMap.put("nim", nim);
-                                                    hashMap.put("username", nama);
-                                                    hashMap.put("imageUrl", "");
-
-                                                    reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                        @Override
-                                                        public void onComplete(@NonNull Task<Void> task) {
-                                                            auth2.signOut();
-                                                            tvBudal.append(" 2 ");
-                                                            JsonApi jsonApi = Client.getClient().create(JsonApi.class);
-                                                            Call<Void> call = jsonApi.addUserIdAlumni(nim, userId);
-                                                            call.enqueue(new Callback<Void>() {
-                                                                @Override
-                                                                public void onResponse(Call<Void> call, Response<Void> response) {
-                                                                    if (!response.isSuccessful()) {
-                                                                        pd.dismiss();
-                                                                        return;
-                                                                    }
-
-                                                                    pd.dismiss();
-                                                                    tvBudal.append(" 3 ");
-                                                                    svBudal.post(new Runnable() {
-                                                                        @Override
-                                                                        public void run() {
-                                                                            svBudal.fullScroll(View.FOCUS_DOWN);
-                                                                        }
-                                                                    });
-//                                                                    Toast.makeText(TambahAlumniActivity.this, "Alumni berhasil ditambahkan", Toast.LENGTH_SHORT).show();
-                                                                    alumniTertambah++;
-                                                                    tvBudalJumlah.setText("" + alumniTertambah);
-//                                                                    onBackPressed();
-                                                                }
-
-                                                                @Override
-                                                                public void onFailure(Call<Void> call, Throwable t) {
-                                                                    pd.dismiss();
-                                                                    if (t.getMessage().contains("Failed to connect")) {
-                                                                        Toast.makeText(TambahAlumniActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
-                                                                    }
-                                                                    return;
-                                                                }
-                                                            });
-                                                        }
-                                                    });
-                                                } else {
-                                                    Toast.makeText(TambahAlumniActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                                    pd.dismiss();
-                                                    return;
-                                                }
-                                            }
-                                        });
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<String> call, Throwable t) {
-                            pd.dismiss();
-                            if (t.getMessage().contains("Failed to connect")) {
-                                Toast.makeText(TambahAlumniActivity.this, TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
-                            }
-                            return;
-                        }
-                    });
-                }
             }
         });
     }
