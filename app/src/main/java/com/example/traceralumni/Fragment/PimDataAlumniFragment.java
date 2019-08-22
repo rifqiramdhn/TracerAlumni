@@ -102,6 +102,7 @@ public class PimDataAlumniFragment extends Fragment {
 
         String[] prodi = new String[]{
                 "Prodi",
+                "S1 Akuntansi",
                 "S1 Akuntansi (Internasional)",
                 "S1 Ekonomi, Keuangan, dan Perbankan (Internasional)",
                 "S2 Akuntansi",
@@ -109,6 +110,7 @@ public class PimDataAlumniFragment extends Fragment {
                 "PPAk",
                 "S1 Ekonomi Pembangunan",
                 "S1 Ekonomi Pembangunan (Internasional)",
+                "S1 Ekonomi Islam",
                 "S2 Ilmu Ekonomi",
                 "S3 Ilmu Ekonomi",
                 "S1 Ekonomi, Keuangan, dan Perbankan",
@@ -121,6 +123,7 @@ public class PimDataAlumniFragment extends Fragment {
 
         String[] prodiAkuntansi = new String[]{
                 "Prodi",
+                "S1 Akuntansi",
                 "S1 Akuntansi (Internasional)",
                 "S1 Ekonomi, Keuangan, dan Perbankan (Internasional)",
                 "S2 Akuntansi",
@@ -132,6 +135,7 @@ public class PimDataAlumniFragment extends Fragment {
                 "Prodi",
                 "S1 Ekonomi Pembangunan",
                 "S1 Ekonomi Pembangunan (Internasional)",
+                "S1 Ekonomi Islam",
                 "S2 Ilmu Ekonomi",
                 "S3 Ilmu Ekonomi",
         };
