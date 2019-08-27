@@ -123,14 +123,21 @@ public class DetailProfilActivity extends AppCompatActivity {
                 Glide.with(DetailProfilActivity.this)
                         .load(BASE_URL + oldPath)
                         .into(img_detail_profil);
+            } else {
+                Glide.with(DetailProfilActivity.this)
+                        .load(R.drawable.ic_avatar)
+                        .into(img_detail_profil);
             }
+
             cl_wa.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    String urlNew = "http://wa.me/" + daftarModel.getNomor_hp().substring(1);
-                    i.setData(Uri.parse(urlNew));
-                    startActivity(i);
+                    if (!daftarModel.getNomor_hp().equals("")) {
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        String urlNew = "http://wa.me/" + daftarModel.getNomor_hp().substring(1);
+                        i.setData(Uri.parse(urlNew));
+                        startActivity(i);
+                    }
                 }
             });
             tvPassword.setText(daftarModel.getPassword());
@@ -176,6 +183,10 @@ public class DetailProfilActivity extends AppCompatActivity {
                 if (!oldPath.equals("")) {
                     Glide.with(DetailProfilActivity.this)
                             .load(BASE_URL + oldPath)
+                            .into(img_detail_profil);
+                } else {
+                    Glide.with(DetailProfilActivity.this)
+                            .load(R.drawable.ic_avatar)
                             .into(img_detail_profil);
                 }
                 cl_wa.setOnClickListener(new View.OnClickListener() {

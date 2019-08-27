@@ -112,6 +112,10 @@ public class DaftarAdapter extends RecyclerView.Adapter<DaftarAdapter.ViewHolder
             Glide.with(context)
                     .load(BASE_URL + oldPath)
                     .into(holder.foto);
+        } else {
+            Glide.with(context)
+                    .load(R.drawable.ic_avatar)
+                    .into(holder.foto);
         }
 
         holder.container.setOnClickListener(new View.OnClickListener() {

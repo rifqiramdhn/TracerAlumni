@@ -55,6 +55,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.tvUsername.setText(userModel.getUsername());
         if (!userModel.getImageUrl().equals("")) {
             Glide.with(context).load(BASE_URL + userModel.getImageUrl()).into(holder.imgProfil);
+        } else {
+            Glide.with(context)
+                    .load(R.drawable.ic_avatar)
+                    .into(holder.imgProfil);
         }
 
         if (isChat) {
