@@ -274,6 +274,10 @@ public class SuntingProfilActivity extends AppCompatActivity {
             Glide.with(SuntingProfilActivity.this)
                     .load(BASE_URL + oldPath)
                     .into(img_foto_profil);
+        }else {
+            Glide.with(SuntingProfilActivity.this)
+                    .load(R.drawable.ic_avatar)
+                    .into(img_foto_profil);
         }
         cekPerubahan();
     }
