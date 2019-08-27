@@ -249,4 +249,7 @@ public interface JsonApi {
     @POST("post_add_userid_alumni.php")
     Call<Void> addUserIdAlumni(@Field("nim") String nim,
                                @Field("userId") String userId);
+
+    @GET("get_count_alumni_aktif.php")
+    Call<String> countAlumniAktif();
 }

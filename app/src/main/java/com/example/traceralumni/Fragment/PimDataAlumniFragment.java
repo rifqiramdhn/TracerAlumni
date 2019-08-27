@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.traceralumni.APIService;
 import com.example.traceralumni.Activity.PimDaftarAlumniActivity;
 import com.example.traceralumni.Client;
 import com.example.traceralumni.JsonApi;
@@ -41,7 +42,7 @@ import static com.example.traceralumni.Activity.MainActivity.TEXT_NO_INTERNET;
 public class PimDataAlumniFragment extends Fragment {
     View rootView;
     Spinner spn_jurusan, spn_prodi;
-    TextView tv_totalAlumni;
+    TextView tv_totalAlumni, tvAlumniAktif;
     EditText edt_angkatan, edt_jabatan;
     Button btn_lihatDaftar;
     ArrayList<DaftarModel> daftarModels;
@@ -63,7 +64,6 @@ public class PimDataAlumniFragment extends Fragment {
         ambilView();
         customSpinner();
 
-
         btn_lihatDaftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +80,38 @@ public class PimDataAlumniFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getAlumniAktifCount();
+    }
+
+    private void getAlumniAktifCount(){
+        JsonApi jsonApi = Client.getClient().create(JsonApi.class);
+
+        Call<String> call = jsonApi.countAlumniAktif();
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (!response.isSuccessful()){
+                    return;
+                }
+
+                String hasil = response.body();
+                tvAlumniAktif.setText("ALUMNI AKTIF : " + hasil);
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                if (t.getMessage().contains("Failed to connect")) {
+                    Toast.makeText(getActivity(), TEXT_NO_INTERNET, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
     private void ambilView() {
+        tvAlumniAktif = rootView.findViewById(R.id.tv_alumni_aktif);
         spn_jurusan = rootView.findViewById(R.id.spn_daftar_jurusan);
         spn_prodi = rootView.findViewById(R.id.spn_daftar_prodi);
         tv_totalAlumni = rootView.findViewById(R.id.tv_total_alumni);
